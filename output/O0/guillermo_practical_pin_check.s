@@ -72,7 +72,7 @@ main:
 	li	a5,1
 	j	.L6
 .L5:
-	   	a5,0
+	li	a5,0
 .L6:
 	mv	a0,a5
 	ld	ra,40(sp)

@@ -6,6 +6,8 @@ class Argument:
         self.arg_text = arg_text    # The text of the argument
 
 class Register(Argument):
+
+    register_pattern = r'(ra|sp|gp|tp|fp|t[0-6]|s(1[0-1]|[0-9])|a[0-7]|f[st]([0-9]|1[0-1])|fa[0-7])'
     def __init__(self, arg_text):
         super().__init__(arg_text)
 
@@ -64,7 +66,7 @@ class Function(Line):
 
     def resolve_function_name(self):
         '''
-        Removes the suffixed : from the function line to leave the function name
+        Removes the suffixed : if it exists from the function line to leave the function name
         '''
         self.function_name = self.line_text[:-1]
 
@@ -104,12 +106,23 @@ class Attribute(Line):
                     raw_args_text = raw_args_text.split(',', 1)[1].strip()
                 else:
                     break
+def is_integer(candidate):
+    '''
+    Helper function to determine if a string can be an integer
+    :param candidate: the string candidate to become an integer
+    :return: true if error is not raised during  conversion else false
+    '''
+    try:
+        int(candidate)
+        return True
+    except ValueError:
+        return False
 
 class Instruction(Line):
     def __init__(self, line_no=None, line_text=None):
         super().__init__(line_no, line_text)
         self.type: str  # The name of the instruction type
-        self.args: List[IntegerLiteral | StringLiteral | Location | Function] = []  # A list of the arguments of the instruction
+        self.args: List[IntegerLiteral | MemoryAddress | Register | Attribute] = []  # A list of the arguments of the instruction
 
     def parse_attributes(self):
         '''
@@ -119,12 +132,34 @@ class Instruction(Line):
         '''
         self.type = self.line_text.partition(' ')[0][1:]
         raw_args_text = self.line_text.partition(' ')[1].strip()
-        self.args = raw_args_text.split(',')
-        self.args = [arg for arg in self.args if arg.strip()[0] != '@']
+        raw_args_list = [arg.strip() for arg in raw_args_text.split(',') if arg.strip()[0] != '@']
+
+        '''
+        For each of the args in the raw_args_list, it is determined whether each is an Integer, Memory Address, Register
+        or a general Attribute. Attribute is by default (this will be functions and program locations). The rest are
+        determined as follows: IntegerLiteral if the string can be converted to an Integer, MemoryAddress if the string
+        matches the regex pattern for a reference and an offset, and Register if it matches any of the sanctioned ABI
+        register nomenclature for Risc-V.
+        '''
+        ref_offset_pattern = r'^(.*?)\((.*?)\)$'
+        register_pattern = r'(ra|sp|gp|tp|fp|t[0-6]|s(1[0-1]|[0-9])|a[0-7]|f[st]([0-9]|1[0-1])|fa[0-7])'
+        for arg in raw_args_list:
+            if is_integer(arg):                     # IntegerLiteral
+                self.args.append(IntegerLiteral(arg))
+
+            elif re.match(ref_offset_pattern, arg): # MemoryAddress
+                self.args.append(MemoryAddress(arg))
+                self.args[-1].resolve_offset_and_reference()
+
+            elif re.match(register_pattern, arg):   # Register
+                self.args.append(Register(arg))
+
+            else:                                   # Default: Function or Location
+                self.args.append(Attribute(arg))
 
 class Program:
     def __init__(self):
         self.no_lines: int
-        self.lines: List[Location | Instruction | MemoryAddress | Function | Attribute] = []
+        self.lines: List[Location | Instruction | Function | Attribute] = []
 
 
