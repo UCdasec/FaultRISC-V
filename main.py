@@ -1,5 +1,5 @@
 from Parser import *
-import argparse
+import argparse, os
 
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
@@ -8,3 +8,6 @@ if __name__ == "__main__":
 
     with open(program_args.target_file, 'r') as asm_file:
         riscv_program = Program(asm_file.readlines())
+        print(f"Parsing program {os.path.basename(program_args.target_file)}...")
+        riscv_program.parse_program()
+        print(f"Parsing complete!")
