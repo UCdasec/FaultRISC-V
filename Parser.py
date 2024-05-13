@@ -54,6 +54,15 @@ class MemoryAddress(Argument):
         self.reference = Location(raw_reference) if raw_reference.startswith('.') else Register(raw_reference)
         self.offset = str(raw_offset) if raw_offset.startswith('%') else int(raw_offset)
 
+class LabelType(enum.Enum):
+    LOCATION = 1
+    FUNCTION = 2
+
+class Label(Argument):
+    def __init__(self, arg_text: str, label_type: LabelType):
+        super().__init__(arg_text)
+        self.label_type: LabelType = label_type
+
 class Line:
     def __init__(self, line_no=None, line_text=None):
         self.line_no = line_no      # The line number of the line in question
@@ -120,19 +129,21 @@ class Attribute(Line):
         Note that for arguments that are quotations (i.e., strings), a regex pattern is devised as a simple split
         will not be sufficient.
         '''
-        self.type = self.line_text.partition(' ')[0][1:]
-        raw_args_text = self.line_text.partition(' ')[1]
+        self.type = self.line_text.partition('\t')[0][1:]
+        raw_args_text = self.line_text.partition('\t')[2]
+        if raw_args_text == '':                                 # Rare case where separator between type and args is ' '
+            raw_args_text = self.line_text.partition(' ')[2]
         quotation_pattern = r'"(.*?)"'
 
         '''
         We remove each argument from the raw text one-by-one left-to-right. If it is a quotation, we use the aforementioned
         regex pattern or else we use a split along ','. We do this until the raw text is empty. If the arg starts with @
-        then it's a comment and we break the loop
+        then it's a comment and we break the loop. We can index error in case the raw_args_text does not have a ','.
         '''
         while raw_args_text != '':
             # Quotation arguments
             if raw_args_text[0] == '"':
-                self.args.append(re.search(quotation_pattern, raw_args_text).group(1))
+                self.args.append(StringLiteral(re.search(quotation_pattern, raw_args_text).group(1)))
                 raw_args_text = re.sub(quotation_pattern, '', raw_args_text)
             # Other type of arguments
             else:
@@ -142,7 +153,10 @@ class Attribute(Line):
                         self.args.append(IntegerLiteral(raw_arg))
                     else:
                         self.args.append(Argument(raw_arg))
-                    raw_args_text = raw_args_text.split(',', 1)[1].strip()
+                    try:
+                        raw_args_text = raw_args_text.split(',', 1)[1].strip()
+                    except IndexError:
+                        break
                 else:
                     break
 
@@ -151,17 +165,18 @@ class Instruction(Line):
     def __init__(self, line_no=None, line_text=None):
         super().__init__(line_no, line_text)
         self.type: str  # The name of the instruction type
-        self.args: List[IntegerLiteral | MemoryAddress | Register | Attribute] = []  # A list of the arguments of the instruction
+        self.args: List[IntegerLiteral | MemoryAddress | Register | Label | Argument] = []  # A list of the arguments of the instruction
 
     def parse_arguments(self):
         '''
-        First, we get the extract the instruction type which is the first word in the string
+        First, we get the extract the instruction type which is the first word in the string before the tabspace \t
         Next, we proceed to making a list of all the different arguments of the line which are trailing words separated
         by commas. Remove all args starting with a '@' as these are comments
         '''
-        self.type = self.line_text.partition(' ')[0][1:]
-        raw_args_text = self.line_text.partition(' ')[1].strip()
-        raw_args_list = [arg.strip() for arg in raw_args_text.split(',') if arg.strip()[0] != '@']
+        self.type = self.line_text.partition('\t')[0]
+        raw_args_text = self.line_text.partition('\t')[2].strip()
+        raw_args_list = [arg.strip() for arg in raw_args_text.split(',') if arg.strip()[0] != '@'] \
+            if raw_args_text != '' else []
 
         '''
         For each of the args in the raw_args_list, it is determined whether each is an Integer, Memory Address, Register
@@ -184,10 +199,20 @@ class Instruction(Line):
                 self.args.append(Register(arg))
 
             else:                                   # Default: Function or Location
-                self.args.append(Attribute(arg))
+                if arg.startswith('.'):
+                    self.args.append(Label(arg, LabelType.LOCATION))    # Location
+                else:
+                    self.args.append(Label(arg, LabelType.FUNCTION))    # Function
+
+class OptimizationLevel(enum.Enum):
+    O0 = 0
+    O1 = 1
+    O2 = 2
 
 class Program:
-    def __init__(self, raw_lines: List):
+    optimization: OptimizationLevel
+    def __init__(self, program_name: str, raw_lines: List):
+        self.program_name = program_name
         self.no_lines = len(raw_lines)
         self.raw_lines = raw_lines
         self.lines: List[Location | Instruction | Function | GlobalVariable | Attribute] = []
@@ -208,8 +233,9 @@ class Program:
             Function is determined if none of the above match after looking the first line after the current line.
 
         Attribute is determined if the line starts with a . but does not end with a :
-
         If none of the above match, it is determined that the line is an Instruction (default)
+
+        After parsing, we determine the optimization level of the program.
         '''
         for line_no, line in enumerate(self.raw_lines, start=1):
             line = line.strip()
@@ -245,4 +271,41 @@ class Program:
                 self.lines.append(Instruction(line_no, line))
                 self.lines[-1].parse_arguments()
 
+        self.determine_optimization()
 
+    def determine_optimization(self):
+        '''
+        This function determines whether the optimization level is O0, O1, or O2.
+
+        For O0, if the .section attribute is set simply to .rodata, we can confidently assert it is O0
+
+        For O1, the .section attribute must be .rodata.str1.8 and we must have completed traversing the program. We
+        mark that this attribute if found with the boolean str1p8_found. Since this is shared by both O1 and O2, this
+        is not conclusive enough, so we must eliminate the possibility of it being O2 by reading all the lines
+
+        For O2, if the .section variable is set to .text.startup aside from also being set to .rodata.str1.8 at some
+        other point, we consider it O2, and we break the traversal. If the traversal is never broken, we defer to O1.
+
+        For some reason if the optimization level could not be determined, we raise a ValueError
+        '''
+        str1p8_found = False
+
+        for line in self.lines:
+            if isinstance(line, Attribute) and line.type == 'section':
+                arg = line.args[0]
+                if isinstance(arg, Argument) and arg.arg_text == '.rodata': # O0 optimization
+                    self.optimization = OptimizationLevel.O0
+                    break
+
+                elif isinstance(arg, Argument) and arg.arg_text == '.rodata.str1.8':    # O1 or O2 optimization
+                    str1p8_found = True
+
+                elif isinstance(arg, Argument) and arg.arg_text == '.text.startup': # O2 optimization
+                    self.optimization = OptimizationLevel.O2
+                    break
+
+        if str1p8_found and self.optimization is None:
+            self.optimization = OptimizationLevel.O1    # O1 optimization
+
+        if self.optimization is None:
+            raise ValueError("Optimization level could not be determined")
