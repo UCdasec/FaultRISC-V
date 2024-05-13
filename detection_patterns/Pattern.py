@@ -11,7 +11,7 @@ class Pattern(ABC):
     optimization_set: OptimizationLevel
 
     @abstractmethod
-    def checkInstruction(self):
+    def checkInstruction(self, line: Instruction):
         pass
 
     @abstractmethod

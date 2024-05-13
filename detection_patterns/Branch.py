@@ -5,7 +5,8 @@ class Branch(Pattern):
         self.vulnerable_lines = []
         self.no_vulnerable = 0
         self.optimization_set = optimization_level
-    def checkInstruction(self):
+
+    def checkInstruction(self, line: Instruction):
         pass
 
     def printAllVulnerable(self):
