@@ -10,10 +10,10 @@ def analyze_program(program: Program):
     line through each of the different fault pattern detectors. After each line is run through, the result of each
     detector is printed out.
 
-    :param program:
+    :param program: the riscv program being fed to analyze
     :return: Nothing
     '''
-    branch_detector = Branch(program.optimization)
+    branch_detector = Branch(program.optimization, 4)
 
     for line in program.lines:
         branch_detector.checkInstruction(line)
