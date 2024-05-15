@@ -99,7 +99,7 @@ class GlobalVariable(Line):
         super().__init__(line_no, line_text)
         self.variable_name: str                         # The name of the variable
         self.variable_type = variable_type              # The data type of the variable
-        self.variable_values: List[IntegerLiteral] = [] # The list of integer values associated with the variable
+        self.variable_values: List[Attribute] = [] # The list of integer values associated with the variable
 
     def resolve_var_name(self):
         '''
@@ -113,7 +113,7 @@ class GlobalVariable(Line):
         Updates the list of variable values for the global variable after parsing var_line
         :param var_line: The attribute line with the variable value associated with the global variable
         '''
-        self.variable_values.append(IntegerLiteral(var_line.split()[1]))
+        self.variable_values.append(Attribute(var_line))
 
 class Attribute(Line):
     def __init__(self, line_no=None, line_text=None):

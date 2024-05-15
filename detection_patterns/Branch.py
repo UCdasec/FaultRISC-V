@@ -1,5 +1,3 @@
-from typing import List, Any
-
 from .Pattern import *
 from .Vulnerable_Instruction_list import vulnerable_instruction_list
 

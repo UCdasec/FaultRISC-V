@@ -3,10 +3,10 @@ from typing import List
 import sys
 
 sys.path.append('..')
-from Parser import Instruction, GlobalVariable, OptimizationLevel, IntegerLiteral, Register
+from Parser import Instruction, GlobalVariable, OptimizationLevel, IntegerLiteral, Register, Attribute
 
 class Pattern(ABC):
-    vulnerable_lines: List[List[Instruction | GlobalVariable | str]]
+    vulnerable_lines: List[List[Instruction | GlobalVariable | Attribute | str]]
     no_vulnerable: int
     optimization_set: OptimizationLevel
 
