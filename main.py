@@ -16,9 +16,10 @@ def analyze_program(program: Program):
     branch_detector = Branch(program.optimization, 4)
 
     for line in program.lines:
-        branch_detector.checkInstruction(line)
+        if isinstance(line, Instruction):
+            branch_detector.checkInstruction(line)
 
-    branch_detector.printAllVulnerable()
+    branch_detector.printAllVulnerable('Branch')
 
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
@@ -29,11 +30,13 @@ if __name__ == "__main__":
     with open(program_args.target_file, 'r') as asm_file:
         riscv_program = Program(os.path.basename(program_args.target_file), asm_file.readlines())
 
-    print(f"Parsing program {os.path.basename(program_args.target_file)}...")
+    program_name = os.path.basename(program_args.target_file)
+    containing_folder = os.path.basename(os.path.dirname(program_args.target_file))
+    print(f"Parsing program {containing_folder}/{program_name}...")
     riscv_program.parse_program()
     print(f"Parsing complete!")
 
-    print(f"Analyzing program {os.path.basename(program_args.target_file)}...")
+    print(f"Analyzing program {containing_folder}/{program_name}...\n")
     analyze_program(riscv_program)
     print(f"All vulnerabilities printed!")
 

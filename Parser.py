@@ -188,7 +188,7 @@ class Instruction(Line):
         ref_offset_pattern = r'^(.*?)\((.*?)\)$'
         register_pattern = r'(ra|sp|gp|tp|fp|t[0-6]|s(1[0-1]|[0-9])|a[0-7]|f[st]([0-9]|1[0-1])|fa[0-7])'
         for arg in raw_args_list:
-            if is_integer(arg):                     # IntegerLiteral
+            if is_integer(arg) or arg == 'zero':    # IntegerLiteral
                 self.args.append(IntegerLiteral(arg))
 
             elif re.match(ref_offset_pattern, arg): # MemoryAddress
@@ -198,11 +198,11 @@ class Instruction(Line):
             elif re.match(register_pattern, arg):   # Register
                 self.args.append(Register(arg))
 
-            else:                                   # Default: Function or Location
+            else:                                   # Default: Function or Location Label
                 if arg.startswith('.'):
-                    self.args.append(Label(arg, LabelType.LOCATION))    # Location
+                    self.args.append(Label(arg, LabelType.LOCATION))    # Location Label
                 else:
-                    self.args.append(Label(arg, LabelType.FUNCTION))    # Function
+                    self.args.append(Label(arg, LabelType.FUNCTION))    # Function Label
 
 class OptimizationLevel(enum.Enum):
     O0 = 0
@@ -210,7 +210,7 @@ class OptimizationLevel(enum.Enum):
     O2 = 2
 
 class Program:
-    optimization: OptimizationLevel
+    optimization: OptimizationLevel = None
     def __init__(self, program_name: str, raw_lines: List):
         self.program_name = program_name
         self.no_lines = len(raw_lines)

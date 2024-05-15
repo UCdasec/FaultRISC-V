@@ -26,7 +26,7 @@ class Pattern(ABC):
                 for line in line_set:
                     if line != '__IGNORE_LINE__':
                         print(f"{line.line_no}\t{line.line_text}")
-                print('\n')
+                print('')
 
 def calculate_hamming(x: int, y: int = 0):
     '''

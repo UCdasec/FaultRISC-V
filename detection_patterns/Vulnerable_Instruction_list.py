@@ -1,11 +1,11 @@
-from Pattern import *
+from .Pattern import *
 
 sys.path.append('..')
 from Parser import Register, IntegerLiteral, Label
 
 vulnerable_instruction_list = {
     "Branch": {
-        OptimizationLevel.O0: {
+        OptimizationLevel.O0: [
             [
                 [
                     {'li'}, {Register}, {IntegerLiteral}
@@ -19,8 +19,8 @@ vulnerable_instruction_list = {
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge'}, {Register}, {IntegerLiteral}, {Label}
                 ],
             ]
-        },
-        OptimizationLevel.O1: {
+        ],
+        OptimizationLevel.O1: [
             [
                 [
                     {'li'}, {Register}, {IntegerLiteral}
@@ -47,8 +47,8 @@ vulnerable_instruction_list = {
                     {'seqz'}, {Register}, {Register}
                 ],
             ],
-        },
-        OptimizationLevel.O2: {
+        ],
+        OptimizationLevel.O2: [
             [
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge'}, {Register}, {IntegerLiteral}, {Label}
@@ -64,6 +64,6 @@ vulnerable_instruction_list = {
                     {'seqz'}, {Register}, {Register}
                 ],
             ],
-        },
+        ],
     }
 }

@@ -1,7 +1,7 @@
 from typing import List, Any
 
-from Pattern import *
-from Vulnerable_Instruction_list import vulnerable_instruction_list
+from .Pattern import *
+from .Vulnerable_Instruction_list import vulnerable_instruction_list
 
 class Branch(Pattern):
     def __init__(self, optimization_level: OptimizationLevel, tolerance: int):
@@ -58,24 +58,32 @@ class Branch(Pattern):
                         line_pattern_match = True
 
                 if line_pattern_match:  # if the line matches, adding to cache and confirming vulnerable pattern type
-                    self.vulnerable_pattern = instruction_set
+                    self.vulnerable_pattern = instruction_set.copy()
                     self.detection_cache.append(line)
+                    line_no += 1
                     break
 
-            if line_no == len(self.vulnerable_pattern): # 3.Marking the vulnerability
+            if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())
                 self.no_vulnerable += 1
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
-        elif line_type in self.vulnerable_pattern[line_no][0]: # 2.Completing the pattern
+        elif (line_type in self.vulnerable_pattern[line_no][0] or
+              (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
+               line_type in self.vulnerable_pattern[line_no+1][0])): # 2.Completing the pattern
+
+            if (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and    # Optional IGNORE LINE not present, remove from pattern
+                    line_type in self.vulnerable_pattern[line_no+1][0]):
+                self.vulnerable_pattern.pop(line_no)
+
             for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
                 if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                     line_pattern_match = False
                     break
 
                 if isinstance(arg, Register) and arg_no == 2:   # Cross-checking the registers between the two lines
-                    previous_register = self.detection_cache[-1].args[0]
+                    previous_register = self.detection_cache[0].args[0]
                     if arg.arg_text != previous_register.arg_text:
                         line_pattern_match = False
                         break
@@ -84,21 +92,32 @@ class Branch(Pattern):
                 
             if line_pattern_match:  # if the line matches, adding to cache
                 self.detection_cache.append(line)
+                line_no += 1
 
-            if line_no == len(self.vulnerable_pattern): # 3.Marking the vulnerability
+            if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())
                 self.no_vulnerable += 1
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
-        elif self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__':  # 2.Completing the pattern IGNORE LINE case
-            if line_type in self.vulnerable_pattern[line_no][1]:    # making sure all line parameters align with pattern
-                for arg_no, arg in enumerate(line.args, start=1):
-                    if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no+1]):
-                        line_pattern_match = False
-                        break
+        elif (line_type in self.vulnerable_pattern[line_no][1] and
+              self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # 2.Completing the pattern IGNORE LINE case
 
-                    line_pattern_match = True
-                
+            for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
+                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no+1]):
+                    line_pattern_match = False
+                    break
+
+                line_pattern_match = True
+
                 if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
                     self.detection_cache.append('__IGNORE_LINE__')
+                    line_no += 1
+
+            else:   # Pattern broken; no vulnerability
+                self.detection_cache.clear()
+                self.vulnerable_pattern.clear()
+
+        else:   # Pattern broken; no vulnerability
+            self.detection_cache.clear()
+            self.vulnerable_pattern.clear()
