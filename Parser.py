@@ -95,9 +95,9 @@ class VariableType(enum.Enum):
     STRING = 2
 
 class GlobalVariable(Line):
+    variable_name: str # The name of the variable
     def __init__(self, line_no=None, line_text=None, variable_type=None):
         super().__init__(line_no, line_text)
-        self.variable_name: str                         # The name of the variable
         self.variable_type = variable_type              # The data type of the variable
         self.variable_values: List[Attribute] = [] # The list of integer values associated with the variable
 
@@ -108,12 +108,13 @@ class GlobalVariable(Line):
         '''
         self.variable_name = self.line_text[:-1]
 
-    def resolve_var_value(self, var_line: str):
+    def resolve_var_value(self, var_line_no: int, var_line: str):
         '''
         Updates the list of variable values for the global variable after parsing var_line
+        :param var_line_no: The line no of the attribute line with the variable value associated with the global variable
         :param var_line: The attribute line with the variable value associated with the global variable
         '''
-        self.variable_values.append(Attribute(var_line))
+        self.variable_values.append(Attribute(var_line_no, var_line))
 
 class Attribute(Line):
     def __init__(self, line_no=None, line_text=None):
@@ -248,10 +249,10 @@ class Program:
                         if word_count == 0:                             # GlobalVariable of type INTEGER
                             self.lines.append(GlobalVariable(line_no, line, VariableType.INTEGER))
                             self.lines[-1].resolve_var_name()
-                            self.lines[-1].resolve_var_value(next_line.strip())
+                            self.lines[-1].resolve_var_value(line_no + word_count + 1, next_line.strip())
 
                         else:
-                            self.lines[-1].resolve_var_value(next_line.strip())
+                            self.lines[-1].resolve_var_value(line_no + word_count + 1, next_line.strip())
 
                     elif next_line.strip().startswith('.dword'):        # GlobalVariable of type STRING
                         self.lines.append(GlobalVariable(line_no, line, VariableType.STRING))
