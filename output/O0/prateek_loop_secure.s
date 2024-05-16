@@ -73,15 +73,15 @@ main:
 	addiw	a5,a5,1
 	sw	a5,-20(s0)
 .L3:
-    lw	a4,-24(s0)                                                                                  # Loop Check Secure
-	lw	a5,-20(s0)                                                                                  # Loop Check Secure
-	sext.w	a5,a5                                                                       # Irrelevant - Loop Check Secure
-	blt	a5,a4,.L4                                                                                   # Loop Check Secure
-	lw	a4,-24(s0)                                                                                  # Loop Check Secure
-	lw	a5,-20(s0)                                                                                  # Loop Check Secure
-	sext.w	a5,a5                                                                       # Irrelevant - Loop Check Secure
-	beq	a5,a4,.L5                                                                                   # Loop Check Secure
-	call	faultDetect                                                             # Loop Check Secure (Optional Line)
+    lw	a4,-24(s0)
+	lw	a5,-20(s0)
+	sext.w	a5,a5
+	blt	a5,a4,.L4
+	lw	a4,-24(s0)
+	lw	a5,-20(s0)
+	sext.w	a5,a5
+	beq	a5,a4,.L5
+	call	faultDetect
 .L5:
 	lui	a5,%hi(.LC4)
 	addi	a0,a5,%lo(.LC4)

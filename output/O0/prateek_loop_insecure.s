@@ -73,10 +73,10 @@ main:
 	addiw	a5,a5,1
 	sw	a5,-20(s0)
 .L3:
-	lw	a4,-24(s0)                                                                                          # loop check
-	lw	a5,-20(s0)                                                                                          # loop check
-	sext.w	a5,a5                                                                       # irrelevant - within loop check
-	blt	a5,a4,.L4                                                                                           # loop check
+	lw	a4,-24(s0)
+	lw	a5,-20(s0)
+	sext.w	a5,a5
+	blt	a5,a4,.L4
 	lui	a5,%hi(.LC4)
 	addi	a0,a5,%lo(.LC4)
 	call	puts

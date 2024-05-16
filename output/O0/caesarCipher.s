@@ -14,7 +14,7 @@ caesarCipher:
 	sd	a0,-40(s0)
 	mv	a5,a1
 	sw	a5,-44(s0)
-	sw	zero,-20(s0)                                                                                   # constant coding
+	sw	zero,-20(s0)
 	j	.L2
 .L4:
 	lw	a5,-20(s0)
@@ -60,8 +60,8 @@ caesarCipher:
 	lw	a5,-20(s0)
 	ld	a4,-40(s0)
 	add	a5,a4,a5
-	lbu	a5,0(a5)                                                                                             #loop check
-	bne	a5,zero,.L4                                                                                  #branch, loop check
+	lbu	a5,0(a5)
+	bne	a5,zero,.L4
 	nop
 	nop
 	ld	s0,40(sp)
@@ -108,7 +108,7 @@ main:
 	call	fopen
 	sd	a0,-24(s0)
 	ld	a5,-24(s0)
-	bne	a5,zero,.L6                                                                                              #branch
+	bne	a5,zero,.L6
 	lui	a5,%hi(.LC2)
 	addi	a0,a5,%lo(.LC2)
 	call	puts
@@ -123,9 +123,9 @@ main:
 	li	a5,8192
 	addi	a1,a5,1808
 	mv	a0,a4
-	call	fgets                                                                                                #bypass
-	mv	a5,a0                                                                                                    #bypass
-	bne	a5,zero,.L8                                                                                      #bypass, branch
+	call	fgets
+	mv	a5,a0
+	bne	a5,zero,.L8
 	lui	a5,%hi(.LC3)
 	addi	a0,a5,%lo(.LC3)
 	call	puts
