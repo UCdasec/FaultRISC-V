@@ -1,2 +1,2 @@
 # riscv_detection
-Incubator repository for Risc-V code vulnerability detection for DaSec.
+Incubator repository for Risc-V code vulnerability detection against fault injection attacks. Written for DaSec.
