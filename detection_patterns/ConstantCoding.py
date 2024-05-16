@@ -56,9 +56,9 @@ class ConstantCoding(Pattern):
                                 and verifying whether the attribute is within the range of lines covered by the global variable.
                                 '''
                             elif isinstance(line, Attribute):   # In case of attribute, we must check that it doesn't overlap with a previous global variable
-                                if len(self.vulnerable_lines) >=1 and isinstance(self.vulnerable_lines[-1], GlobalVariable):
+                                if len(self.vulnerable_lines) >=1 and isinstance(self.vulnerable_lines[-1][0], GlobalVariable):
                                     attribute_line_no = line.line_no
-                                    global_var_reach = self.vulnerable_lines[-1].line_no + len(self.vulnerable_lines[-1].variable_values)
+                                    global_var_reach = self.vulnerable_lines[-1][0].line_no + len(self.vulnerable_lines[-1][0].variable_values)
                                     if attribute_line_no > global_var_reach:
                                         if calculate_hamming(arg.arg_value, 0) > self.tolerance:
                                             line_pattern_match = False
@@ -74,23 +74,24 @@ class ConstantCoding(Pattern):
                             line_pattern_match = True
 
                     '''
-                    For global variables, we remove each non-low hamming weight integer from the list of var values.
-                    Then, if the list is not empty after (i.e., there is at least one constant coding vulnerability), we
-                    add the global variable label and its constituent remaining attribute lines (which are all vulnerable)
-                    to the list of vulnerable lines.
+                    For global variables, we replace each non-low hamming weight integer from the list of var values with 
+                    IGNORE LINE. Then, if the list is not all IGNORE LINE after (i.e., there is at least one constant coding 
+                    vulnerability), we add the global variable label and its constituent remaining attribute lines 
+                    (which are all vulnerable) to the list of vulnerable lines.
                     '''
                 elif line_type in instruction_set[0][0] and isinstance(line, GlobalVariable):   # Global Variable
                     for var in line.variable_values:
                         if calculate_hamming(var.args[0].arg_value, 0) > self.tolerance:
-                            line.variable_values.remove(var)    # Removing values of higher than tolerance hamming weight
+                            line.variable_values[line.variable_values.index(var)] = '__IGNORE_LINE__'  # Replacing values of higher than tolerance hamming weight
 
-                    if line.variable_values:    # if any values remain, it is vulnerable.
+                    if any(var_value != '__IGNORE_LINE__' for var_value in line.variable_values):    # if any values remain, it is vulnerable.
                         self.detection_cache.append(line)
                         for var in line.variable_values:
-                            self.detection_cache.append(var)
+                            if var != '__IGNORE_LINE__':
+                                self.detection_cache.append(var)
 
                         self.vulnerable_lines.append(self.detection_cache.copy())
-                        self.no_vulnerable += len(line.variable_values)
+                        self.no_vulnerable += sum(var != '__IGNORE_LINE__' for var in line.variable_values)
                         self.detection_cache.clear()
 
                     break

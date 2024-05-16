@@ -25,7 +25,7 @@ class Pattern(ABC):
             for line_set in self.vulnerable_lines:
                 for line in line_set:
                     if line != '__IGNORE_LINE__':
-                        print(f"{line.line_no}\t{line.line_text}")
+                        print(f"{line.line_no}\t\t\t{line.line_text}")
                 print('')
 
 def calculate_hamming(x: int, y: int = 0):

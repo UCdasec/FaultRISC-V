@@ -2,7 +2,7 @@ import Parser
 from Parser import *
 import argparse, os
 
-from detection_patterns import Branch
+from detection_patterns import *
 
 def analyze_program(program: Program):
     '''
@@ -14,12 +14,33 @@ def analyze_program(program: Program):
     :return: Nothing
     '''
     branch_detector = Branch(program.optimization, 4)
+    constantCoding_detector = ConstantCoding(program.optimization, 4)
 
     for line in program.lines:
         if isinstance(line, Instruction):
             branch_detector.checkInstruction(line)
+            constantCoding_detector.checkInstruction(line)
+
+        elif isinstance(line, Attribute):
+            constantCoding_detector.checkInstruction(line)
+
+        elif isinstance(line, GlobalVariable):
+            constantCoding_detector.checkInstruction(line)
+
 
     branch_detector.printAllVulnerable('Branch')
+    constantCoding_detector.printAllVulnerable('ConstantCoding')
+    print(f"All vulnerabilities printed!\n")
+
+    total_no_vulnerabilities = sum([branch_detector.no_vulnerable, constantCoding_detector.no_vulnerable])
+    percentage_vulnerable = (total_no_vulnerabilities/program.no_lines) * 100
+
+    print('STATISTICS:\n')
+    print(f'Total no. of Branch vulnerabilities: {branch_detector.no_vulnerable}')
+    print(f'Total no. of ConstantCoding vulnerabilities: {constantCoding_detector.no_vulnerable}\n')
+    print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}')
+    print(f'Total no. of lines: {program.no_lines}')
+    print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')
 
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
@@ -38,5 +59,3 @@ if __name__ == "__main__":
 
     print(f"Analyzing program {containing_folder}/{program_name}...\n")
     analyze_program(riscv_program)
-    print(f"All vulnerabilities printed!")
-

@@ -88,7 +88,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'.word'}, {IntegerLiteral}
+                    {'word'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -113,7 +113,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'.word'}, {IntegerLiteral}
+                    {'word'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -138,7 +138,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'.word'}, {IntegerLiteral}
+                    {'word'}, {IntegerLiteral}
                 ]
             ]
         ]
