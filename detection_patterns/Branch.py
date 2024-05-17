@@ -9,9 +9,8 @@ class Branch(Pattern):
         self.tolerance = tolerance                                      # hamming distance tolerance
         self.vulnerable_instruction_set = (
             vulnerable_instruction_list)['Branch'][optimization_level]  # The vulnerable pattern set to look for
-
-    detection_cache = []    # Stores the set of instructions that are currently being inspected for Branch vulnerability.
-    vulnerable_pattern = [] # The specific vulnerable pattern that is being checked
+        self.detection_cache = []    # Stores the set of instructions that are currently being inspected for Branch vulnerability.
+        self.vulnerable_pattern = [] # The specific vulnerable pattern that is being checked
 
     def checkInstruction(self, line: Instruction):
         '''
@@ -101,16 +100,16 @@ class Branch(Pattern):
         elif (line_type in self.vulnerable_pattern[line_no][1] and
               self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # 2.Completing the pattern IGNORE LINE case
 
-            for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
-                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no+1]):
+            for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                     line_pattern_match = False
                     break
 
                 line_pattern_match = True
 
-                if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
-                    self.detection_cache.append('__IGNORE_LINE__')
-                    line_no += 1
+            if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
+                self.detection_cache.append('__IGNORE_LINE__')
+                line_no += 1
 
             else:   # Pattern broken; no vulnerability
                 self.detection_cache.clear()

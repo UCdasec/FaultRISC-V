@@ -13,31 +13,42 @@ def analyze_program(program: Program):
     :param program: the riscv program being fed to analyze
     :return: Nothing
     '''
-    branch_detector = Branch(program.optimization, 4)
-    constantCoding_detector = ConstantCoding(program.optimization, 4)
+    Branch_detector = Branch(program.optimization, 4)
+    ConstantCoding_detector = ConstantCoding(program.optimization, 4)
+    LoopCheck_detector = LoopCheck(program.optimization)
 
     for line in program.lines:
         if isinstance(line, Instruction):
-            branch_detector.checkInstruction(line)
-            constantCoding_detector.checkInstruction(line)
+            Branch_detector.checkInstruction(line)
+            ConstantCoding_detector.checkInstruction(line)
+            LoopCheck_detector.checkInstruction(line)
 
         elif isinstance(line, Attribute):
-            constantCoding_detector.checkInstruction(line)
+            ConstantCoding_detector.checkInstruction(line)
 
         elif isinstance(line, GlobalVariable):
-            constantCoding_detector.checkInstruction(line)
+            ConstantCoding_detector.checkInstruction(line)
+
+        elif isinstance(line, Location):
+            LoopCheck_detector.checkInstruction(line)
 
 
-    branch_detector.printAllVulnerable('Branch')
-    constantCoding_detector.printAllVulnerable('ConstantCoding')
+    Branch_detector.printAllVulnerable('Branch')
+    ConstantCoding_detector.printAllVulnerable('ConstantCoding')
+    LoopCheck_detector.printAllVulnerable('LoopCheck')
     print(f"All vulnerabilities printed!\n")
 
-    total_no_vulnerabilities = sum([branch_detector.no_vulnerable, constantCoding_detector.no_vulnerable])
+    total_no_vulnerabilities = sum([
+            Branch_detector.no_vulnerable,
+            ConstantCoding_detector.no_vulnerable,
+            LoopCheck.no_vulnerable
+        ])
     percentage_vulnerable = (total_no_vulnerabilities/program.no_lines) * 100
 
     print('STATISTICS:\n')
-    print(f'Total no. of Branch vulnerabilities: {branch_detector.no_vulnerable}')
-    print(f'Total no. of ConstantCoding vulnerabilities: {constantCoding_detector.no_vulnerable}\n')
+    print(f'Total no. of Branch vulnerabilities: {Branch_detector.no_vulnerable}')
+    print(f'Total no. of ConstantCoding vulnerabilities: {ConstantCoding_detector.no_vulnerable}\n')
+    print(f'Total no. of LoopCheck vulnerabilities: {LoopCheck_detector.no_vulnerable}\n')
     print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}')
     print(f'Total no. of lines: {program.no_lines}')
     print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')

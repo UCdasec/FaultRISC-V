@@ -9,9 +9,8 @@ class ConstantCoding(Pattern):
         self.tolerance = tolerance  # hamming distance tolerance
         self.vulnerable_instruction_set = (
             vulnerable_instruction_list)['ConstantCoding'][optimization_level]  # The vulnerable pattern set to look for
-
-    detection_cache = []  # Stores the set of instructions that are currently being inspected for ConstantCoding vulnerability.
-    vulnerable_pattern = []  # The specific vulnerable pattern that is being checked
+        self.detection_cache = []  # Stores the set of instructions that are currently being inspected for ConstantCoding vulnerability.
+        self.vulnerable_pattern = []  # The specific vulnerable pattern that is being checked
 
     def checkInstruction(self, line: Instruction | GlobalVariable | Attribute):
         '''
