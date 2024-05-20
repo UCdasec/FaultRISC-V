@@ -5,6 +5,7 @@ class Branch(Pattern):
     def __init__(self, optimization_level: OptimizationLevel, tolerance: int):
         self.vulnerable_lines: List = []                                # All the vulnerabilities found for Branch
         self.no_vulnerable = 0                                          # No. of vulnerabilities
+        self.no_vulnerable_lines = 0                                    # No. of lines of code covered by the vulnerabilities found
         self.optimization_set = optimization_level                      # the optimization level of the risc-v program
         self.tolerance = tolerance                                      # hamming distance tolerance
         self.vulnerable_instruction_set = (
@@ -63,6 +64,7 @@ class Branch(Pattern):
             if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())
                 self.no_vulnerable += 1
+                self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
@@ -94,6 +96,7 @@ class Branch(Pattern):
             if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())
                 self.no_vulnerable += 1
+                self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
@@ -111,10 +114,16 @@ class Branch(Pattern):
                 self.detection_cache.append('__IGNORE_LINE__')
                 line_no += 1
 
-            else:   # Pattern broken; no vulnerability
+            else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                last_line_no = self.detection_cache[-1].line_no
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
+                if last_line_no == line.line_no - 1:
+                    self.checkInstruction(line)
 
-        else:   # Pattern broken; no vulnerability
+        else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+            last_line_no = self.detection_cache[-1].line_no
             self.detection_cache.clear()
             self.vulnerable_pattern.clear()
+            if last_line_no == line.line_no - 1:
+                self.checkInstruction(line)

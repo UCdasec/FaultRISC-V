@@ -8,6 +8,7 @@ from Parser import *
 class Pattern(ABC):
     vulnerable_lines: List[List[Instruction | GlobalVariable | Attribute | str]]
     no_vulnerable: int
+    no_vulnerable_lines: int
     optimization_set: OptimizationLevel
 
     @abstractmethod

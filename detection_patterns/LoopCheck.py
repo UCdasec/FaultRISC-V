@@ -5,14 +5,16 @@ class LoopCheck(Pattern):
     def __init__(self, optimization_level: OptimizationLevel):
         self.vulnerable_lines: List = []                                # All the vulnerabilities found for LoopCheck
         self.no_vulnerable = 0                                          # No. of vulnerabilities
+        self.no_vulnerable_lines = 0                                    # No. of lines of code covered by the vulnerabilities found
         self.optimization_set = optimization_level                      # the optimization level of the risc-v program
         self.vulnerable_instruction_set = (
             vulnerable_instruction_list)['LoopCheck'][optimization_level]  # The vulnerable pattern set to look for
-        self.detection_cache = []       # Stores the set of instructions that are currently being inspected for LoopCheck vulnerability.
-        self.secure_cache = []          # Stores the expected secure pattern to follow the vulnerable pattern recorded in detection_cache
-        self.vulnerable_pattern = []    # The specific vulnerable pattern that is being checked
-        self.insecure_match = False     # If the first half of the pattern, i.e., the insecure first half is complete
-        self.location_list = []         # Keeps track of all locations that have been visited thus far
+        self.detection_cache = []           # Stores the set of instructions that are currently being inspected for LoopCheck vulnerability.
+        self.secure_cache = []              # Stores the expected secure pattern to follow the vulnerable pattern recorded in detection_cache
+        self.vulnerable_pattern = []        # The specific vulnerable pattern that is being checked
+        self.pattern_undetermined = True   # Flag for if the pattern has not yet been determined
+        self.insecure_match = False         # If the first half of the pattern, i.e., the insecure first half is complete
+        self.location_list = []             # Keeps track of all locations that have been visited thus far
 
     def checkInstruction(self, line: Instruction | Location):
         '''
@@ -23,7 +25,11 @@ class LoopCheck(Pattern):
         if it is the first insecure half, we detect the pattern as we have with the other patterns.
         It has 3 parts -
         1. Initiating a vulnerable instruction pattern : The pattern that is triggered if the line given is the first
-        line in any of the vulnerable instruction sets.
+        line in any of the vulnerable instruction sets. Since there are two patterns with the same first line, both
+        patterns are added initially.
+
+        1.5 Disqualifying the incorrect pattern. Only one pattern is ultimately true, so the second line is compared
+        to see which of the possible patterns doesn't match, and that one is removed.
 
         2. Completing the pattern : This can either be a relevant line or an IGNORE LINE. If it is the former, then we
         ensure that all the parameters line up and for LoopCheck specifically, either in the 4th line or in 2nd/3rd, the
@@ -59,6 +65,38 @@ class LoopCheck(Pattern):
             line_no = len(self.detection_cache) if not self.insecure_match else len(self.secure_cache)
 
             if not self.insecure_match: # Detecting the first half
+
+                if self.pattern_undetermined and line_no >= 1:  # Step 1.5: Determining the correct pattern with the second line
+                    if len(self.vulnerable_pattern) == 1:   # If there is only one qualified pattern, that is set as the only pattern
+                        self.vulnerable_pattern = self.vulnerable_pattern[0]
+                        self.pattern_undetermined = False
+
+                    else:
+                        set_no = 0
+                        while set_no < len(self.vulnerable_pattern): # If there are multiple candidates
+                            instruction_set = self.vulnerable_pattern[set_no]
+                            if not((line_type in instruction_set[1][0] or # If the next line is neither an IGNORE line or a matching line
+                                    (instruction_set[1][0] == '__IGNORE_LINE__' and
+                                     line_type in instruction_set[2][0]))
+                                   or (line_type in instruction_set[1][1] and
+                                       instruction_set[1][0] == '__IGNORE_LINE__')):
+
+                                self.vulnerable_pattern.remove(instruction_set)
+                                self.detection_cache.pop()
+                                line_no -= 1
+
+                            else:   # Move on to next set
+                                set_no += 1
+
+
+                        if line_no == 1:
+                            self.vulnerable_pattern = self.vulnerable_pattern[0]
+                            self.pattern_undetermined = False
+
+                        else:   # Pattern broken; no vulnerability, and try pattern detection again from current line
+                            self.pattern_undetermined = True
+                            self.checkInstruction(line)
+
                 if line_no == 0:
                     for instruction_set in self.vulnerable_instruction_set: # Determining correct LoopCheck pattern
                         first_instruction = instruction_set[0]
@@ -71,14 +109,15 @@ class LoopCheck(Pattern):
                                     line_pattern_match = False
                                     break
 
-                            if line_pattern_match:  # Suspected pattern type confirmed
-                                self.vulnerable_pattern = instruction_set.copy()
+                            if line_pattern_match:  # Suspected pattern type added to list of vulnerable patterns to try
+                                self.vulnerable_pattern.append(instruction_set.copy())
                                 self.detection_cache.append(line)
                                 line_no += 1
-                                break
 
-                    if line_no == len(self.vulnerable_pattern) and line_no >= 1:
+                    if line_no == 1 and line_no == len(self.vulnerable_pattern[0]): # Checks if the insecure half of the pattern is complete
                         self.insecure_match = True
+                        self.vulnerable_pattern = self.vulnerable_pattern[0]
+                        self.pattern_undetermined = False
 
                 elif (line_type in self.vulnerable_pattern[line_no][0] or
                       (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
@@ -127,13 +166,21 @@ class LoopCheck(Pattern):
                         self.detection_cache.append('__IGNORE_LINE__')
                         line_no += 1
 
-                    else:   # Pattern broken; no vulnerability
+                    else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                        last_line_no = self.detection_cache[-1].line_no
                         self.detection_cache.clear()
                         self.vulnerable_pattern.clear()
+                        self.pattern_undetermined = True
+                        if last_line_no == line.line_no - 1:
+                            self.checkInstruction(line)
 
-                else:   # Pattern broken; no vulnerability
+                else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                    last_line_no = self.detection_cache[-1].line_no
                     self.detection_cache.clear()
                     self.vulnerable_pattern.clear()
+                    self.pattern_undetermined = True
+                    if last_line_no == line.line_no - 1:
+                        self.checkInstruction(line)
 
             elif self.insecure_match:   # Detecting the second half
                 insecure_line = self.detection_cache[line_no]
@@ -156,8 +203,10 @@ class LoopCheck(Pattern):
                     else:   # Secure pattern broken; vulnerable
                         self.vulnerable_lines.append(self.detection_cache.copy())
                         self.no_vulnerable += 1
+                        self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                         self.detection_cache.clear()
                         self.secure_cache.clear()
+                        self.pattern_undetermined = True
                         self.insecure_match = False
                         self.vulnerable_pattern.clear()
 
@@ -169,8 +218,10 @@ class LoopCheck(Pattern):
                     else:   # Secure pattern broken; vulnerable
                         self.vulnerable_lines.append(self.detection_cache.copy())
                         self.no_vulnerable += 1
+                        self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                         self.detection_cache.clear()
                         self.secure_cache.clear()
+                        self.pattern_undetermined = True
                         self.insecure_match = False
                         self.vulnerable_pattern.clear()
 
@@ -187,7 +238,7 @@ class LoopCheck(Pattern):
                                     args_match = False
                                     break
 
-                            if isinstance(line.args[arg_no], IntegerLiteral) and isinstance(insecure_line.args[arg_no], IntegerLiteral):
+                            elif isinstance(line.args[arg_no], IntegerLiteral) and isinstance(insecure_line.args[arg_no], IntegerLiteral):
                                 if line.args[arg_no].arg_text == insecure_line.args[arg_no].arg_text: # pass if same
                                     args_match = True
 
@@ -210,17 +261,21 @@ class LoopCheck(Pattern):
                         if not args_match:  # Secure pattern broken; vulnerable
                             self.vulnerable_lines.append(self.detection_cache.copy())
                             self.no_vulnerable += 1
+                            self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
 
                         self.detection_cache.clear()
                         self.secure_cache.clear()
+                        self.pattern_undetermined = True
                         self.insecure_match = False
                         self.vulnerable_pattern.clear()
 
                 else:   # Secure pattern broken; vulnerable
                     self.vulnerable_lines.append(self.detection_cache.copy())
                     self.no_vulnerable += 1
+                    self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                     self.detection_cache.clear()
                     self.secure_cache.clear()
+                    self.pattern_undetermined = True
                     self.insecure_match = False
                     self.vulnerable_pattern.clear()
 

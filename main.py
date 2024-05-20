@@ -41,15 +41,23 @@ def analyze_program(program: Program):
     total_no_vulnerabilities = sum([
             Branch_detector.no_vulnerable,
             ConstantCoding_detector.no_vulnerable,
-            LoopCheck.no_vulnerable
+            LoopCheck_detector.no_vulnerable
         ])
-    percentage_vulnerable = (total_no_vulnerabilities/program.no_lines) * 100
+
+    total_no_vulnerable_lines = sum([
+        Branch_detector.no_vulnerable_lines,
+        ConstantCoding_detector.no_vulnerable_lines,
+        LoopCheck_detector.no_vulnerable_lines
+    ])
+
+    percentage_vulnerable = (total_no_vulnerable_lines/program.no_lines) * 100
 
     print('STATISTICS:\n')
     print(f'Total no. of Branch vulnerabilities: {Branch_detector.no_vulnerable}')
-    print(f'Total no. of ConstantCoding vulnerabilities: {ConstantCoding_detector.no_vulnerable}\n')
-    print(f'Total no. of LoopCheck vulnerabilities: {LoopCheck_detector.no_vulnerable}\n')
-    print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}')
+    print(f'Total no. of ConstantCoding vulnerabilities: {ConstantCoding_detector.no_vulnerable}')
+    print(f'Total no. of LoopCheck vulnerabilities: {LoopCheck_detector.no_vulnerable}')
+    print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}\n')
+    print(f'Total no. of vulnerable lines: {total_no_vulnerable_lines}')
     print(f'Total no. of lines: {program.no_lines}')
     print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')
 
