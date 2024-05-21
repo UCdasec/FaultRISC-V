@@ -203,6 +203,17 @@ vulnerable_instruction_list = {
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {IntegerLiteral}, {Label}
                 ]
+            ],
+            [
+                [
+                    {'lhu'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {Register}, {Label}
+                ]
             ]
         ]
     }

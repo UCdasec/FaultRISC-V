@@ -175,7 +175,8 @@ class LoopCheck(Pattern):
                             self.checkInstruction(line)
 
                 else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
-                    last_line_no = self.detection_cache[-1].line_no
+                    last_line_no = self.detection_cache[-1].line_no \
+                        if not isinstance(self.detection_cache[-1], str) else self.detection_cache[-2].line_no
                     self.detection_cache.clear()
                     self.vulnerable_pattern.clear()
                     self.pattern_undetermined = True

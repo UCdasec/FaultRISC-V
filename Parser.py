@@ -11,7 +11,9 @@ def is_integer(candidate):
         int(candidate)
         return True
     except ValueError:
-        return False
+        hex_pattern = r'0x[0-9a-fA-F]+'
+        return True if re.match(hex_pattern, candidate) else False
+
 class Argument:
     def __init__(self, arg_text: str):
         self.arg_text = arg_text    # The text of the argument
@@ -28,7 +30,10 @@ class IntegerLiteral(Argument):
         if arg_text == 'zero':
             self.arg_value = 0
         else:
-            self.arg_value = int(self.arg_text)
+            try:
+                self.arg_value = int(self.arg_text)
+            except ValueError:
+                self.arg_value = int(self.arg_text, 16)
 
 class StringLiteral(Argument):
     def __init__(self, arg_text: str):
