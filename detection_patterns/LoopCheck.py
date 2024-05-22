@@ -119,9 +119,9 @@ class LoopCheck(Pattern):
                         self.vulnerable_pattern = self.vulnerable_pattern[0]
                         self.pattern_undetermined = False
 
-                elif (line_type in self.vulnerable_pattern[line_no][0] or
+                elif (line_type in self.vulnerable_pattern[line_no][0] or   # Completing the pattern
                       (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
-                       line_type in self.vulnerable_pattern[line_no+1][0])):
+                       (line_no + 1 < len(self.vulnerable_pattern) and line_type in self.vulnerable_pattern[line_no+1][0]))):
 
                     if (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and    # Optional IGNORE LINE not present, remove from pattern
                             line_type in self.vulnerable_pattern[line_no+1][0]):
@@ -164,7 +164,10 @@ class LoopCheck(Pattern):
 
                     if line_pattern_match:  # if the line matches, adding to detection cache as IGNORE LINE
                         self.detection_cache.append('__IGNORE_LINE__')
-                        line_no += 1
+                        if line_no + 1 < len(self.vulnerable_pattern):
+                            line_no += 1
+                        else:
+                            self.insecure_match = True
 
                     else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
                         last_line_no = self.detection_cache[-1].line_no
@@ -232,7 +235,7 @@ class LoopCheck(Pattern):
                     if line_type in self.vulnerable_pattern[line_no][0] and len(line.args) == len(insecure_line.args):
                         for arg_no in range(len(line.args)):
                             if isinstance(line.args[arg_no], Register) and isinstance(insecure_line.args[arg_no], Register):
-                                if line.args[arg_no].arg_text == insecure_line.args[arg_no].arg_text: # pass if same
+                                if any(line.args[arg_no].arg_text == insecure_arg.arg_text for insecure_arg in insecure_line.args): # pass if same
                                     args_match = True
 
                                 else:   # Fail - secure half not found

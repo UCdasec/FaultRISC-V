@@ -190,6 +190,14 @@ vulnerable_instruction_list = {
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {IntegerLiteral}, {Label}
                 ]
+            ],
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {Register}, {Label}
+                ],
+                [
+                    '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}
+                ],
             ]
         ],
         OptimizationLevel.O2: [
@@ -214,6 +222,14 @@ vulnerable_instruction_list = {
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {Register}, {Label}
                 ]
+            ],
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu'}, {Register}, {Register}, {Label}
+                ],
+                [
+                    '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}
+                ],
             ]
         ]
     }
