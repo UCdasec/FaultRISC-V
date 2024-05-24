@@ -1,4 +1,4 @@
-	.file	"operate_motor_secure.c"
+	.file	"operate_motor.c"
 	.option nopic
 	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0"
 	.attribute unaligned_access, 0
@@ -101,17 +101,14 @@ main:
 	mv	a0,a5
 	call	isMaintenanceRequired
 	mv	a5,a0
-	sw	a5,-28(s0)
-	lw	a5,-28(s0)
-	sext.w	a5,a5
 	beq	a5,zero,.L8
 	call	performMaintenance
 	j	.L9
 .L8:
 	call	checkMotorStatus
 	mv	a5,a0
-	sw	a5,-32(s0)
-	lw	a5,-32(s0)
+	sw	a5,-28(s0)
+	lw	a5,-28(s0)
 	mv	a4,a5
 	lw	a5,-24(s0)
 	sext.w	a4,a4

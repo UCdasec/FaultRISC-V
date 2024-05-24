@@ -232,5 +232,67 @@ vulnerable_instruction_list = {
                 ],
             ]
         ]
+    },
+    'Bypass': {
+        OptimizationLevel.O0: [
+            [
+                [
+                    {'call'}, {Label}
+                ],
+                [
+                    {'mv', 'fmv.d'}, {Register}, {Register}
+                ],
+                [
+                    '__IGNORE_LINE__', {'fcvt.w.d'}, {Register}, {Register}, {Label}
+                ],
+                [
+                    '__SECURE__', {'sw', 'sb', 'sd'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    '__SECURE__', {'lw', 'lb', 'lbu', 'ld'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    {'__OPTIONAL__', '__SECURE__'}, {'lw', 'lb', 'lbu', 'ld'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    '__IGNORE_LINE__', {'sext.w', 'andi'}, {Register}, {Register}, {None, IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu', 'seqz'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ]
+            ]
+        ],
+        OptimizationLevel.O1: [
+            [
+                [
+                    {'call'}, {Label}
+                ],
+                [
+                    '__OPTIONAL__', {'mv'}, {Register}, {Register}
+                ],
+                [
+                    '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu', 'seqz'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ]
+            ]
+        ],
+        OptimizationLevel.O2: [
+            [
+                [
+                    {'call'}, {Label}
+                ],
+                [
+                    '__OPTIONAL__', {'mv'}, {Register}, {Register}
+                ],
+                [
+                    '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bltu', 'seqz'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ]
+            ]
+        ]
     }
 }

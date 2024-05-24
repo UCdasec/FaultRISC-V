@@ -9,22 +9,22 @@
 	.align	2
 	.type	global_secure, @object
 	.size	global_secure, 4
-global_secure:                                                                  # constant coding secure - global variable
-	.word	255                                                                 # constant coding secure - global variable
+global_secure:
+	.word	255
 	.globl	global_insecure
 	.align	2
 	.type	global_insecure, @object
 	.size	global_insecure, 4
-global_insecure:                                                                # constant coding - global variable
-	.word	1                                                                   # constant coding - global variable
+global_insecure:
+	.word	1
 	.section	.rodata
 	.align	3
-.LC0:                                                                                       # constant coding - array
-	.word	1                                                                               # constant coding - array
-	.word	2                                                                               # constant coding - array
-	.word	4                                                                               # constant coding - array
-	.word	8                                                                               # constant coding - array
-	.word	16                                                                              # constant coding - array
+.LC0:
+	.word	1
+	.word	2
+	.word	4
+	.word	8
+	.word	16
 	.text
 	.align	1
 	.globl	main
@@ -34,10 +34,10 @@ main:
 	sd	ra,40(sp)
 	sd	s0,32(sp)
 	addi	s0,sp,48
-	li	a5,16                                                                       # constant coding - local variable (a)
-	sw	a5,-20(s0)                                                                  # constant coding - local variable (a)
-	li	a5,-1                                                                       # constant coding - local variable (b)
-	sh	a5,-22(s0)                                                                  # constant coding - local variable (b)
+	li	a5,16
+	sw	a5,-20(s0)
+	li	a5,-1
+	sh	a5,-22(s0)
 	lui	a5,%hi(.LC0)
 	addi	a5,a5,%lo(.LC0)
 	ld	a4,0(a5)

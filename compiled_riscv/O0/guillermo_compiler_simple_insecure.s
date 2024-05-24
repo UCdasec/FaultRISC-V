@@ -12,8 +12,8 @@ foo:
 	sd	s0,40(sp)
 	addi	s0,sp,48
 	sd	a0,-40(s0)
-	li	a5,1                                                                                            #constant coding
-	sw	a5,-20(s0)                                                                                      #constant coding
+	li	a5,1
+	sw	a5,-20(s0)
 	ld	a5,-40(s0)
 	lw	a4,-20(s0)
 	sw	a4,0(a5)

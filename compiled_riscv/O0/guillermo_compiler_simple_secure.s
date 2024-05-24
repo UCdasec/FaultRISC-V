@@ -12,9 +12,9 @@ foo:
 	sd	s0,40(sp)
 	addi	s0,sp,48
 	sd	a0,-40(s0)
-	li	a5,16384                                                                                 #constant coding secure
-	addi	a5,a5,-861                                                                           #constant coding secure
-	sw	a5,-20(s0)                                                                               #constant coding secure
+	li	a5,16384
+	addi	a5,a5,-861
+	sw	a5,-20(s0)
 	lw	a5,-20(s0)
 	addiw	a5,a5,2
 	sext.w	a4,a5

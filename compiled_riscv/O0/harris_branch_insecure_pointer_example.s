@@ -128,7 +128,7 @@ main:
 	fmv.d	fa0,fa5
 	call	pow
 	fmv.d	fa5,fa0
-	fcvt.w.d a5,fa5,rtz
+	fcvt.w.d	a5,fa5,rtz
 	sw	a5,-36(s0)
 	lw	a4,-40(s0)
 	lw	a5,-36(s0)

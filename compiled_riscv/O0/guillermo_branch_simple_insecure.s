@@ -24,8 +24,8 @@ main:
 	sw	a5,-20(s0)
 	lw	a5,-20(s0)
 	sext.w	a4,a5
-	li	a5,1                                                                                                     #branch
-	bne	a4,a5,.L2                                                                                                #branch
+	li	a5,1
+	bne	a4,a5,.L2
 	lui	a5,%hi(.LC0)
 	addi	a0,a5,%lo(.LC0)
 	call	puts

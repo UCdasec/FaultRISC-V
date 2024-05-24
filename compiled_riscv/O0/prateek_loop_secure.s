@@ -73,7 +73,7 @@ main:
 	addiw	a5,a5,1
 	sw	a5,-20(s0)
 .L3:
-    lw	a4,-24(s0)
+	lw	a4,-24(s0)
 	lw	a5,-20(s0)
 	sext.w	a5,a5
 	blt	a5,a4,.L4
