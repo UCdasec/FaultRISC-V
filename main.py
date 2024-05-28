@@ -16,12 +16,14 @@ def analyze_program(program: Program):
     Branch_detector = Branch(program.optimization, 4)
     ConstantCoding_detector = ConstantCoding(program.optimization, 4)
     LoopCheck_detector = LoopCheck(program.optimization)
+    Bypass_detector = Bypass(program.optimization)
 
     for line in program.lines:
         if isinstance(line, Instruction):
             Branch_detector.checkInstruction(line)
             ConstantCoding_detector.checkInstruction(line)
             LoopCheck_detector.checkInstruction(line)
+            Bypass_detector.checkInstruction(line)
 
         elif isinstance(line, Attribute):
             ConstantCoding_detector.checkInstruction(line)
@@ -36,18 +38,21 @@ def analyze_program(program: Program):
     Branch_detector.printAllVulnerable('Branch')
     ConstantCoding_detector.printAllVulnerable('ConstantCoding')
     LoopCheck_detector.printAllVulnerable('LoopCheck')
+    Bypass_detector.printAllVulnerable('Bypass')
     print(f"All vulnerabilities printed!\n")
 
     total_no_vulnerabilities = sum([
             Branch_detector.no_vulnerable,
             ConstantCoding_detector.no_vulnerable,
-            LoopCheck_detector.no_vulnerable
+            LoopCheck_detector.no_vulnerable,
+            Bypass_detector.no_vulnerable
         ])
 
     total_no_vulnerable_lines = sum([
         Branch_detector.no_vulnerable_lines,
         ConstantCoding_detector.no_vulnerable_lines,
-        LoopCheck_detector.no_vulnerable_lines
+        LoopCheck_detector.no_vulnerable_lines,
+        Bypass_detector.no_vulnerable_lines
     ])
 
     percentage_vulnerable = (total_no_vulnerable_lines/program.no_lines) * 100
@@ -56,6 +61,7 @@ def analyze_program(program: Program):
     print(f'Total no. of Branch vulnerabilities: {Branch_detector.no_vulnerable}')
     print(f'Total no. of ConstantCoding vulnerabilities: {ConstantCoding_detector.no_vulnerable}')
     print(f'Total no. of LoopCheck vulnerabilities: {LoopCheck_detector.no_vulnerable}')
+    print(f'Total no. of Bypass vulnerabilities: {Bypass_detector.no_vulnerable}')
     print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}\n')
     print(f'Total no. of vulnerable lines: {total_no_vulnerable_lines}')
     print(f'Total no. of lines: {program.no_lines}')
