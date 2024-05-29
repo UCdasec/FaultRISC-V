@@ -48,6 +48,7 @@ def analyze_program(program: Program):
             Bypass_detector.no_vulnerable
         ])
 
+    # TODO: Remove all duplicates in count (i.e., if one line is vulnerable for two patterns, it should only count once)
     total_no_vulnerable_lines = sum([
         Branch_detector.no_vulnerable_lines,
         ConstantCoding_detector.no_vulnerable_lines,

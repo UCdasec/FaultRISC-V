@@ -182,8 +182,8 @@ class Bypass(Pattern):
 
         elif self.optimization_set in [OptimizationLevel.O1, OptimizationLevel.O2]: # O-1 and O-2 have a similar pattern
             if line_no == 0:    # Checking for call to initiate pattern (1st requirement)
-                first_line = self.vulnerable_instruction_set[0][0]
-                if line_type == first_line.type:
+                first_line = self.vulnerable_instruction_set[0]
+                if line_type in first_line[0]:
                     for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
                         if not any(isinstance(arg, first_line_arg) for first_line_arg in first_line[arg_no]):
                             line_pattern_match = False
@@ -192,7 +192,7 @@ class Bypass(Pattern):
                         line_pattern_match = True
 
                     if line_pattern_match:  # The line matches the pattern, so we initiate the pattern and add current line to detection cache
-                        self.vulnerable_pattern = self.vulnerable_instruction_set[0].copy()
+                        self.vulnerable_pattern = self.vulnerable_instruction_set.copy()
                         self.detection_cache.append(line)
                         line_no += 1
 
@@ -203,7 +203,7 @@ class Bypass(Pattern):
                             line_pattern_match = False
                             break
 
-                        if not (isinstance(arg, Register) and arg_no == 3 and arg.arg_text == 'a0'):
+                        if isinstance(arg, Register) and arg_no == 3 and arg.arg_text != 'a0':
                             line_pattern_match = False
                             break
 
@@ -213,10 +213,12 @@ class Bypass(Pattern):
                         self.detection_cache.append(line)
                         line_no += 1
 
-                else:   # if the instruction type does not match and any of the args is register a0, the pattern is broken
-                    for arg in line.args:
-                        if isinstance(arg, Register) and arg.arg_text == 'a0':
-                            self.cleanup(line)
+                    else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                        self.cleanup(line)
+
+                else:   # if the instruction type does not match and any of the args is register a0, remove the optional line
+                    self.vulnerable_pattern.pop(line_no)
+                    self.checkInstruction(line)
 
             elif '__IGNORE_LINE__' in self.vulnerable_pattern[line_no][0]:  # Check if line is an IGNORE line
                 if line_type in self.vulnerable_pattern[line_no][1]:
@@ -231,31 +233,36 @@ class Bypass(Pattern):
                         self.detection_cache.append('__IGNORE_LINE__')
                         line_no += 1
 
-                elif line_type in self.vulnerable_pattern[line_no+1][0]:    # Check if current line is line after IGNORE line
+                    else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                        self.cleanup(line)
+
+                else:   # IGNORE line not present, remove from pattern and try again
                     self.vulnerable_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
                     self.checkInstruction(line)
 
             elif line_type in self.vulnerable_pattern[line_no][0]:  # If line is integral to pattern (only applies to branch statement)
                 register_match = False  # For checking if the register with the return value is in the branch statement
                 for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
-                    if not any(isinstance(arg, first_line_arg) for first_line_arg in self.vulnerable_pattern[line_no][arg_no]):
+                    if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                         line_pattern_match = False
                         break
 
                     line_pattern_match = True
 
-                    if isinstance(arg, Register) and line_no >= 2 and self.detection_cache[1].type == 'mv' and arg.arg_text == self.detection_cache[1].args[0]:
+                    if (isinstance(arg, Register) and line_no >= 2 and
+                            (isinstance(self.detection_cache[1], Instruction) and self.detection_cache[1].type == 'mv') and
+                            arg.arg_text == self.detection_cache[1].args[0]):
                         # if mv instruction passed, we check if the register moved to exists
                         register_match = True
 
-                    elif isinstance(arg, Register) and not arg.arg_text == 'a0': # if mv instruction is not passed, we check if it contains a0
+                    elif isinstance(arg, Register) and arg.arg_text == 'a0': # if mv instruction is not passed, we check if it contains a0
                         register_match = True
 
                 if line_pattern_match and register_match:
                     self.detection_cache.append(line)
                     line_no += 1
 
-            elif line_no >= 2 and self.detection_cache[1].type == 'mv': # if mv instruction passed, we make sure the current line doesn't have register moved to.
+            elif line_no >= 2 and (isinstance(self.detection_cache[1], Instruction) and self.detection_cache[1].type == 'mv'): # if mv instruction passed, we make sure the current line doesn't have register moved to.
                 if any(isinstance(arg, Register) and arg.arg_text == self.detection_cache[1].args[0] for arg in line.args):
                     # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                     self.cleanup(line)
@@ -268,7 +275,7 @@ class Bypass(Pattern):
             else: # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                 self.cleanup(line)
 
-    def cleanup(self, line: Instruction):
+    def cleanup(self, line: Instruction, with_threading = False):
         self.detection_cache = list(filter(lambda line: not isinstance(line, str), self.detection_cache))   # Removing all IGNORE LINES as those do not count
         last_line_no = self.detection_cache[-1].line_no if len(self.detection_cache) > 0 else None
         self.detection_cache.clear()
