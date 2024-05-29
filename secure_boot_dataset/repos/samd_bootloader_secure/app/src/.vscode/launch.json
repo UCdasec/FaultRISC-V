@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "name": "Debug (OpenOCD)",
+            "cwd": "${workspaceFolder}",
+            "executable": "./make/build/bootloader.elf",
+            "device":"${config:cortex.device}",
+            "svdFile": "${workspaceFolder}/svd/${config:cortex.device}.svd",
+            "showDevDebugOutput": false,
+            "configFiles": [
+                "${env:OPENOCD}/share/openocd/scripts/board/atmel_samd10_xplained_mini.cfg"
+            ],
+            "runToMain": false,
+            "preLaunchTask": "build"
+        }
+    ]
+}

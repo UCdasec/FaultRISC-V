@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "gcc",
+            "includePath": [
+                "${workspaceFolder}/include/**"
+            ],
+            "defines": [
+                "__SAMD21J18A__",
+                "DONT_USE_CMSIS_INIT",
+                "F_CPU=8000000",
+                "DEBUG"
+            ],
+            "compilerPath": "${env:GNUARM}",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${env:GNUARM}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
+}

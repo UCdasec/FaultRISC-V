@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "bootloader_SAMD10x13A_8K", "bootloader_SAMD10x13A_8K.cproj", "{22CBC4AC-0DB7-F32F-F866-38AB515616EC}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "bootloader_SAMD10x14A_16K", "bootloader_SAMD10x14A_16K.cproj", "{05F904A8-9BF4-4BC4-8670-7CED07723792}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22CBC4AC-0DB7-F32F-F866-38AB515616EC}.Release|ARM.ActiveCfg = Release|ARM
+		{22CBC4AC-0DB7-F32F-F866-38AB515616EC}.Release|ARM.Build.0 = Release|ARM
+		{05F904A8-9BF4-4BC4-8670-7CED07723792}.Release|ARM.ActiveCfg = Release|ARM
+		{05F904A8-9BF4-4BC4-8670-7CED07723792}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

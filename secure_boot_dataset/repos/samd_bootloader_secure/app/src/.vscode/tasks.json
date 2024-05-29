@@ -1,0 +1,95 @@
+{
+    "version": "2.0.0",
+    "type":"shell",    
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+    },
+    "windows": {
+        "options": {
+            "env": { "Path":"${env:MSYS}/bin;${env:GNUARM}/bin;${env:OPENOCD}/bin;%Path%" }
+        }
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "windows": {
+                "command": "make.exe",
+                "args": [
+                    "-C",
+                    "make",
+                    "-j${env:NUMBER_OF_PROCESSORS}",
+                    "DEBUG=GDB",
+                    "STANDALONE=1"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": "relative"
+            }
+        },
+        {
+            "label": "program",
+            "windows": {
+                "command": "make",
+                "args": [
+                    "-C",
+                    "make",
+                    "-j${env:NUMBER_OF_PROCESSORS}",
+                    "program",
+                    "OPENOCD_CONFIG=../openocd/openocd.cfg"
+                ]
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "windows": {
+                "command": "make.exe",
+                "args": [
+                    "-C",
+                    "make",
+                    "clean"
+                ]
+            },
+            "problemMatcher": []
+        },        
+        {
+            "label": "{build bootloader version}",
+            "windows": {
+                "command": "make.exe",
+                "args": [
+                    "-C",
+                    "make",
+                    "-j${env:NUMBER_OF_PROCESSORS}",
+                    "DEBUG=GDB",
+                    "STANDALONE=0"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": "relative"
+            }
+        },
+        {
+            "label": "print environment variable",
+            "windows": {
+                "command": "echo",
+                "args": [
+                    "OPENOCD_CONFIG=${env:OPENOCD}/share/openocd/scripts/board/atmel_samd21_xplained_pro.cfg -c \"program ./build/SAMD21.elf reset exit\""
+                ]
+            },
+            "problemMatcher": []
+        }
+    ]
+}

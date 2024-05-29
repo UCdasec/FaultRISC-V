@@ -1,0 +1,7 @@
+{
+    "cortex.device":"ATSAMD21J18A",
+    "cortex.msysPath_bin": "C:\\msys\\1.0\\bin",
+    "files.associations": {
+        "stdbool.h": "c"
+    },
+}
