@@ -1,0 +1,1241 @@
+
+GccApplication5.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000006ea  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000066  00800060  000006ea  0000077e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000013  008000c6  008000c6  000007e4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000007e4  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000814  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000108  00000000  00000000  00000850  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001274  00000000  00000000  00000958  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000009de  00000000  00000000  00001bcc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000009fd  00000000  00000000  000025aa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000210  00000000  00000000  00002fa8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000544  00000000  00000000  000031b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000098b  00000000  00000000  000036fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a0  00000000  00000000  00004087  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea ee       	ldi	r30, 0xEA	; 234
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a6 3c       	cpi	r26, 0xC6	; 198
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a6 ec       	ldi	r26, 0xC6	; 198
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a9 3d       	cpi	r26, 0xD9	; 217
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 03 03 	call	0x606	; 0x606 <main>
+  8a:	0c 94 73 03 	jmp	0x6e6	; 0x6e6 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <EEPROM_write>:
+
+
+void EEPROM_write(unsigned int uiAddress, unsigned char ucData)
+{
+/* Wait for completion of previous write */
+while(EECR & (1<<EEWE));
+  92:	e1 99       	sbic	0x1c, 1	; 28
+  94:	fe cf       	rjmp	.-4      	; 0x92 <EEPROM_write>
+
+/* Set up address and data registers */
+EEAR = uiAddress;
+  96:	9f bb       	out	0x1f, r25	; 31
+  98:	8e bb       	out	0x1e, r24	; 30
+EEDR = ucData;
+  9a:	6d bb       	out	0x1d, r22	; 29
+/* Write logical one to EEMWE */
+EECR |= (1<<EEMWE);
+  9c:	e2 9a       	sbi	0x1c, 2	; 28
+/* Start eeprom write by setting EEWE */
+EECR |= (1<<EEWE);
+  9e:	e1 9a       	sbi	0x1c, 1	; 28
+  a0:	08 95       	ret
+
+000000a2 <GPIO_Init>:
+
+static uint8_t GPIO_GroupState[GPIO_GROUPS_NUMBER] = {0};
+
+/*A function to initialize all the GPIO Groups in the configurations*/
+GPIO_CheckType GPIO_Init(void)
+{
+  a2:	ef 92       	push	r14
+  a4:	ff 92       	push	r15
+  a6:	1f 93       	push	r17
+  a8:	cf 93       	push	r28
+  aa:	df 93       	push	r29
+  ac:	a4 e6       	ldi	r26, 0x64	; 100
+  ae:	b0 e0       	ldi	r27, 0x00	; 0
+  b0:	0f 2e       	mov	r0, r31
+  b2:	f6 ec       	ldi	r31, 0xC6	; 198
+  b4:	ef 2e       	mov	r14, r31
+  b6:	f0 e0       	ldi	r31, 0x00	; 0
+  b8:	ff 2e       	mov	r15, r31
+  ba:	f0 2d       	mov	r31, r0
+  bc:	24 ea       	ldi	r18, 0xA4	; 164
+  be:	30 e0       	ldi	r19, 0x00	; 0
+			/*Data Control*/
+			GPIODIR_REG(CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortDirection);
+			/*Pad Control*/
+			//GPIODATA_WRITE(0x00,CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortWrite);
+			GPIODATA_READ(CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortDirection & CfgPtr->PortWrite);
+			GPIO_GroupState[LoopIndex] = 1;
+  c0:	11 e0       	ldi	r17, 0x01	; 1
+	const GPIO_CfgType * CfgPtr;
+
+
+	for(LoopIndex = 0; (LoopIndex < GPIO_GROUPS_NUMBER) && (ErrorFlag == 0); LoopIndex ++)
+	{
+		if(GPIO_ConfigParam[LoopIndex].PortId < PORTS_NUMBER)
+  c2:	ec 91       	ld	r30, X
+  c4:	e4 30       	cpi	r30, 0x04	; 4
+  c6:	10 f5       	brcc	.+68     	; 0x10c <GPIO_Init+0x6a>
+        {
+           /*Enable port clock gate*/
+            CfgPtr = & GPIO_ConfigParam[LoopIndex];
+			/*Data Control*/
+			GPIODIR_REG(CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortDirection);
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	e0 5a       	subi	r30, 0xA0	; 160
+  cc:	ff 4f       	sbci	r31, 0xFF	; 255
+  ce:	e0 81       	ld	r30, Z
+  d0:	f0 e0       	ldi	r31, 0x00	; 0
+  d2:	af 01       	movw	r20, r30
+  d4:	ea 01       	movw	r28, r20
+  d6:	6a 91       	ld	r22, -Y
+  d8:	12 96       	adiw	r26, 0x02	; 2
+  da:	7c 91       	ld	r23, X
+  dc:	12 97       	sbiw	r26, 0x02	; 2
+  de:	11 96       	adiw	r26, 0x01	; 1
+  e0:	9c 91       	ld	r25, X
+  e2:	11 97       	sbiw	r26, 0x01	; 1
+  e4:	97 23       	and	r25, r23
+  e6:	96 2b       	or	r25, r22
+  e8:	98 83       	st	Y, r25
+			/*Pad Control*/
+			//GPIODATA_WRITE(0x00,CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortWrite);
+			GPIODATA_READ(CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortDirection & CfgPtr->PortWrite);
+  ea:	32 97       	sbiw	r30, 0x02	; 2
+  ec:	90 81       	ld	r25, Z
+  ee:	13 96       	adiw	r26, 0x03	; 3
+  f0:	8c 91       	ld	r24, X
+  f2:	13 97       	sbiw	r26, 0x03	; 3
+  f4:	87 23       	and	r24, r23
+  f6:	89 2b       	or	r24, r25
+  f8:	80 83       	st	Z, r24
+			GPIO_GroupState[LoopIndex] = 1;
+  fa:	f7 01       	movw	r30, r14
+  fc:	11 93       	st	Z+, r17
+  fe:	7f 01       	movw	r14, r30
+ 100:	14 96       	adiw	r26, 0x04	; 4
+	uint8_t ErrorFlag = 0;
+	GPIO_CheckType RetVar;
+	const GPIO_CfgType * CfgPtr;
+
+
+	for(LoopIndex = 0; (LoopIndex < GPIO_GROUPS_NUMBER) && (ErrorFlag == 0); LoopIndex ++)
+ 102:	a2 17       	cp	r26, r18
+ 104:	b3 07       	cpc	r27, r19
+ 106:	e9 f6       	brne	.-70     	; 0xc2 <GPIO_Init+0x20>
+			GPIODIR_REG(CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortDirection);
+			/*Pad Control*/
+			//GPIODATA_WRITE(0x00,CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortMask & CfgPtr->PortWrite);
+			GPIODATA_READ(CfgPtr->PortMask,CfgPtr->PortId) |= (CfgPtr->PortDirection & CfgPtr->PortWrite);
+			GPIO_GroupState[LoopIndex] = 1;
+			RetVar = GPIO_OK;
+ 108:	80 e0       	ldi	r24, 0x00	; 0
+ 10a:	01 c0       	rjmp	.+2      	; 0x10e <GPIO_Init+0x6c>
+        }
+		else
+		{
+			/*Invalid GroupId*/
+			RetVar = GPIO_NOK;
+ 10c:	81 e0       	ldi	r24, 0x01	; 1
+		}
+
+
+	}
+	return RetVar;
+}
+ 10e:	df 91       	pop	r29
+ 110:	cf 91       	pop	r28
+ 112:	1f 91       	pop	r17
+ 114:	ff 90       	pop	r15
+ 116:	ef 90       	pop	r14
+ 118:	08 95       	ret
+
+0000011a <GPIO_Write>:
+GPIO_CheckType GPIO_Write(uint8_t GroupId,uint8_t GroupData)
+{
+	const GPIO_CfgType * CfgWrite;
+	GPIO_CheckType ReturnVar;
+
+	if (( GroupId <GPIO_GROUPS_NUMBER))
+ 11a:	80 31       	cpi	r24, 0x10	; 16
+ 11c:	e0 f5       	brcc	.+120    	; 0x196 <GPIO_Write+0x7c>
+	{
+
+		CfgWrite =  & GPIO_ConfigParam[GroupId];
+ 11e:	90 e0       	ldi	r25, 0x00	; 0
+
+		if ((CfgWrite->PortDirection == 0xff)&&(GPIO_GroupState[GroupId]==1 ))
+ 120:	fc 01       	movw	r30, r24
+ 122:	ee 0f       	add	r30, r30
+ 124:	ff 1f       	adc	r31, r31
+ 126:	ee 0f       	add	r30, r30
+ 128:	ff 1f       	adc	r31, r31
+ 12a:	ec 59       	subi	r30, 0x9C	; 156
+ 12c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 12e:	22 81       	ldd	r18, Z+2	; 0x02
+ 130:	2f 3f       	cpi	r18, 0xFF	; 255
+ 132:	99 f5       	brne	.+102    	; 0x19a <GPIO_Write+0x80>
+ 134:	fc 01       	movw	r30, r24
+ 136:	ea 53       	subi	r30, 0x3A	; 58
+ 138:	ff 4f       	sbci	r31, 0xFF	; 255
+ 13a:	20 81       	ld	r18, Z
+ 13c:	21 30       	cpi	r18, 0x01	; 1
+ 13e:	79 f5       	brne	.+94     	; 0x19e <GPIO_Write+0x84>
+		{
+		    if(GroupData == 0x00)
+ 140:	61 11       	cpse	r22, r1
+ 142:	14 c0       	rjmp	.+40     	; 0x16c <GPIO_Write+0x52>
+            {
+                GPIODATA_WRITE(GroupData,CfgWrite->PortMask,CfgWrite->PortId) &= ~(CfgWrite->PortMask);
+ 144:	88 0f       	add	r24, r24
+ 146:	99 1f       	adc	r25, r25
+ 148:	88 0f       	add	r24, r24
+ 14a:	99 1f       	adc	r25, r25
+ 14c:	fc 01       	movw	r30, r24
+ 14e:	ec 59       	subi	r30, 0x9C	; 156
+ 150:	ff 4f       	sbci	r31, 0xFF	; 255
+ 152:	a0 81       	ld	r26, Z
+ 154:	b0 e0       	ldi	r27, 0x00	; 0
+ 156:	a0 5a       	subi	r26, 0xA0	; 160
+ 158:	bf 4f       	sbci	r27, 0xFF	; 255
+ 15a:	ac 91       	ld	r26, X
+ 15c:	b0 e0       	ldi	r27, 0x00	; 0
+ 15e:	9c 91       	ld	r25, X
+ 160:	81 81       	ldd	r24, Z+1	; 0x01
+ 162:	80 95       	com	r24
+ 164:	89 23       	and	r24, r25
+ 166:	8c 93       	st	X, r24
+ 168:	80 e0       	ldi	r24, 0x00	; 0
+ 16a:	08 95       	ret
+		        ReturnVar = GPIO_OK;
+            }
+            if(GroupData == 0xff)
+ 16c:	6f 3f       	cpi	r22, 0xFF	; 255
+ 16e:	c9 f4       	brne	.+50     	; 0x1a2 <GPIO_Write+0x88>
+            {
+                GPIODATA_WRITE(GroupData,CfgWrite->PortMask,CfgWrite->PortId) |= (CfgWrite->PortMask);
+ 170:	88 0f       	add	r24, r24
+ 172:	99 1f       	adc	r25, r25
+ 174:	88 0f       	add	r24, r24
+ 176:	99 1f       	adc	r25, r25
+ 178:	fc 01       	movw	r30, r24
+ 17a:	ec 59       	subi	r30, 0x9C	; 156
+ 17c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 17e:	a0 81       	ld	r26, Z
+ 180:	b0 e0       	ldi	r27, 0x00	; 0
+ 182:	a0 5a       	subi	r26, 0xA0	; 160
+ 184:	bf 4f       	sbci	r27, 0xFF	; 255
+ 186:	ac 91       	ld	r26, X
+ 188:	b0 e0       	ldi	r27, 0x00	; 0
+ 18a:	9c 91       	ld	r25, X
+ 18c:	81 81       	ldd	r24, Z+1	; 0x01
+ 18e:	89 2b       	or	r24, r25
+ 190:	8c 93       	st	X, r24
+		        ReturnVar = GPIO_OK;
+ 192:	80 e0       	ldi	r24, 0x00	; 0
+ 194:	08 95       	ret
+		}
+
+	}
+	else
+	{
+		ReturnVar = GPIO_NOK ;
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+ 198:	08 95       	ret
+
+	    }
+
+		else
+		{
+			ReturnVar = GPIO_NOK ;
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	08 95       	ret
+ 19e:	81 e0       	ldi	r24, 0x01	; 1
+ 1a0:	08 95       	ret
+ 1a2:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		ReturnVar = GPIO_NOK ;
+	}
+
+	return ReturnVar;
+}
+ 1a4:	08 95       	ret
+
+000001a6 <GPIO_Read>:
+GPIO_CheckType GPIO_Read(uint8_t GroupId,uint8_t* GroupDataPtr)
+{
+
+	const GPIO_CfgType * CfgRead;
+		GPIO_CheckType RetVar;
+		if (( GroupId <GPIO_GROUPS_NUMBER))
+ 1a6:	80 31       	cpi	r24, 0x10	; 16
+ 1a8:	30 f5       	brcc	.+76     	; 0x1f6 <GPIO_Read+0x50>
+			{
+			    CfgRead = &GPIO_ConfigParam[GroupId];
+ 1aa:	90 e0       	ldi	r25, 0x00	; 0
+				if ((CfgRead->PortDirection == 0x00)&&(GPIO_GroupState[GroupId]==1 ))
+ 1ac:	fc 01       	movw	r30, r24
+ 1ae:	ee 0f       	add	r30, r30
+ 1b0:	ff 1f       	adc	r31, r31
+ 1b2:	ee 0f       	add	r30, r30
+ 1b4:	ff 1f       	adc	r31, r31
+ 1b6:	ec 59       	subi	r30, 0x9C	; 156
+ 1b8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ba:	22 81       	ldd	r18, Z+2	; 0x02
+ 1bc:	21 11       	cpse	r18, r1
+ 1be:	1d c0       	rjmp	.+58     	; 0x1fa <GPIO_Read+0x54>
+ 1c0:	fc 01       	movw	r30, r24
+ 1c2:	ea 53       	subi	r30, 0x3A	; 58
+ 1c4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1c6:	20 81       	ld	r18, Z
+ 1c8:	21 30       	cpi	r18, 0x01	; 1
+ 1ca:	c9 f4       	brne	.+50     	; 0x1fe <GPIO_Read+0x58>
+				{
+                   *GroupDataPtr = (GPIODATA_READ(CfgRead->PortMask,CfgRead->PortId) & (CfgRead->PortMask) );
+ 1cc:	88 0f       	add	r24, r24
+ 1ce:	99 1f       	adc	r25, r25
+ 1d0:	88 0f       	add	r24, r24
+ 1d2:	99 1f       	adc	r25, r25
+ 1d4:	fc 01       	movw	r30, r24
+ 1d6:	ec 59       	subi	r30, 0x9C	; 156
+ 1d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1da:	a0 81       	ld	r26, Z
+ 1dc:	b0 e0       	ldi	r27, 0x00	; 0
+ 1de:	a0 5a       	subi	r26, 0xA0	; 160
+ 1e0:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1e2:	ac 91       	ld	r26, X
+ 1e4:	b0 e0       	ldi	r27, 0x00	; 0
+ 1e6:	12 97       	sbiw	r26, 0x02	; 2
+ 1e8:	8c 91       	ld	r24, X
+ 1ea:	91 81       	ldd	r25, Z+1	; 0x01
+ 1ec:	89 23       	and	r24, r25
+ 1ee:	fb 01       	movw	r30, r22
+ 1f0:	80 83       	st	Z, r24
+                   RetVar = GPIO_OK;
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	08 95       	ret
+				 }
+
+			}
+			else
+			{
+				RetVar = GPIO_NOK ;
+ 1f6:	81 e0       	ldi	r24, 0x01	; 1
+ 1f8:	08 95       	ret
+                   *GroupDataPtr = (GPIODATA_READ(CfgRead->PortMask,CfgRead->PortId) & (CfgRead->PortMask) );
+                   RetVar = GPIO_OK;
+				}
+				else
+				 {
+					 RetVar = GPIO_NOK ;
+ 1fa:	81 e0       	ldi	r24, 0x01	; 1
+ 1fc:	08 95       	ret
+ 1fe:	81 e0       	ldi	r24, 0x01	; 1
+			{
+				RetVar = GPIO_NOK ;
+			}
+
+			return RetVar;
+}
+ 200:	08 95       	ret
+
+00000202 <getkey>:
+#include "GPIO.h"
+#include "GPIO_Cfg.h"
+
+unsigned char Data ; 
+char getkey()
+{
+ 202:	cf 92       	push	r12
+ 204:	df 92       	push	r13
+ 206:	ef 92       	push	r14
+ 208:	ff 92       	push	r15
+ 20a:	0f 93       	push	r16
+ 20c:	1f 93       	push	r17
+ 20e:	cf 93       	push	r28
+	int i, j;
+	for(i = Row0; i <= Row3; i++)
+ 210:	e1 2c       	mov	r14, r1
+ 212:	f1 2c       	mov	r15, r1
+	{
+		GPIO_Write(Row0,0xff);
+ 214:	6f ef       	ldi	r22, 0xFF	; 255
+ 216:	80 e0       	ldi	r24, 0x00	; 0
+ 218:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+		GPIO_Write(Row1,0xff);
+ 21c:	6f ef       	ldi	r22, 0xFF	; 255
+ 21e:	81 e0       	ldi	r24, 0x01	; 1
+ 220:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+		GPIO_Write(Row2,0xff);
+ 224:	6f ef       	ldi	r22, 0xFF	; 255
+ 226:	82 e0       	ldi	r24, 0x02	; 2
+ 228:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+		GPIO_Write(Row3,0xff);
+ 22c:	6f ef       	ldi	r22, 0xFF	; 255
+ 22e:	83 e0       	ldi	r24, 0x03	; 3
+ 230:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+		
+		GPIO_Write(i,0x00);
+ 234:	60 e0       	ldi	r22, 0x00	; 0
+ 236:	8e 2d       	mov	r24, r14
+ 238:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 23c:	04 e0       	ldi	r16, 0x04	; 4
+ 23e:	10 e0       	ldi	r17, 0x00	; 0
+ 240:	0f 2e       	mov	r0, r31
+ 242:	f5 e0       	ldi	r31, 0x05	; 5
+ 244:	cf 2e       	mov	r12, r31
+ 246:	d1 2c       	mov	r13, r1
+ 248:	f0 2d       	mov	r31, r0
+ 24a:	05 c0       	rjmp	.+10     	; 0x256 <getkey+0x54>
+ 24c:	8f ef       	ldi	r24, 0xFF	; 255
+ 24e:	c8 1a       	sub	r12, r24
+ 250:	d8 0a       	sbc	r13, r24
+ 252:	0f 5f       	subi	r16, 0xFF	; 255
+ 254:	1f 4f       	sbci	r17, 0xFF	; 255
+
+		for(j = Col0 ; j <= Col3 ; j++)
+		{
+			GPIO_Read(j,&Data);
+ 256:	c0 2f       	mov	r28, r16
+ 258:	68 ed       	ldi	r22, 0xD8	; 216
+ 25a:	70 e0       	ldi	r23, 0x00	; 0
+ 25c:	80 2f       	mov	r24, r16
+ 25e:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <GPIO_Read>
+			if(Data==0x00)//check if key is pressed
+ 262:	80 91 d8 00 	lds	r24, 0x00D8	; 0x8000d8 <Data>
+ 266:	81 11       	cpse	r24, r1
+ 268:	51 c0       	rjmp	.+162    	; 0x30c <getkey+0x10a>
+			{
+				while(Data==0x00) {GPIO_Read(j,&Data);}  //wait for key to be released
+ 26a:	68 ed       	ldi	r22, 0xD8	; 216
+ 26c:	70 e0       	ldi	r23, 0x00	; 0
+ 26e:	8c 2f       	mov	r24, r28
+ 270:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <GPIO_Read>
+ 274:	80 91 d8 00 	lds	r24, 0x00D8	; 0x8000d8 <Data>
+ 278:	88 23       	and	r24, r24
+ 27a:	b9 f3       	breq	.-18     	; 0x26a <getkey+0x68>
+				switch(i)
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	e8 16       	cp	r14, r24
+ 280:	f1 04       	cpc	r15, r1
+ 282:	e9 f0       	breq	.+58     	; 0x2be <getkey+0xbc>
+ 284:	24 f4       	brge	.+8      	; 0x28e <getkey+0x8c>
+ 286:	e1 14       	cp	r14, r1
+ 288:	f1 04       	cpc	r15, r1
+ 28a:	51 f0       	breq	.+20     	; 0x2a0 <getkey+0x9e>
+ 28c:	3f c0       	rjmp	.+126    	; 0x30c <getkey+0x10a>
+ 28e:	82 e0       	ldi	r24, 0x02	; 2
+ 290:	e8 16       	cp	r14, r24
+ 292:	f1 04       	cpc	r15, r1
+ 294:	09 f1       	breq	.+66     	; 0x2d8 <getkey+0xd6>
+ 296:	83 e0       	ldi	r24, 0x03	; 3
+ 298:	e8 16       	cp	r14, r24
+ 29a:	f1 04       	cpc	r15, r1
+ 29c:	51 f1       	breq	.+84     	; 0x2f2 <getkey+0xf0>
+ 29e:	36 c0       	rjmp	.+108    	; 0x30c <getkey+0x10a>
+				{
+					case(Row0):
+					{
+						if      (j == Col0) return '7';
+ 2a0:	04 30       	cpi	r16, 0x04	; 4
+ 2a2:	11 05       	cpc	r17, r1
+ 2a4:	09 f4       	brne	.+2      	; 0x2a8 <getkey+0xa6>
+ 2a6:	41 c0       	rjmp	.+130    	; 0x32a <getkey+0x128>
+						else if (j == Col1) return '8';
+ 2a8:	05 30       	cpi	r16, 0x05	; 5
+ 2aa:	11 05       	cpc	r17, r1
+ 2ac:	09 f4       	brne	.+2      	; 0x2b0 <getkey+0xae>
+ 2ae:	3f c0       	rjmp	.+126    	; 0x32e <getkey+0x12c>
+						else if (j == Col2) return '9';
+ 2b0:	06 30       	cpi	r16, 0x06	; 6
+ 2b2:	11 05       	cpc	r17, r1
+ 2b4:	f1 f1       	breq	.+124    	; 0x332 <getkey+0x130>
+						else if (j == Col3) return '/';
+ 2b6:	07 30       	cpi	r16, 0x07	; 7
+ 2b8:	11 05       	cpc	r17, r1
+ 2ba:	41 f5       	brne	.+80     	; 0x30c <getkey+0x10a>
+ 2bc:	3c c0       	rjmp	.+120    	; 0x336 <getkey+0x134>
+						break;
+					}
+					case(Row1):
+					{
+						if      (j == Col0) return '4';
+ 2be:	04 30       	cpi	r16, 0x04	; 4
+ 2c0:	11 05       	cpc	r17, r1
+ 2c2:	d9 f1       	breq	.+118    	; 0x33a <getkey+0x138>
+						else if (j == Col1) return '5';
+ 2c4:	05 30       	cpi	r16, 0x05	; 5
+ 2c6:	11 05       	cpc	r17, r1
+ 2c8:	d1 f1       	breq	.+116    	; 0x33e <getkey+0x13c>
+						else if (j == Col2) return '6';
+ 2ca:	06 30       	cpi	r16, 0x06	; 6
+ 2cc:	11 05       	cpc	r17, r1
+ 2ce:	c9 f1       	breq	.+114    	; 0x342 <getkey+0x140>
+						else if (j == Col3) return '*';
+ 2d0:	07 30       	cpi	r16, 0x07	; 7
+ 2d2:	11 05       	cpc	r17, r1
+ 2d4:	d9 f4       	brne	.+54     	; 0x30c <getkey+0x10a>
+ 2d6:	37 c0       	rjmp	.+110    	; 0x346 <getkey+0x144>
+						break;
+					}
+					case(Row2):
+					{
+						if      (j == Col0) return '1';
+ 2d8:	04 30       	cpi	r16, 0x04	; 4
+ 2da:	11 05       	cpc	r17, r1
+ 2dc:	b1 f1       	breq	.+108    	; 0x34a <getkey+0x148>
+						else if (j == Col1) return '2';
+ 2de:	05 30       	cpi	r16, 0x05	; 5
+ 2e0:	11 05       	cpc	r17, r1
+ 2e2:	a9 f1       	breq	.+106    	; 0x34e <getkey+0x14c>
+						else if (j == Col2) return '3';
+ 2e4:	06 30       	cpi	r16, 0x06	; 6
+ 2e6:	11 05       	cpc	r17, r1
+ 2e8:	a1 f1       	breq	.+104    	; 0x352 <getkey+0x150>
+						else if (j == Col3) return '-';
+ 2ea:	07 30       	cpi	r16, 0x07	; 7
+ 2ec:	11 05       	cpc	r17, r1
+ 2ee:	71 f4       	brne	.+28     	; 0x30c <getkey+0x10a>
+ 2f0:	32 c0       	rjmp	.+100    	; 0x356 <getkey+0x154>
+						break;
+					}
+					case(Row3):
+					{
+						if      (j == Col0) return '?';
+ 2f2:	04 30       	cpi	r16, 0x04	; 4
+ 2f4:	11 05       	cpc	r17, r1
+ 2f6:	89 f1       	breq	.+98     	; 0x35a <getkey+0x158>
+						else if (j == Col1) return '0';
+ 2f8:	05 30       	cpi	r16, 0x05	; 5
+ 2fa:	11 05       	cpc	r17, r1
+ 2fc:	81 f1       	breq	.+96     	; 0x35e <getkey+0x15c>
+						else if (j == Col2) return '=';
+ 2fe:	06 30       	cpi	r16, 0x06	; 6
+ 300:	11 05       	cpc	r17, r1
+ 302:	79 f1       	breq	.+94     	; 0x362 <getkey+0x160>
+						else if (j == Col3) return '+';
+ 304:	07 30       	cpi	r16, 0x07	; 7
+ 306:	11 05       	cpc	r17, r1
+ 308:	81 f5       	brne	.+96     	; 0x36a <getkey+0x168>
+ 30a:	2d c0       	rjmp	.+90     	; 0x366 <getkey+0x164>
+		GPIO_Write(Row2,0xff);
+		GPIO_Write(Row3,0xff);
+		
+		GPIO_Write(i,0x00);
+
+		for(j = Col0 ; j <= Col3 ; j++)
+ 30c:	88 e0       	ldi	r24, 0x08	; 8
+ 30e:	c8 16       	cp	r12, r24
+ 310:	d1 04       	cpc	r13, r1
+ 312:	0c f4       	brge	.+2      	; 0x316 <getkey+0x114>
+ 314:	9b cf       	rjmp	.-202    	; 0x24c <getkey+0x4a>
+
+unsigned char Data ; 
+char getkey()
+{
+	int i, j;
+	for(i = Row0; i <= Row3; i++)
+ 316:	8f ef       	ldi	r24, 0xFF	; 255
+ 318:	e8 1a       	sub	r14, r24
+ 31a:	f8 0a       	sbc	r15, r24
+ 31c:	84 e0       	ldi	r24, 0x04	; 4
+ 31e:	e8 16       	cp	r14, r24
+ 320:	f1 04       	cpc	r15, r1
+ 322:	09 f0       	breq	.+2      	; 0x326 <getkey+0x124>
+ 324:	77 cf       	rjmp	.-274    	; 0x214 <getkey+0x12>
+					}
+				}
+			}
+		}
+	}
+	return 'F';//Return 'A' if no key is pressed.
+ 326:	86 e4       	ldi	r24, 0x46	; 70
+ 328:	26 c0       	rjmp	.+76     	; 0x376 <getkey+0x174>
+				while(Data==0x00) {GPIO_Read(j,&Data);}  //wait for key to be released
+				switch(i)
+				{
+					case(Row0):
+					{
+						if      (j == Col0) return '7';
+ 32a:	87 e3       	ldi	r24, 0x37	; 55
+ 32c:	24 c0       	rjmp	.+72     	; 0x376 <getkey+0x174>
+						else if (j == Col1) return '8';
+ 32e:	88 e3       	ldi	r24, 0x38	; 56
+ 330:	22 c0       	rjmp	.+68     	; 0x376 <getkey+0x174>
+						else if (j == Col2) return '9';
+ 332:	89 e3       	ldi	r24, 0x39	; 57
+ 334:	20 c0       	rjmp	.+64     	; 0x376 <getkey+0x174>
+						else if (j == Col3) return '/';
+ 336:	8f e2       	ldi	r24, 0x2F	; 47
+ 338:	1e c0       	rjmp	.+60     	; 0x376 <getkey+0x174>
+						break;
+					}
+					case(Row1):
+					{
+						if      (j == Col0) return '4';
+ 33a:	84 e3       	ldi	r24, 0x34	; 52
+ 33c:	1c c0       	rjmp	.+56     	; 0x376 <getkey+0x174>
+						else if (j == Col1) return '5';
+ 33e:	85 e3       	ldi	r24, 0x35	; 53
+ 340:	1a c0       	rjmp	.+52     	; 0x376 <getkey+0x174>
+						else if (j == Col2) return '6';
+ 342:	86 e3       	ldi	r24, 0x36	; 54
+ 344:	18 c0       	rjmp	.+48     	; 0x376 <getkey+0x174>
+						else if (j == Col3) return '*';
+ 346:	8a e2       	ldi	r24, 0x2A	; 42
+ 348:	16 c0       	rjmp	.+44     	; 0x376 <getkey+0x174>
+						break;
+					}
+					case(Row2):
+					{
+						if      (j == Col0) return '1';
+ 34a:	81 e3       	ldi	r24, 0x31	; 49
+ 34c:	14 c0       	rjmp	.+40     	; 0x376 <getkey+0x174>
+						else if (j == Col1) return '2';
+ 34e:	82 e3       	ldi	r24, 0x32	; 50
+ 350:	12 c0       	rjmp	.+36     	; 0x376 <getkey+0x174>
+						else if (j == Col2) return '3';
+ 352:	83 e3       	ldi	r24, 0x33	; 51
+ 354:	10 c0       	rjmp	.+32     	; 0x376 <getkey+0x174>
+						else if (j == Col3) return '-';
+ 356:	8d e2       	ldi	r24, 0x2D	; 45
+ 358:	0e c0       	rjmp	.+28     	; 0x376 <getkey+0x174>
+						break;
+					}
+					case(Row3):
+					{
+						if      (j == Col0) return '?';
+ 35a:	8f e3       	ldi	r24, 0x3F	; 63
+ 35c:	0c c0       	rjmp	.+24     	; 0x376 <getkey+0x174>
+						else if (j == Col1) return '0';
+ 35e:	80 e3       	ldi	r24, 0x30	; 48
+ 360:	0a c0       	rjmp	.+20     	; 0x376 <getkey+0x174>
+						else if (j == Col2) return '=';
+ 362:	8d e3       	ldi	r24, 0x3D	; 61
+ 364:	08 c0       	rjmp	.+16     	; 0x376 <getkey+0x174>
+						else if (j == Col3) return '+';
+ 366:	8b e2       	ldi	r24, 0x2B	; 43
+ 368:	06 c0       	rjmp	.+12     	; 0x376 <getkey+0x174>
+		GPIO_Write(Row2,0xff);
+		GPIO_Write(Row3,0xff);
+		
+		GPIO_Write(i,0x00);
+
+		for(j = Col0 ; j <= Col3 ; j++)
+ 36a:	88 e0       	ldi	r24, 0x08	; 8
+ 36c:	c8 16       	cp	r12, r24
+ 36e:	d1 04       	cpc	r13, r1
+ 370:	0c f4       	brge	.+2      	; 0x374 <getkey+0x172>
+ 372:	6c cf       	rjmp	.-296    	; 0x24c <getkey+0x4a>
+					}
+				}
+			}
+		}
+	}
+	return 'F';//Return 'A' if no key is pressed.
+ 374:	86 e4       	ldi	r24, 0x46	; 70
+ 376:	cf 91       	pop	r28
+ 378:	1f 91       	pop	r17
+ 37a:	0f 91       	pop	r16
+ 37c:	ff 90       	pop	r15
+ 37e:	ef 90       	pop	r14
+ 380:	df 90       	pop	r13
+ 382:	cf 90       	pop	r12
+ 384:	08 95       	ret
+
+00000386 <Delay>:
+  {
+	SendCmd(0x01);
+	RetVar=LCD_OK;
+	}else {RetVar=LCD_NOK;}
+  return RetVar ; 
+}
+ 386:	cf 93       	push	r28
+ 388:	df 93       	push	r29
+ 38a:	00 d0       	rcall	.+0      	; 0x38c <Delay+0x6>
+ 38c:	00 d0       	rcall	.+0      	; 0x38e <Delay+0x8>
+ 38e:	cd b7       	in	r28, 0x3d	; 61
+ 390:	de b7       	in	r29, 0x3e	; 62
+ 392:	19 82       	std	Y+1, r1	; 0x01
+ 394:	1a 82       	std	Y+2, r1	; 0x02
+ 396:	1b 82       	std	Y+3, r1	; 0x03
+ 398:	1c 82       	std	Y+4, r1	; 0x04
+ 39a:	88 0f       	add	r24, r24
+ 39c:	99 1f       	adc	r25, r25
+ 39e:	88 0f       	add	r24, r24
+ 3a0:	99 1f       	adc	r25, r25
+ 3a2:	a0 e0       	ldi	r26, 0x00	; 0
+ 3a4:	b0 e0       	ldi	r27, 0x00	; 0
+ 3a6:	49 81       	ldd	r20, Y+1	; 0x01
+ 3a8:	5a 81       	ldd	r21, Y+2	; 0x02
+ 3aa:	6b 81       	ldd	r22, Y+3	; 0x03
+ 3ac:	7c 81       	ldd	r23, Y+4	; 0x04
+ 3ae:	48 17       	cp	r20, r24
+ 3b0:	59 07       	cpc	r21, r25
+ 3b2:	6a 07       	cpc	r22, r26
+ 3b4:	7b 07       	cpc	r23, r27
+ 3b6:	ac f4       	brge	.+42     	; 0x3e2 <Delay+0x5c>
+ 3b8:	49 81       	ldd	r20, Y+1	; 0x01
+ 3ba:	5a 81       	ldd	r21, Y+2	; 0x02
+ 3bc:	6b 81       	ldd	r22, Y+3	; 0x03
+ 3be:	7c 81       	ldd	r23, Y+4	; 0x04
+ 3c0:	4f 5f       	subi	r20, 0xFF	; 255
+ 3c2:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3c4:	6f 4f       	sbci	r22, 0xFF	; 255
+ 3c6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3c8:	49 83       	std	Y+1, r20	; 0x01
+ 3ca:	5a 83       	std	Y+2, r21	; 0x02
+ 3cc:	6b 83       	std	Y+3, r22	; 0x03
+ 3ce:	7c 83       	std	Y+4, r23	; 0x04
+ 3d0:	49 81       	ldd	r20, Y+1	; 0x01
+ 3d2:	5a 81       	ldd	r21, Y+2	; 0x02
+ 3d4:	6b 81       	ldd	r22, Y+3	; 0x03
+ 3d6:	7c 81       	ldd	r23, Y+4	; 0x04
+ 3d8:	48 17       	cp	r20, r24
+ 3da:	59 07       	cpc	r21, r25
+ 3dc:	6a 07       	cpc	r22, r26
+ 3de:	7b 07       	cpc	r23, r27
+ 3e0:	5c f3       	brlt	.-42     	; 0x3b8 <Delay+0x32>
+ 3e2:	0f 90       	pop	r0
+ 3e4:	0f 90       	pop	r0
+ 3e6:	0f 90       	pop	r0
+ 3e8:	0f 90       	pop	r0
+ 3ea:	df 91       	pop	r29
+ 3ec:	cf 91       	pop	r28
+ 3ee:	08 95       	ret
+
+000003f0 <SendCmd>:
+ 3f0:	cf 92       	push	r12
+ 3f2:	df 92       	push	r13
+ 3f4:	ef 92       	push	r14
+ 3f6:	ff 92       	push	r15
+ 3f8:	0f 93       	push	r16
+ 3fa:	1f 93       	push	r17
+ 3fc:	cf 93       	push	r28
+ 3fe:	df 93       	push	r29
+ 400:	c8 2f       	mov	r28, r24
+ 402:	60 e0       	ldi	r22, 0x00	; 0
+ 404:	88 e0       	ldi	r24, 0x08	; 8
+ 406:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 40a:	60 e0       	ldi	r22, 0x00	; 0
+ 40c:	89 e0       	ldi	r24, 0x09	; 9
+ 40e:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 412:	dc 2f       	mov	r29, r28
+ 414:	d2 95       	swap	r29
+ 416:	df 70       	andi	r29, 0x0F	; 15
+ 418:	04 ea       	ldi	r16, 0xA4	; 164
+ 41a:	10 e0       	ldi	r17, 0x00	; 0
+ 41c:	0f 2e       	mov	r0, r31
+ 41e:	f8 ea       	ldi	r31, 0xA8	; 168
+ 420:	ef 2e       	mov	r14, r31
+ 422:	f0 e0       	ldi	r31, 0x00	; 0
+ 424:	ff 2e       	mov	r15, r31
+ 426:	f0 2d       	mov	r31, r0
+ 428:	68 01       	movw	r12, r16
+ 42a:	6d 2f       	mov	r22, r29
+ 42c:	61 70       	andi	r22, 0x01	; 1
+ 42e:	61 95       	neg	r22
+ 430:	d6 95       	lsr	r29
+ 432:	f6 01       	movw	r30, r12
+ 434:	81 91       	ld	r24, Z+
+ 436:	6f 01       	movw	r12, r30
+ 438:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 43c:	ec 14       	cp	r14, r12
+ 43e:	fd 04       	cpc	r15, r13
+ 440:	a1 f7       	brne	.-24     	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+ 442:	6f ef       	ldi	r22, 0xFF	; 255
+ 444:	8a e0       	ldi	r24, 0x0A	; 10
+ 446:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 44a:	84 e6       	ldi	r24, 0x64	; 100
+ 44c:	90 e0       	ldi	r25, 0x00	; 0
+ 44e:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 452:	60 e0       	ldi	r22, 0x00	; 0
+ 454:	8a e0       	ldi	r24, 0x0A	; 10
+ 456:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 45a:	cf 70       	andi	r28, 0x0F	; 15
+ 45c:	6c 2f       	mov	r22, r28
+ 45e:	61 70       	andi	r22, 0x01	; 1
+ 460:	61 95       	neg	r22
+ 462:	c6 95       	lsr	r28
+ 464:	f8 01       	movw	r30, r16
+ 466:	81 91       	ld	r24, Z+
+ 468:	8f 01       	movw	r16, r30
+ 46a:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 46e:	0e 15       	cp	r16, r14
+ 470:	1f 05       	cpc	r17, r15
+ 472:	a1 f7       	brne	.-24     	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
+ 474:	6f ef       	ldi	r22, 0xFF	; 255
+ 476:	8a e0       	ldi	r24, 0x0A	; 10
+ 478:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 47c:	84 e6       	ldi	r24, 0x64	; 100
+ 47e:	90 e0       	ldi	r25, 0x00	; 0
+ 480:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 484:	60 e0       	ldi	r22, 0x00	; 0
+ 486:	8a e0       	ldi	r24, 0x0A	; 10
+ 488:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 48c:	80 ed       	ldi	r24, 0xD0	; 208
+ 48e:	97 e0       	ldi	r25, 0x07	; 7
+ 490:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 494:	df 91       	pop	r29
+ 496:	cf 91       	pop	r28
+ 498:	1f 91       	pop	r17
+ 49a:	0f 91       	pop	r16
+ 49c:	ff 90       	pop	r15
+ 49e:	ef 90       	pop	r14
+ 4a0:	df 90       	pop	r13
+ 4a2:	cf 90       	pop	r12
+ 4a4:	08 95       	ret
+
+000004a6 <SendData>:
+ 4a6:	cf 92       	push	r12
+ 4a8:	df 92       	push	r13
+ 4aa:	ef 92       	push	r14
+ 4ac:	ff 92       	push	r15
+ 4ae:	0f 93       	push	r16
+ 4b0:	1f 93       	push	r17
+ 4b2:	cf 93       	push	r28
+ 4b4:	df 93       	push	r29
+ 4b6:	c8 2f       	mov	r28, r24
+ 4b8:	6f ef       	ldi	r22, 0xFF	; 255
+ 4ba:	88 e0       	ldi	r24, 0x08	; 8
+ 4bc:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 4c0:	60 e0       	ldi	r22, 0x00	; 0
+ 4c2:	89 e0       	ldi	r24, 0x09	; 9
+ 4c4:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 4c8:	dc 2f       	mov	r29, r28
+ 4ca:	d2 95       	swap	r29
+ 4cc:	df 70       	andi	r29, 0x0F	; 15
+ 4ce:	04 ea       	ldi	r16, 0xA4	; 164
+ 4d0:	10 e0       	ldi	r17, 0x00	; 0
+ 4d2:	0f 2e       	mov	r0, r31
+ 4d4:	f8 ea       	ldi	r31, 0xA8	; 168
+ 4d6:	ef 2e       	mov	r14, r31
+ 4d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4da:	ff 2e       	mov	r15, r31
+ 4dc:	f0 2d       	mov	r31, r0
+ 4de:	68 01       	movw	r12, r16
+ 4e0:	6d 2f       	mov	r22, r29
+ 4e2:	61 70       	andi	r22, 0x01	; 1
+ 4e4:	61 95       	neg	r22
+ 4e6:	d6 95       	lsr	r29
+ 4e8:	f6 01       	movw	r30, r12
+ 4ea:	81 91       	ld	r24, Z+
+ 4ec:	6f 01       	movw	r12, r30
+ 4ee:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 4f2:	ec 14       	cp	r14, r12
+ 4f4:	fd 04       	cpc	r15, r13
+ 4f6:	a1 f7       	brne	.-24     	; 0x4e0 <SendData+0x3a>
+ 4f8:	6f ef       	ldi	r22, 0xFF	; 255
+ 4fa:	8a e0       	ldi	r24, 0x0A	; 10
+ 4fc:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 500:	84 e6       	ldi	r24, 0x64	; 100
+ 502:	90 e0       	ldi	r25, 0x00	; 0
+ 504:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 508:	60 e0       	ldi	r22, 0x00	; 0
+ 50a:	8a e0       	ldi	r24, 0x0A	; 10
+ 50c:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 510:	cf 70       	andi	r28, 0x0F	; 15
+ 512:	6c 2f       	mov	r22, r28
+ 514:	61 70       	andi	r22, 0x01	; 1
+ 516:	61 95       	neg	r22
+ 518:	c6 95       	lsr	r28
+ 51a:	f8 01       	movw	r30, r16
+ 51c:	81 91       	ld	r24, Z+
+ 51e:	8f 01       	movw	r16, r30
+ 520:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 524:	0e 15       	cp	r16, r14
+ 526:	1f 05       	cpc	r17, r15
+ 528:	a1 f7       	brne	.-24     	; 0x512 <SendData+0x6c>
+ 52a:	6f ef       	ldi	r22, 0xFF	; 255
+ 52c:	8a e0       	ldi	r24, 0x0A	; 10
+ 52e:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 532:	84 e6       	ldi	r24, 0x64	; 100
+ 534:	90 e0       	ldi	r25, 0x00	; 0
+ 536:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 53a:	60 e0       	ldi	r22, 0x00	; 0
+ 53c:	8a e0       	ldi	r24, 0x0A	; 10
+ 53e:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 542:	8a e0       	ldi	r24, 0x0A	; 10
+ 544:	90 e0       	ldi	r25, 0x00	; 0
+ 546:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 54a:	df 91       	pop	r29
+ 54c:	cf 91       	pop	r28
+ 54e:	1f 91       	pop	r17
+ 550:	0f 91       	pop	r16
+ 552:	ff 90       	pop	r15
+ 554:	ef 90       	pop	r14
+ 556:	df 90       	pop	r13
+ 558:	cf 90       	pop	r12
+ 55a:	08 95       	ret
+
+0000055c <LCD_Init>:
+ 55c:	88 e9       	ldi	r24, 0x98	; 152
+ 55e:	9a e3       	ldi	r25, 0x3A	; 58
+ 560:	0e 94 c3 01 	call	0x386	; 0x386 <Delay>
+ 564:	83 e3       	ldi	r24, 0x33	; 51
+ 566:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 56a:	82 e3       	ldi	r24, 0x32	; 50
+ 56c:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 570:	88 e2       	ldi	r24, 0x28	; 40
+ 572:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 576:	8c e0       	ldi	r24, 0x0C	; 12
+ 578:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 57c:	81 e0       	ldi	r24, 0x01	; 1
+ 57e:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 582:	81 e0       	ldi	r24, 0x01	; 1
+ 584:	90 e0       	ldi	r25, 0x00	; 0
+ 586:	90 93 d7 00 	sts	0x00D7, r25	; 0x8000d7 <InitState+0x1>
+ 58a:	80 93 d6 00 	sts	0x00D6, r24	; 0x8000d6 <InitState>
+ 58e:	08 95       	ret
+
+00000590 <LCD_DispChar>:
+ 590:	20 91 d6 00 	lds	r18, 0x00D6	; 0x8000d6 <InitState>
+ 594:	30 91 d7 00 	lds	r19, 0x00D7	; 0x8000d7 <InitState+0x1>
+ 598:	21 30       	cpi	r18, 0x01	; 1
+ 59a:	31 05       	cpc	r19, r1
+ 59c:	21 f4       	brne	.+8      	; 0x5a6 <LCD_DispChar+0x16>
+ 59e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <SendData>
+ 5a2:	80 e0       	ldi	r24, 0x00	; 0
+ 5a4:	08 95       	ret
+ 5a6:	81 e0       	ldi	r24, 0x01	; 1
+ 5a8:	08 95       	ret
+
+000005aa <LCD_SetCursPos>:
+ 5aa:	20 91 d6 00 	lds	r18, 0x00D6	; 0x8000d6 <InitState>
+ 5ae:	30 91 d7 00 	lds	r19, 0x00D7	; 0x8000d7 <InitState+0x1>
+ 5b2:	21 30       	cpi	r18, 0x01	; 1
+ 5b4:	31 05       	cpc	r19, r1
+ 5b6:	61 f4       	brne	.+24     	; 0x5d0 <LCD_SetCursPos+0x26>
+ 5b8:	67 2b       	or	r22, r23
+ 5ba:	29 f4       	brne	.+10     	; 0x5c6 <LCD_SetCursPos+0x1c>
+ 5bc:	80 58       	subi	r24, 0x80	; 128
+ 5be:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 5c2:	80 e0       	ldi	r24, 0x00	; 0
+ 5c4:	08 95       	ret
+ 5c6:	80 54       	subi	r24, 0x40	; 64
+ 5c8:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <SendCmd>
+ 5cc:	80 e0       	ldi	r24, 0x00	; 0
+ 5ce:	08 95       	ret
+ 5d0:	81 e0       	ldi	r24, 0x01	; 1
+ 5d2:	08 95       	ret
+
+000005d4 <LCD_DispString>:
+LCD_ChkType LCD_DispString(char* StrPtr)
+{
+ 5d4:	cf 93       	push	r28
+ 5d6:	df 93       	push	r29
+ 5d8:	ec 01       	movw	r28, r24
+	LCD_ChkType RetVar ;
+  if(InitState == 1)
+ 5da:	80 91 d6 00 	lds	r24, 0x00D6	; 0x8000d6 <InitState>
+ 5de:	90 91 d7 00 	lds	r25, 0x00D7	; 0x8000d7 <InitState+0x1>
+ 5e2:	01 97       	sbiw	r24, 0x01	; 1
+ 5e4:	51 f4       	brne	.+20     	; 0x5fa <LCD_DispString+0x26>
+  {
+	while((*StrPtr) != '\0')
+ 5e6:	88 81       	ld	r24, Y
+ 5e8:	88 23       	and	r24, r24
+ 5ea:	49 f0       	breq	.+18     	; 0x5fe <LCD_DispString+0x2a>
+ 5ec:	21 96       	adiw	r28, 0x01	; 1
+	{
+		SendData(*StrPtr);
+ 5ee:	0e 94 53 02 	call	0x4a6	; 0x4a6 <SendData>
+LCD_ChkType LCD_DispString(char* StrPtr)
+{
+	LCD_ChkType RetVar ;
+  if(InitState == 1)
+  {
+	while((*StrPtr) != '\0')
+ 5f2:	89 91       	ld	r24, Y+
+ 5f4:	81 11       	cpse	r24, r1
+ 5f6:	fb cf       	rjmp	.-10     	; 0x5ee <LCD_DispString+0x1a>
+ 5f8:	03 c0       	rjmp	.+6      	; 0x600 <LCD_DispString+0x2c>
+		SendData(*StrPtr);
+		StrPtr ++;
+	}
+	
+	RetVar=LCD_OK;
+   }else {RetVar=LCD_NOK;}
+ 5fa:	81 e0       	ldi	r24, 0x01	; 1
+ 5fc:	01 c0       	rjmp	.+2      	; 0x600 <LCD_DispString+0x2c>
+	{
+		SendData(*StrPtr);
+		StrPtr ++;
+	}
+	
+	RetVar=LCD_OK;
+ 5fe:	80 e0       	ldi	r24, 0x00	; 0
+   }else {RetVar=LCD_NOK;}
+  return RetVar ; 
+}
+ 600:	df 91       	pop	r29
+ 602:	cf 91       	pop	r28
+ 604:	08 95       	ret
+
+00000606 <main>:
+#include "LCD_Cfg.h"
+#include "keyPad_Drive.h"
+#include <avr/io.h>
+#include "eeprom.h"
+int main(void)
+{
+ 606:	cf 93       	push	r28
+ 608:	df 93       	push	r29
+ 60a:	00 d0       	rcall	.+0      	; 0x60c <main+0x6>
+ 60c:	00 d0       	rcall	.+0      	; 0x60e <main+0x8>
+ 60e:	cd b7       	in	r28, 0x3d	; 61
+ 610:	de b7       	in	r29, 0x3e	; 62
+	GPIO_Init();
+ 612:	0e 94 51 00 	call	0xa2	; 0xa2 <GPIO_Init>
+	LCD_Init();
+ 616:	0e 94 ae 02 	call	0x55c	; 0x55c <LCD_Init>
+	LCD_SetCursPos(0,0);
+ 61a:	60 e0       	ldi	r22, 0x00	; 0
+ 61c:	70 e0       	ldi	r23, 0x00	; 0
+ 61e:	80 e0       	ldi	r24, 0x00	; 0
+ 620:	90 e0       	ldi	r25, 0x00	; 0
+ 622:	0e 94 d5 02 	call	0x5aa	; 0x5aa <LCD_SetCursPos>
+	LCD_DispString("Enter Password: ");
+ 626:	88 ea       	ldi	r24, 0xA8	; 168
+ 628:	90 e0       	ldi	r25, 0x00	; 0
+ 62a:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <LCD_DispString>
+	uint8_t error = 0;
+	EEPROM_write(10,error);
+ 62e:	60 e0       	ldi	r22, 0x00	; 0
+ 630:	8a e0       	ldi	r24, 0x0A	; 10
+ 632:	90 e0       	ldi	r25, 0x00	; 0
+ 634:	0e 94 49 00 	call	0x92	; 0x92 <EEPROM_write>
+	int i ; 
+	unsigned char Password[4] = {'0','1','2','3'};
+ 638:	80 e3       	ldi	r24, 0x30	; 48
+ 63a:	89 83       	std	Y+1, r24	; 0x01
+ 63c:	81 e3       	ldi	r24, 0x31	; 49
+ 63e:	8a 83       	std	Y+2, r24	; 0x02
+ 640:	82 e3       	ldi	r24, 0x32	; 50
+ 642:	8b 83       	std	Y+3, r24	; 0x03
+ 644:	83 e3       	ldi	r24, 0x33	; 51
+ 646:	8c 83       	std	Y+4, r24	; 0x04
+ 648:	ce 01       	movw	r24, r28
+ 64a:	01 96       	adiw	r24, 0x01	; 1
+ 64c:	6c 01       	movw	r12, r24
+		for (i=0; i < 4; i++)
+ 64e:	00 e0       	ldi	r16, 0x00	; 0
+ 650:	10 e0       	ldi	r17, 0x00	; 0
+		{
+			EEPROM_write(i,Password[i]);
+ 652:	f6 01       	movw	r30, r12
+ 654:	61 91       	ld	r22, Z+
+ 656:	6f 01       	movw	r12, r30
+ 658:	c8 01       	movw	r24, r16
+ 65a:	0e 94 49 00 	call	0x92	; 0x92 <EEPROM_write>
+	LCD_DispString("Enter Password: ");
+	uint8_t error = 0;
+	EEPROM_write(10,error);
+	int i ; 
+	unsigned char Password[4] = {'0','1','2','3'};
+		for (i=0; i < 4; i++)
+ 65e:	0f 5f       	subi	r16, 0xFF	; 255
+ 660:	1f 4f       	sbci	r17, 0xFF	; 255
+ 662:	04 30       	cpi	r16, 0x04	; 4
+ 664:	11 05       	cpc	r17, r1
+ 666:	a9 f7       	brne	.-22     	; 0x652 <main+0x4c>
+			EEPROM_write(i,Password[i]);
+		}
+	unsigned char LoopIndex;
+	i = 0 ;
+	int j =0 ; 
+	LCD_SetCursPos(0,1);
+ 668:	61 e0       	ldi	r22, 0x01	; 1
+ 66a:	70 e0       	ldi	r23, 0x00	; 0
+ 66c:	80 e0       	ldi	r24, 0x00	; 0
+ 66e:	90 e0       	ldi	r25, 0x00	; 0
+ 670:	0e 94 d5 02 	call	0x5aa	; 0x5aa <LCD_SetCursPos>
+		{
+			EEPROM_write(i,Password[i]);
+		}
+	unsigned char LoopIndex;
+	i = 0 ;
+	int j =0 ; 
+ 674:	00 e0       	ldi	r16, 0x00	; 0
+ 676:	10 e0       	ldi	r17, 0x00	; 0
+		for (i=0; i < 4; i++)
+		{
+			EEPROM_write(i,Password[i]);
+		}
+	unsigned char LoopIndex;
+	i = 0 ;
+ 678:	c1 2c       	mov	r12, r1
+ 67a:	d1 2c       	mov	r13, r1
+{
+	GPIO_Init();
+	LCD_Init();
+	LCD_SetCursPos(0,0);
+	LCD_DispString("Enter Password: ");
+	uint8_t error = 0;
+ 67c:	f1 2c       	mov	r15, r1
+	i = 0 ;
+	int j =0 ; 
+	LCD_SetCursPos(0,1);
+	while(1)
+	{
+		if (error <= 2)
+ 67e:	f2 e0       	ldi	r31, 0x02	; 2
+ 680:	ff 15       	cp	r31, r15
+ 682:	60 f1       	brcs	.+88     	; 0x6dc <main+0xd6>
+		{
+		LoopIndex = getkey() ;
+ 684:	0e 94 01 01 	call	0x202	; 0x202 <getkey>
+		if(LoopIndex != 'F')
+ 688:	86 34       	cpi	r24, 0x46	; 70
+ 68a:	89 f0       	breq	.+34     	; 0x6ae <main+0xa8>
+		{
+           if (LoopIndex == Password[i] ){i++;}	
+ 68c:	e1 e0       	ldi	r30, 0x01	; 1
+ 68e:	f0 e0       	ldi	r31, 0x00	; 0
+ 690:	ec 0f       	add	r30, r28
+ 692:	fd 1f       	adc	r31, r29
+ 694:	ec 0d       	add	r30, r12
+ 696:	fd 1d       	adc	r31, r13
+ 698:	90 81       	ld	r25, Z
+ 69a:	89 13       	cpse	r24, r25
+ 69c:	03 c0       	rjmp	.+6      	; 0x6a4 <main+0x9e>
+ 69e:	8f ef       	ldi	r24, 0xFF	; 255
+ 6a0:	c8 1a       	sub	r12, r24
+ 6a2:	d8 0a       	sbc	r13, r24
+			   j++;	
+ 6a4:	0f 5f       	subi	r16, 0xFF	; 255
+ 6a6:	1f 4f       	sbci	r17, 0xFF	; 255
+			   LCD_DispChar('*');	
+ 6a8:	8a e2       	ldi	r24, 0x2A	; 42
+ 6aa:	0e 94 c8 02 	call	0x590	; 0x590 <LCD_DispChar>
+		} 
+		if (j==3)
+ 6ae:	03 30       	cpi	r16, 0x03	; 3
+ 6b0:	11 05       	cpc	r17, r1
+ 6b2:	29 f7       	brne	.-54     	; 0x67e <main+0x78>
+		{
+		if(i==j){GPIO_Write(15,0xff);}
+ 6b4:	93 e0       	ldi	r25, 0x03	; 3
+ 6b6:	c9 16       	cp	r12, r25
+ 6b8:	d1 04       	cpc	r13, r1
+ 6ba:	29 f4       	brne	.+10     	; 0x6c6 <main+0xc0>
+ 6bc:	6f ef       	ldi	r22, 0xFF	; 255
+ 6be:	8f e0       	ldi	r24, 0x0F	; 15
+ 6c0:	0e 94 8d 00 	call	0x11a	; 0x11a <GPIO_Write>
+ 6c4:	dc cf       	rjmp	.-72     	; 0x67e <main+0x78>
+		else {
+			error ++ ;
+ 6c6:	f3 94       	inc	r15
+			 EEPROM_write(10,error); 
+ 6c8:	6f 2d       	mov	r22, r15
+ 6ca:	8a e0       	ldi	r24, 0x0A	; 10
+ 6cc:	90 e0       	ldi	r25, 0x00	; 0
+ 6ce:	0e 94 49 00 	call	0x92	; 0x92 <EEPROM_write>
+			 i=0;
+			 j=0 ;
+ 6d2:	00 e0       	ldi	r16, 0x00	; 0
+ 6d4:	10 e0       	ldi	r17, 0x00	; 0
+		{
+		if(i==j){GPIO_Write(15,0xff);}
+		else {
+			error ++ ;
+			 EEPROM_write(10,error); 
+			 i=0;
+ 6d6:	c1 2c       	mov	r12, r1
+ 6d8:	d1 2c       	mov	r13, r1
+ 6da:	d1 cf       	rjmp	.-94     	; 0x67e <main+0x78>
+			 j=0 ;
+		}
+		}
+		}else{LCD_DispString("Door Locked");}
+ 6dc:	89 eb       	ldi	r24, 0xB9	; 185
+ 6de:	90 e0       	ldi	r25, 0x00	; 0
+ 6e0:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <LCD_DispString>
+ 6e4:	cc cf       	rjmp	.-104    	; 0x67e <main+0x78>
+
+000006e6 <_exit>:
+ 6e6:	f8 94       	cli
+
+000006e8 <__stop_program>:
+ 6e8:	ff cf       	rjmp	.-2      	; 0x6e8 <__stop_program>
