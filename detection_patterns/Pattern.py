@@ -25,7 +25,7 @@ class Pattern(ABC):
             print("Line no.\tVulnerable Line\n")
             for line_set in self.vulnerable_lines:
                 for line in line_set:
-                    if line not in ['__IGNORE_LINE__', '__SECURE__']:
+                    if line not in ['__IGNORE_LINE__', '__SECURE__', '__OPTIONAL__']:
                         print(f"{line.line_no}\t\t\t{line.line_text}")
                 print('')
 

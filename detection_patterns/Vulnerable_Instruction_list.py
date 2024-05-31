@@ -255,6 +255,12 @@ vulnerable_instruction_list = {
                     {'__OPTIONAL__', '__SECURE__'}, {'lw', 'lb', 'lbu', 'ld'}, {Register}, {MemoryAddress}
                 ],
                 [
+                    '__OPTIONAL__', {'mv'}, {Register}, {Register}
+                ],
+                [
+                    '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
                     '__IGNORE_LINE__', {'sext.w', 'andi'}, {Register}, {Register}, {None, IntegerLiteral}
                 ],
                 [
