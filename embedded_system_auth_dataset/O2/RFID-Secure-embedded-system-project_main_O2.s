@@ -55,50 +55,54 @@ USART_Transmit:
 	.globl	Gate
 	.type	Gate, @function
 Gate:
-	addi	sp,sp,-32
-	sd	ra,24(sp)
-	sd	s0,16(sp)
-	sd	s1,8(sp)
+	addi	sp,sp,-48
+	lui	a5,%hi(.LC0)
+	fsd	fs0,8(sp)
+	fld	fs0,%lo(.LC0)(a5)
+	sd	ra,40(sp)
+	sd	s0,32(sp)
+	fmv.d	fa0,fs0
+	sd	s1,24(sp)
+	fsd	fs1,0(sp)
 	li	s0,40
 	li	s1,1
-	li	a0,16384
 	sb	s1,0(s0)
-	addi	a0,a0,-384
-	call	__builtin_avr_delay_cycles
-	li	a0,32002048
+	call	_delay_us
+	lui	a5,%hi(.LC1)
+	fld	fs1,%lo(.LC1)(a5)
 	sb	zero,0(s0)
-	addi	a0,a0,-2048
-	call	__builtin_avr_delay_cycles
-	li	a0,24576
+	fmv.d	fa0,fs1
+	call	_delay_ms
+	lui	a5,%hi(.LC2)
+	fld	fa0,%lo(.LC2)(a5)
 	sb	s1,0(s0)
-	addi	a0,a0,-576
-	call	__builtin_avr_delay_cycles
-	li	a0,32002048
+	call	_delay_us
+	fmv.d	fa0,fs1
 	sb	zero,0(s0)
-	addi	a0,a0,-2048
-	call	__builtin_avr_delay_cycles
+	call	_delay_ms
+	fmv.d	fa0,fs0
 	sb	s1,0(s0)
 	sb	zero,0(s0)
-	li	a0,16384
 	sb	s1,0(s0)
-	addi	a0,a0,-384
-	call	__builtin_avr_delay_cycles
+	call	_delay_us
 	sb	zero,0(s0)
-	ld	ra,24(sp)
-	ld	s0,16(sp)
-	ld	s1,8(sp)
-	addi	sp,sp,32
+	ld	ra,40(sp)
+	ld	s0,32(sp)
+	ld	s1,24(sp)
+	fld	fs0,8(sp)
+	fld	fs1,0(sp)
+	addi	sp,sp,48
 	jr	ra
 	.size	Gate, .-Gate
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align	3
-.LC0:
+.LC3:
 	.string	"Swipe the Card"
 	.align	3
-.LC1:
+.LC4:
 	.string	"Access Grant"
 	.align	3
-.LC2:
+.LC6:
 	.string	"Access Denied"
 	.section	.text.startup,"ax",@progbits
 	.align	1
@@ -113,8 +117,8 @@ main:
 	sd	s3,40(sp)
 	sd	s4,32(sp)
 	sd	s5,24(sp)
-	sd	s6,16(sp)
-	sd	s7,8(sp)
+	fsd	fs0,8(sp)
+	fsd	fs1,0(sp)
 	lbu	a5,36(zero)
 	ori	a5,a5,32
 	sb	a5,36(zero)
@@ -132,22 +136,22 @@ main:
 	li	a1,0
 	li	a0,1
 	call	Lcd4_Set_Cursor
-	lui	a0,%hi(.LC0)
-	addi	a0,a0,%lo(.LC0)
+	lui	a0,%hi(.LC3)
+	addi	a0,a0,%lo(.LC3)
 	call	Lcd4_Write_String
+	lui	a5,%hi(.LC7)
+	fld	fs1,%lo(.LC7)(a5)
+	lui	a5,%hi(.LC5)
+	fld	fs0,%lo(.LC5)(a5)
 	li	a5,1
 	sb	a5,39(zero)
-	li	s5,48001024
-	li	s1,3198976
 	sb	zero,40(zero)
 	lui	s0,%hi(rx)
-	lui	s4,%hi(.LC1)
-	lui	s6,%hi(.LC2)
-	li	s3,75
-	li	s7,88
-	addi	s5,s5,-1024
-	addi	s1,s1,1024
-	li	s2,79
+	lui	s3,%hi(.LC4)
+	lui	s4,%hi(.LC6)
+	li	s2,75
+	li	s5,88
+	li	s1,79
 .L14:
 	call	SWseriale_available
 	bne	a0,zero,.L26
@@ -175,42 +179,63 @@ main:
 	lbu	a5,198(zero)
 	andi	a5,a5,0xff
 	sb	a5,%lo(rx)(s0)
-	bne	a5,s3,.L19
-	addi	a0,s4,%lo(.LC1)
+	bne	a5,s2,.L19
+	addi	a0,s3,%lo(.LC4)
 	call	Lcd4_Write_String
 	lbu	a5,37(zero)
-	mv	a0,s1
+	fmv.d	fa0,fs0
 	ori	a5,a5,32
 	sb	a5,37(zero)
-	call	__builtin_avr_delay_cycles
+	call	_delay_ms
 	lbu	a5,37(zero)
-	mv	a0,s1
+	fmv.d	fa0,fs0
 	andi	a5,a5,223
 	sb	a5,37(zero)
-	call	__builtin_avr_delay_cycles
-	sb	s2,%lo(rx)(s0)
+	call	_delay_ms
+	sb	s1,%lo(rx)(s0)
 	call	Gate
 	call	Lcd4_Clear
 	j	.L14
 .L19:
-	bne	a5,s7,.L14
-	addi	a0,s6,%lo(.LC2)
+	bne	a5,s5,.L14
+	addi	a0,s4,%lo(.LC6)
 	call	Lcd4_Write_String
 	lbu	a5,37(zero)
-	mv	a0,s5
+	fmv.d	fa0,fs1
 	ori	a5,a5,32
 	sb	a5,37(zero)
-	call	__builtin_avr_delay_cycles
+	call	_delay_ms
 	lbu	a5,37(zero)
-	mv	a0,s1
+	fmv.d	fa0,fs0
 	andi	a5,a5,223
 	sb	a5,37(zero)
-	call	__builtin_avr_delay_cycles
-	sb	s2,%lo(rx)(s0)
+	call	_delay_ms
+	sb	s1,%lo(rx)(s0)
 	call	Lcd4_Clear
 	j	.L14
 	.size	main, .-main
 	.globl	rx
+	.section	.srodata.cst8,"aM",@progbits,8
+	.align	3
+.LC0:
+	.word	0
+	.word	1083129856
+	.align	3
+.LC1:
+	.word	0
+	.word	1084178432
+	.align	3
+.LC2:
+	.word	0
+	.word	1083666432
+	.align	3
+.LC5:
+	.word	0
+	.word	1080623104
+	.align	3
+.LC7:
+	.word	0
+	.word	1084715008
 	.section	.sbss,"aw",@nobits
 	.type	rx, @object
 	.size	rx, 1
