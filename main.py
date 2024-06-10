@@ -6,7 +6,7 @@ from detection_patterns import *
 
 def calc_no_vulnerable_lines(*detectors):
     '''
-
+    Calculates the actual number of lines marked vulnerable by at least one detector. Duplicates are not counted
     :param detectors: Each of the detectors included in the calculation
     :return: The number of vulnerable lines, without any duplicates
     '''
@@ -54,7 +54,7 @@ def analyze_program(program: Program):
     ConstantCoding_detector.printAllVulnerable('ConstantCoding')
     LoopCheck_detector.printAllVulnerable('LoopCheck')
     Bypass_detector.printAllVulnerable('Bypass')
-    print(f"All vulnerabilities printed!\n")
+    print(f"All vulnerabilities printed.\n")
 
     total_no_vulnerabilities = sum([
             Branch_detector.no_vulnerable,

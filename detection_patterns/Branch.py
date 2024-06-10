@@ -93,6 +93,15 @@ class Branch(Pattern):
                 self.detection_cache.append(line)
                 line_no += 1
 
+            else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                last_line_type = Instruction if isinstance(self.detection_cache[-1], Instruction) else str
+                last_line_no = self.detection_cache[-1].line_no if isinstance(self.detection_cache[-1], Instruction) else self.detection_cache[-2].line_no
+                self.detection_cache.clear()
+                self.vulnerable_pattern.clear()
+                if ((last_line_no == line.line_no - 1 and last_line_type is Instruction)    # Only if the current line is the very next line or one after if previous line was IGNORE
+                        or (last_line_no == line.line_no - 2 and last_line_type is str)):
+                    self.checkInstruction(line)
+
             if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())
                 self.no_vulnerable += 1

@@ -61,7 +61,7 @@ class Bypass(Pattern):
         '''
         line_type = line.type
         line_pattern_match = False
-        if line_type == 'call' and len(self.caches) == 0:
+        if line_type == 'call':
             self.caches.append(self.LocalCache([], [], [False, False, False], None))
 
         for cache in self.caches:
@@ -117,7 +117,11 @@ class Bypass(Pattern):
     
                         else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
-    
+
+                    elif line_type == 'call':   # If call, we want to start a new detection stream
+                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                        continue
+
                     else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                         self.cleanup(cache, line)
     
@@ -135,7 +139,8 @@ class Bypass(Pattern):
                             line_no += 1
 
                         elif line_type == 'call':
-                            self.checkInstruction(line)
+                            self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                            continue
 
                         else:
                             # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
@@ -161,7 +166,8 @@ class Bypass(Pattern):
                                 line_no += 1
 
                             elif line_type == 'call':
-                                self.checkInstruction(line)
+                                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                                continue
 
                             else:
                                 # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
@@ -294,12 +300,17 @@ class Bypass(Pattern):
                             line_no += 1
 
                         elif line_type == 'call':
-                            self.checkInstruction(line)
+                            self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                            continue
 
                         else:
                             # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
-    
+
+                    elif line_type == 'call':
+                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                        continue
+
                     else:   # if the instruction type does not match and any of the args is register a0, remove the optional line
                         cache.active_pattern.pop(line_no)
                         self.checkInstruction(line)
@@ -318,11 +329,16 @@ class Bypass(Pattern):
                             line_no += 1
 
                         elif line_type == 'call':
-                            self.checkInstruction(line)
+                            self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                            continue
 
                         else:
                             # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
+
+                    elif line_type == 'call':
+                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                        continue
 
                     else:   # IGNORE line not present, remove from pattern and try again
                         cache.active_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
@@ -359,7 +375,8 @@ class Bypass(Pattern):
     
                 else: # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                     if line_type == 'call':
-                        self.checkInstruction(line)
+                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                        continue
 
                     else:
                         # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
