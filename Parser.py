@@ -1,5 +1,5 @@
 import re, enum
-from typing import List
+from typing import List, Optional
 
 def is_integer(candidate):
     '''
@@ -17,6 +17,11 @@ def is_integer(candidate):
 class Argument:
     def __init__(self, arg_text: str):
         self.arg_text = arg_text    # The text of the argument
+
+class Line:
+    def __init__(self, line_no=None, line_text=None):
+        self.line_no = line_no      # The line number of the line in question
+        self.line_text = line_text  # The raw string of the line in question.
 
 class Register(Argument):
 
@@ -39,40 +44,6 @@ class StringLiteral(Argument):
     def __init__(self, arg_text: str):
         super().__init__(arg_text)
 
-class MemoryAddress(Argument):
-    def __init__(self, arg_text: str):
-        super().__init__(arg_text)
-        self.reference: Register | Location # The location or register w.r.t which the the memory address is calculated
-        self.offset: str | int  # the offset; int if pulling from stack, str if pulling from data segment.
-
-    def resolve_offset_and_reference(self):
-        '''
-        We use the regex pattern that detects `offset(reference)`. Then, we determine whether the reference is
-        to a location or to register. Similarly, we do the same for offset type as either integer or string.
-        '''
-        ref_offset_pattern = r'^(.*?)\((.*?)\)$'
-        ref_offset_match = re.match(ref_offset_pattern, self.arg_text)
-
-        raw_reference = ref_offset_match.group(2)
-        raw_offset = ref_offset_match.group(1)
-
-        self.reference = Location(raw_reference) if raw_reference.startswith('.') else Register(raw_reference)
-        self.offset = str(raw_offset) if raw_offset.startswith('%') else int(raw_offset)
-
-class LabelType(enum.Enum):
-    LOCATION = 1
-    FUNCTION = 2
-
-class Label(Argument):
-    def __init__(self, arg_text: str, label_type: LabelType):
-        super().__init__(arg_text)
-        self.label_type: LabelType = label_type
-
-class Line:
-    def __init__(self, line_no=None, line_text=None):
-        self.line_no = line_no      # The line number of the line in question
-        self.line_text = line_text  # The raw string of the line in question.
-
 class Location(Line):
     def __init__(self, line_no=None, line_text=None):
         super().__init__(line_no, line_text)
@@ -83,6 +54,39 @@ class Location(Line):
         Removes the prefixed . and the suffixed : from the location line to leave the location name
         '''
         self.location_name = self.line_text[1:-1]
+
+class MemoryAddress(Argument):
+    def __init__(self, arg_text: str):
+        super().__init__(arg_text)
+
+    reference: Register | Location # The location or register w.r.t which the the memory address is calculated
+    offset: str | int  # the offset; int if pulling from stack, str if pulling from data segment.
+    register_reference: Optional['Register']   # An optional Register that the regular offset+reference serves as an offset for.
+
+    def resolve_offset_and_reference(self):
+        '''
+        We use the regex pattern that detects `offset(reference)`. Then, we determine whether the reference is
+        to a location or to register. Similarly, we do the same for offset type as either integer or string.
+        '''
+        ref_offset_pattern = r'^(.*?)\((.*?)\)(\((.*?)\))?$'
+        ref_offset_match = re.match(ref_offset_pattern, self.arg_text)
+
+        raw_reference = ref_offset_match.group(2)
+        raw_offset = ref_offset_match.group(1)
+        raw_register_reference = ref_offset_match.group(3)
+
+        self.reference = Location(raw_reference) if raw_reference.startswith('.') else Register(raw_reference)
+        self.offset = str(raw_offset) if raw_offset.startswith('%') else int(raw_offset)
+        self.register_reference = None if raw_register_reference is None else Register(raw_register_reference)
+
+class LabelType(enum.Enum):
+    LOCATION = 1
+    FUNCTION = 2
+
+class Label(Argument):
+    def __init__(self, arg_text: str, label_type: LabelType):
+        super().__init__(arg_text)
+        self.label_type: LabelType = label_type
 
 class Function(Line):
     def __init__(self, line_no=None, line_text=None):

@@ -36,11 +36,24 @@ def calculate_hamming(x: int, y: int = 0):
     :param y: second integer, default is 0
     :return: hamming weight, an integer
     '''
-    x_bin = bin(x)[2:]
-    y_bin = bin(y)[2:]
+    x_bin = bin(x)[bin(x).find('b') + 1:]
+    y_bin = bin(y)[bin(y).find('b') + 1:]
 
     x_bin = x_bin.zfill(max(len(x_bin), len(y_bin)))
     y_bin = y_bin.zfill(max(len(x_bin), len(y_bin)))
 
     hamming_weight = sum(bit_x != bit_y for bit_x, bit_y in zip(x_bin, y_bin))
     return hamming_weight
+
+def is_bit_maximum(x: int):
+    '''
+    Checks if the number is at any of the RISC-V bit maximums (largest 8-bit, 16-bit, 32-bit, 64-bit, or 128-bit). These
+    are all the variable sizes defined in RISC-V
+    :param x: the integer value checked to see if it is at the bit maximum
+    :return: True if it is at a bit maximum else False
+    '''
+    for no_bits in [8, 16, 32, 64]:
+        if x == pow(2, no_bits) - 1:
+            return True
+
+    return False

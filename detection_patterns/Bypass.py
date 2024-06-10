@@ -61,7 +61,7 @@ class Bypass(Pattern):
         '''
         line_type = line.type
         line_pattern_match = False
-        if line_type == 'call':
+        if line_type == 'call' and len(self.caches) == 0:
             self.caches.append(self.LocalCache([], [], [False, False, False], None))
 
         for cache in self.caches:

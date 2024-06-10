@@ -45,7 +45,7 @@ class ConstantCoding(Pattern):
 
                         if isinstance(arg, IntegerLiteral):
                             if isinstance(line, Instruction):
-                                if calculate_hamming(arg.arg_value, 0) > self.tolerance:
+                                if calculate_hamming(arg.arg_value, 0) > self.tolerance and not is_bit_maximum(arg.arg_value):
                                     line_pattern_match = False
                                     break
 
@@ -60,14 +60,14 @@ class ConstantCoding(Pattern):
                                     attribute_line_no = line.line_no
                                     global_var_reach = self.vulnerable_lines[-1][0].line_no + len(self.vulnerable_lines[-1][0].variable_values)
                                     if attribute_line_no > global_var_reach:
-                                        if calculate_hamming(arg.arg_value, 0) > self.tolerance:
+                                        if calculate_hamming(arg.arg_value, 0) > self.tolerance and not is_bit_maximum(arg.arg_value):
                                             line_pattern_match = False
                                             break
                                     else:
                                         line_pattern_match = False
                                         break
 
-                                elif calculate_hamming(arg.arg_value, 0) > self.tolerance:
+                                elif calculate_hamming(arg.arg_value, 0) > self.tolerance and not is_bit_maximum(arg.arg_value):
                                     line_pattern_match = False
                                     break
 
@@ -81,7 +81,7 @@ class ConstantCoding(Pattern):
                     '''
                 elif line_type in instruction_set[0][0] and isinstance(line, GlobalVariable):   # Global Variable
                     for var in line.variable_values:
-                        if calculate_hamming(var.args[0].arg_value, 0) > self.tolerance:
+                        if calculate_hamming(var.args[0].arg_value, 0) > self.tolerance and not is_bit_maximum(var.args[0].arg_value):
                             line.variable_values[line.variable_values.index(var)] = '__IGNORE_LINE__'  # Replacing values of higher than tolerance hamming weight
 
                     if any(var_value != '__IGNORE_LINE__' for var_value in line.variable_values):    # if any values remain, it is vulnerable.
@@ -127,6 +127,13 @@ class ConstantCoding(Pattern):
             if line_pattern_match:  # if the line matches, adding to cache
                 self.detection_cache.append(line)
                 line_no += 1
+
+            else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                last_line_no = self.detection_cache[-1].line_no
+                self.detection_cache.clear()
+                self.vulnerable_pattern.clear()
+                if last_line_no == line.line_no - 1:
+                    self.checkInstruction(line)
 
             if line_no == len(self.vulnerable_pattern) and line_no >= 1: # 3.Marking the vulnerability
                 self.vulnerable_lines.append(self.detection_cache.copy())

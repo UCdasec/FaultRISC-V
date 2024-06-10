@@ -31,14 +31,14 @@ class LoopCheck(Pattern):
         1.5 Disqualifying the incorrect pattern. Only one pattern is ultimately true, so the second line is compared
         to see which of the possible patterns doesn't match, and that one is removed.
 
-        2. Completing the pattern : This can either be a relevant line or an IGNORE LINE. If it is the former, then we
+        2. Completing the pattern : This can either be a relevant line, OPTIONAl line or an IGNORE LINE. If it is the former, then we
         ensure that all the parameters line up and for LoopCheck specifically, either in the 4th line or in 2nd/3rd, the
         branch instruction has registers that were previously referenced and the label being branched to has been previously
         visited (i.e., found in the location_list).
-            If it is an IGNORE LINE, like other patterns, we check if the line after it is relevant to the current line,
-        (i.e., the IGNORE LINE is not present in this case) and remove the IGNORE LINE from the current pattern or
+            If it is an IGNORE LINE or OPTIONAL LINE, like other patterns, we check if the line after it is relevant to the current line,
+        (i.e., the IGNORE/OPTIONAL LINE is not present in this case) and remove the IGNORE/OPTIONAL LINE from the current pattern or
         if it is present, we simply make sure that it matches the pattern and proceed without updating the detection
-        cache.
+        cache in case of IGNORE and we add it to the cache in case of OPTIONAL.
 
         3. Marking the vulnerability : In case the number of lines in the detection cache is the same as the no. of lines
         expected in the vulnerable instruction set, we assert the first half of the pattern is complete, so we move
@@ -76,10 +76,10 @@ class LoopCheck(Pattern):
                         while set_no < len(self.vulnerable_pattern): # If there are multiple candidates
                             instruction_set = self.vulnerable_pattern[set_no]
                             if not((line_type in instruction_set[1][0] or # If the next line is neither an IGNORE line or a matching line
-                                    (instruction_set[1][0] == '__IGNORE_LINE__' and
+                                    (instruction_set[1][0] in ['__IGNORE_LINE__', '__OPTIONAL__'] and
                                      line_type in instruction_set[2][0]))
                                    or (line_type in instruction_set[1][1] and
-                                       instruction_set[1][0] == '__IGNORE_LINE__')):
+                                       instruction_set[1][0] in ['__IGNORE_LINE__', '__OPTIONAL__'])):
 
                                 self.vulnerable_pattern.remove(instruction_set)
                                 self.detection_cache.pop()
@@ -120,10 +120,10 @@ class LoopCheck(Pattern):
                         self.pattern_undetermined = False
 
                 elif (line_type in self.vulnerable_pattern[line_no][0] or   # Completing the pattern
-                      (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
+                      (self.vulnerable_pattern[line_no][0] in ['__IGNORE_LINE__', '__OPTIONAL__'] and
                        (line_no + 1 < len(self.vulnerable_pattern) and line_type in self.vulnerable_pattern[line_no+1][0]))):
 
-                    if (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and    # Optional IGNORE LINE not present, remove from pattern
+                    if (self.vulnerable_pattern[line_no][0] in ['__IGNORE_LINE__', '__OPTIONAL__'] and    # Optional IGNORE LINE not present, remove from pattern
                             line_type in self.vulnerable_pattern[line_no+1][0]):
                         self.vulnerable_pattern.pop(line_no)
 
@@ -153,7 +153,7 @@ class LoopCheck(Pattern):
                         self.insecure_match = True
 
                 elif (line_type in self.vulnerable_pattern[line_no][1] and
-                      self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # 2.Completing the pattern IGNORE LINE case
+                      self.vulnerable_pattern[line_no][0] in ['__IGNORE_LINE__', '__OPTIONAL__']):  # 2.Completing the pattern IGNORE and OPTIONAL LINE case
 
                     for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
                         if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
@@ -162,8 +162,13 @@ class LoopCheck(Pattern):
 
                         line_pattern_match = True
 
-                    if line_pattern_match:  # if the line matches, adding to detection cache as IGNORE LINE
-                        self.detection_cache.append('__IGNORE_LINE__')
+                    if line_pattern_match:
+                        if self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__': # if the line matches, adding to detection cache as IGNORE LINE
+                            self.detection_cache.append('__IGNORE_LINE__')
+
+                        elif self.vulnerable_pattern[line_no][0] == '__OPTIONAL__': # else if line matches and is optional, adding to detection cache
+                            self.detection_cache.append(line)
+
                         if line_no + 1 < len(self.vulnerable_pattern):
                             line_no += 1
                         else:

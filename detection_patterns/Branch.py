@@ -49,7 +49,7 @@ class Branch(Pattern):
                             break
 
                         if isinstance(arg, IntegerLiteral): # Hamming weight check
-                            if calculate_hamming(arg.arg_value, 0) > self.tolerance:
+                            if calculate_hamming(arg.arg_value, 0) > self.tolerance and not is_bit_maximum(arg.arg_value):
                                 line_pattern_match = False
                                 break
 
