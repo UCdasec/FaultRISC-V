@@ -108,6 +108,9 @@ vulnerable_instruction_list = {
                     {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
+                    '__IGNORE_LINE__', {'lui'}, {Register}, {MemoryAddress}
+                ],
+                [
                     {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
                 ]
             ],
@@ -199,7 +202,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz'}, {Register}, {Register, IntegerLiteral}, {Label}
                 ],
                 [
                     '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}

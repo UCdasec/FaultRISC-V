@@ -110,7 +110,14 @@ class ConstantCoding(Pattern):
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
-        elif line_type in self.vulnerable_pattern[line_no][0]:  # Completing the pattern. Only applicable to Instruction or Attribute
+        elif (line_type in self.vulnerable_pattern[line_no][0] or
+              (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
+               line_type in self.vulnerable_pattern[line_no+1][0])):  # Completing the pattern. Only applicable to Instruction or Attribute
+
+            if (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and    # Optional IGNORE LINE not present, remove from pattern
+                    line_type in self.vulnerable_pattern[line_no+1][0]):
+                self.vulnerable_pattern.pop(line_no)
+
             for arg_no, arg in enumerate(line.args, start=1):
                 if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                     line_pattern_match = False
@@ -142,10 +149,32 @@ class ConstantCoding(Pattern):
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
+        elif (line_type in self.vulnerable_pattern[line_no][1] and
+              self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # Completing the pattern IGNORE LINE case
+            for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
+                    line_pattern_match = False
+                    break
+
+                line_pattern_match = True
+
+            if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
+                self.detection_cache.append('__IGNORE_LINE__')
+                line_no += 1
+
+            else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                last_line_no = self.detection_cache[-1].line_no
+                self.detection_cache.clear()
+                self.vulnerable_pattern.clear()
+                if last_line_no == line.line_no - 1:
+                    self.checkInstruction(line)
+
         else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
-            last_line_no = self.detection_cache[-1].line_no
+            last_line_type = Instruction if isinstance(self.detection_cache[-1], Instruction) else str
+            last_line_no = self.detection_cache[-1].line_no if isinstance(self.detection_cache[-1], Instruction) else self.detection_cache[-2].line_no
             self.detection_cache.clear()
             self.vulnerable_pattern.clear()
-            if last_line_no == line.line_no - 1:
+            if ((last_line_no == line.line_no - 1 and last_line_type is Instruction)    # Only if the current line is the very next line or one after if previous line was IGNORE
+                    or (last_line_no == line.line_no - 2 and last_line_type is str)):
                 self.checkInstruction(line)
 

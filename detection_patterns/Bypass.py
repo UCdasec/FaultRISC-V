@@ -354,7 +354,7 @@ class Bypass(Pattern):
                         line_pattern_match = True
     
                         if (isinstance(arg, Register) and line_no >= 2 and
-                                (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type == 'mv') and
+                                (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type in ['mv','sext.w']) and
                                 ((arg.arg_text == cache.detection_cache[1].args[0].arg_text) or
                                  (arg.arg_text == 'a0' and cache.detection_cache[1].args[1].arg_text == 'a0'))):
                             # if mv instruction passed, we check if the register moved to exists or if it's a0, we check that it wasn't overwritten in the mv instruction
