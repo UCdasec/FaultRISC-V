@@ -4,6 +4,21 @@ import argparse, os
 
 from detection_patterns import *
 
+def calc_no_vulnerable_lines(*detectors):
+    '''
+    Calculates the actual number of lines marked vulnerable by at least one detector. Duplicates are not counted
+    :param detectors: Each of the detectors included in the calculation
+    :return: The number of vulnerable lines, without any duplicates
+    '''
+    all_vulnerable_lines = []
+    for detector in detectors:
+        dvulnerable_lines = [dline for dvulnerables in detector.vulnerable_lines for dline in dvulnerables]
+        for dline in dvulnerable_lines:
+            if isinstance(dline, Instruction) and not any(dline.line_no == vline.line_no for vline in all_vulnerable_lines):
+                all_vulnerable_lines.append(dline)
+
+    return len(all_vulnerable_lines)
+
 def analyze_program(program: Program):
     '''
     This function is the main driver of the Fault detection program. For each line in the riscv program, it runs the
@@ -39,7 +54,7 @@ def analyze_program(program: Program):
     ConstantCoding_detector.printAllVulnerable('ConstantCoding')
     LoopCheck_detector.printAllVulnerable('LoopCheck')
     Bypass_detector.printAllVulnerable('Bypass')
-    print(f"All vulnerabilities printed!\n")
+    print(f"All vulnerabilities printed.\n")
 
     total_no_vulnerabilities = sum([
             Branch_detector.no_vulnerable,
@@ -48,13 +63,7 @@ def analyze_program(program: Program):
             Bypass_detector.no_vulnerable
         ])
 
-    # TODO: Remove all duplicates in count (i.e., if one line is vulnerable for two patterns, it should only count once)
-    total_no_vulnerable_lines = sum([
-        Branch_detector.no_vulnerable_lines,
-        ConstantCoding_detector.no_vulnerable_lines,
-        LoopCheck_detector.no_vulnerable_lines,
-        Bypass_detector.no_vulnerable_lines
-    ])
+    total_no_vulnerable_lines = calc_no_vulnerable_lines(Branch_detector, ConstantCoding_detector, LoopCheck_detector, Bypass_detector)
 
     percentage_vulnerable = (total_no_vulnerable_lines/program.no_lines) * 100
 
