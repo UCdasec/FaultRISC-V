@@ -68,27 +68,72 @@ class Branch(Pattern):
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
 
-        elif (line_type in self.vulnerable_pattern[line_no][0] or
-              (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and
-               line_type in self.vulnerable_pattern[line_no+1][0])): # 2.Completing the pattern
+        # 2. Completing the pattern
+        elif (line_type in self.vulnerable_pattern[line_no][0] or # if line type matches current pattern line
+              (len(self.vulnerable_pattern) > line_no+2 and line_type in self.vulnerable_pattern[line_no+2][0]) or # if line type matches pattern line skipping IGNORE and OPTIONAL
+              (self.vulnerable_pattern[line_no][0] == '__OPTIONAL__' and line_type in self.vulnerable_pattern[line_no+1][0]) or # if line type matches OPTIONAL
+              (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and line_type in self.vulnerable_pattern[line_no+1][1])): # if line type matches IGNORE
 
-            if (self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__' and    # Optional IGNORE LINE not present, remove from pattern
-                    line_type in self.vulnerable_pattern[line_no+1][0]):
+            if self.vulnerable_pattern[line_no][0] == '__OPTIONAL__': # Optional LINE not present, remove from pattern
                 self.vulnerable_pattern.pop(line_no)
 
+            elif self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__':  #IGNORE LINE not present, remove from pattern and test optional
+                self.vulnerable_pattern.pop(line_no)
+                self.checkInstruction(line)
+                return
+
+            register_match = True   # To manage whether either of the registers match
             for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
                 if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                     line_pattern_match = False
                     break
 
-                if isinstance(arg, Register) and arg_no == 2:   # Cross-checking the registers between the two lines
-                    previous_register = self.detection_cache[0].args[0]
-                    if arg.arg_text != previous_register.arg_text:
-                        line_pattern_match = False
-                        break
-                
-                line_pattern_match = True
-                
+                if isinstance(arg, Register) and arg_no == 1:   # Cross-checking the registers between the two lines (1st register case)
+                    if len(self.detection_cache) == 1:
+                        previous_register = self.detection_cache[0].args[0]
+                        if arg.arg_text != previous_register.arg_text:  # Just marking the register was not matched instead of breaking the line pattern
+                            register_match = False
+
+                    else:   # In case of multiple registers being compared
+                        previous_registers = [cache_instruction.args[0] for cache_instruction in
+                                              filter(lambda x: isinstance(x, Instruction), self.detection_cache)]
+                        if not any (arg.arg_text == previous_register.arg_text for previous_register in previous_registers):
+                            register_match = False
+                            if isinstance(self.detection_cache[line_no-1], str) or self.detection_cache[line_no-1].type in ['lbu', 'lui']: # the lbu/lui line is irrelevant (or is an IGNORE line) to pattern if register does not match
+                                self.detection_cache.pop(line_no-1)
+                                self.vulnerable_pattern.pop(line_no-1)
+                                line_no -= 1
+
+                            elif self.detection_cache[line_no-1].type == 'li':    # restart pattern with previous li line
+                                first_line = self.detection_cache[line_no-1]
+                                self.detection_cache.clear()
+                                self.vulnerable_pattern.clear()
+                                self.checkInstruction(first_line)
+                                self.checkInstruction(line)
+                                return
+
+
+                elif isinstance(arg, Register) and arg_no == 2 and not register_match: # 2nd register case
+                    if len(self.detection_cache) == 1:   # if register was not matched in 1st arg
+                        previous_register = self.detection_cache[0].args[0]
+                        if arg.arg_text != previous_register.arg_text:
+                            line_pattern_match = False
+                            break
+
+                        else:
+                            register_match = True
+
+                    else:   # In case of multiple registers being compared
+                        previous_registers = [cache_instruction.args[0] for cache_instruction in self.detection_cache]
+                        if not any(arg.arg_text == previous_register.arg_text for previous_register in previous_registers):
+                            line_pattern_match = False
+                            break
+
+                        else:
+                            register_match = True
+
+                line_pattern_match = True if register_match else False
+
             if line_pattern_match:  # if the line matches, adding to cache
                 self.detection_cache.append(line)
                 line_no += 1
@@ -110,8 +155,28 @@ class Branch(Pattern):
                 self.vulnerable_pattern.clear()
 
         elif (line_type in self.vulnerable_pattern[line_no][1] and
-              self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # 2.Completing the pattern IGNORE LINE case
+              self.vulnerable_pattern[line_no][0] == '__OPTIONAL__'):  # 2.Completing the pattern OPTIONAL LINE case
 
+            for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
+                    line_pattern_match = False
+                    break
+
+                line_pattern_match = True
+
+            if line_pattern_match:  # if the line matches, adding to cache
+                self.detection_cache.append(line)
+                line_no += 1
+
+            else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                last_line_no = self.detection_cache[-1].line_no
+                self.detection_cache.clear()
+                self.vulnerable_pattern.clear()
+                if last_line_no == line.line_no - 1:
+                    self.checkInstruction(line)
+
+        elif (line_type in self.vulnerable_pattern[line_no][1] and
+              self.vulnerable_pattern[line_no][0] == '__IGNORE_LINE__'):  # Completing the pattern IGNORE LINE case
             for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
                 if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in self.vulnerable_pattern[line_no][arg_no]):
                     line_pattern_match = False
