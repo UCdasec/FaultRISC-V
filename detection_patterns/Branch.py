@@ -41,6 +41,18 @@ class Branch(Pattern):
         line_pattern_match = False
         line_no = len(self.detection_cache)
 
+        '''
+        The below is specifically for O-2, which has the possibility of having multiple pattern leads on reading the
+        first (li) line. The following if block is to hone in on a single pattern from reading the next one or two lines.
+        
+        If there is only a single pattern or the line starts with a branch, we know which pattern it is (the first one)
+        If not, for each candidate pattern, we see if the line type and args match. If they do not, then that pattern
+        is disqualified/removed.
+        
+        If multiple candidates remain, we add to detection cache and move the next (third) line to single out pattern.
+        If one candidate remains, we confirm that as the pattern
+        If no candidates remain, no pattern was being detected for Branch and so we restart detection from current line
+        '''
         if self.pattern_undetermined and line_no >= 1 and self.optimization_set == OptimizationLevel.O2: # Step 1.5: Determining the correct pattern with the second line (O-2 only)
             if len(self.vulnerable_pattern) == 1 or line_type.startswith('b'):   # If there is only one qualified pattern or line is branch, that is set as the only pattern
                 self.vulnerable_pattern = self.vulnerable_pattern[0]
@@ -49,13 +61,14 @@ class Branch(Pattern):
             else:   # Multiple candidate patterns and non-branch line
                 set_no = 0
                 while set_no < len(self.vulnerable_pattern):    # For each instruction set candidate
-                    instruction_set = self.vulnerable_pattern[0]
+                    instruction_set = self.vulnerable_pattern[set_no]
                     if any(line_type in set for set in [instruction_set[1][0], instruction_set[1][1], instruction_set[2][0], instruction_set[2][1]]):    # If the line type matches any of the next anticipated instruction for given instruction set
                         if any(line_type in set for set in [instruction_set[1][0], instruction_set[2][0]]):
                             for arg_no, arg in enumerate(line.args, start=1): # For loop to check all args for match
                                 if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for set in [instruction_set[1][arg_no], instruction_set[2][arg_no]]
                                            for pattern_arg_type in set):
                                     self.vulnerable_pattern.remove(instruction_set)
+                                    set_no -= 1
                                     break
 
                         else:
@@ -64,21 +77,25 @@ class Branch(Pattern):
                                         and not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for set in [instruction_set[1][arg_no], instruction_set[2][arg_no]]
                                            for pattern_arg_type in set)):
                                     self.vulnerable_pattern.remove(instruction_set)
+                                    set_no -= 1
                                     break
 
                                 elif ((not arg_no < len(instruction_set[1]) and arg_no < len(instruction_set[2])) and
-                                      not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in instruction_set[2])):
+                                      not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in instruction_set[2][arg_no])):
                                         self.vulnerable_pattern.remove(instruction_set)
+                                        set_no -= 1
                                         break
 
                                 elif ((arg_no < len(instruction_set[1]) and not arg_no < len(instruction_set[2])) and
-                                      not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in instruction_set[1])):
+                                      not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in instruction_set[1][arg_no])):
                                         self.vulnerable_pattern.remove(instruction_set)
+                                        set_no -= 1
                                         break
 
 
                     else:   # No instruction match to given instruction set; remove from candidates
                         self.vulnerable_pattern.remove(instruction_set)
+                        set_no -= 1
 
                     set_no += 1
 
@@ -86,8 +103,21 @@ class Branch(Pattern):
                     self.vulnerable_pattern = self.vulnerable_pattern[0]
                     self.pattern_undetermined = False
 
-                else:
-                    self.detection_cache.append(line)
+                elif set_no == 0: # if no pattern remains; pattern broken
+                    last_line_type = Instruction if isinstance(self.detection_cache[-1], Instruction) else str
+                    last_line_no = self.detection_cache[-1].line_no if isinstance(self.detection_cache[-1], Instruction) else self.detection_cache[-2].line_no
+                    self.detection_cache.clear()
+                    self.pattern_undetermined = True
+                    if ((last_line_no == line.line_no - 1 and last_line_type is Instruction)    # Only if the current line is the very next line or one after if previous line was IGNORE
+                            or (last_line_no == line.line_no - 2 and last_line_type is str)):
+                        self.checkInstruction(line)
+                    return
+
+                else:   # More than one pattern remains
+                    if all(instruction_set[line_no][0] == '__IGNORE_LINE__' for instruction_set in self.vulnerable_pattern):
+                        self.detection_cache.append('__IGNORE_LINE__')
+                    else:
+                        self.detection_cache.append(line)
                     return
 
         if line_no == 0:    # 1.Initiating the vulnerable instruction pattern
@@ -165,7 +195,7 @@ class Branch(Pattern):
 
                     else:   # In case of multiple registers being compared
                         previous_registers = [cache_instruction.args[0] for cache_instruction in
-                                              filter(lambda x: isinstance(x, Instruction), self.detection_cache)]
+                                              filter(lambda line: isinstance(line, Instruction), self.detection_cache)]
                         if not any (arg.arg_text == previous_register.arg_text for previous_register in previous_registers):
                             register_match = False
                             if isinstance(self.detection_cache[line_no-1], str) or self.detection_cache[line_no-1].type in ['lbu', 'lui']: # the lbu/lui line is irrelevant (or is an IGNORE line) to pattern if register does not match
@@ -194,7 +224,7 @@ class Branch(Pattern):
                             register_match = True
 
                     else:   # In case of multiple registers being compared
-                        previous_registers = [cache_instruction.args[0] for cache_instruction in self.detection_cache]
+                        previous_registers = [cache_instruction.args[0] for cache_instruction in filter(lambda line: isinstance(line, Instruction),self.detection_cache)]
                         if not any(arg.arg_text == previous_register.arg_text for previous_register in previous_registers):
                             line_pattern_match = False
                             break
