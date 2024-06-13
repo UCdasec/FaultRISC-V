@@ -136,7 +136,11 @@ class ConstantCoding(Pattern):
                 line_no += 1
 
             else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
-                last_line_no = self.detection_cache[-1].line_no
+                last_line_no: int = 0
+                if isinstance(self.detection_cache[-1], Instruction):
+                    last_line_no = self.detection_cache[-1].line_no
+                elif isinstance(self.detection_cache[-2], Instruction):
+                    last_line_no = self.detection_cache[-2].line_no
                 self.detection_cache.clear()
                 self.vulnerable_pattern.clear()
                 if last_line_no == line.line_no - 1:
