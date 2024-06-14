@@ -1,6 +1,7 @@
 import Parser
 from Parser import *
-import argparse, os
+import argparse, os, json
+from datetime import datetime, timedelta
 
 from detection_patterns import *
 
@@ -77,9 +78,55 @@ def analyze_program(program: Program):
     print(f'Total no. of lines: {program.no_lines}')
     print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')
 
+    '''Storing the results to a file'''
+    if program_args.store_result.lower() in ['yes', 'y']:
+        results = {
+            'Program_name': program.program_name,
+            'Optimization_level': 'O0' if program.optimization is OptimizationLevel.O0 else
+                                    'O1' if program.optimization is OptimizationLevel.O1 else 'O2',
+            'No_lines': program.no_lines,
+            'No_vulnerable_lines': total_no_vulnerable_lines,
+            'No_vulnerabilities': total_no_vulnerabilities,
+            'Branch': {
+                'No_vulnerable_lines': Branch_detector.no_vulnerable_lines,
+                'No_vulnerabilities': Branch_detector.no_vulnerable,
+                'Vulnerabilities': Branch_detector.vulnerable_lines
+            },
+            'Bypass': {
+                'No_vulnerable_lines': Bypass_detector.no_vulnerable_lines,
+                'No_vulnerabilities': Bypass_detector.no_vulnerable,
+                'Vulnerabilities': Bypass_detector.vulnerable_lines
+            },
+            'ConstantCoding': {
+                'No_vulnerable_lines': ConstantCoding_detector.no_vulnerable_lines,
+                'No_vulnerabilities': ConstantCoding_detector.no_vulnerable,
+                'Vulnerabilities': ConstantCoding_detector.vulnerable_lines
+            },
+            'LoopCheck': {
+                'No_vulnerable_lines': LoopCheck_detector.no_vulnerable_lines,
+                'No_vulnerabilities': LoopCheck_detector.no_vulnerable,
+                'Vulnerabilities': LoopCheck_detector.vulnerable_lines
+            }
+        }
+
+        program_name_only = os.path.splitext(program_name)[0]
+        optimization_level = results['Optimization_level']
+        if program_args.result_location == 'general':
+            result_file_name = datetime.now().strftime(f'Results/General/{program_name_only}_{optimization_level}_%Y-%m-%d_%H-%M.json')
+            with open(result_file_name, 'w') as result_file:
+                json.dump(results, result_file, indent=4)
+
+        elif program_args.result_location == 'report':
+            pass
+
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
-    program_arg_parser.add_argument("target_file", help="Target RISC-V Assembly file to run vulnerability assessment on")
+    program_arg_parser.add_argument('target_file',
+                                    help='Target RISC-V Assembly file to run vulnerability assessment on')
+    program_arg_parser.add_argument('--store_result', nargs='?', default='no',
+                                    help='Whether the results should be stored (yes/no, y/n; case-insensitive)')
+    program_arg_parser.add_argument('--result_location', nargs='?', default='general', choices=['general', 'report'],
+                                    help='Determine whether the results should be stored in the general folder or the latest report')
     program_args = program_arg_parser.parse_args()
 
     riscv_program: Program
