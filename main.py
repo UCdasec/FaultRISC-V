@@ -5,6 +5,24 @@ from datetime import datetime, timedelta
 
 from detection_patterns import *
 
+def instruction_to_str(vulnerable_lines: list):
+    '''
+    Converts each instruction into a dictionary of line numbers and line texts for purposes of dumping into json
+    :param vulnerable_lines: list of Instruction objects
+    :return: list of dictionaries of line_nos and line texts
+    '''
+    str_vulnerables = []
+    for vulnerability in vulnerable_lines:
+        vulnerability = list(filter(lambda line: isinstance(line, Instruction), vulnerability))
+        str_vulnerability = {
+            'Line_nos': [line.line_no for line in vulnerability],
+            'Lines': [line.line_text for line in vulnerability]
+        }
+        str_vulnerables.append(str_vulnerability)
+
+    return str_vulnerables
+
+
 def calc_no_vulnerable_lines(*detectors):
     '''
     Calculates the actual number of lines marked vulnerable by at least one detector. Duplicates are not counted
@@ -90,34 +108,56 @@ def analyze_program(program: Program):
             'Branch': {
                 'No_vulnerable_lines': Branch_detector.no_vulnerable_lines,
                 'No_vulnerabilities': Branch_detector.no_vulnerable,
-                'Vulnerabilities': Branch_detector.vulnerable_lines
+                'Vulnerabilities': instruction_to_str(Branch_detector.vulnerable_lines)
             },
             'Bypass': {
                 'No_vulnerable_lines': Bypass_detector.no_vulnerable_lines,
                 'No_vulnerabilities': Bypass_detector.no_vulnerable,
-                'Vulnerabilities': Bypass_detector.vulnerable_lines
+                'Vulnerabilities': instruction_to_str(Bypass_detector.vulnerable_lines)
             },
             'ConstantCoding': {
                 'No_vulnerable_lines': ConstantCoding_detector.no_vulnerable_lines,
                 'No_vulnerabilities': ConstantCoding_detector.no_vulnerable,
-                'Vulnerabilities': ConstantCoding_detector.vulnerable_lines
+                'Vulnerabilities': instruction_to_str(ConstantCoding_detector.vulnerable_lines)
             },
             'LoopCheck': {
                 'No_vulnerable_lines': LoopCheck_detector.no_vulnerable_lines,
                 'No_vulnerabilities': LoopCheck_detector.no_vulnerable,
-                'Vulnerabilities': LoopCheck_detector.vulnerable_lines
+                'Vulnerabilities': instruction_to_str(LoopCheck_detector.vulnerable_lines)
             }
         }
 
         program_name_only = os.path.splitext(program_name)[0]
-        optimization_level = results['Optimization_level']
+
+        # If the results are generic to the current program being evaluated
         if program_args.result_location == 'general':
-            result_file_name = datetime.now().strftime(f'Results/General/{program_name_only}_{optimization_level}_%Y-%m-%d_%H-%M.json')
+            result_file_name = datetime.now().strftime(f'Results/General/{program_name_only}_%Y-%m-%d_%H-%M.json')
             with open(result_file_name, 'w') as result_file:
                 json.dump(results, result_file, indent=4)
 
+        # If the result for the program is part of the analysis report
         elif program_args.result_location == 'report':
-            pass
+            latest_file = None
+            latest_time = 0
+            for file_name in os.listdir('Results'):
+                if file_name.endswith('.json'):
+                    file_path = os.path.join('Results', file_name)
+                    file_time = os.path.getctime(file_path)
+                    latest_time = file_time if file_time > latest_time else latest_time
+                    latest_file = file_path if file_time == latest_time else file_path
+
+            with open(latest_file, 'r') as results_file:
+                try:
+                    current_results = json.load(results_file)
+                except json.JSONDecodeError:  # Handles empty or invalid JSON
+                    current_results = []
+
+            if not isinstance(current_results, list):
+                current_results = [current_results]
+            current_results.append(results)
+
+            with open(latest_file, 'w') as results_file:
+                json.dump(current_results, results_file, indent=4)
 
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
