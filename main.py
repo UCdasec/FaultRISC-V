@@ -1,6 +1,5 @@
-import Parser
 from Parser import *
-import argparse, os, json
+import argparse, os, json, glob
 from datetime import datetime, timedelta
 
 from detection_patterns import *
@@ -137,14 +136,7 @@ def analyze_program(program: Program):
 
         # If the result for the program is part of the analysis report
         elif program_args.result_location == 'report':
-            latest_file = None
-            latest_time = 0
-            for file_name in os.listdir('Results'):
-                if file_name.endswith('.json'):
-                    file_path = os.path.join('Results', file_name)
-                    file_time = os.path.getctime(file_path)
-                    latest_time = file_time if file_time > latest_time else latest_time
-                    latest_file = file_path if file_time == latest_time else file_path
+            latest_file = max(glob.glob(os.path.join('Results/Reports', '*.json')), key=os.path.getctime)
 
             with open(latest_file, 'r') as results_file:
                 try:
