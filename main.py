@@ -32,6 +32,7 @@ def analyze_program(program: Program):
     ConstantCoding_detector = ConstantCoding(program.optimization, 4)
     LoopCheck_detector = LoopCheck(program.optimization)
     Bypass_detector = Bypass(program.optimization)
+    DefaultFail_detector = DefaultFail(program.optimization)
 
     for line in program.lines:
         if isinstance(line, Instruction):
@@ -39,15 +40,22 @@ def analyze_program(program: Program):
             ConstantCoding_detector.checkInstruction(line)
             LoopCheck_detector.checkInstruction(line)
             Bypass_detector.checkInstruction(line)
+            DefaultFail_detector.checkInstruction(line)
 
         elif isinstance(line, Attribute):
             ConstantCoding_detector.checkInstruction(line)
+            DefaultFail_detector.addGlobalVariableOrAttribute(line)
 
         elif isinstance(line, GlobalVariable):
             ConstantCoding_detector.checkInstruction(line)
+            DefaultFail_detector.addGlobalVariableOrAttribute(line)
 
         elif isinstance(line, Location):
             LoopCheck_detector.checkInstruction(line)
+            DefaultFail_detector.addLocation(line)
+            
+        elif isinstance(line, Function):
+            DefaultFail_detector.addFunction(line)
 
 
     Branch_detector.printAllVulnerable('Branch')
