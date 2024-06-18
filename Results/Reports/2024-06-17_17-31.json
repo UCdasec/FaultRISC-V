@@ -6,7 +6,7 @@
         "No_vulnerable_lines": 25,
         "No_vulnerabilities": 22,
         "Branch": {
-            "No_vulnerable_lines": 7,
+            "No_lines": 7,
             "No_vulnerabilities": 5,
             "Vulnerabilities": [
                 {
@@ -56,7 +56,7 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 3,
+            "No_lines": 3,
             "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
@@ -74,7 +74,7 @@
             ]
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 21,
+            "No_lines": 21,
             "No_vulnerabilities": 16,
             "Vulnerabilities": [
                 {
@@ -198,7 +198,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         }
@@ -210,7 +210,7 @@
         "No_vulnerable_lines": 74,
         "No_vulnerabilities": 60,
         "Branch": {
-            "No_vulnerable_lines": 33,
+            "No_lines": 33,
             "No_vulnerabilities": 24,
             "Vulnerabilities": [
                 {
@@ -426,7 +426,7 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 6,
+            "No_lines": 6,
             "No_vulnerabilities": 2,
             "Vulnerabilities": [
                 {
@@ -456,7 +456,7 @@
             ]
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 43,
+            "No_lines": 43,
             "No_vulnerabilities": 34,
             "Vulnerabilities": [
                 {
@@ -728,7 +728,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         }
@@ -740,7 +740,7 @@
         "No_vulnerable_lines": 58,
         "No_vulnerabilities": 35,
         "Branch": {
-            "No_vulnerable_lines": 33,
+            "No_lines": 33,
             "No_vulnerabilities": 19,
             "Vulnerabilities": [
                 {
@@ -926,7 +926,7 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 3,
+            "No_lines": 3,
             "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
@@ -944,7 +944,7 @@
             ]
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 17,
+            "No_lines": 17,
             "No_vulnerabilities": 12,
             "Vulnerabilities": [
                 {
@@ -1056,7 +1056,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 12,
+            "No_lines": 12,
             "No_vulnerabilities": 3,
             "Vulnerabilities": [
                 {
@@ -1111,7 +1111,7 @@
         "No_vulnerable_lines": 95,
         "No_vulnerabilities": 61,
         "Branch": {
-            "No_vulnerable_lines": 43,
+            "No_lines": 43,
             "No_vulnerabilities": 28,
             "Vulnerabilities": [
                 {
@@ -1371,7 +1371,7 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 24,
+            "No_lines": 24,
             "No_vulnerabilities": 8,
             "Vulnerabilities": [
                 {
@@ -1473,7 +1473,7 @@
             ]
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 32,
+            "No_lines": 32,
             "No_vulnerabilities": 23,
             "Vulnerabilities": [
                 {
@@ -1681,7 +1681,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 8,
+            "No_lines": 8,
             "No_vulnerabilities": 2,
             "Vulnerabilities": [
                 {
@@ -1722,7 +1722,7 @@
         "No_vulnerable_lines": 47,
         "No_vulnerabilities": 39,
         "Branch": {
-            "No_vulnerable_lines": 26,
+            "No_lines": 26,
             "No_vulnerabilities": 20,
             "Vulnerabilities": [
                 {
@@ -1900,7 +1900,7 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 3,
+            "No_lines": 3,
             "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
@@ -1918,7 +1918,7 @@
             ]
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 26,
+            "No_lines": 26,
             "No_vulnerabilities": 18,
             "Vulnerabilities": [
                 {
@@ -2056,7 +2056,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         }
@@ -2068,7 +2068,7 @@
         "No_vulnerable_lines": 203,
         "No_vulnerabilities": 116,
         "Branch": {
-            "No_vulnerable_lines": 106,
+            "No_lines": 106,
             "No_vulnerabilities": 60,
             "Vulnerabilities": [
                 {
@@ -2646,12 +2646,12 @@
             ]
         },
         "Bypass": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 83,
+            "No_lines": 83,
             "No_vulnerabilities": 52,
             "Vulnerabilities": [
                 {
@@ -3135,7 +3135,7 @@
             ]
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 16,
+            "No_lines": 16,
             "No_vulnerabilities": 4,
             "Vulnerabilities": [
                 {
@@ -3204,22 +3204,22 @@
         "No_vulnerable_lines": 0,
         "No_vulnerabilities": 0,
         "Branch": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         },
         "Bypass": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         },
         "ConstantCoding": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         },
         "LoopCheck": {
-            "No_vulnerable_lines": 0,
+            "No_lines": 0,
             "No_vulnerabilities": 0,
             "Vulnerabilities": []
         }

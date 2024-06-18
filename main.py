@@ -105,22 +105,22 @@ def analyze_program(program: Program):
             'No_vulnerable_lines': total_no_vulnerable_lines,
             'No_vulnerabilities': total_no_vulnerabilities,
             'Branch': {
-                'No_vulnerable_lines': Branch_detector.no_vulnerable_lines,
+                'No_lines': Branch_detector.no_vulnerable_lines,
                 'No_vulnerabilities': Branch_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(Branch_detector.vulnerable_lines)
             },
             'Bypass': {
-                'No_vulnerable_lines': Bypass_detector.no_vulnerable_lines,
+                'No_lines': Bypass_detector.no_vulnerable_lines,
                 'No_vulnerabilities': Bypass_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(Bypass_detector.vulnerable_lines)
             },
             'ConstantCoding': {
-                'No_vulnerable_lines': ConstantCoding_detector.no_vulnerable_lines,
+                'No_lines': ConstantCoding_detector.no_vulnerable_lines,
                 'No_vulnerabilities': ConstantCoding_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(ConstantCoding_detector.vulnerable_lines)
             },
             'LoopCheck': {
-                'No_vulnerable_lines': LoopCheck_detector.no_vulnerable_lines,
+                'No_lines': LoopCheck_detector.no_vulnerable_lines,
                 'No_vulnerabilities': LoopCheck_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(LoopCheck_detector.vulnerable_lines)
             }
