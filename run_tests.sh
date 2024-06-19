@@ -20,7 +20,7 @@ FILES=$(find "$SOURCE_DIR" -type f -name "*.s")
 
 # For each file, run the report
 for FILE in $FILES; do
-  python3 main.py "$FILE" --store_result yes --result_location report
+  python3 main.py "$FILE" --store_result report
 done
 
 # Create the Analysis directory if it doesn't exist
@@ -30,3 +30,6 @@ mkdir -p "ANALYSIS_DIR"
 # Create a new analysis with current date and time as the name
 NEW_ANALYSIS="$ANALYSIS_DIR/Analysis_$TIMESTAMP.json"
 touch "$NEW_ANALYSIS"
+
+# Run analysis
+python3 "Results/Analyze.py"

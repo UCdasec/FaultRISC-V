@@ -1178,7 +1178,7 @@
     }
   },
   {
-    "Program_name": "EmbeddedSystem-Door-lock-Security-System_main_O0.s",
+    "Program_name": "EmbeddedSystem-Door-lock-Security-system_main_O0.s",
     "Optimization_level": "O0",
     "Branch": {
       "Vulnerabilities": [

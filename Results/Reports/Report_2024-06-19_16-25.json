@@ -1,5 +1,171 @@
 [
     {
+        "Program_name": "EmbeddedSystem-Door-lock-Security-system_main_O0.s",
+        "Optimization_level": "O0",
+        "No_lines": 221,
+        "No_vulnerable_lines": 21,
+        "No_vulnerabilities": 15,
+        "Branch": {
+            "No_lines": 9,
+            "No_vulnerabilities": 5,
+            "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        62,
+                        63
+                    ],
+                    "Lines": [
+                        "li\ta5,3",
+                        "ble\ta4,a5,.L3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        83,
+                        84
+                    ],
+                    "Lines": [
+                        "li\ta5,2",
+                        "bgtu\ta4,a5,.L4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        91,
+                        92
+                    ],
+                    "Lines": [
+                        "li\ta5,70",
+                        "beq\ta4,a5,.L9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        122,
+                        123
+                    ],
+                    "Lines": [
+                        "li\ta5,5",
+                        "bne\ta4,a5,.L7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        175
+                    ],
+                    "Lines": [
+                        "bne\ta5,zero,.L9"
+                    ]
+                }
+            ]
+        },
+        "Bypass": {
+            "No_lines": 0,
+            "No_vulnerabilities": 0,
+            "Vulnerabilities": []
+        },
+        "ConstantCoding": {
+            "No_lines": 10,
+            "No_vulnerabilities": 9,
+            "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        37
+                    ],
+                    "Lines": [
+                        "sb\tzero,-24(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        45
+                    ],
+                    "Lines": [
+                        "sw\tzero,-20(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        64
+                    ],
+                    "Lines": [
+                        "sb\tzero,-21(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        65
+                    ],
+                    "Lines": [
+                        "sb\tzero,-22(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        66
+                    ],
+                    "Lines": [
+                        "sb\tzero,-23(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        85
+                    ],
+                    "Lines": [
+                        "sb\tzero,-23(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        152
+                    ],
+                    "Lines": [
+                        "sb\tzero,-22(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        153
+                    ],
+                    "Lines": [
+                        "sb\tzero,-21(s0)"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        183,
+                        184
+                    ],
+                    "Lines": [
+                        "li\ta5,1",
+                        "sb\ta5,-23(s0)"
+                    ]
+                }
+            ]
+        },
+        "LoopCheck": {
+            "No_lines": 4,
+            "No_vulnerabilities": 1,
+            "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        60,
+                        61,
+                        62,
+                        63
+                    ],
+                    "Lines": [
+                        "lw\ta5,-20(s0)",
+                        "sext.w\ta4,a5",
+                        "li\ta5,3",
+                        "ble\ta4,a5,.L3"
+                    ]
+                }
+            ]
+        }
+    },
+    {
         "Program_name": "RFID-Secure-embedded-system-project_main_O0.s",
         "Optimization_level": "O0",
         "No_lines": 319,
@@ -176,24 +342,44 @@
                     ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        301
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        305
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        309
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        313
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        317
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 }
             ]
         },
@@ -702,28 +888,52 @@
                     ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        717
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        721
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        725
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        729
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        733
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        734
+                    ],
+                    "Lines": [
+                        ".word\t1076101120"
+                    ]
                 }
             ]
         },
@@ -1719,12 +1929,22 @@
         "Program_name": "smartlock_HMI_utility_functions_O0.s",
         "Optimization_level": "O0",
         "No_lines": 796,
-        "No_vulnerable_lines": 47,
-        "No_vulnerabilities": 39,
+        "No_vulnerable_lines": 49,
+        "No_vulnerabilities": 40,
         "Branch": {
-            "No_lines": 26,
-            "No_vulnerabilities": 20,
+            "No_lines": 28,
+            "No_vulnerabilities": 21,
             "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        63,
+                        64
+                    ],
+                    "Lines": [
+                        "li\ta5,5",
+                        "bgtu\ta4,a5,.L17"
+                    ]
+                },
                 {
                     "Line_nos": [
                         76,
@@ -2026,32 +2246,60 @@
                     ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        778
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        779
+                    ],
+                    "Lines": [
+                        ".word\t1078525952"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        782
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        786
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        790
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        794
+                    ],
+                    "Lines": [
+                        ".word\t0"
+                    ]
                 },
                 {
-                    "Line_nos": [],
-                    "Lines": []
+                    "Line_nos": [
+                        795
+                    ],
+                    "Lines": [
+                        ".word\t1076101120"
+                    ]
                 }
             ]
         },
@@ -3201,12 +3449,23 @@
         "Program_name": "smartlock_HMI_main_O0.s",
         "Optimization_level": "O0",
         "No_lines": 198,
-        "No_vulnerable_lines": 0,
-        "No_vulnerabilities": 0,
+        "No_vulnerable_lines": 2,
+        "No_vulnerabilities": 1,
         "Branch": {
-            "No_lines": 0,
-            "No_vulnerabilities": 0,
-            "Vulnerabilities": []
+            "No_lines": 2,
+            "No_vulnerabilities": 1,
+            "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        35,
+                        36
+                    ],
+                    "Lines": [
+                        "li\ta5,43",
+                        "bgtu\ta4,a5,.L15"
+                    ]
+                }
+            ]
         },
         "Bypass": {
             "No_lines": 0,

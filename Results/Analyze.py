@@ -7,6 +7,10 @@ import glob, os, json, copy
 # Template for entire analysis report
 analysis = {
     'Total_no_lines': 0,
+    'Ground_truth': {
+        'No_vulnerable_lines': 0,
+        'No_vulnerabilities': 0
+    },
     'Total_no_vulnerable_lines': 0,
     'Total_no_vulnerabilities': 0,
     'Total_no_TP': 0,
@@ -63,6 +67,10 @@ file_analysis = {
     'Program_name': None,
     'Optimization_level': None,
     'No_lines': 0,
+    'Ground_truth': {
+        'No_vulnerable_lines': 0,
+        'No_vulnerabilities': 0
+    },
     'No_vulnerable_lines': 0,
     'No_vulnerabilities': 0,
     'No_TP': 0,
@@ -178,13 +186,13 @@ def analyze_pattern(pattern: str):
     cur_file_analysis[pattern]['False_negatives'] = copy.deepcopy(dataset_file[pattern]['Vulnerabilities'])
 
     # Updating the overall analysis
-    analysis['Total_no_TP'] += cur_file_analysis['No_TP']
-    analysis['Total_no_FP'] += cur_file_analysis['No_FP']
-    analysis['Total_no_FN'] += cur_file_analysis['No_FN']
+    analysis['Total_no_TP'] += cur_file_analysis[pattern]['No_TP']
+    analysis['Total_no_FP'] += cur_file_analysis[pattern]['No_FP']
+    analysis['Total_no_FN'] += cur_file_analysis[pattern]['No_FN']
 
-    analysis[pattern]['Total_no_TP'] += cur_file_analysis['No_TP']
-    analysis[pattern]['Total_no_FP'] += cur_file_analysis['No_FP']
-    analysis[pattern]['Total_no_FN'] += cur_file_analysis['No_FN']
+    analysis[pattern]['Total_no_TP'] += cur_file_analysis[pattern]['No_TP']
+    analysis[pattern]['Total_no_FP'] += cur_file_analysis[pattern]['No_FP']
+    analysis[pattern]['Total_no_FN'] += cur_file_analysis[pattern]['No_FN']
 
 def update_analyses(asm_file):
     '''
@@ -196,6 +204,15 @@ def update_analyses(asm_file):
     cur_file_analysis['Program_name'] = asm_file['Program_name']
     cur_file_analysis['Optimization_level'] = asm_file['Optimization_level']
     cur_file_analysis['No_lines'] = asm_file['No_lines']
+
+    No_vulnerabilities = (len(dataset_file['Branch']['Vulnerabilities']) + len(dataset_file['Bypass']['Vulnerabilities'])
+                          + len(dataset_file['ConstantCoding']['Vulnerabilities'])) + len(dataset_file['LoopCheck']['Vulnerabilities'])
+    No_vulnerable_lines = sum([len(vulnerability['Line_nos'])
+                               for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['LoopCheck']]
+                               for vulnerability in pattern['Vulnerabilities']])
+    cur_file_analysis['Ground_truth']['No_vulnerable_lines'] = No_vulnerable_lines
+    cur_file_analysis['Ground_truth']['No_vulnerabilities'] = No_vulnerabilities
+
     cur_file_analysis['No_vulnerable_lines'] = asm_file['No_vulnerable_lines']
     cur_file_analysis['No_vulnerabilities'] = asm_file['No_vulnerabilities']
 
@@ -213,6 +230,10 @@ def update_analyses(asm_file):
 
     # Updating overall analysis
     analysis['Total_no_lines'] += cur_file_analysis['No_lines']
+
+    analysis['Ground_truth']['No_vulnerable_lines'] += cur_file_analysis['Ground_truth']['No_vulnerable_lines']
+    analysis['Ground_truth']['No_vulnerabilities'] += cur_file_analysis['Ground_truth']['No_vulnerabilities']
+
     analysis['Total_no_vulnerable_lines'] += cur_file_analysis['No_vulnerable_lines']
     analysis['Total_no_vulnerabilities'] += cur_file_analysis['No_vulnerabilities']
 
@@ -225,8 +246,8 @@ def update_analyses(asm_file):
     analysis['ConstantCoding']['Total_no_lines'] += cur_file_analysis['ConstantCoding']['No_lines']
     analysis['ConstantCoding']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['No_vulnerabilities']
 
-    analysis['Bypass']['Total_no_lines'] += cur_file_analysis['Bypass']['No_lines']
-    analysis['Bypass']['Total_no_vulnerabilities'] += cur_file_analysis['Bypass']['No_vulnerabilities']
+    analysis['LoopCheck']['Total_no_lines'] += cur_file_analysis['Bypass']['No_lines']
+    analysis['LoopCheck']['Total_no_vulnerabilities'] += cur_file_analysis['Bypass']['No_vulnerabilities']
 
 def calc_file_precision_recall(choice: str):
     '''
@@ -296,26 +317,26 @@ def calc_file_precision_recall(choice: str):
         analysis['LoopCheck']['F-1_score'] = safe_divide(2,(safe_divide(1, analysis['LoopCheck']['Precision']) + safe_divide(1,analysis['LoopCheck']['Recall'])))
 
 # locate latest report
-latest_report_file = max(glob.glob(os.path.join('Reports', '*.json')), key=os.path.getctime)
+latest_report_file = max(glob.glob(os.path.join('Results/Reports', '*.json')), key=os.path.getctime)
 
 # report_data has results from FaultHunter run
 with open(latest_report_file, 'r') as report_file:
     report_data = json.load(report_file)
 
 # dataset holds ground truth
-with open ('dataset.json', 'r') as dataset_file:
+with open ('Results/dataset.json', 'r') as dataset_file:
     dataset = json.load(dataset_file)
 
 for asm_file in report_data:
     # Make an instance of the file_analysis dictionary to be populated with the analysis of the report
     cur_file_analysis = copy.deepcopy(file_analysis)
 
-    # Update common information for both analyses
-    update_analyses(asm_file)
-
     # to locate the asm_file from run in dataset
     dataset_file = next((file for file in dataset if file['Program_name'] == asm_file['Program_name']
                          and file['Optimization_level'] == asm_file['Optimization_level']), None)
+
+    # Update common information for both analyses
+    update_analyses(asm_file)
 
     # Registering TP, FP, and FN for each pattern
     analyze_pattern('Branch')
@@ -328,6 +349,10 @@ for asm_file in report_data:
 
 calc_file_precision_recall('overall')
 
-print('Done!')
+# open latest analysis file
+latest_analysis_file = max(glob.glob(os.path.join('Results/Analysis', '*.json')), key=os.path.getctime)
 
+# Write to latest analysis file
+with open(latest_analysis_file, 'w') as analysis_file:
+    json.dump(analysis, analysis_file, indent=4)
 

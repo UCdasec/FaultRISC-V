@@ -12,7 +12,7 @@ def instruction_to_str(vulnerable_lines: list):
     '''
     str_vulnerables = []
     for vulnerability in vulnerable_lines:
-        vulnerability = list(filter(lambda line: isinstance(line, Instruction), vulnerability))
+        vulnerability = list(filter(lambda line: isinstance(line, Instruction) or isinstance(line, Attribute), vulnerability))
         str_vulnerability = {
             'Line_nos': [line.line_no for line in vulnerability],
             'Lines': [line.line_text for line in vulnerability]
@@ -96,7 +96,7 @@ def analyze_program(program: Program):
     print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')
 
     '''Storing the results to a file'''
-    if program_args.store_result.lower() in ['yes', 'y']:
+    if program_args.store_result:
         results = {
             'Program_name': program.program_name,
             'Optimization_level': 'O0' if program.optimization is OptimizationLevel.O0 else
@@ -129,13 +129,13 @@ def analyze_program(program: Program):
         program_name_only = os.path.splitext(program_name)[0]
 
         # If the results are generic to the current program being evaluated
-        if program_args.result_location == 'general':
+        if program_args.store_result == 'general':
             result_file_name = datetime.now().strftime(f'Results/General/{program_name_only}_%Y-%m-%d_%H-%M.json')
             with open(result_file_name, 'w') as result_file:
                 json.dump(results, result_file, indent=4)
 
         # If the result for the program is part of the analysis report
-        elif program_args.result_location == 'report':
+        elif program_args.store_result == 'report':
             latest_file = max(glob.glob(os.path.join('Results/Reports', '*.json')), key=os.path.getctime)
 
             with open(latest_file, 'r') as results_file:
@@ -155,9 +155,7 @@ if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
     program_arg_parser.add_argument('target_file',
                                     help='Target RISC-V Assembly file to run vulnerability assessment on')
-    program_arg_parser.add_argument('--store_result', nargs='?', default='no',
-                                    help='Whether the results should be stored (yes/no, y/n; case-insensitive)')
-    program_arg_parser.add_argument('--result_location', nargs='?', default='general', choices=['general', 'report'],
+    program_arg_parser.add_argument('--store_result', nargs='?', default='general', choices=['general', 'report'],
                                     help='Determine whether the results should be stored in the general folder or the latest report')
     program_args = program_arg_parser.parse_args()
 
