@@ -8,8 +8,8 @@ import glob, os, json, copy
 analysis = {
     'Total_no_lines': 0,
     'Ground_truth': {
-        'No_vulnerable_lines': 0,
-        'No_vulnerabilities': 0
+        'Total_no_vulnerable_lines': 0,
+        'Total_no_vulnerabilities': 0
     },
     'Total_no_vulnerable_lines': 0,
     'Total_no_vulnerabilities': 0,
@@ -20,6 +20,10 @@ analysis = {
     'Recall': 0.0,
     'F-1_score': 0.0,
     'Branch': {
+        'Ground_truth': {
+            'Total_no_lines': 0,
+            'Total_no_vulnerabilities': 0
+        },
         'Total_no_lines': 0,
         'Total_no_vulnerabilities': 0,
         'Total_no_TP': 0,
@@ -30,6 +34,10 @@ analysis = {
         'F-1_score': 0.0
     },
     'Bypass': {
+        'Ground_truth': {
+            'Total_no_lines': 0,
+            'Total_no_vulnerabilities': 0
+        },
         'Total_no_lines': 0,
         'Total_no_vulnerabilities': 0,
         'Total_no_TP': 0,
@@ -40,6 +48,10 @@ analysis = {
         'F-1_score': 0.0
     },
     'ConstantCoding': {
+        'Ground_truth': {
+            'Total_no_lines': 0,
+            'Total_no_vulnerabilities': 0
+        },
         'Total_no_lines': 0,
         'Total_no_vulnerabilities': 0,
         'Total_no_TP': 0,
@@ -50,6 +62,10 @@ analysis = {
         'F-1_score': 0.0
     },
     'LoopCheck': {
+        'Ground_truth': {
+            'Total_no_lines': 0,
+            'Total_no_vulnerabilities': 0
+        },
         'Total_no_lines': 0,
         'Total_no_vulnerabilities': 0,
         'Total_no_TP': 0,
@@ -82,6 +98,10 @@ file_analysis = {
     'Branch': {
         'No_lines': 0,
         'No_vulnerabilities': 0,
+        'Ground_truth': {
+            'No_vulnerable_lines': 0,
+            'No_vulnerabilities': 0
+        },
         'No_TP': 0,
         'No_FP': 0,
         'No_FN': 0,
@@ -95,6 +115,10 @@ file_analysis = {
     'Bypass': {
         'No_lines': 0,
         'No_vulnerabilities': 0,
+        'Ground_truth': {
+            'No_vulnerable_lines': 0,
+            'No_vulnerabilities': 0
+        },
         'No_TP': 0,
         'No_FP': 0,
         'No_FN': 0,
@@ -108,6 +132,10 @@ file_analysis = {
     'ConstantCoding': {
         'No_lines': 0,
         'No_vulnerabilities': 0,
+        'Ground_truth': {
+            'No_vulnerable_lines': 0,
+            'No_vulnerabilities': 0
+        },
         'No_TP': 0,
         'No_FP': 0,
         'No_FN': 0,
@@ -121,6 +149,10 @@ file_analysis = {
     'LoopCheck': {
         'No_lines': 0,
         'No_vulnerabilities': 0,
+        'Ground_truth': {
+            'No_vulnerable_lines': 0,
+            'No_vulnerabilities': 0
+        },
         'No_TP': 0,
         'No_FP': 0,
         'No_FN': 0,
@@ -210,6 +242,7 @@ def update_analyses(asm_file):
     No_vulnerable_lines = sum([len(vulnerability['Line_nos'])
                                for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['LoopCheck']]
                                for vulnerability in pattern['Vulnerabilities']])
+
     cur_file_analysis['Ground_truth']['No_vulnerable_lines'] = No_vulnerable_lines
     cur_file_analysis['Ground_truth']['No_vulnerabilities'] = No_vulnerabilities
 
@@ -218,36 +251,52 @@ def update_analyses(asm_file):
 
     cur_file_analysis['Branch']['No_lines'] = asm_file['Branch']['No_lines']
     cur_file_analysis['Branch']['No_vulnerabilities'] = asm_file['Branch']['No_vulnerabilities']
+    cur_file_analysis['Branch']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['Branch']['Vulnerabilities']])
+    cur_file_analysis['Branch']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['Branch']['Vulnerabilities'])
 
     cur_file_analysis['Bypass']['No_lines'] = asm_file['Bypass']['No_lines']
     cur_file_analysis['Bypass']['No_vulnerabilities'] = asm_file['Bypass']['No_vulnerabilities']
+    cur_file_analysis['Bypass']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['Bypass']['Vulnerabilities']])
+    cur_file_analysis['Bypass']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['Bypass']['Vulnerabilities'])
 
     cur_file_analysis['ConstantCoding']['No_lines'] = asm_file['ConstantCoding']['No_lines']
     cur_file_analysis['ConstantCoding']['No_vulnerabilities'] = asm_file['ConstantCoding']['No_vulnerabilities']
+    cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['ConstantCoding']['Vulnerabilities']])
+    cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['ConstantCoding']['Vulnerabilities'])
 
     cur_file_analysis['LoopCheck']['No_lines'] = asm_file['LoopCheck']['No_lines']
     cur_file_analysis['LoopCheck']['No_vulnerabilities'] = asm_file['LoopCheck']['No_vulnerabilities']
+    cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['LoopCheck']['Vulnerabilities']])
+    cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['LoopCheck']['Vulnerabilities'])
 
     # Updating overall analysis
     analysis['Total_no_lines'] += cur_file_analysis['No_lines']
 
-    analysis['Ground_truth']['No_vulnerable_lines'] += cur_file_analysis['Ground_truth']['No_vulnerable_lines']
-    analysis['Ground_truth']['No_vulnerabilities'] += cur_file_analysis['Ground_truth']['No_vulnerabilities']
+    analysis['Ground_truth']['Total_no_vulnerable_lines'] += cur_file_analysis['Ground_truth']['No_vulnerable_lines']
+    analysis['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['Ground_truth']['No_vulnerabilities']
 
     analysis['Total_no_vulnerable_lines'] += cur_file_analysis['No_vulnerable_lines']
     analysis['Total_no_vulnerabilities'] += cur_file_analysis['No_vulnerabilities']
 
     analysis['Branch']['Total_no_lines'] += cur_file_analysis['Branch']['No_lines']
     analysis['Branch']['Total_no_vulnerabilities'] += cur_file_analysis['Branch']['No_vulnerabilities']
+    analysis['Branch']['Ground_truth']['Total_no_lines'] += cur_file_analysis['Branch']['Ground_truth']['No_vulnerable_lines']
+    analysis['Branch']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['Branch']['Ground_truth']['No_vulnerabilities']
 
     analysis['Bypass']['Total_no_lines'] += cur_file_analysis['Bypass']['No_lines']
     analysis['Bypass']['Total_no_vulnerabilities'] += cur_file_analysis['Bypass']['No_vulnerabilities']
+    analysis['Bypass']['Ground_truth']['Total_no_lines'] += cur_file_analysis['Bypass']['Ground_truth']['No_vulnerable_lines']
+    analysis['Bypass']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['Bypass']['Ground_truth']['No_vulnerabilities']
 
     analysis['ConstantCoding']['Total_no_lines'] += cur_file_analysis['ConstantCoding']['No_lines']
     analysis['ConstantCoding']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['No_vulnerabilities']
+    analysis['ConstantCoding']['Ground_truth']['Total_no_lines'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerable_lines']
+    analysis['ConstantCoding']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerabilities']
 
     analysis['LoopCheck']['Total_no_lines'] += cur_file_analysis['Bypass']['No_lines']
-    analysis['LoopCheck']['Total_no_vulnerabilities'] += cur_file_analysis['Bypass']['No_vulnerabilities']
+    analysis['LoopCheck']['Total_no_vulnerabilities'] += cur_file_analysis['LoopCheck']['No_vulnerabilities']
+    analysis['LoopCheck']['Ground_truth']['Total_no_lines'] += cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerable_lines']
+    analysis['LoopCheck']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerabilities']
 
 def calc_file_precision_recall(choice: str):
     '''

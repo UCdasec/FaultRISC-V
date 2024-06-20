@@ -1,8 +1,8 @@
 {
     "Total_no_lines": 5682,
     "Ground_truth": {
-        "No_vulnerable_lines": 605,
-        "No_vulnerabilities": 360
+        "Total_no_vulnerable_lines": 605,
+        "Total_no_vulnerabilities": 360
     },
     "Total_no_vulnerable_lines": 527,
     "Total_no_vulnerabilities": 350,
@@ -13,6 +13,10 @@
     "Recall": 0.9138888888888889,
     "F-1_score": 0.9267605633802817,
     "Branch": {
+        "Ground_truth": {
+            "Total_no_lines": 243,
+            "Total_no_vulnerabilities": 152
+        },
         "Total_no_lines": 261,
         "Total_no_vulnerabilities": 163,
         "Total_no_TP": 152,
@@ -23,6 +27,10 @@
         "F-1_score": 0.965079365079365
     },
     "Bypass": {
+        "Ground_truth": {
+            "Total_no_lines": 42,
+            "Total_no_vulnerabilities": 14
+        },
         "Total_no_lines": 39,
         "Total_no_vulnerabilities": 13,
         "Total_no_TP": 13,
@@ -33,6 +41,10 @@
         "F-1_score": 0.9629629629629631
     },
     "ConstantCoding": {
+        "Ground_truth": {
+            "Total_no_lines": 230,
+            "Total_no_vulnerabilities": 161
+        },
         "Total_no_lines": 232,
         "Total_no_vulnerabilities": 164,
         "Total_no_TP": 155,
@@ -43,8 +55,12 @@
         "F-1_score": 0.9538461538461539
     },
     "LoopCheck": {
+        "Ground_truth": {
+            "Total_no_lines": 90,
+            "Total_no_vulnerabilities": 33
+        },
         "Total_no_lines": 39,
-        "Total_no_vulnerabilities": 13,
+        "Total_no_vulnerabilities": 10,
         "Total_no_TP": 9,
         "Total_no_FP": 1,
         "Total_no_FN": 24,
@@ -72,6 +88,10 @@
             "Branch": {
                 "No_lines": 9,
                 "No_vulnerabilities": 5,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 7,
+                    "No_vulnerabilities": 4
+                },
                 "No_TP": 4,
                 "No_FP": 1,
                 "No_FN": 0,
@@ -135,6 +155,10 @@
             "Bypass": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -148,6 +172,10 @@
             "ConstantCoding": {
                 "No_lines": 10,
                 "No_vulnerabilities": 9,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 10,
+                    "No_vulnerabilities": 9
+                },
                 "No_TP": 9,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -236,6 +264,10 @@
             "LoopCheck": {
                 "No_lines": 4,
                 "No_vulnerabilities": 1,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 4,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 1,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -281,6 +313,10 @@
             "Branch": {
                 "No_lines": 7,
                 "No_vulnerabilities": 5,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 6,
+                    "No_vulnerabilities": 4
+                },
                 "No_TP": 4,
                 "No_FP": 1,
                 "No_FN": 0,
@@ -340,6 +376,10 @@
             "Bypass": {
                 "No_lines": 3,
                 "No_vulnerabilities": 1,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 3,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 1,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -366,6 +406,10 @@
             "ConstantCoding": {
                 "No_lines": 21,
                 "No_vulnerabilities": 16,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 21,
+                    "No_vulnerabilities": 16
+                },
                 "No_TP": 16,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -518,6 +562,10 @@
             "LoopCheck": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -548,6 +596,10 @@
             "Branch": {
                 "No_lines": 33,
                 "No_vulnerabilities": 24,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 33,
+                    "No_vulnerabilities": 24
+                },
                 "No_TP": 24,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -772,6 +824,10 @@
             "Bypass": {
                 "No_lines": 6,
                 "No_vulnerabilities": 2,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 6,
+                    "No_vulnerabilities": 2
+                },
                 "No_TP": 2,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -810,6 +866,10 @@
             "ConstantCoding": {
                 "No_lines": 43,
                 "No_vulnerabilities": 34,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 42,
+                    "No_vulnerabilities": 33
+                },
                 "No_TP": 33,
                 "No_FP": 1,
                 "No_FN": 0,
@@ -1115,6 +1175,10 @@
             "LoopCheck": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 6,
+                    "No_vulnerabilities": 5
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 5,
@@ -1188,6 +1252,10 @@
             "Branch": {
                 "No_lines": 33,
                 "No_vulnerabilities": 19,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 18,
+                    "No_vulnerabilities": 10
+                },
                 "No_TP": 10,
                 "No_FP": 9,
                 "No_FN": 0,
@@ -1383,6 +1451,10 @@
             "Bypass": {
                 "No_lines": 3,
                 "No_vulnerabilities": 1,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 3,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 1,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -1409,6 +1481,10 @@
             "ConstantCoding": {
                 "No_lines": 17,
                 "No_vulnerabilities": 12,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 17,
+                    "No_vulnerabilities": 12
+                },
                 "No_TP": 12,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -1529,6 +1605,10 @@
             "LoopCheck": {
                 "No_lines": 12,
                 "No_vulnerabilities": 3,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 8,
+                    "No_vulnerabilities": 5
+                },
                 "No_TP": 2,
                 "No_FP": 1,
                 "No_FN": 3,
@@ -1630,6 +1710,10 @@
             "Branch": {
                 "No_lines": 43,
                 "No_vulnerabilities": 28,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 43,
+                    "No_vulnerabilities": 28
+                },
                 "No_TP": 28,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -1898,6 +1982,10 @@
             "Bypass": {
                 "No_lines": 24,
                 "No_vulnerabilities": 8,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 24,
+                    "No_vulnerabilities": 8
+                },
                 "No_TP": 8,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -2008,6 +2096,10 @@
             "ConstantCoding": {
                 "No_lines": 32,
                 "No_vulnerabilities": 23,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 31,
+                    "No_vulnerabilities": 22
+                },
                 "No_TP": 22,
                 "No_FP": 1,
                 "No_FN": 0,
@@ -2225,6 +2317,10 @@
             "LoopCheck": {
                 "No_lines": 8,
                 "No_vulnerabilities": 2,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 41,
+                    "No_vulnerabilities": 10
+                },
                 "No_TP": 2,
                 "No_FP": 0,
                 "No_FN": 8,
@@ -2399,6 +2495,10 @@
             "Branch": {
                 "No_lines": 28,
                 "No_vulnerabilities": 21,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 28,
+                    "No_vulnerabilities": 21
+                },
                 "No_TP": 21,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -2595,6 +2695,10 @@
             "Bypass": {
                 "No_lines": 3,
                 "No_vulnerabilities": 1,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 3,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 1,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -2621,6 +2725,10 @@
             "ConstantCoding": {
                 "No_lines": 26,
                 "No_vulnerabilities": 18,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 25,
+                    "No_vulnerabilities": 17
+                },
                 "No_TP": 11,
                 "No_FP": 7,
                 "No_FN": 6,
@@ -2845,6 +2953,10 @@
             "LoopCheck": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 5,
+                    "No_vulnerabilities": 5
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 5,
@@ -2916,6 +3028,10 @@
             "Branch": {
                 "No_lines": 106,
                 "No_vulnerabilities": 60,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 106,
+                    "No_vulnerabilities": 60
+                },
                 "No_TP": 60,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -3502,6 +3618,10 @@
             "Bypass": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 3,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 1,
@@ -3528,6 +3648,10 @@
             "ConstantCoding": {
                 "No_lines": 83,
                 "No_vulnerabilities": 52,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 84,
+                    "No_vulnerabilities": 52
+                },
                 "No_TP": 52,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -4020,6 +4144,10 @@
             "LoopCheck": {
                 "No_lines": 16,
                 "No_vulnerabilities": 4,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 26,
+                    "No_vulnerabilities": 7
+                },
                 "No_TP": 4,
                 "No_FP": 0,
                 "No_FN": 3,
@@ -4142,6 +4270,10 @@
             "Branch": {
                 "No_lines": 2,
                 "No_vulnerabilities": 1,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 2,
+                    "No_vulnerabilities": 1
+                },
                 "No_TP": 1,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -4166,6 +4298,10 @@
             "Bypass": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -4179,6 +4315,10 @@
             "ConstantCoding": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 0,
@@ -4192,6 +4332,10 @@
             "LoopCheck": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
+                "Ground_truth": {
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
+                },
                 "No_TP": 0,
                 "No_FP": 0,
                 "No_FN": 0,

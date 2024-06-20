@@ -25,7 +25,7 @@ done
 
 # Create the Analysis directory if it doesn't exist
 ANALYSIS_DIR="$SCRIPT_DIR/Results/Analysis"
-mkdir -p "ANALYSIS_DIR"
+mkdir -p "$ANALYSIS_DIR"
 
 # Create a new analysis with current date and time as the name
 NEW_ANALYSIS="$ANALYSIS_DIR/Analysis_$TIMESTAMP.json"
