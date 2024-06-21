@@ -36,33 +36,32 @@ def analyze_program(program: Program):
 
     for line in program.lines:
         if isinstance(line, Instruction):
-            Branch_detector.checkInstruction(line)
+            """Branch_detector.checkInstruction(line)
             ConstantCoding_detector.checkInstruction(line)
             LoopCheck_detector.checkInstruction(line)
-            Bypass_detector.checkInstruction(line)
+            Bypass_detector.checkInstruction(line)"""
             DefaultFail_detector.checkInstruction(line)
 
-        elif isinstance(line, Attribute):
+        """elif isinstance(line, Attribute):
             ConstantCoding_detector.checkInstruction(line)
-            DefaultFail_detector.addGlobalVariableOrAttribute(line)
 
         elif isinstance(line, GlobalVariable):
-            ConstantCoding_detector.checkInstruction(line)
-            DefaultFail_detector.addGlobalVariableOrAttribute(line)
+            ConstantCoding_detector.checkInstruction(line)"""
 
-        elif isinstance(line, Location):
-            LoopCheck_detector.checkInstruction(line)
+        if isinstance(line, Location):
+            #LoopCheck_detector.checkInstruction(line)
             DefaultFail_detector.addLocation(line)
             
         elif isinstance(line, Function):
             DefaultFail_detector.addFunction(line)
 
 
-    Branch_detector.printAllVulnerable('Branch')
+    """Branch_detector.printAllVulnerable('Branch')
     ConstantCoding_detector.printAllVulnerable('ConstantCoding')
     LoopCheck_detector.printAllVulnerable('LoopCheck')
-    Bypass_detector.printAllVulnerable('Bypass')
-    print(f"All vulnerabilities printed.\n")
+    Bypass_detector.printAllVulnerable('Bypass')"""
+    DefaultFail_detector.printAllVulnerable('DefaultFail')
+    """print(f"All vulnerabilities printed.\n")
 
     total_no_vulnerabilities = sum([
             Branch_detector.no_vulnerable,
@@ -83,7 +82,7 @@ def analyze_program(program: Program):
     print(f'Total no. of vulnerabilities: {total_no_vulnerabilities}\n')
     print(f'Total no. of vulnerable lines: {total_no_vulnerable_lines}')
     print(f'Total no. of lines: {program.no_lines}')
-    print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')
+    print(f'Percentage of lines vulnerable: {percentage_vulnerable:.2f}%\n')"""
 
 if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()

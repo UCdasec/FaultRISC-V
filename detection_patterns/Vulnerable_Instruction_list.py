@@ -323,5 +323,37 @@ vulnerable_instruction_list = {
                 ]
             ]
         ]
+    },
+    'DefaultFail': {
+        OptimizationLevel.O0: [
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ],
+                [
+                    'j', {Label}
+                ]
+            ]
+        ],
+        OptimizationLevel.O1: [
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ],
+                [
+                    'j', {Label}
+                ]
+            ]
+        ],
+        OptimizationLevel.O2: [
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                ],
+                [
+                    'j', {Label}
+                ]
+            ]
+        ]
     }
 }
