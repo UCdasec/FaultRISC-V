@@ -1,0 +1,595 @@
+{
+    "Program_name": "smartlock_controller_utility_functions_O0.s",
+    "Optimization_level": "O0",
+    "No_lines": 735,
+    "No_vulnerable_lines": 78,
+    "No_vulnerabilities": 64,
+    "Branch": {
+        "No_lines": 33,
+        "No_vulnerabilities": 24,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    26,
+                    27
+                ],
+                "Lines": [
+                    "li\ta5,2",
+                    "bleu\ta4,a5,.L3"
+                ]
+            },
+            {
+                "Line_nos": [
+                    39,
+                    40
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L3"
+                ]
+            },
+            {
+                "Line_nos": [
+                    66,
+                    67
+                ],
+                "Lines": [
+                    "li\ta5,5",
+                    "bleu\ta4,a5,.L6"
+                ]
+            },
+            {
+                "Line_nos": [
+                    98,
+                    99
+                ],
+                "Lines": [
+                    "li\ta5,60",
+                    "bleu\ta4,a5,.L9"
+                ]
+            },
+            {
+                "Line_nos": [
+                    129,
+                    130
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L13"
+                ]
+            },
+            {
+                "Line_nos": [
+                    164
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L17"
+                ]
+            },
+            {
+                "Line_nos": [
+                    283
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L22"
+                ]
+            },
+            {
+                "Line_nos": [
+                    293,
+                    294
+                ],
+                "Lines": [
+                    "li\ta5,2",
+                    "bleu\ta4,a5,.L24"
+                ]
+            },
+            {
+                "Line_nos": [
+                    330
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L27"
+                ]
+            },
+            {
+                "Line_nos": [
+                    371
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L41"
+                ]
+            },
+            {
+                "Line_nos": [
+                    380
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L42"
+                ]
+            },
+            {
+                "Line_nos": [
+                    398
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L36"
+                ]
+            },
+            {
+                "Line_nos": [
+                    413,
+                    414
+                ],
+                "Lines": [
+                    "li\ta5,97",
+                    "bne\ta4,a5,.L38"
+                ]
+            },
+            {
+                "Line_nos": [
+                    438,
+                    439
+                ],
+                "Lines": [
+                    "li\ta5,255",
+                    "bne\ta4,a5,.L44"
+                ]
+            },
+            {
+                "Line_nos": [
+                    454
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L57"
+                ]
+            },
+            {
+                "Line_nos": [
+                    463
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L58"
+                ]
+            },
+            {
+                "Line_nos": [
+                    481
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L51"
+                ]
+            },
+            {
+                "Line_nos": [
+                    578
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L75"
+                ]
+            },
+            {
+                "Line_nos": [
+                    587
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L76"
+                ]
+            },
+            {
+                "Line_nos": [
+                    605
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L69"
+                ]
+            },
+            {
+                "Line_nos": [
+                    625,
+                    626
+                ],
+                "Lines": [
+                    "li\ta5,4",
+                    "bleu\ta4,a5,.L72"
+                ]
+            },
+            {
+                "Line_nos": [
+                    662
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L88"
+                ]
+            },
+            {
+                "Line_nos": [
+                    671
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L89"
+                ]
+            },
+            {
+                "Line_nos": [
+                    689
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L84"
+                ]
+            }
+        ]
+    },
+    "Bypass": {
+        "No_lines": 6,
+        "No_vulnerabilities": 2,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    281,
+                    282,
+                    283
+                ],
+                "Lines": [
+                    "call\tCONT_password_match",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L22"
+                ]
+            },
+            {
+                "Line_nos": [
+                    328,
+                    329,
+                    330
+                ],
+                "Lines": [
+                    "call\tCONT_password_match",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L27"
+                ]
+            }
+        ]
+    },
+    "ConstantCoding": {
+        "No_lines": 43,
+        "No_vulnerabilities": 34,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    35
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(counter.2)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    72
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(counter.1)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    106
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(counter.0)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    143,
+                    144
+                ],
+                "Lines": [
+                    "li\ta4,1",
+                    "sb\ta4,%lo(door_state)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    177
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(door_state)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    235
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    236
+                ],
+                "Lines": [
+                    "sb\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    237
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    238
+                ],
+                "Lines": [
+                    "sb\tzero,-28(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    239
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    269
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    311
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    312
+                ],
+                "Lines": [
+                    "sb\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    313
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    314
+                ],
+                "Lines": [
+                    "sb\tzero,-28(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    353
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(recieved_data)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    372,
+                    373
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-34(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    389,
+                    390
+                ],
+                "Lines": [
+                    "li\ta5,25",
+                    "sh\ta5,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    430
+                ],
+                "Lines": [
+                    "sb\tzero,-39(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    455,
+                    456
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-34(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    472,
+                    473
+                ],
+                "Lines": [
+                    "li\ta5,25",
+                    "sh\ta5,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    550
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    551
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    579,
+                    580
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-42(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    596,
+                    597
+                ],
+                "Lines": [
+                    "li\ta5,25",
+                    "sh\ta5,-44(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    663,
+                    664
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-34(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    680,
+                    681
+                ],
+                "Lines": [
+                    "li\ta5,25",
+                    "sh\ta5,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    701
+                ],
+                "Lines": [
+                    "sb\tzero,%lo(recieved_data)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    717
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    721
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    725
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    729
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    733
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    734
+                ],
+                "Lines": [
+                    ".word\t1076101120"
+                ]
+            }
+        ]
+    },
+    "LoopCheck": {
+        "No_lines": 8,
+        "No_vulnerabilities": 4,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    396,
+                    398
+                ],
+                "Lines": [
+                    "lhu\ta5,-34(s0)",
+                    "bne\ta5,zero,.L36"
+                ]
+            },
+            {
+                "Line_nos": [
+                    479,
+                    481
+                ],
+                "Lines": [
+                    "lhu\ta5,-34(s0)",
+                    "bne\ta5,zero,.L51"
+                ]
+            },
+            {
+                "Line_nos": [
+                    603,
+                    605
+                ],
+                "Lines": [
+                    "lhu\ta5,-42(s0)",
+                    "bne\ta5,zero,.L69"
+                ]
+            },
+            {
+                "Line_nos": [
+                    687,
+                    689
+                ],
+                "Lines": [
+                    "lhu\ta5,-34(s0)",
+                    "bne\ta5,zero,.L84"
+                ]
+            }
+        ]
+    }
+}

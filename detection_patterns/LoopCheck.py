@@ -67,9 +67,17 @@ class LoopCheck(Pattern):
         if isinstance(line, Instruction):
             line_type = line.type
 
-            if line_type in ['jr', 'j', 'ret']: # Remove all location encased between forced jumps or returns
+            if line_type in ['jr', 'ret']: # Remove all locations encased between returns
                 self.location_list.clear()
                 return
+
+            elif line_type == 'j':  # Remove all locations from the jump reference until current line
+                arg = line.args[0]
+                if isinstance(arg, Label) and arg.label_type == LabelType.LOCATION:
+                    matching_location = next((location for location in self.location_list if arg.arg_text[1:] == location.location_name), None)
+                    if matching_location is not None:
+                        self.location_list.clear()
+                        return
 
             line_pattern_match = False
             line_no = len(self.detection_cache) if not self.insecure_match else len(self.secure_cache)
@@ -106,6 +114,7 @@ class LoopCheck(Pattern):
                         else:   # Pattern broken; no vulnerability, and try pattern detection again from current line
                             self.pattern_undetermined = True
                             self.checkInstruction(line)
+                            return
 
                 if line_no == 0:
                     for instruction_set in self.vulnerable_instruction_set: # Determining correct LoopCheck pattern

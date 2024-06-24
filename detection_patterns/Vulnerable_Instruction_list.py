@@ -215,7 +215,10 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'lbu'}, {Register}, {MemoryAddress}
+                    {'lbu', 'lhu'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    '__IGNORE_LINE__', {'sext.w'}, {Register}, {Register}
                 ],
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}

@@ -128,7 +128,7 @@ class Bypass(Pattern):
                 elif '__IGNORE_LINE__' in cache.active_pattern[line_no][0]:
                     if line_type in cache.active_pattern[line_no][1]:    # Check if current line is an IGNORE line
                         for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                            if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                            if not any(pattern_arg_type is None or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                 line_pattern_match = False
                                 break
     

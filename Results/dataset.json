@@ -4202,16 +4202,6 @@
       "Vulnerabilities": [
         {
           "Line_nos": [
-            293,
-            294
-          ],
-          "Lines": [
-            "li a5,2",
-            "bleu a4,a5,.L24"
-          ]
-        },
-        {
-          "Line_nos": [
             398
           ],
           "Lines": [
