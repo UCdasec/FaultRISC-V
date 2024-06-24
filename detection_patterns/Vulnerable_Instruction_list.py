@@ -332,6 +332,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
+                ],
+                [
+                    'jr', {Register}
                 ]
             ]
         ],
@@ -342,6 +345,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
+                ],
+                [
+                    'jr', {Register}
                 ]
             ]
         ],
@@ -352,6 +358,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
+                ],
+                [
+                    'jr', {Register}
                 ]
             ]
         ]
