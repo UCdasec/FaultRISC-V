@@ -335,6 +335,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'jr', {Register}
+                ],
+                [
+                    'nop'
                 ]
             ]
         ],
@@ -348,6 +351,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'jr', {Register}
+                ],
+                [
+                    'nop'
                 ]
             ]
         ],
@@ -361,6 +367,9 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'jr', {Register}
+                ],
+                [
+                    'nop'
                 ]
             ]
         ]
