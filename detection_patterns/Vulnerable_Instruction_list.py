@@ -11,12 +11,12 @@ vulnerable_instruction_list = {
                     {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
                 ],
             ]
         ],
@@ -29,12 +29,12 @@ vulnerable_instruction_list = {
                     '__OPTIONAL__', {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
                 ],
             ],
             [
@@ -60,7 +60,7 @@ vulnerable_instruction_list = {
                     '__OPTIONAL__', {'li', 'lbu', 'lui'}, {Register}, {IntegerLiteral, MemoryAddress}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
@@ -74,12 +74,12 @@ vulnerable_instruction_list = {
                     '__IGNORE_LINE__', {'lbu'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
                 ],
             ],
             [
@@ -181,47 +181,59 @@ vulnerable_instruction_list = {
         OptimizationLevel.O0: [
             [
                 [
-                    {'lw', 'ld'}, {Register}, {MemoryAddress}
+                    {'lw', 'ld', 'lbu', 'lb', 'lh'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    '__OPTIONAL__', {'mv'}, {Register}, {Register}
+                    '__OPTIONAL__', {'mv', 'sext.w'}, {Register}, {Register}
                 ],
                 [
-                    {'lw', 'ld'}, {Register}, {MemoryAddress}
+                    {'lw', 'ld', 'lbu', 'lb', 'lh'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    '__IGNORE_LINE__', {'sext.w'}, {Register}, {Register}
+                    '__IGNORE_LINE__', {'sext.w', 'slliw'}, {Register}, {Register}, {IntegerLiteral, None}
                 ],
                 [
-                    '__IGNORE_LINE__', {'sext.w'}, {Register}, {Register}
+                    '__IGNORE_LINE__', {'sext.w', 'sraiw'}, {Register}, {Register}, {IntegerLiteral, None}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    '__IGNORE_LINE__', {'slliw'}, {Register}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    '__IGNORE_LINE__', {'sraiw'}, {Register}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
                 [
-                    {'lw'}, {Register}, {MemoryAddress}
+                    {'lw', 'lh', 'lbu'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    {'sext.w'}, {Register}, {Register}
+                    {'sext.w', 'slliw', 'andi'}, {Register}, {Register}, {IntegerLiteral, None}
+                ],
+                [
+                    '__IGNORE_LINE__', {'sraiw'}, {Register}, {Register}, {IntegerLiteral}
                 ],
                 [
                     {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             [
                 [
-                    {'lbu', 'lhu'}, {Register}, {MemoryAddress}
+                    {'lw', 'lbu', 'lhu', 'lh'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    '__IGNORE_LINE__', {'sext.w'}, {Register}, {Register}
+                    '__IGNORE_LINE__', {'sext.w', 'slliw', 'andi'}, {Register}, {Register}, {IntegerLiteral, None}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}
+                    '__IGNORE_LINE__', {'sraiw'}, {Register}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
                 ]
             ]
         ],
@@ -231,12 +243,12 @@ vulnerable_instruction_list = {
                     {'lhu', 'lbu', 'li'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
                 ]
             ],
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
                 ],
                 [
                     '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}
@@ -263,7 +275,7 @@ vulnerable_instruction_list = {
                     '__IGNORE_LINE__', {'call'}, {Label}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
                 ]
             ],
             [
@@ -274,7 +286,7 @@ vulnerable_instruction_list = {
                     {'lhu', 'lbu', 'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
             # [
@@ -318,7 +330,7 @@ vulnerable_instruction_list = {
                     '__IGNORE_LINE__', {'sext.w', 'andi'}, {Register}, {Register}, {None, IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ]
             ]
         ],
@@ -334,7 +346,7 @@ vulnerable_instruction_list = {
                     '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ]
             ]
         ],
@@ -350,7 +362,7 @@ vulnerable_instruction_list = {
                     '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ]
             ]
         ]

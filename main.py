@@ -155,7 +155,7 @@ if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
     program_arg_parser.add_argument('target_file',
                                     help='Target RISC-V Assembly file to run vulnerability assessment on')
-    program_arg_parser.add_argument('--store_result', nargs='?', default='general', choices=['general', 'report'],
+    program_arg_parser.add_argument('--store_result', nargs='?', default='None', choices=['general', 'report'],
                                     help='Determine whether the results should be stored in the general folder or the latest report')
     program_args = program_arg_parser.parse_args()
 
