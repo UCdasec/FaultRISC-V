@@ -144,8 +144,10 @@ class Attribute(Line):
         self.type = self.line_text.partition('\t')[0][1:]
         raw_args_text = self.line_text.partition('\t')[2]
         if raw_args_text == '':                                 # Rare case where separator between type and args is ' '
+            self.type = self.line_text.partition(' ')[0][1:]
             raw_args_text = self.line_text.partition(' ')[2]
         quotation_pattern = r'"(.*?)"'
+        hexadecimal_pattern = r'(0[xX])([0-9a-fA-F]+)'
 
         '''
         We remove each argument from the raw text one-by-one left-to-right. If it is a quotation, we use the aforementioned
@@ -161,11 +163,18 @@ class Attribute(Line):
             else:
                 raw_arg = raw_args_text.split(',',1)[0].strip()
                 if not raw_arg.startswith('@'):
-                    if is_integer(raw_arg):
+                    if is_integer(raw_arg): # Integer
                         self.args.append(IntegerLiteral(raw_arg))
-                    else:
+
+                    elif re.match(hexadecimal_pattern, raw_arg):    # Hexadecimal integer (conversion to decimal before appending to args)
+                        hex_string = re.match(hexadecimal_pattern, raw_arg).group(2)
+                        decimal_value = str(int(hex_string, 16))
+                        self.args.append(IntegerLiteral(decimal_value))
+
+                    else:   # Generic argument
                         self.args.append(Argument(raw_arg))
-                    try:
+
+                    try:    # Removing current arg from the arg text
                         raw_args_text = raw_args_text.split(',', 1)[1].strip()
                     except IndexError:
                         break
@@ -256,7 +265,8 @@ class Program:
                 self.lines[-1].resolve_location_name()
             elif not line.startswith('.') and line.endswith(':'):       # Function or GlobalVariable
                 for word_count, next_line in enumerate(self.raw_lines[line_no:]):
-                    if next_line.strip().startswith('.word'):
+                    if next_line.strip().startswith(('.word', '.byte', '.short', '.2byte', '.4byte', '.8byte',
+                                                     '.long', '.sleb128', '.uleb128', '.half')):
                         if word_count == 0:                             # GlobalVariable of type INTEGER
                             self.lines.append(GlobalVariable(line_no, line, VariableType.INTEGER))
                             self.lines[-1].resolve_var_name()

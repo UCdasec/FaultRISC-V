@@ -3172,6 +3172,14 @@
       "Vulnerabilities": [
         {
           "Line_nos": [
+            40
+          ],
+          "Lines": [
+            ".byte\t1"
+          ]
+        },
+        {
+          "Line_nos": [
             68
           ],
           "Lines": [
@@ -4582,6 +4590,62 @@
           ],
           "Lines": [
             "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            778
+          ],
+          "Lines": [
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            779
+          ],
+          "Lines": [
+            ".word\t1078525952"
+          ]
+        },
+        {
+          "Line_nos": [
+            782
+          ],
+          "Lines": [
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            786
+          ],
+          "Lines": [
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            790
+          ],
+          "Lines": [
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            794
+          ],
+          "Lines": [
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            795
+          ],
+          "Lines": [
+            ".word\t1076101120"
           ]
         }
       ]
@@ -11651,14 +11715,6 @@
         },
         {
           "Line_nos": [
-            1976
-          ],
-          "Lines": [
-            ".zero 12"
-          ]
-        },
-        {
-          "Line_nos": [
             1980
           ],
           "Lines": [
@@ -11679,38 +11735,6 @@
           ],
           "Lines": [
             ".word 1"
-          ]
-        },
-        {
-          "Line_nos": [
-            1983
-          ],
-          "Lines": [
-            ".zero 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            1994
-          ],
-          "Lines": [
-            ".zero 24"
-          ]
-        },
-        {
-          "Line_nos": [
-            2000
-          ],
-          "Lines": [
-            ".zero 12"
-          ]
-        },
-        {
-          "Line_nos": [
-            2001
-          ],
-          "Lines": [
-            ".zero 4"
           ]
         },
         {
@@ -11797,14 +11821,6 @@
         },
         {
           "Line_nos": [
-            2191
-          ],
-          "Lines": [
-            ".zero 8"
-          ]
-        },
-        {
-          "Line_nos": [
             2195
           ],
           "Lines": [
@@ -11825,38 +11841,6 @@
           ],
           "Lines": [
             ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2198
-          ],
-          "Lines": [
-            ".zero 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            2211
-          ],
-          "Lines": [
-            ".zero 16"
-          ]
-        },
-        {
-          "Line_nos": [
-            2218
-          ],
-          "Lines": [
-            ".zero 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            2219
-          ],
-          "Lines": [
-            ".zero 4"
           ]
         },
         {
@@ -11957,14 +11941,6 @@
         },
         {
           "Line_nos": [
-            2369
-          ],
-          "Lines": [
-            ".zero 4"
-          ]
-        },
-        {
-          "Line_nos": [
             2374
           ],
           "Lines": [
@@ -11985,38 +11961,6 @@
           ],
           "Lines": [
             ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2377
-          ],
-          "Lines": [
-            ".zero 4"
-          ]
-        },
-        {
-          "Line_nos": [
-            2392
-          ],
-          "Lines": [
-            ".zero 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            2400
-          ],
-          "Lines": [
-            ".zero 4"
-          ]
-        },
-        {
-          "Line_nos": [
-            2401
-          ],
-          "Lines": [
-            ".zero 4"
           ]
         },
         {
@@ -12241,14 +12185,6 @@
           ],
           "Lines": [
             ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3059
-          ],
-          "Lines": [
-            ".zero 4"
           ]
         },
         {
@@ -12489,14 +12425,6 @@
           ],
           "Lines": [
             ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3472
-          ],
-          "Lines": [
-            ".zero 4"
           ]
         },
         {

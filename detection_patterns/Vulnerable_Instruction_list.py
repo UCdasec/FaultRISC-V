@@ -116,7 +116,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word'}, {IntegerLiteral}
+                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -144,7 +144,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word'}, {IntegerLiteral}
+                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -172,7 +172,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word'}, {IntegerLiteral}
+                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ]
@@ -210,7 +210,7 @@ vulnerable_instruction_list = {
                     {'lw', 'lh', 'lbu'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    {'sext.w', 'slliw', 'andi'}, {Register}, {Register}, {IntegerLiteral, None}
+                    {'sext.w', 'slliw'}, {Register}, {Register}, {IntegerLiteral, None}
                 ],
                 [
                     '__IGNORE_LINE__', {'sraiw'}, {Register}, {Register}, {IntegerLiteral}
@@ -227,7 +227,7 @@ vulnerable_instruction_list = {
                     {'lw', 'lbu', 'lhu', 'lh'}, {Register}, {MemoryAddress}
                 ],
                 [
-                    '__IGNORE_LINE__', {'sext.w', 'slliw', 'andi'}, {Register}, {Register}, {IntegerLiteral, None}
+                    '__IGNORE_LINE__', {'sext.w', 'slliw'}, {Register}, {Register}, {IntegerLiteral, None}
                 ],
                 [
                     '__IGNORE_LINE__', {'sraiw'}, {Register}, {Register}, {IntegerLiteral}
