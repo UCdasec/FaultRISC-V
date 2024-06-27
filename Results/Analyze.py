@@ -239,9 +239,9 @@ def update_analyses(asm_file):
 
     No_vulnerabilities = (len(dataset_file['Branch']['Vulnerabilities']) + len(dataset_file['Bypass']['Vulnerabilities'])
                           + len(dataset_file['ConstantCoding']['Vulnerabilities'])) + len(dataset_file['LoopCheck']['Vulnerabilities'])
-    No_vulnerable_lines = sum([len(vulnerability['Line_nos'])
-                               for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['LoopCheck']]
-                               for vulnerability in pattern['Vulnerabilities']])
+
+    No_vulnerable_lines = len(set([line_no for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['LoopCheck']]
+                                   for vulnerability in pattern['Vulnerabilities'] for line_no in vulnerability['Line_nos']]))
 
     cur_file_analysis['Ground_truth']['No_vulnerable_lines'] = No_vulnerable_lines
     cur_file_analysis['Ground_truth']['No_vulnerabilities'] = No_vulnerabilities
@@ -367,12 +367,14 @@ def calc_file_precision_recall(choice: str):
 
 # locate latest report
 latest_report_file = max(glob.glob(os.path.join('Results/Reports', '*.json')), key=os.path.getctime)
+# latest_report_file = max(glob.glob(os.path.join('Reports', '*.json')), key=os.path.getctime)
 
 # report_data has results from FaultHunter run
 with open(latest_report_file, 'r') as report_file:
     report_data = json.load(report_file)
 
 # dataset holds ground truth
+# with open ('dataset.json', 'r') as dataset_file:
 with open ('Results/dataset.json', 'r') as dataset_file:
     dataset = json.load(dataset_file)
 
@@ -400,6 +402,7 @@ calc_file_precision_recall('overall')
 
 # open latest analysis file
 latest_analysis_file = max(glob.glob(os.path.join('Results/Analysis', '*.json')), key=os.path.getctime)
+# latest_analysis_file = max(glob.glob(os.path.join('Analysis', '*.json')), key=os.path.getctime)
 
 # Write to latest analysis file
 with open(latest_analysis_file, 'w') as analysis_file:

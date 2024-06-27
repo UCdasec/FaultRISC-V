@@ -1,0 +1,2923 @@
+{
+    "Program_name": "uECC_O0.s",
+    "Optimization_level": "O0",
+    "No_lines": 7117,
+    "No_vulnerable_lines": 501,
+    "No_vulnerabilities": 349,
+    "Branch": {
+        "No_lines": 102,
+        "No_vulnerabilities": 86,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    213
+                ],
+                "Lines": [
+                    "blt\ta5,zero,.L19"
+                ]
+            },
+            {
+                "Line_nos": [
+                    219
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L20"
+                ]
+            },
+            {
+                "Line_nos": [
+                    249
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L23"
+                ]
+            },
+            {
+                "Line_nos": [
+                    272
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L26"
+                ]
+            },
+            {
+                "Line_nos": [
+                    393
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L35"
+                ]
+            },
+            {
+                "Line_nos": [
+                    442
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L38"
+                ]
+            },
+            {
+                "Line_nos": [
+                    940
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L66"
+                ]
+            },
+            {
+                "Line_nos": [
+                    948,
+                    949
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L68"
+                ]
+            },
+            {
+                "Line_nos": [
+                    987
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L71"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1061
+                ],
+                "Lines": [
+                    "ble\ta5,zero,.L73"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1259
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L81"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1378
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L86"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1394
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L88"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1435
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L90"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1471
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L93"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1488
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L94"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1505
+                ],
+                "Lines": [
+                    "ble\ta5,zero,.L95"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1526
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L96"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1570
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L97"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1604
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L98"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1637
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L104"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1715
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L102"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1932
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L108"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1949,
+                    1950
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bgt\ta4,a5,.L109"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2085
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L114"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2092
+                ],
+                "Lines": [
+                    "ble\ta5,zero,.L116"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2169
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L119"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2337
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L124"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2345,
+                    2346
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L124"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2732,
+                    2733
+                ],
+                "Lines": [
+                    "li\ta5,6",
+                    "ble\ta4,a5,.L134"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2799
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L140"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2960
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L145"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2976
+                ],
+                "Lines": [
+                    "blt\ta5,zero,.L143"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2994
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L146"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3002,
+                    3003
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L146"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3373
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L154"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3389
+                ],
+                "Lines": [
+                    "blt\ta5,zero,.L152"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3407
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L155"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3415,
+                    3416
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L155"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3508
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L164"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3557
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L162"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3736
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L168"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3743
+                ],
+                "Lines": [
+                    "ble\ta5,zero,.L170"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3801,
+                    3802
+                ],
+                "Lines": [
+                    "li\ta5,7",
+                    "ble\ta4,a5,.L173"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3885
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L176"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4342
+                ],
+                "Lines": [
+                    "bgt\ta5,zero,.L182"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4536
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L184"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4550
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L185"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4594
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L189"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4612
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L192"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4652
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L193"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4660,
+                    4661
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L193"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4707
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L196"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4722
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L197"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4769
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L199"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4954
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L209"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4966
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L211"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5092
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L215"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5106
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L216"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5270
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L223"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5330
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L225"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5343,
+                    5344
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L227"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5358,
+                    5359
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L228"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5484
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L233"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5508,
+                    5509
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L235"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5521
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L236"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5667,
+                    5668
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L238"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5729
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L246"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5739,
+                    5740
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L247"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5756
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L249"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5770
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L250"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5809
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L251"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5815
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L252"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5834
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L253"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6047
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L260"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6059
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L262"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6535
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L287"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6715
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L296"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6723
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L297"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6738,
+                    6739
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L299"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6750,
+                    6751
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L300"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6923
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L301"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6991
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L304"
+                ]
+            },
+            {
+                "Line_nos": [
+                    7007
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L306"
+                ]
+            },
+            {
+                "Line_nos": [
+                    7062
+                ],
+                "Lines": [
+                    "bge\ta5,zero,.L307"
+                ]
+            },
+            {
+                "Line_nos": [
+                    7088,
+                    7089
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "beq\ta4,a5,.L308"
+                ]
+            }
+        ]
+    },
+    "Bypass": {
+        "No_lines": 160,
+        "No_vulnerabilities": 49,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    945,
+                    946,
+                    949
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L68"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1432,
+                    1433,
+                    1435
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L90"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1524,
+                    1525,
+                    1526
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bge\ta5,zero,.L96"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1568,
+                    1569,
+                    1570
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bge\ta5,zero,.L97"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1634,
+                    1635,
+                    1637
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L104"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1712,
+                    1713,
+                    1715
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L102"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1929,
+                    1930,
+                    1932
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L108"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2090,
+                    2091,
+                    2092
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "ble\ta5,zero,.L116"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2342,
+                    2343,
+                    2346
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L124"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2796,
+                    2797,
+                    2799
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L140"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2999,
+                    3000,
+                    3003
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L146"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3412,
+                    3413,
+                    3416
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L155"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3505,
+                    3506,
+                    3508
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L164"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3554,
+                    3555,
+                    3557
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L162"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3741,
+                    3742,
+                    3743
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "ble\ta5,zero,.L170"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4270,
+                    4271,
+                    4273
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "seqz\ta5,a5"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4345,
+                    4346,
+                    4348
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "seqz\ta5,a5"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4533,
+                    4534,
+                    4536
+                ],
+                "Lines": [
+                    "call\tuECC_vli_add",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L184"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4547,
+                    4548,
+                    4550
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L185"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4649,
+                    4650,
+                    4652
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L193"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4657,
+                    4658,
+                    4661
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L193"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4720,
+                    4721,
+                    4722
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L197"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4766,
+                    4767,
+                    4769
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L199"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4952,
+                    4953,
+                    4954
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L209"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4963,
+                    4964,
+                    4966
+                ],
+                "Lines": [
+                    "call\tEccPoint_compute_public_key",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L211"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5104,
+                    5105,
+                    5106
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L216"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5157,
+                    5158,
+                    5160
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "seqz\ta5,a5"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5327,
+                    5328,
+                    5330
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L225"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5340,
+                    5341,
+                    5344
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L227"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5355,
+                    5356,
+                    5359
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L228"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5481,
+                    5482,
+                    5484
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L233"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5505,
+                    5506,
+                    5509
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L235"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5518,
+                    5519,
+                    5521
+                ],
+                "Lines": [
+                    "call\tEccPoint_compute_public_key",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L236"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5664,
+                    5665,
+                    5668
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L238"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5726,
+                    5727,
+                    5729
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L246"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5736,
+                    5737,
+                    5740
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L247"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5768,
+                    5769,
+                    5770
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L250"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5806,
+                    5807,
+                    5809
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L251"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5832,
+                    5833,
+                    5834
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L253"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6045,
+                    6046,
+                    6047
+                ],
+                "Lines": [
+                    "call\tuECC_generate_random_int",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L260"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6057,
+                    6058,
+                    6059
+                ],
+                "Lines": [
+                    "call\tuECC_sign_with_k_internal",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L262"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6533,
+                    6534,
+                    6535
+                ],
+                "Lines": [
+                    "call\tuECC_sign_with_k_internal",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L287"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6712,
+                    6713,
+                    6715
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L296"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6720,
+                    6721,
+                    6723
+                ],
+                "Lines": [
+                    "call\tuECC_vli_isZero",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L297"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6735,
+                    6736,
+                    6739
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L299"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6747,
+                    6748,
+                    6751
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L300"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6920,
+                    6921,
+                    6923
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L301"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6988,
+                    6989,
+                    6991
+                ],
+                "Lines": [
+                    "call\tuECC_vli_testBit",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L304"
+                ]
+            },
+            {
+                "Line_nos": [
+                    7085,
+                    7086,
+                    7089
+                ],
+                "Lines": [
+                    "call\tuECC_vli_cmp_unsafe",
+                    "mv\ta5,a0",
+                    "beq\ta4,a5,.L308"
+                ]
+            }
+        ]
+    },
+    "ConstantCoding": {
+        "No_lines": 198,
+        "No_vulnerabilities": 173,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    87
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    94
+                ],
+                "Lines": [
+                    "sw\tzero,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    123
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    124
+                ],
+                "Lines": [
+                    "sb\tzero,-21(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    260
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    307
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    411
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    513
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    558
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    559
+                ],
+                "Lines": [
+                    "sb\tzero,-21(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    632
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    633
+                ],
+                "Lines": [
+                    "sb\tzero,-21(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    764
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    765
+                ],
+                "Lines": [
+                    "sw\tzero,-28(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    766
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    767
+                ],
+                "Lines": [
+                    "sb\tzero,-18(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    770
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    816
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    886
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1052
+                ],
+                "Lines": [
+                    "sw\tzero,-44(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1062
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1121,
+                    1122
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1125
+                ],
+                "Lines": [
+                    "sw\tzero,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1126
+                ],
+                "Lines": [
+                    "sb\tzero,-49(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1373
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1459,
+                    1460
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-120(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1832
+                ],
+                "Lines": [
+                    "sd\tzero,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1833
+                ],
+                "Lines": [
+                    "sd\tzero,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1834
+                ],
+                "Lines": [
+                    "sd\tzero,-40(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1835
+                ],
+                "Lines": [
+                    "sd\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1836,
+                    1837
+                ],
+                "Lines": [
+                    "li\ta5,3",
+                    "sw\ta5,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1882
+                ],
+                "Lines": [
+                    "sd\tzero,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1883
+                ],
+                "Lines": [
+                    "sd\tzero,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1884
+                ],
+                "Lines": [
+                    "sd\tzero,-40(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1885
+                ],
+                "Lines": [
+                    "sd\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1886,
+                    1887
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1888
+                ],
+                "Lines": [
+                    "sd\tzero,-88(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1889
+                ],
+                "Lines": [
+                    "sd\tzero,-80(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1890
+                ],
+                "Lines": [
+                    "sd\tzero,-72(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1891
+                ],
+                "Lines": [
+                    "sd\tzero,-64(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1892,
+                    1893
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-88(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1967,
+                    1968,
+                    1969,
+                    1970,
+                    1972,
+                    1973,
+                    1974,
+                    1975
+                ],
+                "Lines": [
+                    "curve_secp160r1:",
+                    ".byte\t5",
+                    ".byte\t20",
+                    ".half\t161",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1980
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1981
+                ],
+                "Lines": [
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1982
+                ],
+                "Lines": [
+                    ".word\t1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2139,
+                    2140
+                ],
+                "Lines": [
+                    "li\ta5,5",
+                    "sw\ta5,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2181,
+                    2182,
+                    2183,
+                    2184,
+                    2185,
+                    2186,
+                    2187,
+                    2188,
+                    2189,
+                    2190
+                ],
+                "Lines": [
+                    "curve_secp192r1:",
+                    ".byte\t6",
+                    ".byte\t24",
+                    ".half\t192",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-2",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2195
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2196
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2197
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2268
+                ],
+                "Lines": [
+                    "sw\tzero,-44(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2305
+                ],
+                "Lines": [
+                    "sw\tzero,-28(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2358,
+                    2359,
+                    2360,
+                    2361,
+                    2362,
+                    2363,
+                    2364,
+                    2365,
+                    2366,
+                    2367,
+                    2368
+                ],
+                "Lines": [
+                    "curve_secp224r1:",
+                    ".byte\t7",
+                    ".byte\t28",
+                    ".half\t224",
+                    ".word\t1",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2374
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2375
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2376
+                ],
+                "Lines": [
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2514,
+                    2515
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-18(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2658,
+                    2659
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sb\ta5,-18(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2660
+                ],
+                "Lines": [
+                    "sd\tzero,-80(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2661
+                ],
+                "Lines": [
+                    "sd\tzero,-72(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2662
+                ],
+                "Lines": [
+                    "sd\tzero,-64(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2663
+                ],
+                "Lines": [
+                    "sw\tzero,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2664,
+                    2665
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-80(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2679
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2764,
+                    2765
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sh\ta5,-18(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2849
+                ],
+                "Lines": [
+                    "sw\tzero,-40(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2884
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2939
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3015,
+                    3016,
+                    3017,
+                    3018,
+                    3019,
+                    3020,
+                    3021,
+                    3022,
+                    3023,
+                    3024,
+                    3025,
+                    3026,
+                    3031,
+                    3032,
+                    3033,
+                    3034
+                ],
+                "Lines": [
+                    "curve_secp256r1:",
+                    ".byte\t8",
+                    ".byte\t32",
+                    ".half\t256",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t0",
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3092
+                ],
+                "Lines": [
+                    "sw\tzero,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3146
+                ],
+                "Lines": [
+                    "sw\tzero,-28(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3181
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3249
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3284
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3323
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3345
+                ],
+                "Lines": [
+                    "sw\tzero,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3355
+                ],
+                "Lines": [
+                    "sw\tzero,-32(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3428,
+                    3429,
+                    3430,
+                    3431,
+                    3433,
+                    3434,
+                    3435,
+                    3436,
+                    3437,
+                    3438,
+                    3439,
+                    3444,
+                    3445,
+                    3446,
+                    3447,
+                    3464,
+                    3465,
+                    3466,
+                    3467,
+                    3468,
+                    3469,
+                    3470,
+                    3471
+                ],
+                "Lines": [
+                    "curve_secp256k1:",
+                    ".byte\t8",
+                    ".byte\t32",
+                    ".half\t256",
+                    ".word\t-2",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-2",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t-1",
+                    ".word\t7",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0",
+                    ".word\t0"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3767
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3768
+                ],
+                "Lines": [
+                    "sb\tzero,-37(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3899,
+                    3900
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-56(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4555,
+                    4557
+                ],
+                "Lines": [
+                    "li\ta5,0",
+                    "sw\ta5,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4584,
+                    4585
+                ],
+                "Lines": [
+                    "li\ta5,-1",
+                    "sw\ta5,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4598
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4695
+                ],
+                "Lines": [
+                    "sd\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4791
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4863
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4932
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5040
+                ],
+                "Lines": [
+                    "sd\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5180
+                ],
+                "Lines": [
+                    "sb\tzero,-17(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5623
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5706
+                ],
+                "Lines": [
+                    "sd\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5821,
+                    5822
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-64(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5891
+                ],
+                "Lines": [
+                    "sw\tzero,-80(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6025
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6098
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6125,
+                    6126
+                ],
+                "Lines": [
+                    "li\ta4,54",
+                    "sb\ta4,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6198
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6225,
+                    6226
+                ],
+                "Lines": [
+                    "li\ta4,92",
+                    "sb\ta4,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6342
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6348,
+                    6349
+                ],
+                "Lines": [
+                    "li\ta4,1",
+                    "sb\ta4,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6353
+                ],
+                "Lines": [
+                    "sb\tzero,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6372
+                ],
+                "Lines": [
+                    "sb\tzero,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6409,
+                    6410
+                ],
+                "Lines": [
+                    "li\ta4,1",
+                    "sb\ta4,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6438
+                ],
+                "Lines": [
+                    "sw\tzero,-20(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6443
+                ],
+                "Lines": [
+                    "sb\tzero,-25(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6449
+                ],
+                "Lines": [
+                    "sw\tzero,-24(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6491,
+                    6492
+                ],
+                "Lines": [
+                    "li\ta5,-1",
+                    "sw\ta5,-68(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6548
+                ],
+                "Lines": [
+                    "sb\tzero,0(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6647
+                ],
+                "Lines": [
+                    "sw\tzero,-216(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6655
+                ],
+                "Lines": [
+                    "sw\tzero,-472(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6663
+                ],
+                "Lines": [
+                    "sw\tzero,-504(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6771
+                ],
+                "Lines": [
+                    "sw\tzero,-56(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6870
+                ],
+                "Lines": [
+                    "sd\tzero,-408(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6957,
+                    6958
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "sw\ta5,-152(s0)"
+                ]
+            }
+        ]
+    },
+    "LoopCheck": {
+        "No_lines": 126,
+        "No_vulnerabilities": 41,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    100,
+                    101,
+                    102,
+                    107
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-41(s0)",
+                    "blt\ta4,a5,.L10"
+                ]
+            },
+            {
+                "Line_nos": [
+                    140,
+                    141,
+                    142,
+                    147
+                ],
+                "Lines": [
+                    "lbu\ta5,-21(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-41(s0)",
+                    "blt\ta4,a5,.L13"
+                ]
+            },
+            {
+                "Line_nos": [
+                    218,
+                    219
+                ],
+                "Lines": [
+                    "lw\ta5,0(a5)",
+                    "beq\ta5,zero,.L20"
+                ]
+            },
+            {
+                "Line_nos": [
+                    270,
+                    272
+                ],
+                "Lines": [
+                    "lw\ta5,-24(s0)",
+                    "bne\ta5,zero,.L26"
+                ]
+            },
+            {
+                "Line_nos": [
+                    325,
+                    326,
+                    327,
+                    332
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-49(s0)",
+                    "blt\ta4,a5,.L29"
+                ]
+            },
+            {
+                "Line_nos": [
+                    390,
+                    393
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "bge\ta5,zero,.L35"
+                ]
+            },
+            {
+                "Line_nos": [
+                    439,
+                    442
+                ],
+                "Lines": [
+                    "lbu\ta5,-21(s0)",
+                    "bge\ta5,zero,.L38"
+                ]
+            },
+            {
+                "Line_nos": [
+                    607,
+                    608,
+                    609,
+                    614
+                ],
+                "Lines": [
+                    "lbu\ta5,-21(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-57(s0)",
+                    "blt\ta4,a5,.L48"
+                ]
+            },
+            {
+                "Line_nos": [
+                    681,
+                    682,
+                    683,
+                    688
+                ],
+                "Lines": [
+                    "lbu\ta5,-21(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-57(s0)",
+                    "blt\ta4,a5,.L53"
+                ]
+            },
+            {
+                "Line_nos": [
+                    798,
+                    799,
+                    800,
+                    805
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-18(s0)",
+                    "ble\ta4,a5,.L59"
+                ]
+            },
+            {
+                "Line_nos": [
+                    822,
+                    823,
+                    824,
+                    829
+                ],
+                "Lines": [
+                    "lbu\ta5,-18(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-57(s0)",
+                    "blt\ta4,a5,.L60"
+                ]
+            },
+            {
+                "Line_nos": [
+                    868,
+                    869,
+                    870,
+                    875
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "mv\ta4,a5",
+                    "lbu\ta5,-57(s0)",
+                    "blt\ta4,a5,.L63"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1104,
+                    1105,
+                    1106,
+                    1108
+                ],
+                "Lines": [
+                    "lb\ta5,-233(s0)",
+                    "sext.w\ta4,a5",
+                    "lw\ta5,-36(s0)",
+                    "bltu\ta5,a4,.L75"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1257,
+                    1259
+                ],
+                "Lines": [
+                    "lh\ta5,-38(s0)",
+                    "bge\ta5,zero,.L81"
+                ]
+            },
+            {
+                "Line_nos": [
+                    1947,
+                    1948,
+                    1949,
+                    1950
+                ],
+                "Lines": [
+                    "lh\ta5,-18(s0)",
+                    "sext.w\ta4,a5",
+                    "li\ta5,1",
+                    "bgt\ta4,a5,.L109"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2083,
+                    2085
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L114"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2167,
+                    2169
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L119"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2335,
+                    2337
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L124"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2533,
+                    2534,
+                    2537
+                ],
+                "Lines": [
+                    "lh\ta4,-18(s0)",
+                    "lh\ta5,-82(s0)",
+                    "ble\ta4,a5,.L130"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2729,
+                    2730,
+                    2732,
+                    2733
+                ],
+                "Lines": [
+                    "lbu\ta5,-17(s0)",
+                    "slliw\ta4,a5,24",
+                    "li\ta5,6",
+                    "ble\ta4,a5,.L134"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2808,
+                    2809,
+                    2810,
+                    2811
+                ],
+                "Lines": [
+                    "lh\ta5,-18(s0)",
+                    "sext.w\ta4,a5",
+                    "li\ta5,95",
+                    "ble\ta4,a5,.L139"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2974,
+                    2976
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "blt\ta5,zero,.L143"
+                ]
+            },
+            {
+                "Line_nos": [
+                    2992,
+                    2994
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L146"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3387,
+                    3389
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "blt\ta5,zero,.L152"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3405,
+                    3407
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L155"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3734,
+                    3736
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "bne\ta5,zero,.L168"
+                ]
+            },
+            {
+                "Line_nos": [
+                    3798,
+                    3799,
+                    3801,
+                    3802
+                ],
+                "Lines": [
+                    "lbu\ta5,-37(s0)",
+                    "slliw\ta4,a5,24",
+                    "li\ta5,7",
+                    "ble\ta4,a5,.L173"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4340,
+                    4342
+                ],
+                "Lines": [
+                    "lh\ta5,-18(s0)",
+                    "bgt\ta5,zero,.L182"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4669,
+                    4670,
+                    4671,
+                    4672
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "sext.w\ta4,a5",
+                    "li\ta5,63",
+                    "bleu\ta4,a5,.L194"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4827,
+                    4828,
+                    4829,
+                    4832
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "mv\ta4,a5",
+                    "lw\ta5,-44(s0)",
+                    "blt\ta4,a5,.L203"
+                ]
+            },
+            {
+                "Line_nos": [
+                    4908,
+                    4909,
+                    4910,
+                    4913
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "mv\ta4,a5",
+                    "lw\ta5,-52(s0)",
+                    "blt\ta4,a5,.L206"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5012,
+                    5013,
+                    5014,
+                    5015
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "sext.w\ta4,a5",
+                    "li\ta5,63",
+                    "bleu\ta4,a5,.L212"
+                ]
+            },
+            {
+                "Line_nos": [
+                    5198,
+                    5199,
+                    5202
+                ],
+                "Lines": [
+                    "lb\ta4,1(a5)",
+                    "lbu\ta5,-17(s0)",
+                    "blt\ta5,a4,.L221"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6067,
+                    6068,
+                    6069,
+                    6070
+                ],
+                "Lines": [
+                    "lw\ta5,-20(s0)",
+                    "sext.w\ta4,a5",
+                    "li\ta5,63",
+                    "bleu\ta4,a5,.L263"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6116,
+                    6117,
+                    6119
+                ],
+                "Lines": [
+                    "lw\ta4,28(a5)",
+                    "lw\ta5,-20(s0)",
+                    "bltu\ta5,a4,.L267"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6132,
+                    6133,
+                    6135
+                ],
+                "Lines": [
+                    "lw\ta4,24(a5)",
+                    "lw\ta5,-20(s0)",
+                    "bltu\ta5,a4,.L269"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6216,
+                    6217,
+                    6219
+                ],
+                "Lines": [
+                    "lw\ta4,28(a5)",
+                    "lw\ta5,-20(s0)",
+                    "bltu\ta5,a4,.L273"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6232,
+                    6233,
+                    6235
+                ],
+                "Lines": [
+                    "lw\ta4,24(a5)",
+                    "lw\ta5,-20(s0)",
+                    "bltu\ta5,a4,.L275"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6359,
+                    6360,
+                    6362
+                ],
+                "Lines": [
+                    "lw\ta4,28(a5)",
+                    "lw\ta5,-24(s0)",
+                    "bltu\ta5,a4,.L279"
+                ]
+            },
+            {
+                "Line_nos": [
+                    6476,
+                    6477,
+                    6479
+                ],
+                "Lines": [
+                    "lw\ta4,28(a5)",
+                    "lw\ta5,-24(s0)",
+                    "bltu\ta5,a4,.L284"
+                ]
+            },
+            {
+                "Line_nos": [
+                    7060,
+                    7062
+                ],
+                "Lines": [
+                    "lh\ta5,-34(s0)",
+                    "bge\ta5,zero,.L307"
+                ]
+            }
+        ]
+    }
+}

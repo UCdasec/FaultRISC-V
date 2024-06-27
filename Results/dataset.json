@@ -1204,6 +1204,16 @@
         },
         {
           "Line_nos": [
+            91,
+            92
+          ],
+          "Lines": [
+            "li\ta5,70",
+            "beq\ta4,a5,.L9"
+          ]
+        },
+        {
+          "Line_nos": [
             122,
             123
           ],
@@ -11659,58 +11669,24 @@
         },
         {
           "Line_nos": [
-            1968
-          ],
-          "Lines": [
-            ".byte 5"
-          ]
-        },
-        {
-          "Line_nos": [
-            1969
-          ],
-          "Lines": [
-            ".byte 20"
-          ]
-        },
-        {
-          "Line_nos": [
-            1970
-          ],
-          "Lines": [
-            ".half 161"
-          ]
-        },
-        {
-          "Line_nos": [
-            1972
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            1973
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            1974
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
+            1967,
+            1968,
+            1969,
+            1970,
+            1972,
+            1973,
+            1974,
             1975
           ],
           "Lines": [
-            ".word -1"
+            "curve_secp160r1:",
+            ".byte\t5",
+            ".byte\t20",
+            ".half\t161",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1"
           ]
         },
         {
@@ -11749,74 +11725,28 @@
         },
         {
           "Line_nos": [
-            2182
-          ],
-          "Lines": [
-            ".byte 6"
-          ]
-        },
-        {
-          "Line_nos": [
-            2183
-          ],
-          "Lines": [
-            ".byte 24"
-          ]
-        },
-        {
-          "Line_nos": [
-            2184
-          ],
-          "Lines": [
-            ".half 192"
-          ]
-        },
-        {
-          "Line_nos": [
-            2185
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2186
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2187
-          ],
-          "Lines": [
-            ".word -2"
-          ]
-        },
-        {
-          "Line_nos": [
-            2188
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2189
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
+            2181,
+            2182,
+            2183,
+            2184,
+            2185,
+            2186,
+            2187,
+            2188,
+            2189,
             2190
           ],
           "Lines": [
-            ".word -1"
+            "curve_secp192r1:",
+            ".byte\t6",
+            ".byte\t24",
+            ".half\t192",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-2",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1"
           ]
         },
         {
@@ -11861,82 +11791,30 @@
         },
         {
           "Line_nos": [
-            2359
-          ],
-          "Lines": [
-            ".byte 7"
-          ]
-        },
-        {
-          "Line_nos": [
-            2360
-          ],
-          "Lines": [
-            ".byte 28"
-          ]
-        },
-        {
-          "Line_nos": [
-            2361
-          ],
-          "Lines": [
-            ".half 224"
-          ]
-        },
-        {
-          "Line_nos": [
-            2362
-          ],
-          "Lines": [
-            ".word 1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2363
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            2364
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            2365
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2366
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            2367
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
+            2358,
+            2359,
+            2360,
+            2361,
+            2362,
+            2363,
+            2364,
+            2365,
+            2366,
+            2367,
             2368
           ],
           "Lines": [
-            ".word -1"
+            "curve_secp224r1:",
+            ".byte\t7",
+            ".byte\t28",
+            ".half\t224",
+            ".word\t1",
+            ".word\t0",
+            ".word\t0",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1"
           ]
         },
         {
@@ -12069,122 +11947,40 @@
         },
         {
           "Line_nos": [
-            3016
-          ],
-          "Lines": [
-            ".byte 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            3017
-          ],
-          "Lines": [
-            ".byte 32"
-          ]
-        },
-        {
-          "Line_nos": [
-            3018
-          ],
-          "Lines": [
-            ".half 256"
-          ]
-        },
-        {
-          "Line_nos": [
-            3019
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3020
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3021
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3022
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3023
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3024
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3025
-          ],
-          "Lines": [
-            ".word 1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3026
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3031
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3032
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3033
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
+            3015,
+            3016,
+            3017,
+            3018,
+            3019,
+            3020,
+            3021,
+            3022,
+            3023,
+            3024,
+            3025,
+            3026,
+            3031,
+            3032,
+            3033,
             3034
           ],
           "Lines": [
-            ".word -1"
+            "curve_secp256r1:",
+            ".byte\t8",
+            ".byte\t32",
+            ".half\t256",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0",
+            ".word\t1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t0",
+            ".word\t-1"
           ]
         },
         {
@@ -12253,178 +12049,54 @@
         },
         {
           "Line_nos": [
-            3429
-          ],
-          "Lines": [
-            ".byte 8"
-          ]
-        },
-        {
-          "Line_nos": [
-            3430
-          ],
-          "Lines": [
-            ".byte 32"
-          ]
-        },
-        {
-          "Line_nos": [
-            3431
-          ],
-          "Lines": [
-            ".half 256"
-          ]
-        },
-        {
-          "Line_nos": [
-            3433
-          ],
-          "Lines": [
-            ".word -2"
-          ]
-        },
-        {
-          "Line_nos": [
-            3434
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3435
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3436
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3437
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3438
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3439
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3444
-          ],
-          "Lines": [
-            ".word -2"
-          ]
-        },
-        {
-          "Line_nos": [
-            3445
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3446
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3447
-          ],
-          "Lines": [
-            ".word -1"
-          ]
-        },
-        {
-          "Line_nos": [
-            3464
-          ],
-          "Lines": [
-            ".word 7"
-          ]
-        },
-        {
-          "Line_nos": [
-            3465
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3466
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3467
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3468
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3469
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
-            3470
-          ],
-          "Lines": [
-            ".word 0"
-          ]
-        },
-        {
-          "Line_nos": [
+            3428,
+            3429,
+            3430,
+            3431,
+            3433,
+            3434,
+            3435,
+            3436,
+            3437,
+            3438,
+            3439,
+            3444,
+            3445,
+            3446,
+            3447,
+            3464,
+            3465,
+            3466,
+            3467,
+            3468,
+            3469,
+            3470,
             3471
           ],
           "Lines": [
-            ".word 0"
+            "curve_secp256k1:",
+            ".byte\t8",
+            ".byte\t32",
+            ".half\t256",
+            ".word\t-2",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-2",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t-1",
+            ".word\t7",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0",
+            ".word\t0"
           ]
         },
         {

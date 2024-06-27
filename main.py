@@ -12,7 +12,7 @@ def instruction_to_str(vulnerable_lines: list):
     '''
     str_vulnerables = []
     for vulnerability in vulnerable_lines:
-        vulnerability = list(filter(lambda line: isinstance(line, Instruction) or isinstance(line, Attribute), vulnerability))
+        vulnerability = list(filter(lambda line: isinstance(line, Instruction) or isinstance(line, Attribute) or isinstance(line, GlobalVariable), vulnerability))
         str_vulnerability = {
             'Line_nos': [line.line_no for line in vulnerability],
             'Lines': [line.line_text for line in vulnerability]
@@ -30,12 +30,10 @@ def calc_no_vulnerable_lines(*detectors):
     '''
     all_vulnerable_lines = []
     for detector in detectors:
-        dvulnerable_lines = [dline for dvulnerables in detector.vulnerable_lines for dline in dvulnerables]
-        for dline in dvulnerable_lines:
-            if isinstance(dline, Instruction) and not any(dline.line_no == vline.line_no for vline in all_vulnerable_lines):
-                all_vulnerable_lines.append(dline)
+        all_vulnerable_lines = all_vulnerable_lines + [line.line_no for vulnerables in detector.vulnerable_lines for line in vulnerables
+                                                       if isinstance(line, Instruction) or isinstance(line, Attribute)]
 
-    return len(all_vulnerable_lines)
+    return len(set(all_vulnerable_lines))
 
 def analyze_program(program: Program):
     '''
