@@ -2,10 +2,10 @@
 
 int main(int argc, char** argv) {
     switch (argc) {
-    case 0: printf("Impossible"); break;
-    case 1: printf("Too few args"); break;
-    case 2: printf("Correct number of args"); break;
-    default: printf("Default"); break;
+        case 0: printf("Impossible"); break;
+        case 1: printf("Too few args"); break;
+        case 2: printf("Correct number of args"); break;
+        default: printf("Default"); break;
     }
 
     if (argv[0] == "main.c") {

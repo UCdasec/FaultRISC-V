@@ -332,9 +332,6 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
-                ],
-                [
-                    'nop'
                 ]
             ]
         ],
@@ -345,9 +342,6 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
-                ],
-                [
-                    'nop'
                 ]
             ]
         ],
@@ -358,9 +352,6 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
-                ],
-                [
-                    'nop'
                 ]
             ]
         ]
