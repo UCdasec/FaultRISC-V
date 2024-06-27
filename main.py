@@ -64,6 +64,7 @@ def analyze_program(program: Program):
 
         elif isinstance(line, Location):
             LoopCheck_detector.checkInstruction(line)
+            Bypass_detector.checkInstruction(line)
 
 
     Branch_detector.printAllVulnerable('Branch')

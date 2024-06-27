@@ -91,7 +91,7 @@ class ConstantCoding(Pattern):
                                 self.detection_cache.append(var)
 
                         self.vulnerable_lines.append(self.detection_cache.copy())
-                        self.no_vulnerable += sum(var != '__IGNORE_LINE__' for var in line.variable_values)
+                        self.no_vulnerable += 1
                         self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' for line in self.detection_cache])
                         self.detection_cache.clear()
 
