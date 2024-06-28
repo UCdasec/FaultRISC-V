@@ -256,7 +256,6 @@ def update_analyses(asm_file):
 
     cur_file_analysis['Bypass']['No_lines'] = asm_file['Bypass']['No_lines']
     cur_file_analysis['Bypass']['No_vulnerabilities'] = asm_file['Bypass']['No_vulnerabilities']
-    # cur_file_analysis['Bypass']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['Bypass']['Vulnerabilities']])
     cur_file_analysis['Bypass']['Ground_truth']['No_vulnerable_lines'] = len(set([line_no for fault in dataset_file['Bypass']['Vulnerabilities'] for line_no in fault['Line_nos']]))
     cur_file_analysis['Bypass']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['Bypass']['Vulnerabilities'])
 

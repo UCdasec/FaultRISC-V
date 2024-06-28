@@ -10604,13 +10604,11 @@
           "Line_nos": [
             470,
             471,
-            472,
             473
           ],
           "Lines": [
             "call uECC_vli_sub",
             "mv a5,a0",
-            "sext.w a5,a5",
             "snez a5,a5"
           ]
         },
@@ -10619,14 +10617,12 @@
             945,
             946,
             947,
-            948,
             949
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L68"
           ]
         },
@@ -10634,13 +10630,11 @@
           "Line_nos": [
             1432,
             1433,
-            1434,
             1435
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L90"
           ]
         },
@@ -10672,13 +10666,11 @@
           "Line_nos": [
             1634,
             1635,
-            1636,
             1637
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L104"
           ]
         },
@@ -10686,13 +10678,11 @@
           "Line_nos": [
             1712,
             1713,
-            1714,
             1715
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L102"
           ]
         },
@@ -10700,13 +10690,11 @@
           "Line_nos": [
             1929,
             1930,
-            1931,
             1932
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L108"
           ]
         },
@@ -10727,14 +10715,12 @@
             2342,
             2343,
             2344,
-            2345,
             2346
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L124"
           ]
         },
@@ -10742,13 +10728,11 @@
           "Line_nos": [
             2796,
             2797,
-            2798,
             2799
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L140"
           ]
         },
@@ -10757,14 +10741,12 @@
             2999,
             3000,
             3001,
-            3002,
             3003
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L146"
           ]
         },
@@ -10773,14 +10755,12 @@
             3412,
             3413,
             3414,
-            3415,
             3416
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L155"
           ]
         },
@@ -10788,13 +10768,11 @@
           "Line_nos": [
             3505,
             3506,
-            3507,
             3508
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L164"
           ]
         },
@@ -10802,13 +10780,11 @@
           "Line_nos": [
             3554,
             3555,
-            3556,
             3557
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L162"
           ]
         },
@@ -10828,13 +10804,11 @@
           "Line_nos": [
             4270,
             4271,
-            4272,
             4273
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "seqz a5,a5"
           ]
         },
@@ -10842,13 +10816,11 @@
           "Line_nos": [
             4345,
             4346,
-            4347,
             4348
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "seqz a5,a5"
           ]
         },
@@ -10856,13 +10828,11 @@
           "Line_nos": [
             4533,
             4534,
-            4535,
             4536
           ],
           "Lines": [
             "call uECC_vli_add",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L184"
           ]
         },
@@ -10870,13 +10840,11 @@
           "Line_nos": [
             4547,
             4548,
-            4549,
             4550
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L185"
           ]
         },
@@ -10884,13 +10852,11 @@
           "Line_nos": [
             4649,
             4650,
-            4651,
             4652
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L193"
           ]
         },
@@ -10899,14 +10865,12 @@
             4657,
             4658,
             4659,
-            4660,
             4661
           ],
           "Lines": [
             "call uECC_vli_cmp",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L193"
           ]
         },
@@ -10923,11 +10887,26 @@
           ]
         },
         {
-          "Line_nos": [],
+          "Line_nos": [
+            4766,
+            4767,
+            4769
+          ],
+          "Lines": [
+            "call\tuECC_vli_isZero",
+            "mv\ta5,a0",
+            "beq\ta5,zero,.L199"
+          ]
+        },
+        {
+          "Line_nos": [
+            4766,
+            4767,
+            4769
+          ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L199"
           ]
         },
@@ -10947,13 +10926,11 @@
           "Line_nos": [
             4963,
             4964,
-            4965,
             4966
           ],
           "Lines": [
             "call EccPoint_compute_public_key",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L211"
           ]
         },
@@ -10973,13 +10950,11 @@
           "Line_nos": [
             5157,
             5158,
-            5159,
             5160
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "seqz a5,a5"
           ]
         },
@@ -10987,13 +10962,11 @@
           "Line_nos": [
             5327,
             5328,
-            5329,
             5330
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L225"
           ]
         },
@@ -11002,14 +10975,12 @@
             5340,
             5341,
             5342,
-            5343,
             5344
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L227"
           ]
         },
@@ -11018,14 +10989,12 @@
             5355,
             5356,
             5357,
-            5358,
             5359
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L228"
           ]
         },
@@ -11033,13 +11002,11 @@
           "Line_nos": [
             5481,
             5482,
-            5483,
             5484
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L233"
           ]
         },
@@ -11048,14 +11015,12 @@
             5505,
             5506,
             5507,
-            5508,
             5509
           ],
           "Lines": [
             "call uECC_vli_cmp",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L235"
           ]
         },
@@ -11063,13 +11028,11 @@
           "Line_nos": [
             5518,
             5519,
-            5520,
             5521
           ],
           "Lines": [
             "call EccPoint_compute_public_key",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L236"
           ]
         },
@@ -11078,14 +11041,12 @@
             5664,
             5665,
             5666,
-            5667,
             5668
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L238"
           ]
         },
@@ -11093,13 +11054,11 @@
           "Line_nos": [
             5726,
             5727,
-            5728,
             5729
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L246"
           ]
         },
@@ -11108,14 +11067,12 @@
             5736,
             5737,
             5738,
-            5739,
             5740
           ],
           "Lines": [
             "call uECC_vli_cmp",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L247"
           ]
         },
@@ -11135,13 +11092,11 @@
           "Line_nos": [
             5806,
             5807,
-            5808,
             5809
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L251"
           ]
         },
@@ -11197,13 +11152,11 @@
           "Line_nos": [
             6712,
             6713,
-            6714,
             6715
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "bne a5,zero,.L296"
           ]
         },
@@ -11211,13 +11164,11 @@
           "Line_nos": [
             6720,
             6721,
-            6722,
             6723
           ],
           "Lines": [
             "call uECC_vli_isZero",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L297"
           ]
         },
@@ -11226,14 +11177,12 @@
             6735,
             6736,
             6737,
-            6738,
             6739
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "bne a4,a5,.L299"
           ]
         },
@@ -11242,14 +11191,12 @@
             6747,
             6748,
             6749,
-            6750,
             6751
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L300"
           ]
         },
@@ -11257,13 +11204,11 @@
           "Line_nos": [
             6905,
             6906,
-            6907,
             6908
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "snez a5,a5"
           ]
         },
@@ -11271,13 +11216,11 @@
           "Line_nos": [
             6920,
             6921,
-            6922,
             6923
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L301"
           ]
         },
@@ -11285,13 +11228,11 @@
           "Line_nos": [
             6978,
             6979,
-            6980,
             6981
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "snez a5,a5"
           ]
         },
@@ -11299,13 +11240,11 @@
           "Line_nos": [
             6988,
             6989,
-            6990,
             6991
           ],
           "Lines": [
             "call uECC_vli_testBit",
             "mv a5,a0",
-            "sext.w a5,a5",
             "beq a5,zero,.L304"
           ]
         },
@@ -11314,14 +11253,12 @@
             7085,
             7086,
             7087,
-            7088,
             7089
           ],
           "Lines": [
             "call uECC_vli_cmp_unsafe",
             "mv a5,a0",
             "mv a4,a5",
-            "li a5,1",
             "beq a4,a5,.L308"
           ]
         }

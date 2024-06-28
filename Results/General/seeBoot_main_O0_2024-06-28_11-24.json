@@ -1,0 +1,495 @@
+{
+    "Program_name": "seeBoot_main_O0.s",
+    "Optimization_level": "O0",
+    "No_lines": 728,
+    "No_vulnerable_lines": 75,
+    "No_vulnerabilities": 48,
+    "Branch": {
+        "No_lines": 37,
+        "No_vulnerabilities": 26,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    134
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L2"
+                ]
+            },
+            {
+                "Line_nos": [
+                    160
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L3"
+                ]
+            },
+            {
+                "Line_nos": [
+                    193
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L32"
+                ]
+            },
+            {
+                "Line_nos": [
+                    202
+                ],
+                "Lines": [
+                    "bgt\ta5,zero,.L6"
+                ]
+            },
+            {
+                "Line_nos": [
+                    220
+                ],
+                "Lines": [
+                    "bgt\ta5,zero,.L7"
+                ]
+            },
+            {
+                "Line_nos": [
+                    223
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L7"
+                ]
+            },
+            {
+                "Line_nos": [
+                    248,
+                    249
+                ],
+                "Lines": [
+                    "li\ta5,-1",
+                    "bne\ta4,a5,.L9"
+                ]
+            },
+            {
+                "Line_nos": [
+                    258,
+                    259
+                ],
+                "Lines": [
+                    "li\ta5,98",
+                    "bne\ta4,a5,.L10"
+                ]
+            },
+            {
+                "Line_nos": [
+                    269
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L11"
+                ]
+            },
+            {
+                "Line_nos": [
+                    278
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L8"
+                ]
+            },
+            {
+                "Line_nos": [
+                    286,
+                    287
+                ],
+                "Lines": [
+                    "li\ta5,101",
+                    "bne\ta4,a5,.L14"
+                ]
+            },
+            {
+                "Line_nos": [
+                    295,
+                    296
+                ],
+                "Lines": [
+                    "li\ta5,112",
+                    "bne\ta4,a5,.L15"
+                ]
+            },
+            {
+                "Line_nos": [
+                    300,
+                    301
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L16"
+                ]
+            },
+            {
+                "Line_nos": [
+                    307,
+                    308
+                ],
+                "Lines": [
+                    "li\ta5,160",
+                    "beq\ta4,a5,.L17"
+                ]
+            },
+            {
+                "Line_nos": [
+                    398
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L21"
+                ]
+            },
+            {
+                "Line_nos": [
+                    413,
+                    414
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L23"
+                ]
+            },
+            {
+                "Line_nos": [
+                    420,
+                    421
+                ],
+                "Lines": [
+                    "li\ta5,160",
+                    "beq\ta4,a5,.L24"
+                ]
+            },
+            {
+                "Line_nos": [
+                    511
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L28"
+                ]
+            },
+            {
+                "Line_nos": [
+                    522
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L30"
+                ]
+            },
+            {
+                "Line_nos": [
+                    634,
+                    635
+                ],
+                "Lines": [
+                    "li\ta5,-1",
+                    "bne\ta4,a5,.L40"
+                ]
+            },
+            {
+                "Line_nos": [
+                    641,
+                    642
+                ],
+                "Lines": [
+                    "li\ta5,105",
+                    "beq\ta4,a5,.L41"
+                ]
+            },
+            {
+                "Line_nos": [
+                    649,
+                    650
+                ],
+                "Lines": [
+                    "li\ta5,1",
+                    "bne\ta4,a5,.L42"
+                ]
+            },
+            {
+                "Line_nos": [
+                    658
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L43"
+                ]
+            },
+            {
+                "Line_nos": [
+                    670
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L45"
+                ]
+            },
+            {
+                "Line_nos": [
+                    695
+                ],
+                "Lines": [
+                    "bne\ta5,zero,.L47"
+                ]
+            },
+            {
+                "Line_nos": [
+                    710
+                ],
+                "Lines": [
+                    "beq\ta5,zero,.L49"
+                ]
+            }
+        ]
+    },
+    "Bypass": {
+        "No_lines": 35,
+        "No_vulnerabilities": 11,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    131,
+                    132,
+                    134
+                ],
+                "Lines": [
+                    "call\ttimerGet",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L2"
+                ]
+            },
+            {
+                "Line_nos": [
+                    191,
+                    192,
+                    193
+                ],
+                "Lines": [
+                    "call\t__waitPINCommand",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L32"
+                ]
+            },
+            {
+                "Line_nos": [
+                    245,
+                    246,
+                    249
+                ],
+                "Lines": [
+                    "call\t__waitBootCommand",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L9"
+                ]
+            },
+            {
+                "Line_nos": [
+                    305,
+                    306,
+                    308
+                ],
+                "Lines": [
+                    "call\tstrlen",
+                    "mv\ta4,a0",
+                    "beq\ta4,a5,.L17"
+                ]
+            },
+            {
+                "Line_nos": [
+                    396,
+                    397,
+                    398
+                ],
+                "Lines": [
+                    "call\tflashWriteAddress",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L21"
+                ]
+            },
+            {
+                "Line_nos": [
+                    418,
+                    419,
+                    421
+                ],
+                "Lines": [
+                    "call\tstrlen",
+                    "mv\ta4,a0",
+                    "beq\ta4,a5,.L24"
+                ]
+            },
+            {
+                "Line_nos": [
+                    509,
+                    510,
+                    511
+                ],
+                "Lines": [
+                    "call\tflashVerifyAddress",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L28"
+                ]
+            },
+            {
+                "Line_nos": [
+                    519,
+                    520,
+                    522
+                ],
+                "Lines": [
+                    "call\ttimerGet",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L30"
+                ]
+            },
+            {
+                "Line_nos": [
+                    631,
+                    632,
+                    635
+                ],
+                "Lines": [
+                    "call\t__waitBootCommand",
+                    "mv\ta5,a0",
+                    "bne\ta4,a5,.L40"
+                ]
+            },
+            {
+                "Line_nos": [
+                    656,
+                    657,
+                    658
+                ],
+                "Lines": [
+                    "call\tstrcmp",
+                    "mv\ta5,a0",
+                    "beq\ta5,zero,.L43"
+                ]
+            },
+            {
+                "Line_nos": [
+                    667,
+                    668,
+                    670
+                ],
+                "Lines": [
+                    "call\ttimerGet",
+                    "mv\ta5,a0",
+                    "bne\ta5,zero,.L45"
+                ]
+            }
+        ]
+    },
+    "ConstantCoding": {
+        "No_lines": 16,
+        "No_vulnerabilities": 10,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    25,
+                    26
+                ],
+                "Lines": [
+                    "bootable:",
+                    ".word\t-1"
+                ]
+            },
+            {
+                "Line_nos": [
+                    171,
+                    172
+                ],
+                "Lines": [
+                    "li\ta4,5",
+                    "sw\ta4,%lo(bootTimeout)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    174,
+                    175
+                ],
+                "Lines": [
+                    "li\ta5,120",
+                    "sh\ta5,-48(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    206,
+                    207
+                ],
+                "Lines": [
+                    "li\ta4,-1",
+                    "sw\ta4,%lo(bootTimeout)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    313
+                ],
+                "Lines": [
+                    "sw\tzero,-36(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    426
+                ],
+                "Lines": [
+                    "sw\tzero,-40(s0)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    688,
+                    689
+                ],
+                "Lines": [
+                    "li\ta4,-1",
+                    "sw\ta4,%lo(cmdArgCnt)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    691
+                ],
+                "Lines": [
+                    "sd\tzero,%lo(cmdArgStr)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    700
+                ],
+                "Lines": [
+                    "sw\tzero,%lo(cmdArgCnt)(a5)"
+                ]
+            },
+            {
+                "Line_nos": [
+                    715,
+                    716
+                ],
+                "Lines": [
+                    "li\ta4,1",
+                    "sw\ta4,%lo(cmdArgCnt)(a5)"
+                ]
+            }
+        ]
+    },
+    "LoopCheck": {
+        "No_lines": 2,
+        "No_vulnerabilities": 1,
+        "Vulnerabilities": [
+            {
+                "Line_nos": [
+                    201,
+                    202
+                ],
+                "Lines": [
+                    "lw\ta5,%lo(bootTimeout)(a5)",
+                    "bgt\ta5,zero,.L6"
+                ]
+            }
+        ]
+    }
+}

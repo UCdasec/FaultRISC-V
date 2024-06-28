@@ -243,7 +243,7 @@ class Bypass(Pattern):
                                                 has_matching_register = True
 
                             if line_pattern_match and has_matching_register:  # Optional line present
-                                cache.detection_cache.append('__OPTIONAL__')
+                                cache.detection_cache.append(line)
                                 line_no += 1
 
                             else:   # Remove optional line from pattern
