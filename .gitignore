@@ -51,3 +51,6 @@ docs/_build/
 
 # Visual Studio cache/options directory
 .vs/
+
+# Other extensions (misc)
+*.xlsx

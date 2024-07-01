@@ -374,8 +374,8 @@ with open(latest_report_file, 'r') as report_file:
     report_data = json.load(report_file)
 
 # dataset holds ground truth
-# with open ('dataset.json', 'r') as dataset_file:
-with open ('Results/dataset.json', 'r') as dataset_file:
+# with open ('ground_truth.json', 'r') as dataset_file:
+with open ('Results/ground_truth.json', 'r') as dataset_file:
     dataset = json.load(dataset_file)
 
 for asm_file in report_data:
