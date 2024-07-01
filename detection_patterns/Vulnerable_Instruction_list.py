@@ -328,7 +328,7 @@ vulnerable_instruction_list = {
         OptimizationLevel.O0: [
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
                     'j', {Label}
@@ -338,7 +338,7 @@ vulnerable_instruction_list = {
         OptimizationLevel.O1: [
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
                     'j', {Label}
@@ -348,7 +348,7 @@ vulnerable_instruction_list = {
         OptimizationLevel.O2: [
             [
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
                     'j', {Label}

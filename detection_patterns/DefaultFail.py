@@ -1,3 +1,4 @@
+from hmac import new
 from .Pattern import *
 from .Vulnerable_Instruction_list import vulnerable_instruction_list
 
@@ -10,17 +11,14 @@ class DefaultFail(Pattern):
         self.vulnerable_instruction_set = (
             vulnerable_instruction_list)['DefaultFail'][optimization_level]  # The vulnerable pattern set to look for
         self.detection_cache = []           # Stores all of the branch instructions in the current branching pattern
-        self.branch_cache = []              # Stores all of the branch instructions in the current location
         self.branches_needing_conv = []     # Stores all of the branch instructions whose convergence point has not been identified, to be used as FILO stack
-        #self.convergence_points = set()     # Stores all of the convergence points that have not been reached
-        #self.potential_conv_point = ""      # Holds the location of a potential convergence point
         self.encountered_labels = set()     # Stores all of the locations that have been reached
         self.branch_locations = []          # Stores all of the locations that branches go to, i.e. .L2 for bne a4,a5,.L2
         self.current_location = ""          # Stores the name of the current location
-        self.location_blank = False         # Flag to indicate if a location was blank (rare switch statement case)
         self.last_was_branch = False        # Flag to indicate if the last instruction was a branch
-        self.loop_present = False           # Flag to indicate if a loop is present in the current location
-        self.at_convergence_point = False   # Flag to indicate if the current location is a convergence point
+        self.last_was_jump = False          # Flag to indicate if the last instruction was a jump
+        self.branch_present = False         # Flag to indicate if a branch has been found in the current location
+        self.last_branch_location = ""      # Stores the location that the last branch statement pointed to
 
     def checkInstruction(self, line: Instruction):
         """
@@ -49,50 +47,44 @@ class DefaultFail(Pattern):
         3. 'nop' Instructions:
             These are found at the end of every switch statement, keep track of them to help analyze
         """
-        self.location_blank = False
         self.last_was_branch = False
+        self.last_was_jump = False
         line_type = line.type
         
         for instruction_set in self.vulnerable_instruction_set:
             if line_type in instruction_set[0][0]:  #Branch instruction
                 self.last_was_branch = True
+                self.branch_present = True
                 location = line.args[-1].arg_text
-                if location in self.encountered_labels: #This branch is a loop
-                    self.loop_present = True
-                else:   #This is not a loop
-                    self.branch_cache.append(line)
-                    self.detection_cache.append(line)
+                if not location in self.encountered_labels: #Ensure that it isn't a loop
                     self.branch_locations.append(location)
-                    if (len(self.branches_needing_conv) == 0 or (self.branches_needing_conv[-1] != location and \
-                                                                 self.branches_needing_conv[-1] != self.current_location)):
+                    if len(self.branches_needing_conv) == 0 or self.last_branch_location != self.current_location: #indicates else if
                         self.branches_needing_conv.append(location)
-                        print(f"adding branch to {location}")
+                        self.detection_cache.append([])
+                    self.detection_cache[-1].append(line)
+                    self.last_branch_location = location
 
             elif line_type in instruction_set[1][0]:    #'j' instruction
-                self.last_was_branch = True
                 location = line.args[-1].arg_text
-                if len(self.branch_cache) == 0:
+                self.last_was_jump = True
+                if not self.branch_present:
                     if not self.current_location in self.branch_locations:
                         self.branches_needing_conv.append(location)
+                        self.detection_cache.append([])
                     else:
                         self.branch_locations.append(location)
                 
                 #replace all references to the current location with the next location
                 self.branches_needing_conv = [location if item == self.current_location else item for item in self.branches_needing_conv]
-                #KEEP THE FOLLOWING, DIFFICULT TO DETERMINE ORIGINALLY
-                #if not location in self.convergence_points and (len(self.branch_cache) > 0 or self.loop_present):
-                #    self.potential_conv_point = location
-                #elif len(self.branch_cache) == 0 and not self.at_convergence_point: #not self.last_was_convergence and
-                #    self.branch_locations.append(location)
                 
     def addFunction(self, line: Function):
         self.encountered_labels.add(line.function_name)
         self.current_location = line.function_name
-        self.branch_cache.clear()
-        self.at_convergence_point = False
+        self.branch_present = False
         self.branch_locations.clear()
+        self.branch_locations.append(self.current_location)
+        self.last_branch_location = ""
         self.detection_cache.clear()
-        #self.convergence_points.clear()
     
     def addLocation(self, line: Location):
         new_location = f".{line.location_name}"
@@ -100,62 +92,52 @@ class DefaultFail(Pattern):
         
         if new_location[2] == 'C': #This is memory, no need to handle it
             return
-            
-        if not self.last_was_branch:# and self.branch_locations.count(previous_location) > 0: #If this works, there is no need for the above, or last_was_nop at all
-            location_present = new_location in self.branch_locations
-            print(location_present)
-            self.branch_locations.append(new_location) #and could probably find a way out of the rare loop below
-            self.branches_needing_conv = [new_location if item == previous_location else item for item in self.branches_needing_conv]
-            if location_present:
-                self.checkConvergencePoint(new_location)
+        
+        if self.last_was_branch: #The last statement was a branch, so this is part of an 'or' in an if statement
+            self.branches_needing_conv.pop()
+            self.detection_cache[-2].extend(self.detection_cache[-1])
 
-        """print(f"len: {len(self.branches_needing_conv)}")
-        if not self.last_was_branch and len(self.branches_needing_conv) > 0:
-            self.convergence_points.add(new_location)
-            if new_location == ".L2":
-                print("Added .L2 from needs_convergence")
-        
-        if new_location in self.branch_locations and self.potential_conv_point != "": #not a loop, can add the potential convergence point
-            self.convergence_points.add(self.potential_conv_point)
-            
-        self.potential_conv_point = """""
-        
-        #while len(self.branches_needing_conv) > 0 and self.branches_needing_conv[-1].args[-1].arg_text == new_location:
-        #    self.branches_needing_conv.pop()
-        
-        """self.at_convergence_point = False
-        if new_location in self.convergence_points:    
-            self.at_convergence_point = True
-            self.checkConvergencePoint(new_location)"""   
-            
-        """#this handles rare switch statement case where there are two consecutive labels
-        if self.location_blank:
-            self.branch_locations.append(new_location) #add one for the transition from one to the next
-            while previous_location in self.branch_locations:
-                self.branch_locations.remove(previous_location)
-                self.branch_locations.append(new_location)"""
-        
-        self.encountered_labels.add(new_location)
+        if not self.last_was_jump and not self.last_was_branch: #This is a convergence point
+            self.branch_locations.append(new_location)
+            self.branches_needing_conv = [new_location if item == previous_location else item for item in self.branches_needing_conv]
+            self.checkConvergencePoint(new_location)
+
         self.current_location = new_location
+        self.encountered_labels.add(new_location)
         
         if not self.last_was_branch:
-            self.branch_cache.clear()
+            self.branch_present = False
 
-        self.location_blank = True
         self.loop_present = False
                     
     def checkConvergencePoint(self, location):
+        """
+        When you reach a convergence point, if there are one more branches leading to that convergence point that its depth,
+        it is secure. If there are the same number of branches leading to it as the depth, then it is vulnerable.
+        """
+        #First remove every branch that needs a convergence point that is guaranteed to be covered
         count = self.branch_locations.count(location)
-        print(f"At location {location}, count is {count}")
-        #pop off one for each that you know it covers? figure out what the right comp is, check out the n vs n+1 branches.
-        #if count - 1 == len(self.branches_needing_conv):
         while count - 1 > 0:
-            self.branches_needing_conv.pop()
+            if self.branches_needing_conv:
+                self.branches_needing_conv.pop()
+                self.detection_cache.pop()
             count -= 1
-        if len(self.branches_needing_conv) > 0 and self.branches_needing_conv[-1] == location:
+            
+        if self.detection_cache: #Get the last index so that as lines are popped off the stack they get put back in order
+            end_of_list = len(self.vulnerable_lines)
+        else:
+            end_of_list = 0
+            
+        #Then, if there are more branches that should lead to this point, mark the appropriate lines as vulnerable
+        while self.branches_needing_conv and (self.branches_needing_conv[-1] == location \
+                                                or self.branches_needing_conv[-1] in self.encountered_labels):
             self.no_vulnerable += 1
-            self.vulnerable_lines.append(self.detection_cache.copy())
-            self.no_vulnerable_lines += len(self.detection_cache)
-            self.detection_cache.clear() #TODO: this isn't quite right...
+            self.vulnerable_lines.insert(end_of_list, self.detection_cache[-1].copy())
+            self.no_vulnerable_lines += len(self.detection_cache[-1])
+            self.detection_cache.pop()
             self.branches_needing_conv.pop()
+        if len(self.branches_needing_conv) > 0:
+            self.last_branch_location = self.branches_needing_conv[-1] #To account for else ifs
+        else:
+            self.last_branch_location = ""            
             
