@@ -14024,6 +14024,14 @@
                     "Lines": [
                         "bne\ts0,s1,.L38"
                     ]
+                },
+                {
+                    "Line_nos": [
+                        1300
+                    ],
+                    "Lines": [
+                        "bleu\ta0,a5,.L140"
+                    ]
                 }
             ]
         }
@@ -15729,70 +15737,10 @@
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        24,
-                        25,
-                        26
-                    ],
-                    "Lines": [
-                        "lbu\ta3,0(a3)",
-                        "lbu\ta4,0(a4)",
-                        "beq a3,a4,.L3"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        69,
-                        70,
-                        71
-                    ],
-                    "Lines": [
-                        "lbu\ta2,0(a4)",
-                        "lbu\ta3,0(a5)",
-                        "beq a2,a3,.L11"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         96
                     ],
                     "Lines": [
                         "bne\ta5,a2,.L14"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        144,
-                        145,
-                        146
-                    ],
-                    "Lines": [
-                        "lbu\ta3,0(a3)",
-                        "lbu\ta4,0(a4)",
-                        "beq\ta3,a4,.L28"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        169,
-                        170,
-                        171
-                    ],
-                    "Lines": [
-                        "lbu\ta3,0(a3)",
-                        "lbu\ta4,0(a4)",
-                        "beq a3,a4,.L32"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        229,
-                        230,
-                        231
-                    ],
-                    "Lines": [
-                        "lbu\ta3,0(a3)",
-                        "lbu\ta4,0(a4)",
-                        "beq\ta3,a4,.L47"
                     ]
                 }
             ]

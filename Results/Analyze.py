@@ -386,6 +386,9 @@ for asm_file in report_data:
     dataset_file = next((file for file in dataset if file['Program_name'] == asm_file['Program_name']
                          and file['Optimization_level'] == asm_file['Optimization_level']), None)
 
+    if dataset_file is None:
+        continue
+
     # Update common information for both analyses
     update_analyses(asm_file)
 

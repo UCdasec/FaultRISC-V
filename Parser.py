@@ -315,18 +315,17 @@ class Program:
         for line in self.lines:
             if isinstance(line, Attribute) and line.type == 'section':
                 arg = line.args[0]
-                if isinstance(arg, Argument) and arg.arg_text == '.rodata': # O0 optimization
+                if isinstance(arg, Argument) and arg.arg_text in ['.rodata'] and not str1p8_found: # O0 optimization
                     self.optimization = OptimizationLevel.O0
-                    break
 
-                elif isinstance(arg, Argument) and arg.arg_text == '.rodata.str1.8':    # O1 or O2 optimization
+                elif isinstance(arg, Argument) and arg.arg_text in ['.rodata.str1.8', '.srodata.cst8']:    # O1 or O2 optimization
                     str1p8_found = True
 
                 elif isinstance(arg, Argument) and arg.arg_text == '.text.startup': # O2 optimization
                     self.optimization = OptimizationLevel.O2
                     break
 
-        if str1p8_found and self.optimization is None:
+        if str1p8_found and self.optimization is not OptimizationLevel.O2:
             self.optimization = OptimizationLevel.O1    # O1 optimization
 
         if self.optimization is None:

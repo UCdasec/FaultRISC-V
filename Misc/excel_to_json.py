@@ -116,10 +116,10 @@ for index, row in excel_df.iterrows():
         elif row.iloc[6] == 1:
             program['Bypass']['Vulnerabilities'].append(vulnerability.copy())
 
-with open('../Results/dataset.json', 'r') as f:
+with open('../Results/ground_truth.json', 'r') as f:
     og_dataset = json.load(f)
 
 og_dataset.extend(dataset)
 
-with open('../Results/dataset.json', 'w') as f:
+with open('../Results/ground_truth.json', 'w') as f:
     json.dump(og_dataset, f, indent=4)

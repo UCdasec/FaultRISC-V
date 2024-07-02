@@ -15,6 +15,7 @@ class LoopCheck(Pattern):
         self.pattern_undetermined = True   # Flag for if the pattern has not yet been determined
         self.insecure_match = False         # If the first half of the pattern, i.e., the insecure first half is complete
         self.location_list = []             # Keeps track of all locations that have been visited thus far
+        self.unseen_location_list = []      # Keeps track of all locations that have not been visited but have been referenced
 
     def checkInstruction(self, line: Instruction | Location):
         '''
@@ -71,13 +72,16 @@ class LoopCheck(Pattern):
                 self.location_list.clear()
                 return
 
-            elif line_type == 'j':  # Remove all locations from the jump reference until current line
+            elif line_type == 'j':  # Remove all locations from the jump reference until current line.
                 arg = line.args[0]
                 if isinstance(arg, Label) and arg.label_type == LabelType.LOCATION:
                     matching_location = next((location for location in self.location_list if arg.arg_text[1:] == location.location_name), None)
-                    if matching_location is not None:
+                    if matching_location is not None:   # True if location found in location list, which means continuity broken
                         self.location_list.clear()
                         return
+
+                    else:   # Continuity potentially not broken, add to list of unseen locations
+                        self.unseen_location_list.append(line)
 
             line_pattern_match = False
             line_no = len(self.detection_cache) if not self.insecure_match else len(self.secure_cache)
@@ -147,6 +151,11 @@ class LoopCheck(Pattern):
                                         if not any(line_arg.arg_text[1:] == location.location_name for location in self.location_list):
                                             line_pattern_match = False
                                             break
+                                        else:
+                                            matching_location = next((location for location in self.location_list if line_arg.arg_text[1:] == location.location_name), None)
+                                            if any(unseen_location.line_no > matching_location.line_no for unseen_location in self.unseen_location_list):
+                                                line_pattern_match = False
+                                                break
 
                             if line_pattern_match:  # Suspected pattern type added to list of vulnerable patterns to try
                                 self.vulnerable_pattern.append(instruction_set.copy())
@@ -187,6 +196,11 @@ class LoopCheck(Pattern):
                                 if not any(arg.arg_text[1:] == location.location_name for location in self.location_list):
                                     line_pattern_match = False
                                     break
+                                else:
+                                    matching_location = next((location for location in self.location_list if arg.arg_text[1:] == location.location_name), None)
+                                    if any(unseen_location.line_no > matching_location.line_no for unseen_location in self.unseen_location_list):
+                                        line_pattern_match = False
+                                        break
 
                         line_pattern_match = True
 
@@ -359,3 +373,7 @@ class LoopCheck(Pattern):
 
         elif isinstance(line, Location):    # Adding to list of visited locations
             self.location_list.append(line)
+            location_name = line.location_name
+            unseen_location_seen = next((unseen_location for unseen_location in self.unseen_location_list if location_name == unseen_location.args[0].arg_text[1:]), None)
+            if unseen_location_seen is not None:
+                self.unseen_location_list.remove(unseen_location_seen)
