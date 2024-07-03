@@ -154,13 +154,19 @@ if __name__ == "__main__":
     program_arg_parser = argparse.ArgumentParser()
     program_arg_parser.add_argument('target_file',
                                     help='Target RISC-V Assembly file to run vulnerability assessment on')
+    program_arg_parser.add_argument('--optimization_level', '-ol', nargs='?', default=None, choices=['O0','O1','O2'],
+                                    help='Optimization level of the file being analyzed by FaultRISC-V')
     program_arg_parser.add_argument('--store_result', nargs='?', default='None', choices=['general', 'report'],
                                     help='Determine whether the results should be stored in the general folder or the latest report')
     program_args = program_arg_parser.parse_args()
 
     riscv_program: Program
     with open(program_args.target_file, 'r') as asm_file:
-        riscv_program = Program(os.path.basename(program_args.target_file), asm_file.readlines())
+        if not program_args.optimization_level:
+            riscv_program = Program(os.path.basename(program_args.target_file), asm_file.readlines())
+        else:
+            riscv_program = Program(os.path.basename(program_args.target_file), asm_file.readlines(),
+                                    optimization= OptimizationLevel[program_args.optimization_level])
 
     program_name = os.path.basename(program_args.target_file)
     containing_folder = os.path.basename(os.path.dirname(program_args.target_file))

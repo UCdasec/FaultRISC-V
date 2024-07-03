@@ -231,12 +231,13 @@ class OptimizationLevel(enum.Enum):
     O2 = 2
 
 class Program:
-    optimization: OptimizationLevel = None
-    def __init__(self, program_name: str, raw_lines: List):
+
+    def __init__(self, program_name: str, raw_lines: List, optimization: Optional[OptimizationLevel] = None):
         self.program_name = program_name
         self.no_lines = len(raw_lines)
         self.raw_lines = raw_lines
         self.lines: List[Location | Instruction | Function | GlobalVariable | Attribute] = []
+        self.optimization: OptimizationLevel = optimization
 
     def parse_program(self):
         '''
@@ -293,7 +294,8 @@ class Program:
                 self.lines.append(Instruction(line_no, line))
                 self.lines[-1].parse_arguments()
 
-        self.determine_optimization()
+        if self.optimization is None:
+            self.determine_optimization()
 
     def determine_optimization(self):
         '''
