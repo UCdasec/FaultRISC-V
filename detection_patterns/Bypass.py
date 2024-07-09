@@ -69,9 +69,23 @@ class Bypass(Pattern):
 
             line_type = line.type
             line_pattern_match = False
-            if line_type == 'call' and not (len(self.caches) > 0 and len(self.caches[-1].detection_cache) == 0):
-                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+            if line_type == 'call':
+                if len(self.caches) == 0 or (len(self.caches) > 0 and not len(self.caches[-1].detection_cache) == 0):   # There is no template cache available for current call line
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
 
+                elif len(self.caches) > 0 and len(self.caches[-1].detection_cache) == 0:    # There is an existing cache template to use
+                    pass
+
+                elif ((self.label_block < 0 and line.line_no > self.caches[-1].detection_cache[0].line_no + 1) or
+                    (self.label_block > 0 and line.line_no > self.caches[-1].detection_cache[0].line_no + 1 + self.label_block)):
+                    # There is an existing cache run for another call statement, so add this simultaneously
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+                else:   # Current call line right after last, delete last cache and add new
+                    self.caches.pop()
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+            removal_list = []
             for cache in self.caches:
 
                 line_no = len(cache.detection_cache)
@@ -81,7 +95,7 @@ class Bypass(Pattern):
                         self.vulnerable_lines.append(cache.detection_cache.copy())
                         self.no_vulnerable += 1
                         self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' and line != '__SECURE__' for line in cache.detection_cache])
-                        self.caches.remove(cache)
+                        removal_list.append(cache)
 
                     else:
                         self.cleanup(cache, line)
@@ -294,18 +308,22 @@ class Bypass(Pattern):
 
                     elif '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
                         if line_type in cache.active_pattern[line_no][1]:
+                            a0_notfound = True
                             for arg_no, arg in enumerate(line.args, start=2):   # Making sure all the other parameters align
-                                if not any(isinstance(arg, first_line_arg) for first_line_arg in cache.active_pattern[line_no][arg_no]):
+                                if not any(pattern_arg_type is None or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                     line_pattern_match = False
                                     break
 
-                                if arg_no == 3 and isinstance(arg, Register) and arg.arg_text != 'a0':
-                                    line_pattern_match = False
-                                    break
+                                if arg_no == 3 and isinstance(arg, Register) and arg.arg_text == 'a0':
+                                    a0_notfound = False
+                                    # line_pattern_match = False
+                                    # break
+                                elif arg_no == 4 and a0_notfound and isinstance(arg, Register) and arg.arg_text == 'a0':
+                                    a0_notfound = False
 
                                 line_pattern_match = True
 
-                            if line_pattern_match:  # if the line matches, adding to cache
+                            if not a0_notfound and line_pattern_match:  # if the line matches, adding to cache
                                 cache.detection_cache.append(line)
                                 line_no += 1
 
@@ -318,7 +336,14 @@ class Bypass(Pattern):
                                 self.cleanup(cache, line)
 
                         elif line_type == 'call':
-                            self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                            if (self.label_block > 0 and line.line_no > cache.detection_cache[-1].line_no + 1 + self.label_block) or \
+                                                      (self.label_block < 0 and line.line_no > cache.detection_cache[-1].line_no + 1 ):   # If call, we want to start a new detection stream
+                                # New call statement to track
+                                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+                            else:   # Immediate call statement, remove current cache and continue
+                                removal_list.append(cache)
+
                             continue
 
                         else:   # if the instruction type does not match and any of the args is register a0, remove the optional line
@@ -364,7 +389,7 @@ class Bypass(Pattern):
                             line_pattern_match = True
 
                             if (isinstance(arg, Register) and line_no >= 2 and
-                                    (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type in ['mv','sext.w']) and
+                                    (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type in ['mv','sext.w','subw', 'addw']) and
                                     ((arg.arg_text == cache.detection_cache[1].args[0].arg_text) or
                                      (arg.arg_text == 'a0' and cache.detection_cache[1].args[1].arg_text == 'a0'))):
                                 # if mv instruction passed, we check if the register moved to exists or if it's a0, we check that it wasn't overwritten in the mv instruction
@@ -384,13 +409,15 @@ class Bypass(Pattern):
 
 
                     else: # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                        if line_type == 'call':
+                        if line_type == 'call' and not len(self.caches[-1].detection_cache) == 0:
                             self.caches.append(self.LocalCache([], [], [False, False, False], None))
                             continue
 
                         else:
                             # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
+
+            self.caches = [cache for cache in self.caches if cache not in removal_list]
 
         elif isinstance(line, Location):   # Setting label block gap of 1 when a label line is encountered
             self.label_block = 0

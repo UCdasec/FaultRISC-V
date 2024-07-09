@@ -14212,6 +14212,16 @@
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                      164,
+                      165
+                    ],
+                    "Lines": [
+                      "call\tKEYPAD_Read",
+                      "beq\ta0,zero,.L4"
+                    ]
+                },
+                {
+                    "Line_nos": [
                         387,
                         389
                     ],
@@ -14260,38 +14270,6 @@
                     ],
                     "Lines": [
                         "sb\tzero,%lo(a)(s6)"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        646
-                    ],
-                    "Lines": [
-                        ".zero\t100"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        652
-                    ],
-                    "Lines": [
-                        "zero\t5"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        656
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        663
-                    ],
-                    "Lines": [
-                        ".zero\t3"
                     ]
                 }
             ]
@@ -14500,14 +14478,6 @@
                     ],
                     "Lines": [
                         ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        229
-                    ],
-                    "Lines": [
-                        ".zero\t1"
                     ]
                 }
             ]
@@ -14745,17 +14715,6 @@
                     "Lines": [
                         "call\tHAL_SPI_Init",
                         "bne\ta0,zero,.L43"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        268,
-                        271
-                    ],
-                    "Lines": [
-                        "call\tHAL_GPIO_ReadPin",
-                        "sext.w\ta0,a0",
-                        "beq\ta0,zero,.L47"
                     ]
                 }
             ]
@@ -15282,22 +15241,6 @@
                     "Lines": [
                         "li\ta5,2",
                         "sw\ta5,%lo(demmenu)(s7)"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        447
-                    ],
-                    "Lines": [
-                        ".zero\t112"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        451
-                    ],
-                    "Lines": [
-                        ".zero\t136"
                     ]
                 }
             ]
@@ -16107,38 +16050,6 @@
                     "Lines": [
                         "sb\tzero,4(sp)"
                     ]
-                },
-                {
-                    "Line_nos": [
-                        419
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        423
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        427
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        431
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
                 }
             ]
         },
@@ -16263,26 +16174,10 @@
                 },
                 {
                     "Line_nos": [
-                        466
-                    ],
-                    "Lines": [
-                        ".zero\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         468
                     ],
                     "Lines": [
                         ".byte\t99"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        469
-                    ],
-                    "Lines": [
-                        ".zero\t7"
                     ]
                 },
                 {
@@ -16295,26 +16190,10 @@
                 },
                 {
                     "Line_nos": [
-                        472
-                    ],
-                    "Lines": [
-                        ".zero\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         474
                     ],
                     "Lines": [
                         ".byte\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        475
-                    ],
-                    "Lines": [
-                        ".zero\t7"
                     ]
                 },
                 {
@@ -16327,34 +16206,10 @@
                 },
                 {
                     "Line_nos": [
-                        478
-                    ],
-                    "Lines": [
-                        ".zero\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         480
                     ],
                     "Lines": [
                         ".byte\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        481
-                    ],
-                    "Lines": [
-                        ".zero\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        486
-                    ],
-                    "Lines": [
-                        ".zero\t1"
                     ]
                 },
                 {
@@ -16417,6 +16272,3734 @@
                     ],
                     "Lines": [
                         ".word\t10"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        135
+                    ],
+                    "Lines": [
+                        ".4byte\t0x20d"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        136
+                    ],
+                    "Lines": [
+                        ".2byte\t0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        137
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        138
+                    ],
+                    "Lines": [
+                        ".byte\t0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        140
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        142
+                    ],
+                    "Lines": [
+                        ".byte\t0x1d"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        148
+                    ],
+                    "Lines": [
+                        ".uleb128 0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        150
+                    ],
+                    "Lines": [
+                        ".byte\t0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        151
+                    ],
+                    "Lines": [
+                        ".byte\t0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        152
+                    ],
+                    "Lines": [
+                        ".4byte\t0x31"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        153
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        154
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        155
+                    ],
+                    "Lines": [
+                        ".byte\t0x8"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        157
+                    ],
+                    "Lines": [
+                        ".uleb128 0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        159
+                    ],
+                    "Lines": [
+                        ".byte\t0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        160
+                    ],
+                    "Lines": [
+                        ".byte\t0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        161
+                    ],
+                    "Lines": [
+                        ".4byte\t0x31"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        162
+                    ],
+                    "Lines": [
+                        ".uleb128 0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        164
+                    ],
+                    "Lines": [
+                        ".byte\t0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        165
+                    ],
+                    "Lines": [
+                        ".byte\t0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        166
+                    ],
+                    "Lines": [
+                        ".4byte\t0x4e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        167
+                    ],
+                    "Lines": [
+                        ".uleb128 0xc"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        168
+                    ],
+                    "Lines": [
+                        ".byte\t0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        169
+                    ],
+                    "Lines": [
+                        ".byte\t0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        171
+                    ],
+                    "Lines": [
+                        ".uleb128 0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        173
+                    ],
+                    "Lines": [
+                        ".byte\t0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        174
+                    ],
+                    "Lines": [
+                        ".byte\t0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        175
+                    ],
+                    "Lines": [
+                        ".4byte\t0x4e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        176
+                    ],
+                    "Lines": [
+                        ".uleb128 0xd"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        177
+                    ],
+                    "Lines": [
+                        ".4byte\t0x55"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        178
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        179
+                    ],
+                    "Lines": [
+                        ".byte\t0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        180
+                    ],
+                    "Lines": [
+                        ".byte\t0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        182
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        183
+                    ],
+                    "Lines": [
+                        ".byte\t0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        184
+                    ],
+                    "Lines": [
+                        ".byte\t0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        186
+                    ],
+                    "Lines": [
+                        ".uleb128 0x8"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        187
+                    ],
+                    "Lines": [
+                        ".4byte\t0x38"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        188
+                    ],
+                    "Lines": [
+                        ".4byte\t0x83"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        189
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        190
+                    ],
+                    "Lines": [
+                        ".4byte\t0x6c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        192
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        193
+                    ],
+                    "Lines": [
+                        ".uleb128 0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        195
+                    ],
+                    "Lines": [
+                        ".byte\t0xa"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        196
+                    ],
+                    "Lines": [
+                        ".byte\t0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        198
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        199
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        201
+                    ],
+                    "Lines": [
+                        ".uleb128 0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        203
+                    ],
+                    "Lines": [
+                        ".byte\t0x15"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        204
+                    ],
+                    "Lines": [
+                        ".byte\t0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        205
+                    ],
+                    "Lines": [
+                        ".4byte\t0x60"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        206
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        207
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        209
+                    ],
+                    "Lines": [
+                        ".uleb128 0x8"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        210
+                    ],
+                    "Lines": [
+                        ".4byte\t0x31"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        212
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        213
+                    ],
+                    "Lines": [
+                        ".4byte\t0x6c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        214
+                    ],
+                    "Lines": [
+                        ".byte\t0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        215
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        216
+                    ],
+                    "Lines": [
+                        ".uleb128 0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        218
+                    ],
+                    "Lines": [
+                        ".byte\t0x16"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        219
+                    ],
+                    "Lines": [
+                        ".byte\t0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        220
+                    ],
+                    "Lines": [
+                        ".4byte\t0xa5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        221
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        222
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        224
+                    ],
+                    "Lines": [
+                        ".uleb128 0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        226
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        227
+                    ],
+                    "Lines": [
+                        ".byte\t0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        228
+                    ],
+                    "Lines": [
+                        ".4byte\t0x26"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        229
+                    ],
+                    "Lines": [
+                        ".4byte\t0xe0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        230
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        231
+                    ],
+                    "Lines": [
+                        ".4byte\t0xe0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        232
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        233
+                    ],
+                    "Lines": [
+                        ".4byte\t0xe0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        234
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        235
+                    ],
+                    "Lines": [
+                        ".uleb128 0xa"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        236
+                    ],
+                    "Lines": [
+                        ".4byte\t0x38"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        237
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        239
+                    ],
+                    "Lines": [
+                        ".byte\t0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        240
+                    ],
+                    "Lines": [
+                        ".byte\t0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        241
+                    ],
+                    "Lines": [
+                        ".byte\t0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        242
+                    ],
+                    "Lines": [
+                        ".4byte\t0x26"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        244
+                    ],
+                    "Lines": [
+                        ".uleb128 0xf"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        245
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        246
+                    ],
+                    "Lines": [
+                        ".uleb128 0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        248
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        249
+                    ],
+                    "Lines": [
+                        ".byte\t0x10"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        250
+                    ],
+                    "Lines": [
+                        ".4byte\t0x38"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        251
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        252
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        253
+                    ],
+                    "Lines": [
+                        ".4byte\t0xe0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        254
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        255
+                    ],
+                    "Lines": [
+                        ".4byte\t0x43"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        256
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        257
+                    ],
+                    "Lines": [
+                        ".4byte\t0xe0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        258
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        259
+                    ],
+                    "Lines": [
+                        ".uleb128 0x10"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        261
+                    ],
+                    "Lines": [
+                        ".byte\t0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        262
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        263
+                    ],
+                    "Lines": [
+                        ".byte\t0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        264
+                    ],
+                    "Lines": [
+                        ".4byte\t0x128"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        265
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        266
+                    ],
+                    "Lines": [
+                        ".4byte\t0x128"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        267
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        268
+                    ],
+                    "Lines": [
+                        ".uleb128 0xa"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        269
+                    ],
+                    "Lines": [
+                        ".4byte\t0x31"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        270
+                    ],
+                    "Lines": [
+                        ".uleb128 0x11"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        272
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        273
+                    ],
+                    "Lines": [
+                        ".byte\t0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        274
+                    ],
+                    "Lines": [
+                        ".byte\t0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        277
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        278
+                    ],
+                    "Lines": [
+                        ".byte\t0x9c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        279
+                    ],
+                    "Lines": [
+                        ".4byte\t0x204"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        280
+                    ],
+                    "Lines": [
+                        ".uleb128 0x12"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        282
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        283
+                    ],
+                    "Lines": [
+                        ".byte\t0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        284
+                    ],
+                    "Lines": [
+                        ".byte\t0xa"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        285
+                    ],
+                    "Lines": [
+                        ".4byte\t0x204"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        286
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        287
+                    ],
+                    "Lines": [
+                        ".byte\t0x91"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        288
+                    ],
+                    "Lines": [
+                        ".sleb128 -48"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        289
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        291
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        293
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        294
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        295
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        296
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        297
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        299
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        300
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        303
+                    ],
+                    "Lines": [
+                        ".4byte\t0x188"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        304
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        305
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        306
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        307
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        308
+                    ],
+                    "Lines": [
+                        ".byte\t0x78"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        309
+                    ],
+                    "Lines": [
+                        ".sleb128 0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        310
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        311
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        313
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        314
+                    ],
+                    "Lines": [
+                        ".byte\t0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        315
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        316
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        317
+                    ],
+                    "Lines": [
+                        ".byte\t0x5c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        318
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        319
+                    ],
+                    "Lines": [
+                        ".byte\t0x72"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        320
+                    ],
+                    "Lines": [
+                        ".sleb128 0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        321
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        322
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        325
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        327
+                    ],
+                    "Lines": [
+                        ".4byte\t0xc6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        329
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        330
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        331
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        332
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        333
+                    ],
+                    "Lines": [
+                        ".byte\t0x78"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        334
+                    ],
+                    "Lines": [
+                        ".sleb128 12"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        335
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        336
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        338
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        339
+                    ],
+                    "Lines": [
+                        ".byte\t0x72"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        340
+                    ],
+                    "Lines": [
+                        ".sleb128 0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        341
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        342
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        344
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        345
+                    ],
+                    "Lines": [
+                        ".4byte\t0x1c2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        346
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        347
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        348
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        349
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        350
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        352
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        353
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        355
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        357
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        358
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        359
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        360
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        361
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        363
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        364
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        366
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        368
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        369
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        370
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        371
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        372
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        374
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        375
+                    ],
+                    "Lines": [
+                        ".uleb128 0x14"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        377
+                    ],
+                    "Lines": [
+                        ".4byte\t0x116"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        378
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        379
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        380
+                    ],
+                    "Lines": [
+                        ".byte\t0x5a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        381
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        382
+                    ],
+                    "Lines": [
+                        ".byte\t0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        384
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        385
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        386
+                    ],
+                    "Lines": [
+                        ".uleb128 0x15"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        387
+                    ],
+                    "Lines": [
+                        ".4byte\t0x38"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        388
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        389
+                    ],
+                    "Lines": [
+                        ".4byte\t0x6c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        391
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        392
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        395
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        396
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        397
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        398
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        399
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        401
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        402
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        403
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        404
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        405
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        406
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        407
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        408
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        409
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        410
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        411
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        412
+                    ],
+                    "Lines": [
+                        ".uleb128 0x48"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        413
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        415
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        417
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        418
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        419
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        420
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        421
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        422
+                    ],
+                    "Lines": [
+                        ".uleb128 0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        423
+                    ],
+                    "Lines": [
+                        ".uleb128 0x16"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        424
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        425
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        426
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        427
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        428
+                    ],
+                    "Lines": [
+                        ".uleb128 0x21"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        429
+                    ],
+                    "Lines": [
+                        ".sleb128 2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        431
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        432
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        433
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        434
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        435
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        436
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        437
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        438
+                    ],
+                    "Lines": [
+                        ".uleb128 0x5"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        439
+                    ],
+                    "Lines": [
+                        ".uleb128 0x24"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        440
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        441
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        442
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        444
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        445
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        446
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        447
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        448
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        449
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        450
+                    ],
+                    "Lines": [
+                        ".uleb128 0x21"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        451
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        452
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        453
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        455
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        456
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        457
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        458
+                    ],
+                    "Lines": [
+                        ".uleb128 0x7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        459
+                    ],
+                    "Lines": [
+                        ".uleb128 0x34"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        460
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        461
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        462
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        463
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        464
+                    ],
+                    "Lines": [
+                        ".uleb128 0x21"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        465
+                    ],
+                    "Lines": [
+                        ".sleb128 1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        467
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        468
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        469
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        470
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        471
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        473
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        474
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        475
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        476
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        477
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        478
+                    ],
+                    "Lines": [
+                        ".uleb128 0x8"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        479
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        480
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        481
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        482
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        483
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        484
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        485
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        486
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        487
+                    ],
+                    "Lines": [
+                        ".uleb128 0x9"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        488
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        489
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        491
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        492
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        493
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        494
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        495
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        497
+                    ],
+                    "Lines": [
+                        ".uleb128 0x21"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        498
+                    ],
+                    "Lines": [
+                        ".sleb128 7"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        499
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        500
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        501
+                    ],
+                    "Lines": [
+                        ".uleb128 0x27"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        502
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        503
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        504
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        505
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        506
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        507
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        508
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        509
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        510
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        511
+                    ],
+                    "Lines": [
+                        ".uleb128 0xa"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        512
+                    ],
+                    "Lines": [
+                        ".uleb128 0xf"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        513
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        514
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        515
+                    ],
+                    "Lines": [
+                        ".uleb128 0x21"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        516
+                    ],
+                    "Lines": [
+                        ".sleb128 4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        517
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        518
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        519
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        520
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        521
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        522
+                    ],
+                    "Lines": [
+                        ".uleb128 0x11"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        523
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        524
+                    ],
+                    "Lines": [
+                        ".uleb128 0x25"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        525
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        526
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        527
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        528
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        530
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1b"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        532
+                    ],
+                    "Lines": [
+                        ".uleb128 0x11"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        533
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        534
+                    ],
+                    "Lines": [
+                        ".uleb128 0x12"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        535
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        536
+                    ],
+                    "Lines": [
+                        ".uleb128 0x10"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        537
+                    ],
+                    "Lines": [
+                        ".uleb128 0x17"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        538
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        539
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        540
+                    ],
+                    "Lines": [
+                        ".uleb128 0xc"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        541
+                    ],
+                    "Lines": [
+                        ".uleb128 0x24"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        542
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        543
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        544
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        546
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        547
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        548
+                    ],
+                    "Lines": [
+                        ".uleb128 0x8"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        549
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        550
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        551
+                    ],
+                    "Lines": [
+                        ".uleb128 0xd"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        552
+                    ],
+                    "Lines": [
+                        ".uleb128 0x26"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        553
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        554
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        555
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        556
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        557
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        558
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        559
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        560
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        562
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        563
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        564
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        565
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        566
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        568
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        569
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        570
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        571
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        572
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        573
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        574
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        575
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        576
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        577
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        578
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        579
+                    ],
+                    "Lines": [
+                        ".uleb128 0xf"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        580
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        581
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        582
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        583
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        584
+                    ],
+                    "Lines": [
+                        ".uleb128 0x10"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        585
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        586
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        588
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        589
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        590
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        591
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        592
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        594
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        595
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        596
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        597
+                    ],
+                    "Lines": [
+                        ".uleb128 0x27"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        598
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        599
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        600
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        601
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        602
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        603
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        604
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        605
+                    ],
+                    "Lines": [
+                        ".uleb128 0x11"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        606
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2e"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        607
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        609
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        610
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        611
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        612
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        613
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        615
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        616
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        617
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        618
+                    ],
+                    "Lines": [
+                        ".uleb128 0x27"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        619
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        620
+                    ],
+                    "Lines": [
+                        ".uleb128 0x11"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        621
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        622
+                    ],
+                    "Lines": [
+                        ".uleb128 0x12"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        623
+                    ],
+                    "Lines": [
+                        ".uleb128 0x6"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        624
+                    ],
+                    "Lines": [
+                        ".uleb128 0x40"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        625
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        627
+                    ],
+                    "Lines": [
+                        ".uleb128 0x19"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        628
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        629
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        630
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        631
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        632
+                    ],
+                    "Lines": [
+                        ".uleb128 0x12"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        633
+                    ],
+                    "Lines": [
+                        ".uleb128 0x34"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        634
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        635
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        636
+                    ],
+                    "Lines": [
+                        ".uleb128 0xe"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        637
+                    ],
+                    "Lines": [
+                        ".uleb128 0x3a"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        638
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        640
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        641
+                    ],
+                    "Lines": [
+                        ".uleb128 0x39"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        642
+                    ],
+                    "Lines": [
+                        ".uleb128 0xb"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        643
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        644
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        645
+                    ],
+                    "Lines": [
+                        ".uleb128 0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        646
+                    ],
+                    "Lines": [
+                        ".uleb128 0x18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        647
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        648
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        649
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        650
+                    ],
+                    "Lines": [
+                        ".uleb128 0x48"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        651
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        653
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        655
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        656
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        657
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        658
+                    ],
+                    "Lines": [
+                        ".uleb128 0x14"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        659
+                    ],
+                    "Lines": [
+                        ".uleb128 0x48"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        660
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        662
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        664
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        665
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        666
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        667
+                    ],
+                    "Lines": [
+                        ".uleb128 0x15"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        668
+                    ],
+                    "Lines": [
+                        ".uleb128 0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        669
+                    ],
+                    "Lines": [
+                        ".byte\t0x1"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        670
+                    ],
+                    "Lines": [
+                        ".uleb128 0x49"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        671
+                    ],
+                    "Lines": [
+                        ".uleb128 0x13"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        672
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        673
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        674
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        676
+                    ],
+                    "Lines": [
+                        ".4byte\t0x1c"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        677
+                    ],
+                    "Lines": [
+                        ".2byte\t0x2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        679
+                    ],
+                    "Lines": [
+                        ".byte\t0x4"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        680
+                    ],
+                    "Lines": [
+                        ".byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        681
+                    ],
+                    "Lines": [
+                        ".2byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        682
+                    ],
+                    "Lines": [
+                        ".2byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        685
+                    ],
+                    "Lines": [
+                        ".4byte\t0"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        686
+                    ],
+                    "Lines": [
+                        ".4byte\t0"
                     ]
                 }
             ]
@@ -17157,110 +20740,6 @@
                     "Lines": [
                         "sb\tzero,%lo(flash_data_ready)(s9)"
                     ]
-                },
-                {
-                    "Line_nos": [
-                        598
-                    ],
-                    "Lines": [
-                        ".zero\t280"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        602
-                    ],
-                    "Lines": [
-                        ".zero\t16"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        606
-                    ],
-                    "Lines": [
-                        ".zero\t16"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        610
-                    ],
-                    "Lines": [
-                        ".zero\t256"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        624
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        628
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        632
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        636
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        640
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        644
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        648
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        653
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        657
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
                 }
             ]
         },
@@ -17995,33 +21474,12 @@
                 },
                 {
                     "Line_nos": [
-                        258,
-                        261
-                    ],
-                    "Lines": [
-                        "call\tflashGetNameString",
-                        "beq\ta0,zero,.L60"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         315,
                         316
                     ],
                     "Lines": [
                         "call\t__waitPINCommand",
                         "beq\ta0,zero,.L32"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        336,
-                        337,
-                        338
-                    ],
-                    "Lines": [
-                        "call\tflashGetNameString",
-                        "bne\ta0,zero,.L37"
                     ]
                 },
                 {
@@ -18172,86 +21630,6 @@
                     "Lines": [
                         "li\ta4,5",
                         "sw\ta4,%lo(bootTimeout)(a5)"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        547
-                    ],
-                    "Lines": [
-                        ".zero\t17"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        548
-                    ],
-                    "Lines": [
-                        ".zero\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        552
-                    ],
-                    "Lines": [
-                        ".zero\t80"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        556
-                    ],
-                    "Lines": [
-                        ".zero\t128"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        562
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        566
-                    ],
-                    "Lines": [
-                        ".zero\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        567
-                    ],
-                    "Lines": [
-                        ".zero\t3"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        571
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        575
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        579
-                    ],
-                    "Lines": [
-                        ".zero\t8"
                     ]
                 },
                 {
@@ -19346,16 +22724,6 @@
                 },
                 {
                     "Line_nos": [
-                        350,
-                        351
-                    ],
-                    "Lines": [
-                        "call\tuECC_vli_rshift1",
-                        "beq\ts2,zero,.L70"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         385,
                         386,
                         387
@@ -19773,6 +23141,18 @@
                 },
                 {
                     "Line_nos": [
+                        3413,
+                        3414,
+                        3418
+                    ],
+                    "Lines": [
+                        "call\tuECC_vli_numBits",
+                        "mv\ta5,a0",
+                        "bge\ta4,a5,.L304"
+                    ]
+                },
+                {
+                    "Line_nos": [
                         3574,
                         3575
                     ],
@@ -19833,13 +23213,11 @@
                     "Line_nos": [
                         3841,
                         3842,
-                        3843,
                         3844
                     ],
                     "Lines": [
                         "call uECC_vli_cmp_unsafe",
                         "\tli\ta4,1",
-                        "\tli\ta5,0",
                         "bne\ta0,a4,.L343"
                     ]
                 },
@@ -19847,13 +23225,11 @@
                     "Line_nos": [
                         3852,
                         3853,
-                        3854,
                         3855
                     ],
                     "Lines": [
                         "call uECC_vli_cmp_unsafe",
                         "\tli\ta4,1",
-                        "\tli\ta5,0",
                         "beq\ta0,a4,.L345"
                     ]
                 },
@@ -19987,6 +23363,16 @@
                         "\tli\ta5,1",
                         "\tli\ta0,0",
                         "bne\ta4,a5,.L383"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        4464,
+                        4466
+                    ],
+                    "Lines": [
+                        "call\tuECC_vli_numBits",
+                        "bge\ts8,a0,.L384"
                     ]
                 },
                 {
@@ -20598,66 +23984,24 @@
                 },
                 {
                     "Line_nos": [
-                        4642
-                    ],
-                    "Lines": [
-                        ".byte\t5"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4643
-                    ],
-                    "Lines": [
-                        ".byte\t20"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4644
-                    ],
-                    "Lines": [
-                        ".half\t161"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4646
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4647
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4648
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4641,
+                        4642,
+                        4643,
+                        4644,
+                        4646,
+                        4647,
+                        4648,
                         4649
                     ],
                     "Lines": [
+                        "curve_secp160r1:",
+                        ".byte\t5",
+                        ".byte\t20",
+                        ".half\t161",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
                         ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4650
-                    ],
-                    "Lines": [
-                        ".zero\t12"
                     ]
                 },
                 {
@@ -20686,114 +24030,28 @@
                 },
                 {
                     "Line_nos": [
-                        4657
-                    ],
-                    "Lines": [
-                        ".zero\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4668
-                    ],
-                    "Lines": [
-                        ".zero\t24"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4674
-                    ],
-                    "Lines": [
-                        ".zero\t12"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4675
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4683
-                    ],
-                    "Lines": [
-                        ".byte\t6"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4684
-                    ],
-                    "Lines": [
-                        ".byte\t24"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4685
-                    ],
-                    "Lines": [
-                        ".half\t192"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4686
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4687
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4688
-                    ],
-                    "Lines": [
-                        ".word\t-2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4689
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4690
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4682,
+                        4683,
+                        4684,
+                        4685,
+                        4686,
+                        4687,
+                        4688,
+                        4689,
+                        4690,
                         4691
                     ],
                     "Lines": [
+                        "curve_secp192r1:",
+                        ".byte\t6",
+                        ".byte\t24",
+                        ".half\t192",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-2",
+                        ".word\t-1",
+                        ".word\t-1",
                         ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4692
-                    ],
-                    "Lines": [
-                        ".zero\t8"
                     ]
                 },
                 {
@@ -20822,122 +24080,30 @@
                 },
                 {
                     "Line_nos": [
-                        4699
-                    ],
-                    "Lines": [
-                        ".zero\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4712
-                    ],
-                    "Lines": [
-                        ".zero\t16"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4719
-                    ],
-                    "Lines": [
-                        ".zero\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4720
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4728
-                    ],
-                    "Lines": [
-                        ".byte\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4729
-                    ],
-                    "Lines": [
-                        ".byte\t28"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4730
-                    ],
-                    "Lines": [
-                        ".half\t224"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4731
-                    ],
-                    "Lines": [
-                        ".word\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4732
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4733
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4734
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4735
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4736
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4727,
+                        4728,
+                        4729,
+                        4730,
+                        4731,
+                        4732,
+                        4733,
+                        4734,
+                        4735,
+                        4736,
                         4737
                     ],
                     "Lines": [
+                        "curve_secp224r1:",
+                        ".byte\t7",
+                        ".byte\t28",
+                        ".half\t224",
+                        ".word\t1",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
                         ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4738
-                    ],
-                    "Lines": [
-                        ".zero\t4"
                     ]
                 },
                 {
@@ -20966,346 +24132,92 @@
                 },
                 {
                     "Line_nos": [
-                        4746
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4761
-                    ],
-                    "Lines": [
-                        ".zero\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4769
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4770
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4778
-                    ],
-                    "Lines": [
-                        ".byte\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4779
-                    ],
-                    "Lines": [
-                        ".byte\t32"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4780
-                    ],
-                    "Lines": [
-                        ".half\t256"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4781
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4782
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4783
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4784
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4785
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4786
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4787
-                    ],
-                    "Lines": [
-                        ".word\t1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4788
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4793
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4794
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4795
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4777,
+                        4778,
+                        4779,
+                        4780,
+                        4781,
+                        4782,
+                        4783,
+                        4784,
+                        4785,
+                        4786,
+                        4787,
+                        4788,
+                        4793,
+                        4794,
+                        4795,
                         4796
                     ],
                     "Lines": [
+                        "curve_secp256r1:",
+                        ".byte\t8",
+                        ".byte\t32",
+                        ".half\t256",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t0",
                         ".word\t-1"
                     ]
                 },
                 {
                     "Line_nos": [
-                        4821
-                    ],
-                    "Lines": [
-                        ".zero\t4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4829
-                    ],
-                    "Lines": [
-                        ".byte\t8"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4830
-                    ],
-                    "Lines": [
-                        ".byte\t32"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4831
-                    ],
-                    "Lines": [
-                        ".half\t256"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4833
-                    ],
-                    "Lines": [
-                        ".word\t-2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4834
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4835
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4836
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4837
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4838
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4839
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4844
-                    ],
-                    "Lines": [
-                        ".word\t-2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4845
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4846
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4847
-                    ],
-                    "Lines": [
-                        ".word\t-1"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4864
-                    ],
-                    "Lines": [
-                        ".word\t7"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4865
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4866
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4867
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4868
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4869
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4870
-                    ],
-                    "Lines": [
-                        ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4828,
+                        4829,
+                        4830,
+                        4831,
+                        4833,
+                        4834,
+                        4835,
+                        4836,
+                        4837,
+                        4838,
+                        4839,
+                        4844,
+                        4845,
+                        4846,
+                        4847,
+                        4864,
+                        4865,
+                        4866,
+                        4867,
+                        4868,
+                        4869,
+                        4870,
                         4871
                     ],
                     "Lines": [
+                        "curve_secp256k1:",
+                        ".byte\t8",
+                        ".byte\t32",
+                        ".half\t256",
+                        ".word\t-2",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-2",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t-1",
+                        ".word\t7",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t0",
+                        ".word\t0",
                         ".word\t0"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4872
-                    ],
-                    "Lines": [
-                        ".zero\t4"
                     ]
                 }
             ]

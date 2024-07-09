@@ -340,10 +340,10 @@ vulnerable_instruction_list = {
                     {'call'}, {Label}
                 ],
                 [
-                    '__OPTIONAL__', {'mv', 'sext.w'}, {Register}, {Register}
+                    '__OPTIONAL__', {'mv', 'sext.w', 'subw', 'addw'}, {Register}, {Register}, {Register, None}
                 ],
                 [
-                    '__IGNORE_LINE__', {'li'}, {Register}, {IntegerLiteral}
+                    '__IGNORE_LINE__', {'li', 'lw'}, {Register}, {IntegerLiteral, MemoryAddress}
                 ],
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
