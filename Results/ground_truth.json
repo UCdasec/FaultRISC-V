@@ -14103,20 +14103,7 @@
             "Vulnerabilities": []
         },
         "LoopCheck": {
-            "Vulnerabilities": [
-                {
-                    "Line_nos": [
-                        55,
-                        60,
-                        62
-                    ],
-                    "Lines": [
-                        "\tli\ts2,4",
-                        "\taddiw\ts0,s0,1",
-                        "\tbne\ts0,s2,.L2"
-                    ]
-                }
-            ]
+            "Vulnerabilities": []
         }
     },
     {
@@ -14278,18 +14265,32 @@
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        607,
                         609
                     ],
                     "Lines": [
+                        "addiw\\ts0,s0,-1",
                         "bgt\ts0,s1,.L43"
                     ]
                 },
                 {
                     "Line_nos": [
-                        628
+                        316,
+                        318
                     ],
                     "Lines": [
-                        "bne\ts0,s2,.L23"
+                        "addiw\ts0,s0,-1",
+                        "bgt\ts0,s1,.L38"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        471,
+                        472
+                    ],
+                    "Lines": [
+                        "addiw\ts1,s1,1",
+                        "bne\ts1,s9,.L17"
                     ]
                 }
             ]
@@ -14483,7 +14484,28 @@
             ]
         },
         "LoopCheck": {
-            "Vulnerabilities": []
+            "Vulnerabilities": [
+                {
+                    "Line_nos": [
+                        181,
+                        182
+                    ],
+                    "Lines": [
+                        "li\ta5,75",
+                        "beq\ta0,a5,.L18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        183,
+                        184
+                    ],
+                    "Lines": [
+                        "li\ta5,88",
+                        "bne\ta0,a5,.L12"
+                    ]
+                }
+            ]
         }
     },
     {
@@ -16230,6 +16252,16 @@
                     ],
                     "Lines": [
                         "bne\ts0,s2,.L16"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        104,
+                        105
+                    ],
+                    "Lines": [
+                        "addi\ts0,s0,1",
+                        "bne\ts0,s3,.L7"
                     ]
                 }
             ]
@@ -20329,14 +20361,6 @@
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        136
-                    ],
-                    "Lines": [
-                        "beq\ts0,s4,.L35"
-                    ]
-                },
-                {
-                    "Line_nos": [
                         152
                     ],
                     "Lines": [
@@ -20763,6 +20787,16 @@
                 },
                 {
                     "Line_nos": [
+                        370,
+                        371
+                    ],
+                    "Lines": [
+                        "addiw\ta5,a5,-1",
+                        "bne\ta5,zero,.L49"
+                    ]
+                },
+                {
+                    "Line_nos": [
                         426
                     ],
                     "Lines": [
@@ -20912,6 +20946,16 @@
                     ],
                     "Lines": [
                         "bne\ta5,a3,.L2"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        90,
+                        91
+                    ],
+                    "Lines": [
+                        "addiw\ts0,s0,-1",
+                        "bne\ts0,zero,.L11"
                     ]
                 },
                 {
@@ -21650,6 +21694,36 @@
                     ],
                     "Lines": [
                         "bne\ta5,s2,.L26"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        374,
+                        375
+                    ],
+                    "Lines": [
+                        "li\ta4,101",
+                        "beq\ta5,a4,.L63"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        376,
+                        377
+                    ],
+                    "Lines": [
+                        "li\ta4,112",
+                        "beq\ta5,a4,.L64"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        378,
+                        379
+                    ],
+                    "Lines": [
+                        "li\ta4,118",
+                        "bne\ta5,a4,.L35"
                     ]
                 },
                 {
@@ -24258,6 +24332,26 @@
                 },
                 {
                     "Line_nos": [
+                        811,
+                        812
+                    ],
+                    "Lines": [
+                        "addw\ts0,s0,a0",
+                        "blt\ts0,zero,.L108"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        1027,
+                        1028
+                    ],
+                    "Lines": [
+                        "addw\ts0,s0,a0",
+                        "blt\ts0,zero,.L117"
+                    ]
+                },
+                {
+                    "Line_nos": [
                         1074
                     ],
                     "Lines": [
@@ -24282,9 +24376,11 @@
                 },
                 {
                     "Line_nos": [
+                        1420,
                         1421
                     ],
                     "Lines": [
+                        "addi\ta5,a5,-4",
                         "bltu\ts1,a5,.L166"
                     ]
                 },
@@ -24306,90 +24402,86 @@
                 },
                 {
                     "Line_nos": [
+                        1538,
+                        1541,
                         1542
                     ],
                     "Lines": [
+                        "addiw\ta5,a5,1",
+                        "lw\ta4,28(s0)",
                         "bgtu\ta4,a5,.L182"
                     ]
                 },
                 {
                     "Line_nos": [
+                        1554,
+                        1556,
                         1557
                     ],
                     "Lines": [
+                        "addi\ta4,a4,1",
+                        "addw\ta3,a5,a4",
                         "bgtu\ta2,a3,.L184"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1670
-                    ],
-                    "Lines": [
-                        "ble\ta4,t5,.L193"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        1672,
                         1674
                     ],
                     "Lines": [
+                        "addi\tt4,t4,1",
                         "bne\tt4,t2,.L199"
                     ]
                 },
                 {
                     "Line_nos": [
+                        1717,
                         1719
                     ],
                     "Lines": [
+                        "addi\ta6,a6,4",
                         "bne\ta6,t5,.L197"
                     ]
                 },
                 {
                     "Line_nos": [
+                        1806,
                         1807
                     ],
                     "Lines": [
+                        "addiw\ta4,a4,1",
                         "bne\ta4,a0,.L214"
                     ]
                 },
                 {
                     "Line_nos": [
-                        2231
+                        3582,
+                        3583
                     ],
                     "Lines": [
-                        "beq\ts0,s2,.L241"
+                        "addiw\ts0,s0,-1",
+                        "bne\ts0,zero,.L317"
                     ]
                 },
                 {
                     "Line_nos": [
-                        2388
+                        4059,
+                        4060
                     ],
                     "Lines": [
-                        "bne\ts0,s1,.L250"
+                        "addiw\ts0,s0,-1",
+                        "bne\ts0,zero,.L357"
                     ]
                 },
                 {
                     "Line_nos": [
-                        3734
-                    ],
-                    "Lines": [
-                        "bgt\ta4,a5,.L328"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4123,
                         4126
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bgtu\ta3,a4,.L363"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4545
-                    ],
-                    "Lines": [
-                        "bge\ts2,zero,.L390"
                     ]
                 }
             ]

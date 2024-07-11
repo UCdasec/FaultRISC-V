@@ -1,17 +1,17 @@
 {
     "Total_no_lines": 12747,
     "Ground_truth": {
-        "Total_no_vulnerable_lines": 1630,
-        "Total_no_vulnerabilities": 1277
+        "Total_no_vulnerable_lines": 1644,
+        "Total_no_vulnerabilities": 1283
     },
-    "Total_no_vulnerable_lines": 1569,
-    "Total_no_vulnerabilities": 1313,
-    "Total_no_TP": 1222,
-    "Total_no_FP": 91,
-    "Total_no_FN": 55,
-    "Precision": 0.9306930693069307,
-    "Recall": 0.9569303054032889,
-    "F-1_score": 0.9436293436293436,
+    "Total_no_vulnerable_lines": 1583,
+    "Total_no_vulnerabilities": 1242,
+    "Total_no_TP": 1220,
+    "Total_no_FP": 22,
+    "Total_no_FN": 63,
+    "Precision": 0.9822866344605475,
+    "Recall": 0.950896336710834,
+    "F-1_score": 0.9663366336633663,
     "Branch": {
         "Ground_truth": {
             "Total_no_lines": 483,
@@ -56,17 +56,17 @@
     },
     "LoopCheck": {
         "Ground_truth": {
-            "Total_no_lines": 49,
-            "Total_no_vulnerabilities": 47
+            "Total_no_lines": 77,
+            "Total_no_vulnerabilities": 53
         },
         "Total_no_lines": 264,
-        "Total_no_vulnerabilities": 119,
-        "Total_no_TP": 42,
-        "Total_no_FP": 77,
-        "Total_no_FN": 5,
-        "Precision": 0.35294117647058826,
-        "Recall": 0.8936170212765957,
-        "F-1_score": 0.5060240963855422
+        "Total_no_vulnerabilities": 48,
+        "Total_no_TP": 40,
+        "Total_no_FP": 8,
+        "Total_no_FN": 13,
+        "Precision": 0.8333333333333334,
+        "Recall": 0.7547169811320755,
+        "F-1_score": 0.7920792079207921
     },
     "Files": [
         {
@@ -173,14 +173,14 @@
                 "No_vulnerable_lines": 201,
                 "No_vulnerabilities": 122
             },
-            "No_vulnerable_lines": 201,
-            "No_vulnerabilities": 124,
+            "No_vulnerable_lines": 207,
+            "No_vulnerabilities": 121,
             "No_TP": 120,
-            "No_FP": 4,
+            "No_FP": 1,
             "No_FN": 2,
-            "Precision": 0.967741935483871,
+            "Precision": 0.9917355371900827,
             "Recall": 0.9836065573770492,
-            "F-1_score": 0.9756097560975611,
+            "F-1_score": 0.9876543209876544,
             "Branch": {
                 "No_lines": 120,
                 "No_vulnerabilities": 69,
@@ -1346,94 +1346,81 @@
                 ]
             },
             "LoopCheck": {
-                "No_lines": 9,
-                "No_vulnerabilities": 9,
+                "No_lines": 12,
+                "No_vulnerabilities": 6,
                 "Ground_truth": {
                     "No_vulnerable_lines": 6,
                     "No_vulnerabilities": 6
                 },
                 "No_TP": 6,
-                "No_FP": 3,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.6666666666666666,
+                "Precision": 1.0,
                 "Recall": 1.0,
-                "F-1_score": 0.8,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            23,
                             24
                         ],
                         "Lines": [
+                            "addiw\ta5,a5,-1",
                             "bne\ta5,zero,.L4"
                         ]
                     },
                     {
                         "Line_nos": [
+                            25,
                             26
                         ],
                         "Lines": [
+                            "addiw\ta4,a4,1",
                             "bne\ta3,a4,.L2"
                         ]
                     },
                     {
                         "Line_nos": [
+                            139,
                             140
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s1,.L15"
                         ]
                     },
                     {
                         "Line_nos": [
+                            176,
                             177
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s1,.L19"
                         ]
                     },
                     {
                         "Line_nos": [
+                            356,
                             357
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s1,.L38"
                         ]
                     },
                     {
                         "Line_nos": [
+                            1299,
                             1300
                         ],
                         "Lines": [
+                            "li\ta5,253",
                             "bleu\ta0,a5,.L140"
                         ]
                     }
                 ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            281
-                        ],
-                        "Lines": [
-                            "bge\ta5,zero,.L30"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            332
-                        ],
-                        "Lines": [
-                            "beq\ta5,zero,.L34"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1293
-                        ],
-                        "Lines": [
-                            "bne\ta5,zero,.L139"
-                        ]
-                    }
-                ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -1445,14 +1432,14 @@
                 "No_vulnerable_lines": 112,
                 "No_vulnerabilities": 85
             },
-            "No_vulnerable_lines": 102,
-            "No_vulnerabilities": 83,
+            "No_vulnerable_lines": 103,
+            "No_vulnerabilities": 82,
             "No_TP": 81,
-            "No_FP": 2,
+            "No_FP": 1,
             "No_FN": 4,
-            "Precision": 0.9759036144578314,
+            "Precision": 0.9878048780487805,
             "Recall": 0.9529411764705882,
-            "F-1_score": 0.9642857142857143,
+            "F-1_score": 0.9700598802395208,
             "Branch": {
                 "No_lines": 25,
                 "No_vulnerabilities": 22,
@@ -2254,13 +2241,13 @@
             },
             "LoopCheck": {
                 "No_lines": 2,
-                "No_vulnerabilities": 2,
+                "No_vulnerabilities": 1,
                 "Ground_truth": {
                     "No_vulnerable_lines": 0,
                     "No_vulnerabilities": 0
                 },
                 "No_TP": 0,
-                "No_FP": 2,
+                "No_FP": 1,
                 "No_FN": 0,
                 "Precision": 0.0,
                 "Recall": 1,
@@ -2269,17 +2256,11 @@
                 "False_positives": [
                     {
                         "Line_nos": [
-                            271
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L47"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            272,
                             273
                         ],
                         "Lines": [
+                            "lw\ta5,%lo(demtong)(s0)",
                             "bne\ta5,zero,.L16"
                         ]
                     }
@@ -2296,13 +2277,13 @@
                 "No_vulnerabilities": 47
             },
             "No_vulnerable_lines": 57,
-            "No_vulnerabilities": 46,
+            "No_vulnerabilities": 45,
             "No_TP": 44,
-            "No_FP": 2,
+            "No_FP": 1,
             "No_FN": 3,
-            "Precision": 0.9565217391304348,
+            "Precision": 0.9777777777777777,
             "Recall": 0.9361702127659575,
-            "F-1_score": 0.9462365591397851,
+            "F-1_score": 0.9565217391304348,
             "Branch": {
                 "No_lines": 23,
                 "No_vulnerabilities": 19,
@@ -2784,37 +2765,30 @@
             },
             "LoopCheck": {
                 "No_lines": 2,
-                "No_vulnerabilities": 2,
+                "No_vulnerabilities": 1,
                 "Ground_truth": {
                     "No_vulnerable_lines": 1,
                     "No_vulnerabilities": 1
                 },
                 "No_TP": 1,
-                "No_FP": 1,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.5,
+                "Precision": 1.0,
                 "Recall": 1.0,
-                "F-1_score": 0.6666666666666666,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            95,
                             96
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bne\ta5,a2,.L14"
                         ]
                     }
                 ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            273
-                        ],
-                        "Lines": [
-                            "blt\ts3,s4,.L53"
-                        ]
-                    }
-                ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -2823,17 +2797,17 @@
             "Optimization_level": "O1",
             "No_lines": 192,
             "Ground_truth": {
-                "No_vulnerable_lines": 14,
-                "No_vulnerabilities": 6
+                "No_vulnerable_lines": 11,
+                "No_vulnerabilities": 5
             },
-            "No_vulnerable_lines": 13,
-            "No_vulnerabilities": 8,
-            "No_TP": 6,
-            "No_FP": 2,
+            "No_vulnerable_lines": 11,
+            "No_vulnerabilities": 5,
+            "No_TP": 5,
+            "No_FP": 0,
             "No_FN": 0,
-            "Precision": 0.75,
+            "Precision": 1.0,
             "Recall": 1.0,
-            "F-1_score": 0.8571428571428572,
+            "F-1_score": 1.0,
             "Branch": {
                 "No_lines": 5,
                 "No_vulnerabilities": 3,
@@ -2940,46 +2914,20 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 3,
-                "No_vulnerabilities": 3,
+                "No_lines": 0,
+                "No_vulnerabilities": 0,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 3,
-                    "No_vulnerabilities": 1
+                    "No_vulnerable_lines": 0,
+                    "No_vulnerabilities": 0
                 },
-                "No_TP": 1,
-                "No_FP": 2,
+                "No_TP": 0,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.3333333333333333,
-                "Recall": 1.0,
-                "F-1_score": 0.5,
-                "True_positives": [
-                    {
-                        "Line_nos": [
-                            62
-                        ],
-                        "Lines": [
-                            "bne\ts0,s2,.L2"
-                        ]
-                    }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            109
-                        ],
-                        "Lines": [
-                            "bgtu\ta0,s4,.L4"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            127
-                        ],
-                        "Lines": [
-                            "bne\ts1,s8,.L3"
-                        ]
-                    }
-                ],
+                "Precision": 1,
+                "Recall": 1,
+                "F-1_score": 1.0,
+                "True_positives": [],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -2991,14 +2939,14 @@
                 "No_vulnerable_lines": 9,
                 "No_vulnerabilities": 9
             },
-            "No_vulnerable_lines": 10,
-            "No_vulnerabilities": 10,
+            "No_vulnerable_lines": 9,
+            "No_vulnerabilities": 9,
             "No_TP": 9,
-            "No_FP": 1,
+            "No_FP": 0,
             "No_FN": 0,
-            "Precision": 0.9,
+            "Precision": 1.0,
             "Recall": 1.0,
-            "F-1_score": 0.9473684210526315,
+            "F-1_score": 1.0,
             "Branch": {
                 "No_lines": 3,
                 "No_vulnerabilities": 3,
@@ -3132,29 +3080,20 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 1,
-                "No_vulnerabilities": 1,
+                "No_lines": 0,
+                "No_vulnerabilities": 0,
                 "Ground_truth": {
                     "No_vulnerable_lines": 0,
                     "No_vulnerabilities": 0
                 },
                 "No_TP": 0,
-                "No_FP": 1,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.0,
+                "Precision": 1,
                 "Recall": 1,
                 "F-1_score": 1.0,
                 "True_positives": [],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            56
-                        ],
-                        "Lines": [
-                            "beq\ta5,s2,.L5"
-                        ]
-                    }
-                ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -3163,17 +3102,17 @@
             "Optimization_level": "O1",
             "No_lines": 668,
             "Ground_truth": {
-                "No_vulnerable_lines": 20,
-                "No_vulnerabilities": 17
+                "No_vulnerable_lines": 24,
+                "No_vulnerabilities": 18
             },
             "No_vulnerable_lines": 25,
-            "No_vulnerabilities": 23,
-            "No_TP": 15,
-            "No_FP": 8,
+            "No_vulnerabilities": 16,
+            "No_TP": 16,
+            "No_FP": 0,
             "No_FN": 2,
-            "Precision": 0.6521739130434783,
-            "Recall": 0.8823529411764706,
-            "F-1_score": 0.75,
+            "Precision": 1.0,
+            "Recall": 0.8888888888888888,
+            "F-1_score": 0.9411764705882353,
             "Branch": {
                 "No_lines": 14,
                 "No_vulnerabilities": 9,
@@ -3372,102 +3311,51 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 10,
-                "No_vulnerabilities": 10,
+                "No_lines": 6,
+                "No_vulnerabilities": 3,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 2,
-                    "No_vulnerabilities": 2
+                    "No_vulnerable_lines": 6,
+                    "No_vulnerabilities": 3
                 },
-                "No_TP": 2,
-                "No_FP": 8,
+                "No_TP": 3,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.2,
+                "Precision": 1.0,
                 "Recall": 1.0,
-                "F-1_score": 0.3333333333333333,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
-                            609
-                        ],
-                        "Lines": [
-                            "bgt\ts0,s1,.L43"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            628
-                        ],
-                        "Lines": [
-                            "bne\ts0,s2,.L23"
-                        ]
-                    }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            165
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L4"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            178
-                        ],
-                        "Lines": [
-                            "bne\ts0,s4,.L5"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            316,
                             318
                         ],
                         "Lines": [
+                            "addiw\ts0,s0,-1",
                             "bgt\ts0,s1,.L38"
                         ]
                     },
                     {
                         "Line_nos": [
-                            337
-                        ],
-                        "Lines": [
-                            "bne\ts0,s2,.L13"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            389
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L2"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            393
-                        ],
-                        "Lines": [
-                            "bne\ta0,a5,.L26"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            444
-                        ],
-                        "Lines": [
-                            "bne\ta0,zero,.L16"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            471,
                             472
                         ],
                         "Lines": [
+                            "addiw\ts1,s1,1",
                             "bne\ts1,s9,.L17"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            607,
+                            609
+                        ],
+                        "Lines": [
+                            "addiw\ts0,s0,-1",
+                            "bgt\ts0,s1,.L43"
                         ]
                     }
                 ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -3477,16 +3365,16 @@
             "No_lines": 230,
             "Ground_truth": {
                 "No_vulnerable_lines": 25,
-                "No_vulnerabilities": 20
+                "No_vulnerabilities": 22
             },
             "No_vulnerable_lines": 23,
-            "No_vulnerabilities": 20,
-            "No_TP": 19,
-            "No_FP": 1,
+            "No_vulnerabilities": 21,
+            "No_TP": 21,
+            "No_FP": 0,
             "No_FN": 1,
-            "Precision": 0.95,
-            "Recall": 0.95,
-            "F-1_score": 0.9500000000000001,
+            "Precision": 1.0,
+            "Recall": 0.9545454545454546,
+            "F-1_score": 0.9767441860465117,
             "Branch": {
                 "No_lines": 7,
                 "No_vulnerabilities": 5,
@@ -3715,29 +3603,41 @@
                 ]
             },
             "LoopCheck": {
-                "No_lines": 1,
-                "No_vulnerabilities": 1,
+                "No_lines": 4,
+                "No_vulnerabilities": 2,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 0,
-                    "No_vulnerabilities": 0
+                    "No_vulnerable_lines": 4,
+                    "No_vulnerabilities": 2
                 },
-                "No_TP": 0,
-                "No_FP": 1,
+                "No_TP": 2,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.0,
-                "Recall": 1,
+                "Precision": 1.0,
+                "Recall": 1.0,
                 "F-1_score": 1.0,
-                "True_positives": [],
-                "False_positives": [
+                "True_positives": [
                     {
                         "Line_nos": [
-                            50
+                            181,
+                            182
                         ],
                         "Lines": [
-                            "beq\ta5,zero,.L7"
+                            "li\ta5,75",
+                            "beq\ta0,a5,.L18"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            183,
+                            184
+                        ],
+                        "Lines": [
+                            "li\ta5,88",
+                            "bne\ta0,a5,.L12"
                         ]
                     }
                 ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -3746,17 +3646,17 @@
             "Optimization_level": "O1",
             "No_lines": 492,
             "Ground_truth": {
-                "No_vulnerable_lines": 18,
-                "No_vulnerabilities": 14
+                "No_vulnerable_lines": 20,
+                "No_vulnerabilities": 15
             },
-            "No_vulnerable_lines": 18,
-            "No_vulnerabilities": 15,
-            "No_TP": 13,
-            "No_FP": 2,
+            "No_vulnerable_lines": 20,
+            "No_vulnerabilities": 14,
+            "No_TP": 14,
+            "No_FP": 0,
             "No_FN": 1,
-            "Precision": 0.8666666666666667,
-            "Recall": 0.9285714285714286,
-            "F-1_score": 0.896551724137931,
+            "Precision": 1.0,
+            "Recall": 0.9333333333333333,
+            "F-1_score": 0.9655172413793105,
             "Branch": {
                 "No_lines": 9,
                 "No_vulnerabilities": 5,
@@ -3929,46 +3829,41 @@
                 ]
             },
             "LoopCheck": {
-                "No_lines": 3,
-                "No_vulnerabilities": 3,
+                "No_lines": 4,
+                "No_vulnerabilities": 2,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 1,
-                    "No_vulnerabilities": 1
+                    "No_vulnerable_lines": 3,
+                    "No_vulnerabilities": 2
                 },
-                "No_TP": 1,
-                "No_FP": 2,
+                "No_TP": 2,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.3333333333333333,
+                "Precision": 1.0,
                 "Recall": 1.0,
-                "F-1_score": 0.5,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
-                            215
+                            104,
+                            105
                         ],
                         "Lines": [
-                            "bne\ts0,s2,.L16"
-                        ]
-                    }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            103
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L6"
+                            "addi\ts0,s0,1",
+                            "bne\ts0,s3,.L7"
                         ]
                     },
                     {
                         "Line_nos": [
-                            105
+                            214,
+                            215
                         ],
                         "Lines": [
-                            "bne\ts0,s3,.L7"
+                            "addiw\ts0,s0,1",
+                            "bne\ts0,s2,.L16"
                         ]
                     }
                 ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -3980,14 +3875,14 @@
                 "No_vulnerable_lines": 38,
                 "No_vulnerabilities": 30
             },
-            "No_vulnerable_lines": 37,
-            "No_vulnerabilities": 32,
-            "No_TP": 29,
-            "No_FP": 3,
-            "No_FN": 1,
-            "Precision": 0.90625,
-            "Recall": 0.9666666666666667,
-            "F-1_score": 0.9354838709677418,
+            "No_vulnerable_lines": 35,
+            "No_vulnerabilities": 28,
+            "No_TP": 28,
+            "No_FP": 0,
+            "No_FN": 2,
+            "Precision": 1.0,
+            "Recall": 0.9333333333333333,
+            "F-1_score": 0.9655172413793105,
             "Branch": {
                 "No_lines": 16,
                 "No_vulnerabilities": 10,
@@ -4296,19 +4191,21 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 4,
-                "No_vulnerabilities": 4,
+                "No_lines": 0,
+                "No_vulnerabilities": 0,
                 "Ground_truth": {
                     "No_vulnerable_lines": 1,
                     "No_vulnerabilities": 1
                 },
-                "No_TP": 1,
-                "No_FP": 3,
-                "No_FN": 0,
-                "Precision": 0.25,
-                "Recall": 1.0,
-                "F-1_score": 0.4,
-                "True_positives": [
+                "No_TP": 0,
+                "No_FP": 0,
+                "No_FN": 1,
+                "Precision": 1,
+                "Recall": 0.0,
+                "F-1_score": 1.0,
+                "True_positives": [],
+                "False_positives": [],
+                "False_negatives": [
                     {
                         "Line_nos": [
                             293
@@ -4317,34 +4214,7 @@
                             "bne\ta5,a0,.L58"
                         ]
                     }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            215
-                        ],
-                        "Lines": [
-                            "bne\ta5,s2,.L42"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            353
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L67"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            406
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L74"
-                        ]
-                    }
-                ],
-                "False_negatives": []
+                ]
             }
         },
         {
@@ -8196,17 +8066,17 @@
             "Optimization_level": "O1",
             "No_lines": 4883,
             "Ground_truth": {
-                "No_vulnerable_lines": 427,
-                "No_vulnerabilities": 288
+                "No_vulnerable_lines": 434,
+                "No_vulnerabilities": 287
             },
-            "No_vulnerable_lines": 398,
-            "No_vulnerabilities": 309,
-            "No_TP": 271,
-            "No_FP": 38,
-            "No_FN": 17,
-            "Precision": 0.8770226537216829,
-            "Recall": 0.9409722222222222,
-            "F-1_score": 0.9078726968174203,
+            "No_vulnerable_lines": 400,
+            "No_vulnerabilities": 275,
+            "No_TP": 266,
+            "No_FP": 9,
+            "No_FN": 21,
+            "Precision": 0.9672727272727273,
+            "Recall": 0.926829268292683,
+            "F-1_score": 0.9466192170818505,
             "Branch": {
                 "No_lines": 118,
                 "No_vulnerabilities": 115,
@@ -10807,49 +10677,219 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 53,
-                "No_vulnerabilities": 53,
+                "No_lines": 38,
+                "No_vulnerabilities": 19,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 21,
-                    "No_vulnerabilities": 21
+                    "No_vulnerable_lines": 33,
+                    "No_vulnerabilities": 20
                 },
-                "No_TP": 18,
-                "No_FP": 35,
-                "No_FN": 3,
-                "Precision": 0.33962264150943394,
-                "Recall": 0.8571428571428571,
-                "F-1_score": 0.4864864864864864,
+                "No_TP": 13,
+                "No_FP": 6,
+                "No_FN": 7,
+                "Precision": 0.6842105263157895,
+                "Recall": 0.65,
+                "F-1_score": 0.6666666666666666,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            16,
                             17
                         ],
                         "Lines": [
+                            "addi\ta5,a5,4",
                             "bne\ta5,a0,.L3"
                         ]
                     },
                     {
                         "Line_nos": [
+                            32,
                             33
                         ],
                         "Lines": [
+                            "addi\ta5,a5,4",
                             "bne\ta5,a3,.L7"
                         ]
                     },
+                    {
+                        "Line_nos": [
+                            164,
+                            165
+                        ],
+                        "Lines": [
+                            "addi\ta1,a1,-4",
+                            "bltu\ta0,a1,.L40"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            811,
+                            812
+                        ],
+                        "Lines": [
+                            "addw\ts0,s0,a0",
+                            "blt\ts0,zero,.L108"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1027,
+                            1028
+                        ],
+                        "Lines": [
+                            "addw\ts0,s0,a0",
+                            "blt\ts0,zero,.L117"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1420,
+                            1421
+                        ],
+                        "Lines": [
+                            "addi\ta5,a5,-4",
+                            "bltu\ts1,a5,.L166"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1472,
+                            1473
+                        ],
+                        "Lines": [
+                            "lw\ta4,28(s0)",
+                            "bgtu\ta4,a5,.L172"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1487,
+                            1488
+                        ],
+                        "Lines": [
+                            "addw\ta3,a5,a4",
+                            "bgtu\ta2,a3,.L174"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1541,
+                            1542
+                        ],
+                        "Lines": [
+                            "lw\ta4,28(s0)",
+                            "bgtu\ta4,a5,.L182"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1556,
+                            1557
+                        ],
+                        "Lines": [
+                            "addw\ta3,a5,a4",
+                            "bgtu\ta2,a3,.L184"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            1806,
+                            1807
+                        ],
+                        "Lines": [
+                            "addiw\ta4,a4,1",
+                            "bne\ta4,a0,.L214"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            3582,
+                            3583
+                        ],
+                        "Lines": [
+                            "addiw\ts0,s0,-1",
+                            "bne\ts0,zero,.L317"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            4059,
+                            4060
+                        ],
+                        "Lines": [
+                            "addiw\ts0,s0,-1",
+                            "bne\ts0,zero,.L357"
+                        ]
+                    }
+                ],
+                "False_positives": [
+                    {
+                        "Line_nos": [
+                            3203,
+                            3204
+                        ],
+                        "Lines": [
+                            "addiw\ta4,a4,1",
+                            "seqz\ts0,s0"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            3321,
+                            3322
+                        ],
+                        "Lines": [
+                            "addiw\ta4,s8,1",
+                            "seqz\ts9,s9"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            3678,
+                            3679
+                        ],
+                        "Lines": [
+                            "addiw\ta4,a4,1",
+                            "seqz\ts1,s1"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            3886,
+                            3889
+                        ],
+                        "Lines": [
+                            "addi\ta3,a3,-4",
+                            "seqz\ta5,s3"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            4243,
+                            4244
+                        ],
+                        "Lines": [
+                            "lw\ta1,28(s2)",
+                            "beq\ta1,zero,.L375"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            4544,
+                            4547
+                        ],
+                        "Lines": [
+                            "addi\ta4,a4,-4",
+                            "seqz\ta0,s4"
+                        ]
+                    }
+                ],
+                "False_negatives": [
                     {
                         "Line_nos": [
                             114
                         ],
                         "Lines": [
                             "bne\ta5,a1,.L29"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            165
-                        ],
-                        "Lines": [
-                            "bltu\ta0,a1,.L40"
                         ]
                     },
                     {
@@ -10878,398 +10918,32 @@
                     },
                     {
                         "Line_nos": [
-                            1421
-                        ],
-                        "Lines": [
-                            "bltu\ts1,a5,.L166"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1488
-                        ],
-                        "Lines": [
-                            "bgtu\ta2,a3,.L174"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1557
-                        ],
-                        "Lines": [
-                            "bgtu\ta2,a3,.L184"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1670
-                        ],
-                        "Lines": [
-                            "ble\ta4,t5,.L193"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            1672,
                             1674
                         ],
                         "Lines": [
+                            "addi\tt4,t4,1",
                             "bne\tt4,t2,.L199"
                         ]
                     },
                     {
                         "Line_nos": [
+                            1717,
                             1719
                         ],
                         "Lines": [
+                            "addi\ta6,a6,4",
                             "bne\ta6,t5,.L197"
                         ]
                     },
                     {
                         "Line_nos": [
-                            1807
-                        ],
-                        "Lines": [
-                            "bne\ta4,a0,.L214"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            2388
-                        ],
-                        "Lines": [
-                            "bne\ts0,s1,.L250"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            3734
-                        ],
-                        "Lines": [
-                            "bgt\ta4,a5,.L328"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            4123,
                             4126
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bgtu\ta3,a4,.L363"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4545
-                        ],
-                        "Lines": [
-                            "bge\ts2,zero,.L390"
-                        ]
-                    }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            70
-                        ],
-                        "Lines": [
-                            "bge\ta5,zero,.L13"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            93
-                        ],
-                        "Lines": [
-                            "bne\ta5,zero,.L18"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            138
-                        ],
-                        "Lines": [
-                            "bge\ta2,zero,.L33"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            191
-                        ],
-                        "Lines": [
-                            "beq\ta6,a7,.L44"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            222
-                        ],
-                        "Lines": [
-                            "beq\ta6,a7,.L51"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            426
-                        ],
-                        "Lines": [
-                            "beq\ta5,zero,.L86"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            559
-                        ],
-                        "Lines": [
-                            "bne\ta4,zero,.L92"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            615
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L97"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            704
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L104"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            709
-                        ],
-                        "Lines": [
-                            "bne\ta0,s3,.L104"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            812
-                        ],
-                        "Lines": [
-                            "blt\ts0,zero,.L108"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            822
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L110"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            827
-                        ],
-                        "Lines": [
-                            "bne\ta0,s3,.L110"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1028
-                        ],
-                        "Lines": [
-                            "blt\ts0,zero,.L117"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1038
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L119"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1043
-                        ],
-                        "Lines": [
-                            "bne\ta0,s3,.L119"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1133
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L130"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1268
-                        ],
-                        "Lines": [
-                            "bne\ta0,zero,.L143"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1273
-                        ],
-                        "Lines": [
-                            "bne\ta0,s8,.L143"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1648
-                        ],
-                        "Lines": [
-                            "blt\tt5,zero,.L210"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1730
-                        ],
-                        "Lines": [
-                            "bgt\tt2,t6,.L198"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1861
-                        ],
-                        "Lines": [
-                            "bne\ta2,a1,.L227"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1883
-                        ],
-                        "Lines": [
-                            "ble\ts9,zero,.L220"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            2241
-                        ],
-                        "Lines": [
-                            "beq\ta0,zero,.L242"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            2470
-                        ],
-                        "Lines": [
-                            "bne\ts6,zero,.L251"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            2509
-                        ],
-                        "Lines": [
-                            "bne\ta4,zero,.L253"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            3069
-                        ],
-                        "Lines": [
-                            "bne\ts2,zero,.L277"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            3583
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L317"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            3887
-                        ],
-                        "Lines": [
-                            "bge\ta5,zero,.L337"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4060
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L357"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4244
-                        ],
-                        "Lines": [
-                            "beq\ta1,zero,.L375"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4253
-                        ],
-                        "Lines": [
-                            "bge\ta5,s0,.L365"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4260
-                        ],
-                        "Lines": [
-                            "beq\ta3,a1,.L364"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4270
-                        ],
-                        "Lines": [
-                            "bge\ta4,s0,.L365"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            4579
-                        ],
-                        "Lines": [
-                            "beq\ts8,zero,.L386"
-                        ]
-                    }
-                ],
-                "False_negatives": [
-                    {
-                        "Line_nos": [
-                            1473
-                        ],
-                        "Lines": [
-                            "bgtu\ta4,a5,.L172"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            1542
-                        ],
-                        "Lines": [
-                            "bgtu\ta4,a5,.L182"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            2231
-                        ],
-                        "Lines": [
-                            "beq\ts0,s2,.L241"
                         ]
                     }
                 ]
@@ -11280,17 +10954,17 @@
             "Optimization_level": "O1",
             "No_lines": 590,
             "Ground_truth": {
-                "No_vulnerable_lines": 63,
-                "No_vulnerabilities": 44
+                "No_vulnerable_lines": 65,
+                "No_vulnerabilities": 47
             },
-            "No_vulnerable_lines": 64,
-            "No_vulnerabilities": 49,
-            "No_TP": 42,
-            "No_FP": 7,
-            "No_FN": 2,
-            "Precision": 0.8571428571428571,
-            "Recall": 0.9545454545454546,
-            "F-1_score": 0.9032258064516129,
+            "No_vulnerable_lines": 69,
+            "No_vulnerabilities": 45,
+            "No_TP": 43,
+            "No_FP": 2,
+            "No_FN": 4,
+            "Precision": 0.9555555555555556,
+            "Recall": 0.9148936170212766,
+            "F-1_score": 0.9347826086956522,
             "Branch": {
                 "No_lines": 26,
                 "No_vulnerabilities": 20,
@@ -11747,31 +11421,45 @@
             },
             "LoopCheck": {
                 "No_lines": 8,
-                "No_vulnerabilities": 8,
+                "No_vulnerabilities": 4,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 3,
-                    "No_vulnerabilities": 3
+                    "No_vulnerable_lines": 9,
+                    "No_vulnerabilities": 6
                 },
-                "No_TP": 2,
-                "No_FP": 6,
-                "No_FN": 1,
-                "Precision": 0.25,
-                "Recall": 0.6666666666666666,
-                "F-1_score": 0.36363636363636365,
+                "No_TP": 3,
+                "No_FP": 1,
+                "No_FN": 3,
+                "Precision": 0.75,
+                "Recall": 0.5,
+                "F-1_score": 0.6000000000000001,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            378,
+                            379
+                        ],
+                        "Lines": [
+                            "li\ta4,118",
+                            "bne\ta5,a4,.L35"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            412,
                             413
                         ],
                         "Lines": [
+                            "addi\ts2,s2,1",
                             "bne\ts2,s11,.L44"
                         ]
                     },
                     {
                         "Line_nos": [
+                            468,
                             469
                         ],
                         "Lines": [
+                            "addi\ts2,s2,1",
                             "bne\ts2,s11,.L49"
                         ]
                     }
@@ -11779,50 +11467,12 @@
                 "False_positives": [
                     {
                         "Line_nos": [
-                            157
-                        ],
-                        "Lines": [
-                            "beq\ta0,s1,.L16"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
+                            160,
                             161
                         ],
                         "Lines": [
+                            "lw\ta5,%lo(cmdArgCnt)(s5)",
                             "bne\ta5,s4,.L19"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            166
-                        ],
-                        "Lines": [
-                            "bne\ta0,zero,.L19"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            234
-                        ],
-                        "Lines": [
-                            "bne\ta0,zero,.L28"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            321
-                        ],
-                        "Lines": [
-                            "bgt\ta4,zero,.L31"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            369
-                        ],
-                        "Lines": [
-                            "beq\ta0,s3,.L35"
                         ]
                     }
                 ],
@@ -11834,6 +11484,26 @@
                         "Lines": [
                             "bne\ta5,s2,.L26"
                         ]
+                    },
+                    {
+                        "Line_nos": [
+                            374,
+                            375
+                        ],
+                        "Lines": [
+                            "li\ta4,101",
+                            "beq\ta5,a4,.L63"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            376,
+                            377
+                        ],
+                        "Lines": [
+                            "li\ta4,112",
+                            "beq\ta5,a4,.L64"
+                        ]
                     }
                 ]
             }
@@ -11844,16 +11514,16 @@
             "No_lines": 393,
             "Ground_truth": {
                 "No_vulnerable_lines": 48,
-                "No_vulnerabilities": 34
+                "No_vulnerabilities": 33
             },
             "No_vulnerable_lines": 28,
-            "No_vulnerabilities": 23,
+            "No_vulnerabilities": 21,
             "No_TP": 21,
-            "No_FP": 2,
-            "No_FN": 13,
-            "Precision": 0.9130434782608695,
-            "Recall": 0.6176470588235294,
-            "F-1_score": 0.7368421052631579,
+            "No_FP": 0,
+            "No_FN": 12,
+            "Precision": 1.0,
+            "Recall": 0.6363636363636364,
+            "F-1_score": 0.7777777777777779,
             "Branch": {
                 "No_lines": 20,
                 "No_vulnerabilities": 15,
@@ -12212,56 +11882,32 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 3,
-                "No_vulnerabilities": 3,
+                "No_lines": 2,
+                "No_vulnerabilities": 1,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 2,
-                    "No_vulnerabilities": 2
+                    "No_vulnerable_lines": 1,
+                    "No_vulnerabilities": 1
                 },
                 "No_TP": 1,
-                "No_FP": 2,
-                "No_FN": 1,
-                "Precision": 0.3333333333333333,
-                "Recall": 0.5,
-                "F-1_score": 0.4,
+                "No_FP": 0,
+                "No_FN": 0,
+                "Precision": 1.0,
+                "Recall": 1.0,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            151,
                             152
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s4,.L20"
                         ]
                     }
                 ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            147
-                        ],
-                        "Lines": [
-                            "bne\ts1,zero,.L29"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            258
-                        ],
-                        "Lines": [
-                            "bgtu\ta5,s2,.L42"
-                        ]
-                    }
-                ],
-                "False_negatives": [
-                    {
-                        "Line_nos": [
-                            136
-                        ],
-                        "Lines": [
-                            "beq\ts0,s4,.L35"
-                        ]
-                    }
-                ]
+                "False_positives": [],
+                "False_negatives": []
             }
         },
         {
@@ -12272,14 +11918,14 @@
                 "No_vulnerable_lines": 1,
                 "No_vulnerabilities": 1
             },
-            "No_vulnerable_lines": 3,
-            "No_vulnerabilities": 3,
+            "No_vulnerable_lines": 1,
+            "No_vulnerabilities": 1,
             "No_TP": 1,
-            "No_FP": 2,
+            "No_FP": 0,
             "No_FN": 0,
-            "Precision": 0.3333333333333333,
+            "Precision": 1.0,
             "Recall": 1.0,
-            "F-1_score": 0.5,
+            "F-1_score": 1.0,
             "Branch": {
                 "No_lines": 0,
                 "No_vulnerabilities": 0,
@@ -12341,37 +11987,20 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 2,
-                "No_vulnerabilities": 2,
+                "No_lines": 0,
+                "No_vulnerabilities": 0,
                 "Ground_truth": {
                     "No_vulnerable_lines": 0,
                     "No_vulnerabilities": 0
                 },
                 "No_TP": 0,
-                "No_FP": 2,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.0,
+                "Precision": 1,
                 "Recall": 1,
                 "F-1_score": 1.0,
                 "True_positives": [],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            36
-                        ],
-                        "Lines": [
-                            "bne\ta5,a3,.L3"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            55
-                        ],
-                        "Lines": [
-                            "bne\ta5,a4,.L5"
-                        ]
-                    }
-                ],
+                "False_positives": [],
                 "False_negatives": []
             }
         },
@@ -12380,17 +12009,17 @@
             "Optimization_level": "O1",
             "No_lines": 658,
             "Ground_truth": {
-                "No_vulnerable_lines": 68,
-                "No_vulnerabilities": 46
+                "No_vulnerable_lines": 69,
+                "No_vulnerabilities": 47
             },
             "No_vulnerable_lines": 67,
-            "No_vulnerabilities": 55,
+            "No_vulnerabilities": 47,
             "No_TP": 40,
-            "No_FP": 15,
-            "No_FN": 6,
-            "Precision": 0.7272727272727273,
-            "Recall": 0.8695652173913043,
-            "F-1_score": 0.792079207920792,
+            "No_FP": 7,
+            "No_FN": 7,
+            "Precision": 0.851063829787234,
+            "Recall": 0.851063829787234,
+            "F-1_score": 0.851063829787234,
             "Branch": {
                 "No_lines": 36,
                 "No_vulnerabilities": 26,
@@ -12894,35 +12523,52 @@
                 ]
             },
             "LoopCheck": {
-                "No_lines": 11,
-                "No_vulnerabilities": 11,
+                "No_lines": 6,
+                "No_vulnerabilities": 3,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 3,
-                    "No_vulnerabilities": 3
+                    "No_vulnerable_lines": 5,
+                    "No_vulnerabilities": 4
                 },
                 "No_TP": 3,
-                "No_FP": 8,
-                "No_FN": 0,
-                "Precision": 0.2727272727272727,
-                "Recall": 1.0,
-                "F-1_score": 0.42857142857142855,
+                "No_FP": 0,
+                "No_FN": 1,
+                "Precision": 1.0,
+                "Recall": 0.75,
+                "F-1_score": 0.8571428571428572,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            255,
                             256
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bne\ta5,a1,.L26"
                         ]
                     },
                     {
                         "Line_nos": [
+                            284,
                             285
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s3,.L28"
                         ]
                     },
+                    {
+                        "Line_nos": [
+                            370,
+                            371
+                        ],
+                        "Lines": [
+                            "addiw\ta5,a5,-1",
+                            "bne\ta5,zero,.L49"
+                        ]
+                    }
+                ],
+                "False_positives": [],
+                "False_negatives": [
                     {
                         "Line_nos": [
                             426
@@ -12931,74 +12577,7 @@
                             "bne\ta5,a2,.L52"
                         ]
                     }
-                ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            15
-                        ],
-                        "Lines": [
-                            "beq\ta5,zero,.L2"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            323
-                        ],
-                        "Lines": [
-                            "beq\ta5,zero,.L32"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            371
-                        ],
-                        "Lines": [
-                            "bne\ta5,zero,.L49"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            521
-                        ],
-                        "Lines": [
-                            "bne\ta5,s1,.L60"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            529
-                        ],
-                        "Lines": [
-                            "bge\ta4,zero,.L62"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            538
-                        ],
-                        "Lines": [
-                            "bne\ta5,s1,.L64"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            563
-                        ],
-                        "Lines": [
-                            "bge\ta4,zero,.L56"
-                        ]
-                    },
-                    {
-                        "Line_nos": [
-                            577
-                        ],
-                        "Lines": [
-                            "bge\ta4,zero,.L58"
-                        ]
-                    }
-                ],
-                "False_negatives": []
+                ]
             }
         },
         {
@@ -13009,7 +12588,7 @@
                 "No_vulnerable_lines": 27,
                 "No_vulnerabilities": 20
             },
-            "No_vulnerable_lines": 23,
+            "No_vulnerable_lines": 24,
             "No_vulnerabilities": 18,
             "No_TP": 18,
             "No_FP": 0,
@@ -13245,7 +12824,7 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 1,
+                "No_lines": 2,
                 "No_vulnerabilities": 1,
                 "Ground_truth": {
                     "No_vulnerable_lines": 1,
@@ -13260,9 +12839,11 @@
                 "True_positives": [
                     {
                         "Line_nos": [
+                            104,
                             105
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bne\ta5,a1,.L9"
                         ]
                     }
@@ -13280,13 +12861,13 @@
                 "No_vulnerabilities": 7
             },
             "No_vulnerable_lines": 9,
-            "No_vulnerabilities": 7,
-            "No_TP": 6,
+            "No_vulnerabilities": 6,
+            "No_TP": 5,
             "No_FP": 1,
-            "No_FN": 1,
-            "Precision": 0.8571428571428571,
-            "Recall": 0.8571428571428571,
-            "F-1_score": 0.8571428571428571,
+            "No_FN": 2,
+            "Precision": 0.8333333333333334,
+            "Recall": 0.7142857142857143,
+            "F-1_score": 0.7692307692307694,
             "Branch": {
                 "No_lines": 2,
                 "No_vulnerabilities": 2,
@@ -13396,26 +12977,31 @@
             },
             "LoopCheck": {
                 "No_lines": 2,
-                "No_vulnerabilities": 2,
+                "No_vulnerabilities": 1,
                 "Ground_truth": {
                     "No_vulnerable_lines": 2,
                     "No_vulnerabilities": 2
                 },
-                "No_TP": 2,
+                "No_TP": 1,
                 "No_FP": 0,
-                "No_FN": 0,
+                "No_FN": 1,
                 "Precision": 1.0,
-                "Recall": 1.0,
-                "F-1_score": 1.0,
+                "Recall": 0.5,
+                "F-1_score": 0.6666666666666666,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            35,
                             36
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bne\ta5,a4,.L2"
                         ]
-                    },
+                    }
+                ],
+                "False_positives": [],
+                "False_negatives": [
                     {
                         "Line_nos": [
                             59
@@ -13424,9 +13010,7 @@
                             "bne\ta5,a2,.L3"
                         ]
                     }
-                ],
-                "False_positives": [],
-                "False_negatives": []
+                ]
             }
         },
         {
@@ -13434,17 +13018,17 @@
             "Optimization_level": "O1",
             "No_lines": 317,
             "Ground_truth": {
-                "No_vulnerable_lines": 20,
-                "No_vulnerabilities": 17
+                "No_vulnerable_lines": 21,
+                "No_vulnerabilities": 18
             },
-            "No_vulnerable_lines": 20,
+            "No_vulnerable_lines": 24,
             "No_vulnerabilities": 18,
-            "No_TP": 17,
-            "No_FP": 1,
+            "No_TP": 18,
+            "No_FP": 0,
             "No_FN": 0,
-            "Precision": 0.9444444444444444,
+            "Precision": 1.0,
             "Recall": 1.0,
-            "F-1_score": 0.9714285714285715,
+            "F-1_score": 1.0,
             "Branch": {
                 "No_lines": 9,
                 "No_vulnerabilities": 7,
@@ -13617,54 +13201,61 @@
                 "False_negatives": []
             },
             "LoopCheck": {
-                "No_lines": 4,
+                "No_lines": 8,
                 "No_vulnerabilities": 4,
                 "Ground_truth": {
-                    "No_vulnerable_lines": 3,
-                    "No_vulnerabilities": 3
+                    "No_vulnerable_lines": 5,
+                    "No_vulnerabilities": 4
                 },
-                "No_TP": 3,
-                "No_FP": 1,
+                "No_TP": 4,
+                "No_FP": 0,
                 "No_FN": 0,
-                "Precision": 0.75,
+                "Precision": 1.0,
                 "Recall": 1.0,
-                "F-1_score": 0.8571428571428572,
+                "F-1_score": 1.0,
                 "True_positives": [
                     {
                         "Line_nos": [
+                            23,
                             24
                         ],
                         "Lines": [
+                            "addi\ta5,a5,1",
                             "bne\ta5,a3,.L2"
                         ]
                     },
                     {
                         "Line_nos": [
+                            90,
+                            91
+                        ],
+                        "Lines": [
+                            "addiw\ts0,s0,-1",
+                            "bne\ts0,zero,.L11"
+                        ]
+                    },
+                    {
+                        "Line_nos": [
+                            197,
                             198
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s1,.L24"
                         ]
                     },
                     {
                         "Line_nos": [
+                            303,
                             304
                         ],
                         "Lines": [
+                            "addi\ts0,s0,1",
                             "bne\ts0,s1,.L42"
                         ]
                     }
                 ],
-                "False_positives": [
-                    {
-                        "Line_nos": [
-                            91
-                        ],
-                        "Lines": [
-                            "bne\ts0,zero,.L11"
-                        ]
-                    }
-                ],
+                "False_positives": [],
                 "False_negatives": []
             }
         }

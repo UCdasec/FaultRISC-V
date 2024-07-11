@@ -41,8 +41,8 @@
         "Program_name": "AVR-Security-System_main_O1.s",
         "Optimization_level": "O1",
         "No_lines": 1406,
-        "No_vulnerable_lines": 201,
-        "No_vulnerabilities": 124,
+        "No_vulnerable_lines": 207,
+        "No_vulnerabilities": 121,
         "Branch": {
             "No_lines": 120,
             "No_vulnerabilities": 69,
@@ -1150,78 +1150,66 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 9,
-            "No_vulnerabilities": 9,
+            "No_lines": 12,
+            "No_vulnerabilities": 6,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        23,
                         24
                     ],
                     "Lines": [
+                        "addiw\ta5,a5,-1",
                         "bne\ta5,zero,.L4"
                     ]
                 },
                 {
                     "Line_nos": [
+                        25,
                         26
                     ],
                     "Lines": [
+                        "addiw\ta4,a4,1",
                         "bne\ta3,a4,.L2"
                     ]
                 },
                 {
                     "Line_nos": [
+                        139,
                         140
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s1,.L15"
                     ]
                 },
                 {
                     "Line_nos": [
+                        176,
                         177
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s1,.L19"
                     ]
                 },
                 {
                     "Line_nos": [
-                        281
-                    ],
-                    "Lines": [
-                        "bge\ta5,zero,.L30"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        332
-                    ],
-                    "Lines": [
-                        "beq\ta5,zero,.L34"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        356,
                         357
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s1,.L38"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1293
-                    ],
-                    "Lines": [
-                        "bne\ta5,zero,.L139"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        1299,
                         1300
                     ],
                     "Lines": [
+                        "li\ta5,253",
                         "bleu\ta0,a5,.L140"
                     ]
                 }
@@ -1232,8 +1220,8 @@
         "Program_name": "RFID_main_O1.s",
         "Optimization_level": "O1",
         "No_lines": 452,
-        "No_vulnerable_lines": 102,
-        "No_vulnerabilities": 83,
+        "No_vulnerable_lines": 103,
+        "No_vulnerabilities": 82,
         "Branch": {
             "No_lines": 25,
             "No_vulnerabilities": 22,
@@ -1952,21 +1940,15 @@
         },
         "LoopCheck": {
             "No_lines": 2,
-            "No_vulnerabilities": 2,
+            "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        271
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L47"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        272,
                         273
                     ],
                     "Lines": [
+                        "lw\ta5,%lo(demtong)(s0)",
                         "bne\ta5,zero,.L16"
                     ]
                 }
@@ -1978,7 +1960,7 @@
         "Optimization_level": "O1",
         "No_lines": 544,
         "No_vulnerable_lines": 57,
-        "No_vulnerabilities": 46,
+        "No_vulnerabilities": 45,
         "Branch": {
             "No_lines": 23,
             "No_vulnerabilities": 19,
@@ -2391,22 +2373,16 @@
         },
         "LoopCheck": {
             "No_lines": 2,
-            "No_vulnerabilities": 2,
+            "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        95,
                         96
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bne\ta5,a2,.L14"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        273
-                    ],
-                    "Lines": [
-                        "blt\ts3,s4,.L53"
                     ]
                 }
             ]
@@ -2416,8 +2392,8 @@
         "Program_name": "EmbeddedSystem-Door-lock-Security-system_main_O1.s",
         "Optimization_level": "O1",
         "No_lines": 192,
-        "No_vulnerable_lines": 13,
-        "No_vulnerabilities": 8,
+        "No_vulnerable_lines": 11,
+        "No_vulnerabilities": 5,
         "Branch": {
             "No_lines": 5,
             "No_vulnerabilities": 3,
@@ -2488,42 +2464,17 @@
             "Vulnerabilities": []
         },
         "LoopCheck": {
-            "No_lines": 3,
-            "No_vulnerabilities": 3,
-            "Vulnerabilities": [
-                {
-                    "Line_nos": [
-                        62
-                    ],
-                    "Lines": [
-                        "bne\ts0,s2,.L2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        109
-                    ],
-                    "Lines": [
-                        "bgtu\ta0,s4,.L4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        127
-                    ],
-                    "Lines": [
-                        "bne\ts1,s8,.L3"
-                    ]
-                }
-            ]
+            "No_lines": 0,
+            "No_vulnerabilities": 0,
+            "Vulnerabilities": []
         }
     },
     {
         "Program_name": "smartlock_controller_main_O1.s",
         "Optimization_level": "O1",
         "No_lines": 84,
-        "No_vulnerable_lines": 10,
-        "No_vulnerabilities": 10,
+        "No_vulnerable_lines": 9,
+        "No_vulnerabilities": 9,
         "Branch": {
             "No_lines": 3,
             "No_vulnerabilities": 3,
@@ -2621,18 +2572,9 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 1,
-            "No_vulnerabilities": 1,
-            "Vulnerabilities": [
-                {
-                    "Line_nos": [
-                        56
-                    ],
-                    "Lines": [
-                        "beq\ta5,s2,.L5"
-                    ]
-                }
-            ]
+            "No_lines": 0,
+            "No_vulnerabilities": 0,
+            "Vulnerabilities": []
         }
     },
     {
@@ -2640,7 +2582,7 @@
         "Optimization_level": "O1",
         "No_lines": 668,
         "No_vulnerable_lines": 25,
-        "No_vulnerabilities": 23,
+        "No_vulnerabilities": 16,
         "Branch": {
             "No_lines": 14,
             "No_vulnerabilities": 9,
@@ -2782,87 +2724,37 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 10,
-            "No_vulnerabilities": 10,
+            "No_lines": 6,
+            "No_vulnerabilities": 3,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        165
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L4"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        178
-                    ],
-                    "Lines": [
-                        "bne\ts0,s4,.L5"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        316,
                         318
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,-1",
                         "bgt\ts0,s1,.L38"
                     ]
                 },
                 {
                     "Line_nos": [
-                        337
-                    ],
-                    "Lines": [
-                        "bne\ts0,s2,.L13"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        389
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        393
-                    ],
-                    "Lines": [
-                        "bne\ta0,a5,.L26"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        444
-                    ],
-                    "Lines": [
-                        "bne\ta0,zero,.L16"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        471,
                         472
                     ],
                     "Lines": [
+                        "addiw\ts1,s1,1",
                         "bne\ts1,s9,.L17"
                     ]
                 },
                 {
                     "Line_nos": [
+                        607,
                         609
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,-1",
                         "bgt\ts0,s1,.L43"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        628
-                    ],
-                    "Lines": [
-                        "bne\ts0,s2,.L23"
                     ]
                 }
             ]
@@ -2873,7 +2765,7 @@
         "Optimization_level": "O1",
         "No_lines": 230,
         "No_vulnerable_lines": 23,
-        "No_vulnerabilities": 20,
+        "No_vulnerabilities": 21,
         "Branch": {
             "No_lines": 7,
             "No_vulnerabilities": 5,
@@ -3055,15 +2947,27 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 1,
-            "No_vulnerabilities": 1,
+            "No_lines": 4,
+            "No_vulnerabilities": 2,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        50
+                        181,
+                        182
                     ],
                     "Lines": [
-                        "beq\ta5,zero,.L7"
+                        "li\ta5,75",
+                        "beq\ta0,a5,.L18"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        183,
+                        184
+                    ],
+                    "Lines": [
+                        "li\ta5,88",
+                        "bne\ta0,a5,.L12"
                     ]
                 }
             ]
@@ -3073,8 +2977,8 @@
         "Program_name": "smartlock_HMI_utility_functions_O1.s",
         "Optimization_level": "O1",
         "No_lines": 492,
-        "No_vulnerable_lines": 18,
-        "No_vulnerabilities": 15,
+        "No_vulnerable_lines": 20,
+        "No_vulnerabilities": 14,
         "Branch": {
             "No_lines": 9,
             "No_vulnerabilities": 5,
@@ -3202,30 +3106,26 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 3,
-            "No_vulnerabilities": 3,
+            "No_lines": 4,
+            "No_vulnerabilities": 2,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        103
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L6"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        104,
                         105
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s3,.L7"
                     ]
                 },
                 {
                     "Line_nos": [
+                        214,
                         215
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,1",
                         "bne\ts0,s2,.L16"
                     ]
                 }
@@ -3236,8 +3136,8 @@
         "Program_name": "smartlock_controller_utility_functions_O1.s",
         "Optimization_level": "O1",
         "No_lines": 432,
-        "No_vulnerable_lines": 37,
-        "No_vulnerabilities": 32,
+        "No_vulnerable_lines": 35,
+        "No_vulnerabilities": 28,
         "Branch": {
             "No_lines": 16,
             "No_vulnerabilities": 10,
@@ -3499,42 +3399,9 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 4,
-            "No_vulnerabilities": 4,
-            "Vulnerabilities": [
-                {
-                    "Line_nos": [
-                        215
-                    ],
-                    "Lines": [
-                        "bne\ta5,s2,.L42"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        293
-                    ],
-                    "Lines": [
-                        "bne\ta5,a0,.L58"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        353
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L67"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        406
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L74"
-                    ]
-                }
-            ]
+            "No_lines": 0,
+            "No_vulnerabilities": 0,
+            "Vulnerabilities": []
         }
     },
     {
@@ -7327,8 +7194,8 @@
         "Program_name": "uECC_O1.s",
         "Optimization_level": "O1",
         "No_lines": 4883,
-        "No_vulnerable_lines": 398,
-        "No_vulnerabilities": 309,
+        "No_vulnerable_lines": 400,
+        "No_vulnerabilities": 275,
         "Branch": {
             "No_lines": 118,
             "No_vulnerabilities": 115,
@@ -9738,431 +9605,197 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 53,
-            "No_vulnerabilities": 53,
+            "No_lines": 38,
+            "No_vulnerabilities": 19,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        16,
                         17
                     ],
                     "Lines": [
+                        "addi\ta5,a5,4",
                         "bne\ta5,a0,.L3"
                     ]
                 },
                 {
                     "Line_nos": [
+                        32,
                         33
                     ],
                     "Lines": [
+                        "addi\ta5,a5,4",
                         "bne\ta5,a3,.L7"
                     ]
                 },
                 {
                     "Line_nos": [
-                        70
-                    ],
-                    "Lines": [
-                        "bge\ta5,zero,.L13"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        93
-                    ],
-                    "Lines": [
-                        "bne\ta5,zero,.L18"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        114
-                    ],
-                    "Lines": [
-                        "bne\ta5,a1,.L29"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        138
-                    ],
-                    "Lines": [
-                        "bge\ta2,zero,.L33"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        164,
                         165
                     ],
                     "Lines": [
+                        "addi\ta1,a1,-4",
                         "bltu\ta0,a1,.L40"
                     ]
                 },
                 {
                     "Line_nos": [
-                        191
-                    ],
-                    "Lines": [
-                        "beq\ta6,a7,.L44"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        222
-                    ],
-                    "Lines": [
-                        "beq\ta6,a7,.L51"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        426
-                    ],
-                    "Lines": [
-                        "beq\ta5,zero,.L86"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        559
-                    ],
-                    "Lines": [
-                        "bne\ta4,zero,.L92"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        615
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L97"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        704
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L104"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        709
-                    ],
-                    "Lines": [
-                        "bne\ta0,s3,.L104"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        811,
                         812
                     ],
                     "Lines": [
+                        "addw\ts0,s0,a0",
                         "blt\ts0,zero,.L108"
                     ]
                 },
                 {
                     "Line_nos": [
-                        822
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L110"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        827
-                    ],
-                    "Lines": [
-                        "bne\ta0,s3,.L110"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        1027,
                         1028
                     ],
                     "Lines": [
+                        "addw\ts0,s0,a0",
                         "blt\ts0,zero,.L117"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1038
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L119"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1043
-                    ],
-                    "Lines": [
-                        "bne\ta0,s3,.L119"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1074
-                    ],
-                    "Lines": [
-                        "bne\ta4,t1,.L125"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1133
-                    ],
-                    "Lines": [
-                        "bne\ts0,zero,.L130"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1268
-                    ],
-                    "Lines": [
-                        "bne\ta0,zero,.L143"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1273
-                    ],
-                    "Lines": [
-                        "bne\ta0,s8,.L143"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1312
-                    ],
-                    "Lines": [
-                        "bne\ta1,a3,.L155"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1352
-                    ],
-                    "Lines": [
-                        "bne\ta2,a0,.L159"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        1420,
                         1421
                     ],
                     "Lines": [
+                        "addi\ta5,a5,-4",
                         "bltu\ts1,a5,.L166"
                     ]
                 },
                 {
                     "Line_nos": [
+                        1472,
+                        1473
+                    ],
+                    "Lines": [
+                        "lw\ta4,28(s0)",
+                        "bgtu\ta4,a5,.L172"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        1487,
                         1488
                     ],
                     "Lines": [
+                        "addw\ta3,a5,a4",
                         "bgtu\ta2,a3,.L174"
                     ]
                 },
                 {
                     "Line_nos": [
+                        1541,
+                        1542
+                    ],
+                    "Lines": [
+                        "lw\ta4,28(s0)",
+                        "bgtu\ta4,a5,.L182"
+                    ]
+                },
+                {
+                    "Line_nos": [
+                        1556,
                         1557
                     ],
                     "Lines": [
+                        "addw\ta3,a5,a4",
                         "bgtu\ta2,a3,.L184"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1648
-                    ],
-                    "Lines": [
-                        "blt\tt5,zero,.L210"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1670
-                    ],
-                    "Lines": [
-                        "ble\ta4,t5,.L193"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1674
-                    ],
-                    "Lines": [
-                        "bne\tt4,t2,.L199"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1719
-                    ],
-                    "Lines": [
-                        "bne\ta6,t5,.L197"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        1730
-                    ],
-                    "Lines": [
-                        "bgt\tt2,t6,.L198"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        1806,
                         1807
                     ],
                     "Lines": [
+                        "addiw\ta4,a4,1",
                         "bne\ta4,a0,.L214"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1861
+                        3203,
+                        3204
                     ],
                     "Lines": [
-                        "bne\ta2,a1,.L227"
+                        "addiw\ta4,a4,1",
+                        "seqz\ts0,s0"
                     ]
                 },
                 {
                     "Line_nos": [
-                        1883
+                        3321,
+                        3322
                     ],
                     "Lines": [
-                        "ble\ts9,zero,.L220"
+                        "addiw\ta4,s8,1",
+                        "seqz\ts9,s9"
                     ]
                 },
                 {
                     "Line_nos": [
-                        2241
-                    ],
-                    "Lines": [
-                        "beq\ta0,zero,.L242"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        2388
-                    ],
-                    "Lines": [
-                        "bne\ts0,s1,.L250"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        2470
-                    ],
-                    "Lines": [
-                        "bne\ts6,zero,.L251"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        2509
-                    ],
-                    "Lines": [
-                        "bne\ta4,zero,.L253"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        3069
-                    ],
-                    "Lines": [
-                        "bne\ts2,zero,.L277"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        3582,
                         3583
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,-1",
                         "bne\ts0,zero,.L317"
                     ]
                 },
                 {
                     "Line_nos": [
-                        3734
+                        3678,
+                        3679
                     ],
                     "Lines": [
-                        "bgt\ta4,a5,.L328"
+                        "addiw\ta4,a4,1",
+                        "seqz\ts1,s1"
                     ]
                 },
                 {
                     "Line_nos": [
-                        3887
+                        3886,
+                        3889
                     ],
                     "Lines": [
-                        "bge\ta5,zero,.L337"
+                        "addi\ta3,a3,-4",
+                        "seqz\ta5,s3"
                     ]
                 },
                 {
                     "Line_nos": [
+                        4059,
                         4060
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,-1",
                         "bne\ts0,zero,.L357"
                     ]
                 },
                 {
                     "Line_nos": [
-                        4126
-                    ],
-                    "Lines": [
-                        "bgtu\ta3,a4,.L363"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        4243,
                         4244
                     ],
                     "Lines": [
+                        "lw\ta1,28(s2)",
                         "beq\ta1,zero,.L375"
                     ]
                 },
                 {
                     "Line_nos": [
-                        4253
+                        4544,
+                        4547
                     ],
                     "Lines": [
-                        "bge\ta5,s0,.L365"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4260
-                    ],
-                    "Lines": [
-                        "beq\ta3,a1,.L364"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4270
-                    ],
-                    "Lines": [
-                        "bge\ta4,s0,.L365"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4545
-                    ],
-                    "Lines": [
-                        "bge\ts2,zero,.L390"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        4579
-                    ],
-                    "Lines": [
-                        "beq\ts8,zero,.L386"
+                        "addi\ta4,a4,-4",
+                        "seqz\ta0,s4"
                     ]
                 }
             ]
@@ -10172,8 +9805,8 @@
         "Program_name": "seeBoot_main_O1.s",
         "Optimization_level": "O1",
         "No_lines": 590,
-        "No_vulnerable_lines": 64,
-        "No_vulnerabilities": 49,
+        "No_vulnerable_lines": 69,
+        "No_vulnerabilities": 45,
         "Branch": {
             "No_lines": 26,
             "No_vulnerabilities": 20,
@@ -10584,69 +10217,45 @@
         },
         "LoopCheck": {
             "No_lines": 8,
-            "No_vulnerabilities": 8,
+            "No_vulnerabilities": 4,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        157
-                    ],
-                    "Lines": [
-                        "beq\ta0,s1,.L16"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        160,
                         161
                     ],
                     "Lines": [
+                        "lw\ta5,%lo(cmdArgCnt)(s5)",
                         "bne\ta5,s4,.L19"
                     ]
                 },
                 {
                     "Line_nos": [
-                        166
+                        378,
+                        379
                     ],
                     "Lines": [
-                        "bne\ta0,zero,.L19"
+                        "li\ta4,118",
+                        "bne\ta5,a4,.L35"
                     ]
                 },
                 {
                     "Line_nos": [
-                        234
-                    ],
-                    "Lines": [
-                        "bne\ta0,zero,.L28"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        321
-                    ],
-                    "Lines": [
-                        "bgt\ta4,zero,.L31"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        369
-                    ],
-                    "Lines": [
-                        "beq\ta0,s3,.L35"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        412,
                         413
                     ],
                     "Lines": [
+                        "addi\ts2,s2,1",
                         "bne\ts2,s11,.L44"
                     ]
                 },
                 {
                     "Line_nos": [
+                        468,
                         469
                     ],
                     "Lines": [
+                        "addi\ts2,s2,1",
                         "bne\ts2,s11,.L49"
                     ]
                 }
@@ -10658,7 +10267,7 @@
         "Optimization_level": "O1",
         "No_lines": 393,
         "No_vulnerable_lines": 28,
-        "No_vulnerabilities": 23,
+        "No_vulnerabilities": 21,
         "Branch": {
             "No_lines": 20,
             "No_vulnerabilities": 15,
@@ -10858,31 +10467,17 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 3,
-            "No_vulnerabilities": 3,
+            "No_lines": 2,
+            "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        147
-                    ],
-                    "Lines": [
-                        "bne\ts1,zero,.L29"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        151,
                         152
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s4,.L20"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        258
-                    ],
-                    "Lines": [
-                        "bgtu\ta5,s2,.L42"
                     ]
                 }
             ]
@@ -10892,8 +10487,8 @@
         "Program_name": "samd_bootloader_secure_startup_O1.s",
         "Optimization_level": "O1",
         "No_lines": 70,
-        "No_vulnerable_lines": 3,
-        "No_vulnerabilities": 3,
+        "No_vulnerable_lines": 1,
+        "No_vulnerabilities": 1,
         "Branch": {
             "No_lines": 0,
             "No_vulnerabilities": 0,
@@ -10919,26 +10514,9 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 2,
-            "No_vulnerabilities": 2,
-            "Vulnerabilities": [
-                {
-                    "Line_nos": [
-                        36
-                    ],
-                    "Lines": [
-                        "bne\ta5,a3,.L3"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        55
-                    ],
-                    "Lines": [
-                        "bne\ta5,a4,.L5"
-                    ]
-                }
-            ]
+            "No_lines": 0,
+            "No_vulnerabilities": 0,
+            "Vulnerabilities": []
         }
     },
     {
@@ -10946,7 +10524,7 @@
         "Optimization_level": "O1",
         "No_lines": 658,
         "No_vulnerable_lines": 67,
-        "No_vulnerabilities": 55,
+        "No_vulnerabilities": 47,
         "Branch": {
             "No_lines": 36,
             "No_vulnerabilities": 26,
@@ -11353,95 +10931,37 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 11,
-            "No_vulnerabilities": 11,
+            "No_lines": 6,
+            "No_vulnerabilities": 3,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
-                        15
-                    ],
-                    "Lines": [
-                        "beq\ta5,zero,.L2"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        255,
                         256
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bne\ta5,a1,.L26"
                     ]
                 },
                 {
                     "Line_nos": [
+                        284,
                         285
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s3,.L28"
                     ]
                 },
                 {
                     "Line_nos": [
-                        323
-                    ],
-                    "Lines": [
-                        "beq\ta5,zero,.L32"
-                    ]
-                },
-                {
-                    "Line_nos": [
+                        370,
                         371
                     ],
                     "Lines": [
+                        "addiw\ta5,a5,-1",
                         "bne\ta5,zero,.L49"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        426
-                    ],
-                    "Lines": [
-                        "bne\ta5,a2,.L52"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        521
-                    ],
-                    "Lines": [
-                        "bne\ta5,s1,.L60"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        529
-                    ],
-                    "Lines": [
-                        "bge\ta4,zero,.L62"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        538
-                    ],
-                    "Lines": [
-                        "bne\ta5,s1,.L64"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        563
-                    ],
-                    "Lines": [
-                        "bge\ta4,zero,.L56"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        577
-                    ],
-                    "Lines": [
-                        "bge\ta4,zero,.L58"
                     ]
                 }
             ]
@@ -11451,7 +10971,7 @@
         "Program_name": "SecureBoot-Solution-for-RISC-V_secure_rom_boot_O1.s",
         "Optimization_level": "O1",
         "No_lines": 295,
-        "No_vulnerable_lines": 23,
+        "No_vulnerable_lines": 24,
         "No_vulnerabilities": 18,
         "Branch": {
             "No_lines": 5,
@@ -11624,14 +11144,16 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 1,
+            "No_lines": 2,
             "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        104,
                         105
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bne\ta5,a1,.L9"
                     ]
                 }
@@ -11643,7 +11165,7 @@
         "Optimization_level": "O1",
         "No_lines": 128,
         "No_vulnerable_lines": 9,
-        "No_vulnerabilities": 7,
+        "No_vulnerabilities": 6,
         "Branch": {
             "No_lines": 2,
             "No_vulnerabilities": 2,
@@ -11707,22 +11229,16 @@
         },
         "LoopCheck": {
             "No_lines": 2,
-            "No_vulnerabilities": 2,
+            "No_vulnerabilities": 1,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        35,
                         36
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bne\ta5,a4,.L2"
-                    ]
-                },
-                {
-                    "Line_nos": [
-                        59
-                    ],
-                    "Lines": [
-                        "bne\ta5,a2,.L3"
                     ]
                 }
             ]
@@ -11732,7 +11248,7 @@
         "Program_name": "samd_bootloader_secure_spritz_O1.s",
         "Optimization_level": "O1",
         "No_lines": 317,
-        "No_vulnerable_lines": 20,
+        "No_vulnerable_lines": 24,
         "No_vulnerabilities": 18,
         "Branch": {
             "No_lines": 9,
@@ -11870,38 +11386,46 @@
             ]
         },
         "LoopCheck": {
-            "No_lines": 4,
+            "No_lines": 8,
             "No_vulnerabilities": 4,
             "Vulnerabilities": [
                 {
                     "Line_nos": [
+                        23,
                         24
                     ],
                     "Lines": [
+                        "addi\ta5,a5,1",
                         "bne\ta5,a3,.L2"
                     ]
                 },
                 {
                     "Line_nos": [
+                        90,
                         91
                     ],
                     "Lines": [
+                        "addiw\ts0,s0,-1",
                         "bne\ts0,zero,.L11"
                     ]
                 },
                 {
                     "Line_nos": [
+                        197,
                         198
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s1,.L24"
                     ]
                 },
                 {
                     "Line_nos": [
+                        303,
                         304
                     ],
                     "Lines": [
+                        "addi\ts0,s0,1",
                         "bne\ts0,s1,.L42"
                     ]
                 }

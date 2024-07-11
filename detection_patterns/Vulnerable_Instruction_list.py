@@ -240,13 +240,16 @@ vulnerable_instruction_list = {
         OptimizationLevel.O1: [
             [
                 [
-                    {'lhu', 'lbu', 'li'}, {Register}, {MemoryAddress}
+                    {'lhu', 'li', 'lw'}, {Register}, {MemoryAddress, IntegerLiteral}
                 ],
                 [
-                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {IntegerLiteral}, {Label}
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
                 ]
             ],
             [
+                [
+                    {'addi', 'addiw', 'addw'}, {Register}, {Register}, {IntegerLiteral, Register}
+                ],
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
                 ],

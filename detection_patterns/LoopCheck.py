@@ -187,7 +187,8 @@ class LoopCheck(Pattern):
                                 if not register_match and not any(arg.arg_text == cache_arg.arg_text
                                            for cache_instruction in filter(lambda line: isinstance(line, Instruction),self.detection_cache)
                                            for cache_arg in cache_instruction.args):
-                                    line_pattern_match = False
+                                    if arg_no == len(line.args):
+                                        line_pattern_match = False
                                     continue
                                 else:
                                     register_match = True
@@ -205,8 +206,9 @@ class LoopCheck(Pattern):
                         line_pattern_match = True
 
                     if line_pattern_match:
-                        self.detection_cache.append(line)
-                        line_no += 1
+                        if not (((line_no == 1 or line_no == 2) and line_type.startswith('b')) and not register_match):
+                            self.detection_cache.append(line)
+                            line_no += 1
 
                     if line_no == len(self.vulnerable_pattern) and line_no >= 1:
                         self.insecure_match = True
