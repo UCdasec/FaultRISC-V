@@ -24,7 +24,7 @@ while getopts "o:" option; do
       OPT_LEVEL=$OPTARG
       ;;
     *)
-      echo "Usage: ./run_tests.sh [-opt optimization_level(O0|O1|O2)] source_dir"
+      echo "Usage: ./run_tests.sh [-o optimization_level(O0|O1|O2)] source_dir"
       exit 1
       ;;
   esac
