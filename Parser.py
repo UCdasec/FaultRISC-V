@@ -276,7 +276,10 @@ class Program:
                         else:
                             self.lines[-1].resolve_var_value(line_no + word_count + 1, next_line.strip())
 
-                    elif next_line.strip().startswith('.dword'):        # GlobalVariable of type STRING
+                    elif next_line.strip().startswith('.zero') and word_count > 0:  # Still global variable of type INTEGER, but skipping a few places
+                        continue
+
+                    elif next_line.strip().startswith('.dword') and word_count == 0:        # GlobalVariable of type STRING
                         self.lines.append(GlobalVariable(line_no, line, VariableType.STRING))
                         self.lines[-1].resolve_var_name()
                         break
