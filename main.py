@@ -72,7 +72,9 @@ def analyze_program(program: Program):
             
         elif isinstance(line, Function):
             DefaultFail_detector.addFunction(line)
-
+            
+    if program.optimization == OptimizationLevel.O1 or program.optimization == OptimizationLevel.O2:
+        DefaultFail_detector.finishAnalysis()
 
     Branch_detector.printAllVulnerable('Branch')
     ConstantCoding_detector.printAllVulnerable('ConstantCoding')

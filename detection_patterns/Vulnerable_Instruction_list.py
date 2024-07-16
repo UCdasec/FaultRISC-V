@@ -341,8 +341,14 @@ vulnerable_instruction_list = {
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
-                    'j', {Label}
-                ]
+                    {'j', 'jr'}, {Label, Register}
+                ],
+                [
+                    'ret'
+                ],
+                [
+                    'call'
+                ],
             ]
         ],
         OptimizationLevel.O2: [
@@ -352,7 +358,13 @@ vulnerable_instruction_list = {
                 ],
                 [
                     'j', {Label}
-                ]
+                ],
+                [
+                    'ret'
+                ],
+                [
+                    'call'
+                ],
             ]
         ]
     }
