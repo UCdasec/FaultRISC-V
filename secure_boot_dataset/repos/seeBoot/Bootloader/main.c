@@ -88,222 +88,222 @@ i32_t key2[4] = {KEY21, KEY22, KEY23, KEY24};
 bootProgramPacket_t pkt;
 ui32_t tmp[32];
 
-void main (void)
-{ 
-  ui32_t crc;
-  
-  //0 - initialize timer
-  timerInit();
+void main(void)
+{
+    ui32_t crc;
 
-  //comm init
-  commInit();
+    //0 - initialize timer
+    timerInit();
 
-  //flash initialize 
-  flashInit();
+    //comm init
+    commInit();
 
-  timerSet(1000);      // 1 seconds timeout
-  while (timerGet());
-  
-  for (;;)
-  {
-    // print bootloader name string (bootloader name, version etc)
-    commSendHeader();
-    commSendBody(" ");
-    commSendBody(BootloaderNameString);
-    commSendFooter(0);
-    // print a bootloader self test string
-	commSendHeader();
-	commSendBody(" Cheking Firmware...");
-	commSendFooter(0);
-    
-    //1 - check for a valid, digitally signed code
-    bootable = flashGetNameString(bootImageName);
-    
-    if (bootable == SUCCESS)
+    //flash initialize 
+    flashInit();
+
+    timerSet(1000);      // 1 seconds timeout
+    while (timerGet());
+
+    for (;;)
     {
-      // image found!
-      // wait for a valid pin to break auto-boot
-      
-      // print boot image name string
-      commSendHeader();
-      commSendBody(" Firmware Found: ");
-      commSendBody(bootImageName);
-      commSendFooter(0);
-      
-      //auto boot in 5 seconds
-      bootTimeout = 5;
-      
-      //wait for pin...
-      do
-      {
-        char_t dummy[2] ="x";
-
-        //print boot in X seconds string
+        // print bootloader name string (bootloader name, version etc)
         commSendHeader();
-        commSendBody(" Auto-boot in ");
-        dummy[0] = '0' + bootTimeout;
-        commSendBody(dummy);
+        commSendBody(" ");
+        commSendBody(BootloaderNameString);
+        commSendFooter(0);
+        // print a bootloader self test string
+        commSendHeader();
+        commSendBody(" Cheking Firmware...");
         commSendFooter(0);
 
-        //note: waitPINCommand is a blocking function!
-        if (__waitPINCommand() == SUCCESS)
-          break;
-        
-        bootTimeout--;
-      }while (bootTimeout > 0);
-    }
-    else //if not bootable
-    {
-      //print no auto-boot string. ie boot in -1 seconds string
-      bootTimeout = -1;
-      
-	  commSendHeader();
-      commSendBody(" No bootable image found!");
-      commSendFooter(0);
-    }
-
-    if (bootTimeout > 0 )
-    {
-      // INTERRUPTED / MANUAL BOOT...
-    }
-    else if (bootTimeout == 0)
-    {
-      // AUTO BOOT...
-	  commSendHeader();
-	  commSendBody(" Booting...");
-	  commSendFooter(0);
-      commFlush();
-      __boot(BOOTIMAGE_START_ADDRESS);
-    }
-    else // -1
-    {
-      // NO BOOT IMAGE!...
-    }
-
-    // inform server about manual boot
-	commSendHeader();
-    commSendBody(" Manual Boot (Boot Command Shell)");
-    commSendFooter(0);
-    
-    timerSet(60000);      // 60 seconds timeout
-    while (timerGet())
-    {
-      if (__waitBootCommand() == ERROR)
-        continue;
-
-      timerSet(60000);
-      
-      //boot-now command
-      if (cmdChar == 'b')
-      {
+        //1 - check for a valid, digitally signed code
         bootable = flashGetNameString(bootImageName);
-        
+
         if (bootable == SUCCESS)
-          __sendAck();
-        else
-          __sendNack();
-        
-        commFlush();
-        
-        if (bootable == SUCCESS)
-          __boot(BOOTIMAGE_START_ADDRESS);
-        continue;
-      }
-            
-      //erase command
-      if (cmdChar == 'e')
-      {
-        flashErease();
-        __sendAck();
-        continue;
-      }
-      
-      //program command
-      if (cmdChar == 'p')
-      {
-        int_t i;
-        
-        if ((cmdArgCnt != 1) || (strlen(cmdArgStr) != sizeof(pkt)*2))
         {
-          __sendNack();
-          continue;
+            // image found!
+            // wait for a valid pin to break auto-boot
+
+            // print boot image name string
+            commSendHeader();
+            commSendBody(" Firmware Found: ");
+            commSendBody(bootImageName);
+            commSendFooter(0);
+
+            //auto boot in 5 seconds
+            bootTimeout = 5;
+
+            //wait for pin...
+            do
+            {
+                char_t dummy[2] = "x";
+
+                //print boot in X seconds string
+                commSendHeader();
+                commSendBody(" Auto-boot in ");
+                dummy[0] = '0' + bootTimeout;
+                commSendBody(dummy);
+                commSendFooter(0);
+
+                //note: waitPINCommand is a blocking function!
+                if (__waitPINCommand() == SUCCESS)
+                    break;
+
+                bootTimeout--;
+            } while (bootTimeout > 0);
         }
-        //fill packet structure
-        for (i = 0; i < sizeof(pkt); i++)
-          ((char_t*)&pkt)[i] = ((HexToInt(cmdArgStr[i*2+1])) | (HexToInt(cmdArgStr[i*2]) << 4));
-        
-        blockDecipher((ui32_t*)pkt.iv, (ui32_t*)key1, (ui32_t*)key2, (ui32_t*)&pkt.address, (sizeof(pkt) - sizeof(pkt.iv)) / sizeof(ui32_t));
-        
-        crcReset();
-        crc = crcCalculate((ui32_t*)pkt.iv, (sizeof(pkt) - sizeof(pkt.crc)) / sizeof(ui32_t));
-        if (pkt.crc != crc)
+        else //if not bootable
         {
-          __sendNack();
-          continue;
+            //print no auto-boot string. ie boot in -1 seconds string
+            bootTimeout = -1;
+
+            commSendHeader();
+            commSendBody(" No bootable image found!");
+            commSendFooter(0);
         }
 
-        if (flashWriteAddress((ui32_t*)pkt.data, pkt.address, sizeof(pkt.data) / sizeof(ui32_t)) == SUCCESS)
-          __sendAck();
-        else
-          __sendNack();
-        
-        continue;
-      }
-      
-      //verify
-      if (cmdChar == 'v')
-      {
-        int_t i;
-        
-        if ((cmdArgCnt != 1) || (strlen(cmdArgStr) != sizeof(pkt)*2))
+        if (bootTimeout > 0)
         {
-          __sendNack();
-          continue;
+            // INTERRUPTED / MANUAL BOOT...
         }
-        //fill packet structure
-        for (i = 0; i < sizeof(pkt); i++)
-          ((char_t*)&pkt)[i] = ((HexToInt(cmdArgStr[i*2+1])) | (HexToInt(cmdArgStr[i*2]) << 4));
-                    
-        blockDecipher((ui32_t*)pkt.iv, (ui32_t*)key1, (ui32_t*)key2, (ui32_t*)&pkt.address, (sizeof(pkt) - sizeof(pkt.iv)) / sizeof(ui32_t));
-        
-        crcReset();
-        crc = crcCalculate((ui32_t*)pkt.iv, (sizeof(pkt) - sizeof(pkt.crc)) / sizeof(ui32_t));
-        if (pkt.crc != crc)
+        else if (bootTimeout == 0)
         {
-          __sendNack();
-          continue;
+            // AUTO BOOT...
+            commSendHeader();
+            commSendBody(" Booting...");
+            commSendFooter(0);
+            commFlush();
+            __boot(BOOTIMAGE_START_ADDRESS);
+        }
+        else // -1
+        {
+            // NO BOOT IMAGE!...
         }
 
-        if (flashVerifyAddress((ui32_t*)pkt.data, pkt.address, sizeof(pkt.data) / sizeof(ui32_t)) == SUCCESS)
-          __sendAck();
-        else
-          __sendNack();
-        continue;      
-      }
+        // inform server about manual boot
+        commSendHeader();
+        commSendBody(" Manual Boot (Boot Command Shell)");
+        commSendFooter(0);
+
+        timerSet(60000);      // 60 seconds timeout
+        while (timerGet())
+        {
+            if (__waitBootCommand() == ERROR)
+                continue;
+
+            timerSet(60000);
+
+            //boot-now command
+            if (cmdChar == 'b')
+            {
+                bootable = flashGetNameString(bootImageName);
+
+                if (bootable == SUCCESS)
+                    __sendAck();
+                else
+                    __sendNack();
+
+                commFlush();
+
+                if (bootable == SUCCESS)
+                    __boot(BOOTIMAGE_START_ADDRESS);
+                continue;
+            }
+
+            //erase command
+            if (cmdChar == 'e')
+            {
+                flashErease();
+                __sendAck();
+                continue;
+            }
+
+            //program command
+            if (cmdChar == 'p')
+            {
+                int_t i;
+
+                if ((cmdArgCnt != 1) || (strlen(cmdArgStr) != sizeof(pkt) * 2))
+                {
+                    __sendNack();
+                    continue;
+                }
+                //fill packet structure
+                for (i = 0; i < sizeof(pkt); i++)
+                    ((char_t*)&pkt)[i] = ((HexToInt(cmdArgStr[i * 2 + 1])) | (HexToInt(cmdArgStr[i * 2]) << 4));
+
+                blockDecipher((ui32_t*)pkt.iv, (ui32_t*)key1, (ui32_t*)key2, (ui32_t*)&pkt.address, (sizeof(pkt) - sizeof(pkt.iv)) / sizeof(ui32_t));
+
+                crcReset();
+                crc = crcCalculate((ui32_t*)pkt.iv, (sizeof(pkt) - sizeof(pkt.crc)) / sizeof(ui32_t));
+                if (pkt.crc != crc)
+                {
+                    __sendNack();
+                    continue;
+                }
+
+                if (flashWriteAddress((ui32_t*)pkt.data, pkt.address, sizeof(pkt.data) / sizeof(ui32_t)) == SUCCESS)
+                    __sendAck();
+                else
+                    __sendNack();
+
+                continue;
+            }
+
+            //verify
+            if (cmdChar == 'v')
+            {
+                int_t i;
+
+                if ((cmdArgCnt != 1) || (strlen(cmdArgStr) != sizeof(pkt) * 2))
+                {
+                    __sendNack();
+                    continue;
+                }
+                //fill packet structure
+                for (i = 0; i < sizeof(pkt); i++)
+                    ((char_t*)&pkt)[i] = ((HexToInt(cmdArgStr[i * 2 + 1])) | (HexToInt(cmdArgStr[i * 2]) << 4));
+
+                blockDecipher((ui32_t*)pkt.iv, (ui32_t*)key1, (ui32_t*)key2, (ui32_t*)&pkt.address, (sizeof(pkt) - sizeof(pkt.iv)) / sizeof(ui32_t));
+
+                crcReset();
+                crc = crcCalculate((ui32_t*)pkt.iv, (sizeof(pkt) - sizeof(pkt.crc)) / sizeof(ui32_t));
+                if (pkt.crc != crc)
+                {
+                    __sendNack();
+                    continue;
+                }
+
+                if (flashVerifyAddress((ui32_t*)pkt.data, pkt.address, sizeof(pkt.data) / sizeof(ui32_t)) == SUCCESS)
+                    __sendAck();
+                else
+                    __sendNack();
+                continue;
+            }
+        }
     }
-  }
 }
 
 void __boot(ui32_t address)
 {
-  const ui32_t *app_base = (const ui32_t *)address;
-  ui32_t stacktop   = app_base[0];
-  ui32_t entrypoint = app_base[1];
-  
-  //close all peripherals
-  timerClose();
-  commDispose();
-  flashClose();
+    const ui32_t* app_base = (const ui32_t*)address;
+    ui32_t stacktop = app_base[0];
+    ui32_t entrypoint = app_base[1];
 
-  // switch exception handlers to the application
-  *((i32_t*)(SCB_R_BASE + SCB_VTOR_OFFSET)) = address;
+    //close all peripherals
+    timerClose();
+    commDispose();
+    flashClose();
 
-  // extract the stack and entrypoint from the app vector table and go
-  asm volatile(
-          "msr msp, %0	\n"
-          "bx	%1	\n"
-          : : "r" (stacktop), "r" (entrypoint) : );
-  for (;;);
+    // switch exception handlers to the application
+    *((i32_t*)(SCB_R_BASE + SCB_VTOR_OFFSET)) = address;
+
+    // extract the stack and entrypoint from the app vector table and go
+    asm volatile(
+        "msr msp, %0	\n"
+        "bx	%1	\n"
+        : : "r" (stacktop), "r" (entrypoint) : );
+    for (;;);
 }
 
 void __sendAck(void)
@@ -322,57 +322,57 @@ void __sendNack(void)
 
 int_t __waitPINCommand(void)
 {
-  timerSet(1000);
-  while (timerGet())
-  {
-    if (__waitBootCommand() == ERROR)
-      continue;
-
-    //pin command is something like this
-    //ci<Pin String>
-
-    //check for a valid command: PIN
-    if (cmdChar != 'i')
+    timerSet(1000);
+    while (timerGet())
     {
-      __sendNack();
-      continue;
+        if (__waitBootCommand() == ERROR)
+            continue;
+
+        //pin command is something like this
+        //ci<Pin String>
+
+        //check for a valid command: PIN
+        if (cmdChar != 'i')
+        {
+            __sendNack();
+            continue;
+        }
+        //check for a valid pin
+        if ((cmdArgCnt != 1) || (strcmp((char const*)cmdArgStr, PINCODE) != 0))
+        {
+            //pin is invalid
+            __sendNack();
+            continue;
+        }
+
+        __sendAck();
+        return SUCCESS;
     }
-    //check for a valid pin
-    if ((cmdArgCnt != 1) || (strcmp((char const*)cmdArgStr,PINCODE) != 0))
-    {
-      //pin is invalid
-      __sendNack();
-      continue;
-    }
-    
-    __sendAck();
-    return SUCCESS;
-  }  
-  return ERROR;
+    return ERROR;
 }
 
 int_t __waitBootCommand(void)
 {
-  char_t* cmdStr;
+    char_t* cmdStr;
 
-  cmdArgCnt = -1;
-  cmdArgStr = (char_t*) 0;
-  
-  //parse command
-  cmdStr = commParse();
-  if (cmdStr == (char_t *)0)
-    return ERROR;
-  
-  cmdArgCnt = 0;
-  cmdChar = *cmdStr;
-  cmdStr++;
-  
-  if (*cmdStr)
-  {
-	cmdArgStr = cmdStr;
-	cmdArgCnt = 1;
-	return SUCCESS;
-  }
-  
-  return SUCCESS;
+    cmdArgCnt = -1;
+    cmdArgStr = (char_t*)0;
+
+    //parse command
+    cmdStr = commParse();
+    if (cmdStr == (char_t*)0)
+        return ERROR;
+
+    cmdArgCnt = 0;
+    cmdChar = *cmdStr;
+    cmdStr++;
+
+    if (*cmdStr)
+    {
+        cmdArgStr = cmdStr;
+        cmdArgCnt = 1;
+        return SUCCESS;
+    }
+
+    return SUCCESS;
 }
