@@ -151,7 +151,9 @@ class LoopCheck(Pattern):
                                         if not any(line_arg.arg_text[1:] == location.location_name for location in self.location_list):
                                             line_pattern_match = False
                                             break
+
                                         else:
+                                            # To make sure that the location branched to does not exit the loop at some point
                                             matching_location = next((location for location in self.location_list if line_arg.arg_text[1:] == location.location_name), None)
                                             if any(unseen_location.line_no > matching_location.line_no for unseen_location in self.unseen_location_list):
                                                 line_pattern_match = False

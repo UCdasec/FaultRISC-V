@@ -5,6 +5,7 @@ import argparse
 # arg to be used to determine which optimization level the dataset is being compiled for
 parser = argparse.ArgumentParser()
 parser.add_argument('optimization_level')
+parser.add_argument('--no_append', action='store_true', help='Mention to not append to existing ground truth')
 args = parser.parse_args()
 
 # dataset to be populated with programs and vulnerabilities
@@ -59,22 +60,6 @@ def get_line_nos(no_range: str):
     else:   # Just a singular line number (when recursive call gives a single number string)
         return [int(no_range)]
 
-program = {
-    'Program_name': '',
-    'Optimization_level': args.optimization_level,
-    'Branch': {
-        'Vulnerabilities': []
-    },
-    'Bypass': {
-        'Vulnerabilities': []
-    },
-    'ConstantCoding': {
-        'Vulnerabilities': []
-    },
-    'LoopCheck': {
-        'Vulnerabilities': []
-    },
-}
 
 for index, row in excel_df.iterrows():
     if not pd.isna(row.iloc[0]): # if the rightmost column is not empty, we know it's a file name
@@ -116,10 +101,18 @@ for index, row in excel_df.iterrows():
         elif row.iloc[6] == 1:
             program['Bypass']['Vulnerabilities'].append(vulnerability.copy())
 
-with open('../Results/ground_truth.json', 'r') as f:
-    og_dataset = json.load(f)
+dataset.append(program) # Append last program
 
-og_dataset.extend(dataset)
+if not args.no_append:
+    with open('../Results/ground_truth.json', 'r') as f:
+        og_dataset = json.load(f)
 
-with open('../Results/ground_truth.json', 'w') as f:
-    json.dump(og_dataset, f, indent=4)
+    og_dataset.extend(dataset)
+
+    with open('../Results/ground_truth.json', 'w') as f:
+        json.dump(og_dataset, f, indent=4)
+
+else:
+    og_dataset = dataset
+    with open('../Results/_ground_truth.json', 'w') as f:
+        json.dump(og_dataset, f, indent=4)

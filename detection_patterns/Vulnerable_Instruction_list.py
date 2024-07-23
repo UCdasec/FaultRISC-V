@@ -252,30 +252,13 @@ vulnerable_instruction_list = {
                 ],
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
-                ],
-                [
-                    '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}
-                ],
+                ]
             ]
         ],
         OptimizationLevel.O2: [
-            # [
-            #     [
-            #         {'lbu'}, {Register}, {MemoryAddress}
-            #     ],
-            #     [
-            #         '__IGNORE_LINE__', {'addi', 'addiw'}, {Register}, {Register}, {IntegerLiteral}
-            #     ],
-            #     [
-            #         {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz'}, {Register}, {IntegerLiteral}, {Label}
-            #     ]
-            # ],
             [
                 [
-                    '__OPTIONAL__', {'addi', 'addiw'}, {Register}, {Register}, {IntegerLiteral}
-                ],
-                [
-                    '__IGNORE_LINE__', {'call'}, {Label}
+                    {'addi', 'addiw'}, {Register}, {Register}, {IntegerLiteral}
                 ],
                 [
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register, IntegerLiteral}, {Label}
@@ -292,14 +275,11 @@ vulnerable_instruction_list = {
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
                 ]
             ],
-            # [
-            #     [
-            #         {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz'}, {Register}, {Register}, {Label}
-            #     ],
-            #     [
-            #         '__IGNORE_LINE__', {'ld', 'li'}, {Register}, {MemoryAddress, IntegerLiteral}
-            #     ],
-            # ]
+            [
+                [
+                    {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'seqz', 'bgtu', 'bleu'}, {Register}, {Register}, {Label}
+                ]
+            ]
         ]
     },
     'Bypass': {
