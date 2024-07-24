@@ -46,7 +46,8 @@ def analyze_program(program: Program):
     '''
     Branch_detector = Branch(program.optimization, 4)
     ConstantCoding_detector = ConstantCoding(program.optimization, 4)
-    LoopCheck_detector = LoopCheck(program.optimization)
+    # LoopCheck_detector = LoopCheck(program.optimization)
+    LoopCheck_detector = LoopCheck_V2(5)
     Bypass_detector = Bypass(program.optimization)
 
     for line in program.lines:
