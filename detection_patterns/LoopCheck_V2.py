@@ -8,7 +8,7 @@ class LoopCheck_V2(Pattern):
         self.no_vulnerable_lines = 0                        # No. of lines of code covered by the vulnerabilities found
         self.program_cache = []                             # Temporary program cache from topmost location in location_list
 
-        self.insecure_cache = {                            # Properties of the of loop being checked
+        self.insecure_cache = {                             # Properties of the of loop being checked
             'Branch_Statement': None,                       # The branch statement that loops backwards
             'Looping_Location': None,                       # Location to which the branch loops back to
             'Increment_Statement': None,                    # The increment statement if found
@@ -28,10 +28,11 @@ class LoopCheck_V2(Pattern):
         self.unseen_location_list = []                      # Keeps track of all locations that have not been visited but have been referenced
 
     def checkInstruction(self, line: Instruction | Location):
-        if self.location_list and line.line_no > self.location_list[0].line_no:
-            self.program_cache.append(line)
 
         if isinstance(line, Instruction):
+            if self.location_list and line.line_no > self.location_list[0].line_no:
+                self.program_cache.append(line)
+
             line_type = line.type
 
             if line_type in ['jr', 'ret']: # Remove all locations and clear program cache encased between returns
@@ -156,16 +157,22 @@ class LoopCheck_V2(Pattern):
                                     any(b_arg.arg_text == arg.arg_text for b_arg in self.insecure_cache['Branch_Statement'].args)), None)
 
                             if self.insecure_cache['Num_Iterations_Var'] is None:   # If it is still indeterminate
-                                self.vulnerable_lines.append(self.insecure_cache['Branch_Statement'])
+                                self.vulnerable_lines.append([self.insecure_cache['Branch_Statement']])
+                                self.no_vulnerable_lines += 1
+                                self.no_vulnerable += 1
 
                             self.clear_secure_insecure_cache()
 
                         else:   # Insecure, since it's also a loop
-                            self.vulnerable_lines.append(self.insecure_cache['Branch_Statement'])
+                            self.vulnerable_lines.append([self.insecure_cache['Branch_Statement']])
+                            self.no_vulnerable_lines += 1
+                            self.no_vulnerable += 1
                             self.clear_secure_insecure_cache()
 
                 else:   # Loop Check not found, mark vulnerable
-                    self.vulnerable_lines.append(self.insecure_cache['Branch_Statement'])
+                    self.vulnerable_lines.append([self.insecure_cache['Branch_Statement']])
+                    self.no_vulnerable_lines += 1
+                    self.no_vulnerable += 1
                     self.clear_secure_insecure_cache()
 
         elif isinstance(line, Location):    # Adding to list of visited locations
