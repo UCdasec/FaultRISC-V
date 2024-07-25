@@ -261,6 +261,8 @@ class Program:
         '''
         for line_no, line in enumerate(self.raw_lines, start=1):
             line = line.strip()
+            if line.startswith('#'):    # Comment; don't parse
+                continue
             if line.startswith('.') and line.endswith(':'):             # Location
                 self.lines.append(Location(line_no, line))
                 self.lines[-1].resolve_location_name()
