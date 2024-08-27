@@ -69,10 +69,11 @@ class ConstantCoding(Pattern):
                                         line_pattern_match = False
                                         break
 
-                            hamming_weight_0, hamming_weight_1 = calculate_hamming(arg.arg_value)
-                            if hamming_weight_0 > self.tolerance and hamming_weight_1 > self.tolerance:
-                                    line_pattern_match = False
-                                    break
+                                # NOTE: Unindent by 1 tabspace if errors in code (If it ain't broke don't fix it philosophy)
+                                hamming_weight_0, hamming_weight_1 = calculate_hamming(arg.arg_value)
+                                if hamming_weight_0 > self.tolerance and hamming_weight_1 > self.tolerance:
+                                        line_pattern_match = False
+                                        break
 
                             line_pattern_match = True
 
@@ -85,7 +86,7 @@ class ConstantCoding(Pattern):
                 elif line_type in instruction_set[0][0] and isinstance(line, GlobalVariable):   # Global Variable
                     for var in line.variable_values:
                         hamming_weight_0, hamming_weight_1 = calculate_hamming(var.args[0].arg_value)
-                        if hamming_weight_0 > self.tolerance and hamming_weight_1 > self.tolerance:
+                        if hamming_weight_0 <= self.tolerance or hamming_weight_1 <= self.tolerance:
                             self.detection_cache.append(line)
                             self.detection_cache.append(var)
 
