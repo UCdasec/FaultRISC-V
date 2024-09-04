@@ -1,3 +1,5 @@
+import re
+
 from .Pattern import *
 from .Vulnerable_Instruction_list import vulnerable_instruction_list
 
@@ -73,16 +75,27 @@ class LoopCheck_V2(Pattern):
                             # Next, to check whether an increment statement exists between looping location and branch
                             increment_line = None
                             potential_overwrite = None
+
                             for cached_line in self.program_cache[::-1]:
-                                if cached_line.type == 'call' and 'a0' in target_vars:
+                                if cached_line.type == 'call' and 'a0' in target_vars:  # Stop search if a call statement was called and a0 was overwritten
                                     break
 
-                                if cached_line.type == 'mv' and cached_line.args[0].arg_text in target_vars:
-                                    potential_overwrite = next((arg for arg in cached_line.args if arg.arg_text in target_vars), None)
+                                if cached_line.type in ['mv', 'sext.w'] and cached_line.args[0].arg_text in target_vars:    # If value is moved, keep track of
+                                    if not cached_line.args[0].arg_text == cached_line.args[1].arg_text:
+                                        potential_overwrite = next((arg for arg in cached_line.args if arg.arg_text in target_vars), None)
 
-                                if (cached_line.type in ['and', 'andi', 'sext.w']
-                                        and any(target_var == cached_line.args[0].arg_text for target_var in target_vars)):
-                                    break
+                                # To check for andi that truncates the number of 0's in a register
+                                if cached_line.type in ['andi'] and cached_line.args[0].arg_text in target_vars and isinstance(cached_line.args[1], IntegerLiteral):
+                                    if not re.fullmatch(r'0x[f]+', cached_line.args[1].arg_text):
+                                        target_vars.remove(next(target_var for target_var in target_vars if target_var == cached_line.args[0].arg_text))
+                                        if not target_vars:
+                                            break
+
+                                # To check for which of target variables is being overwritten with an and
+                                if cached_line.type in ['and'] and cached_line.args[0].arg_text in target_vars: # Stop search if target variable is overwritten at any point
+                                    target_vars.remove(next(target_var for target_var in target_vars if target_var == cached_line.args[0].arg_text))
+                                    if not target_vars:
+                                        break
 
                                 if (cached_line.type in ['addi', 'addiw'] and
                                         cached_line.args[0].arg_text == cached_line.args[1].arg_text and
@@ -135,10 +148,10 @@ class LoopCheck_V2(Pattern):
                                         if cached_line.type in ['mv', 'sext.w'] and cached_line.args[1].arg_text in target_vars:
                                             target_vars[target_vars.index(cached_line.args[1].arg_text)] = cached_line.args[0].arg_text
 
-                                        # If the iterating variable is found, disregard rom target_vars
+                                        # If the iterating variable is found, disregard from target_vars
                                         if (cached_line.type == 'lw' and cached_line.args[0].arg_text in target_vars and
                                                 cached_line.args[1].arg_text == self.insecure_cache['Iterating_Var'].arg_text):
-                                            target_vars.remove(cached_line.args[1].arg_text)
+                                            target_vars.remove(cached_line.args[0].arg_text)
 
                                     # Num_Iterations was not assigned and target vars is not empty. Choose register that is not
                                     # common between branch line and increment line
@@ -208,7 +221,7 @@ class LoopCheck_V2(Pattern):
                             self.checkInstruction(line)
 
                     # The iterating variable has been modified, mark vulnerable
-                    elif self.insecure_cache['Iterating_Var'].arg_text == line.args[0].arg_text:
+                    elif line.args and self.insecure_cache['Iterating_Var'].arg_text == line.args[0].arg_text:
                         self.add_vulnerable(self.insecure_cache['Branch_Statement'])
 
                 else:   # Loop Check not found, mark vulnerable
