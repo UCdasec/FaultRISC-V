@@ -49,5 +49,13 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-# Visual Studio cache/options directory
+# Visual Studio and Intellij cache/options directory
 .vs/
+.idea/
+
+# Other extensions (misc)
+*.xlsx
+*.csv
+
+# Specific files
+./datasets/extracted_lines/temp.py

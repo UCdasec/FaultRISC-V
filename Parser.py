@@ -144,8 +144,10 @@ class Attribute(Line):
         self.type = self.line_text.partition('\t')[0][1:]
         raw_args_text = self.line_text.partition('\t')[2]
         if raw_args_text == '':                                 # Rare case where separator between type and args is ' '
+            self.type = self.line_text.partition(' ')[0][1:]
             raw_args_text = self.line_text.partition(' ')[2]
         quotation_pattern = r'"(.*?)"'
+        hexadecimal_pattern = r'(0[xX])([0-9a-fA-F]+)'
 
         '''
         We remove each argument from the raw text one-by-one left-to-right. If it is a quotation, we use the aforementioned
@@ -161,11 +163,18 @@ class Attribute(Line):
             else:
                 raw_arg = raw_args_text.split(',',1)[0].strip()
                 if not raw_arg.startswith('@'):
-                    if is_integer(raw_arg):
+                    if is_integer(raw_arg): # Integer
                         self.args.append(IntegerLiteral(raw_arg))
-                    else:
+
+                    elif re.match(hexadecimal_pattern, raw_arg):    # Hexadecimal integer (conversion to decimal before appending to args)
+                        hex_string = re.match(hexadecimal_pattern, raw_arg).group(2)
+                        decimal_value = str(int(hex_string, 16))
+                        self.args.append(IntegerLiteral(decimal_value))
+
+                    else:   # Generic argument
                         self.args.append(Argument(raw_arg))
-                    try:
+
+                    try:    # Removing current arg from the arg text
                         raw_args_text = raw_args_text.split(',', 1)[1].strip()
                     except IndexError:
                         break
@@ -222,12 +231,13 @@ class OptimizationLevel(enum.Enum):
     O2 = 2
 
 class Program:
-    optimization: OptimizationLevel = None
-    def __init__(self, program_name: str, raw_lines: List):
+
+    def __init__(self, program_name: str, raw_lines: List, optimization: Optional[OptimizationLevel] = None):
         self.program_name = program_name
         self.no_lines = len(raw_lines)
         self.raw_lines = raw_lines
         self.lines: List[Location | Instruction | Function | GlobalVariable | Attribute] = []
+        self.optimization: OptimizationLevel = optimization
 
     def parse_program(self):
         '''
@@ -251,12 +261,15 @@ class Program:
         '''
         for line_no, line in enumerate(self.raw_lines, start=1):
             line = line.strip()
+            if line.startswith('#'):    # Comment; don't parse
+                continue
             if line.startswith('.') and line.endswith(':'):             # Location
                 self.lines.append(Location(line_no, line))
                 self.lines[-1].resolve_location_name()
             elif not line.startswith('.') and line.endswith(':'):       # Function or GlobalVariable
                 for word_count, next_line in enumerate(self.raw_lines[line_no:]):
-                    if next_line.strip().startswith('.word'):
+                    if next_line.strip().startswith(('.word', '.byte', '.short', '.2byte', '.4byte', '.8byte',
+                                                     '.long', '.sleb128', '.uleb128', '.half')):
                         if word_count == 0:                             # GlobalVariable of type INTEGER
                             self.lines.append(GlobalVariable(line_no, line, VariableType.INTEGER))
                             self.lines[-1].resolve_var_name()
@@ -265,7 +278,10 @@ class Program:
                         else:
                             self.lines[-1].resolve_var_value(line_no + word_count + 1, next_line.strip())
 
-                    elif next_line.strip().startswith('.dword'):        # GlobalVariable of type STRING
+                    elif next_line.strip().startswith('.zero') and word_count > 0:  # Still global variable of type INTEGER, but skipping a few places
+                        continue
+
+                    elif next_line.strip().startswith('.dword') and word_count == 0:        # GlobalVariable of type STRING
                         self.lines.append(GlobalVariable(line_no, line, VariableType.STRING))
                         self.lines[-1].resolve_var_name()
                         break
@@ -283,7 +299,8 @@ class Program:
                 self.lines.append(Instruction(line_no, line))
                 self.lines[-1].parse_arguments()
 
-        self.determine_optimization()
+        if self.optimization is None:
+            self.determine_optimization()
 
     def determine_optimization(self):
         '''
@@ -305,18 +322,17 @@ class Program:
         for line in self.lines:
             if isinstance(line, Attribute) and line.type == 'section':
                 arg = line.args[0]
-                if isinstance(arg, Argument) and arg.arg_text == '.rodata': # O0 optimization
+                if isinstance(arg, Argument) and arg.arg_text in ['.rodata'] and not str1p8_found: # O0 optimization
                     self.optimization = OptimizationLevel.O0
-                    break
 
-                elif isinstance(arg, Argument) and arg.arg_text == '.rodata.str1.8':    # O1 or O2 optimization
+                elif isinstance(arg, Argument) and arg.arg_text in ['.rodata.str1.8', '.srodata.cst8']:    # O1 or O2 optimization
                     str1p8_found = True
 
                 elif isinstance(arg, Argument) and arg.arg_text == '.text.startup': # O2 optimization
                     self.optimization = OptimizationLevel.O2
                     break
 
-        if str1p8_found and self.optimization is None:
+        if str1p8_found and self.optimization is not OptimizationLevel.O2:
             self.optimization = OptimizationLevel.O1    # O1 optimization
 
         if self.optimization is None:

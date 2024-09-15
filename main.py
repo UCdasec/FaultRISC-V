@@ -46,7 +46,8 @@ def analyze_program(program: Program):
     '''
     Branch_detector = Branch(program.optimization, 4)
     ConstantCoding_detector = ConstantCoding(program.optimization, 4)
-    LoopCheck_detector = LoopCheck(program.optimization)
+    # LoopCheck_detector = LoopCheck(program.optimization)
+    LoopCheck_detector = LoopCheck_V2(5)
     Bypass_detector = Bypass(program.optimization)
     DefaultFail_detector = DefaultFail(program.optimization)
 
@@ -68,10 +69,10 @@ def analyze_program(program: Program):
             LoopCheck_detector.checkInstruction(line)
             Bypass_detector.checkInstruction(line)
             DefaultFail_detector.addLocation(line)
-            
+
         elif isinstance(line, Function):
             DefaultFail_detector.addFunction(line)
-            
+
     if program.optimization == OptimizationLevel.O1 or program.optimization == OptimizationLevel.O2:
         DefaultFail_detector.finishAnalysis()
 
@@ -87,7 +88,7 @@ def analyze_program(program: Program):
             ConstantCoding_detector.no_vulnerable,
             LoopCheck_detector.no_vulnerable,
             Bypass_detector.no_vulnerable,
-            DefaultFail_detector.no_vulnerable  
+            DefaultFail_detector.no_vulnerable
         ])
 
     total_no_vulnerable_lines = calc_no_vulnerable_lines(Branch_detector, ConstantCoding_detector, LoopCheck_detector, Bypass_detector, DefaultFail_detector)
@@ -129,16 +130,16 @@ def analyze_program(program: Program):
                 'No_vulnerabilities': ConstantCoding_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(ConstantCoding_detector.vulnerable_lines)
             },
-            'LoopCheck': {
-                'No_lines': LoopCheck_detector.no_vulnerable_lines,
-                'No_vulnerabilities': LoopCheck_detector.no_vulnerable,
-                'Vulnerabilities': instruction_to_str(LoopCheck_detector.vulnerable_lines)
-            },
             'DefaultFail': {
                 'No_lines': DefaultFail_detector.no_vulnerable_lines,
                 'No_vulnerabilities': DefaultFail_detector.no_vulnerable,
                 'Vulnerabilities': instruction_to_str(DefaultFail_detector.vulnerable_lines)
             },
+            'LoopCheck': {
+                'No_lines': LoopCheck_detector.no_vulnerable_lines,
+                'No_vulnerabilities': LoopCheck_detector.no_vulnerable,
+                'Vulnerabilities': instruction_to_str(LoopCheck_detector.vulnerable_lines)
+            }
         }
 
         program_name_only = os.path.splitext(program_name)[0]

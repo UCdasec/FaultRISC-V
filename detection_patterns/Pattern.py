@@ -29,7 +29,7 @@ class Pattern(ABC):
                         print(f"{line.line_no}\t\t\t{line.line_text}")
                 print('')
 
-def calculate_hamming(x: int, y: int = 0):
+def calculate_hamming(x: int, y: int = None):
     '''
     Calculates the hamming distance between integers x and y in their binary form.
     :param x: First integer
@@ -37,23 +37,37 @@ def calculate_hamming(x: int, y: int = 0):
     :return: hamming weight, an integer
     '''
     x_bin = bin(x)[bin(x).find('b') + 1:]
-    y_bin = bin(y)[bin(y).find('b') + 1:]
+    if y is not None:
+        y_bin = bin(y)[bin(y).find('b') + 1:]
 
-    x_bin = x_bin.zfill(max(len(x_bin), len(y_bin)))
-    y_bin = y_bin.zfill(max(len(x_bin), len(y_bin)))
+    if y is not None:
+        x_bin = x_bin.zfill(max(len(x_bin), len(y_bin)))
+        y_bin = y_bin.zfill(max(len(x_bin), len(y_bin)))
 
-    hamming_weight = sum(bit_x != bit_y for bit_x, bit_y in zip(x_bin, y_bin))
-    return hamming_weight
+    else:
+        x_bin = x_bin.zfill(32)
 
-def is_bit_maximum(x: int):
-    '''
-    Checks if the number is at any of the RISC-V bit maximums (largest 8-bit, 16-bit, 32-bit, 64-bit, or 128-bit). These
-    are all the variable sizes defined in RISC-V
-    :param x: the integer value checked to see if it is at the bit maximum
-    :return: True if it is at a bit maximum else False
-    '''
-    for no_bits in [8, 16, 32, 64]:
-        if x == pow(2, no_bits) - 1:
-            return True
+    if y is not None:
+        hamming_weight = sum(bit_x != bit_y for bit_x, bit_y in zip(x_bin, y_bin))
+        return hamming_weight
 
-    return False
+    else:
+        hamming_weight_0 = sum(bit_x == '0' for bit_x in x_bin)
+        hamming_weight_1 = sum(bit_x == '1' for bit_x in x_bin)
+
+        return hamming_weight_0, hamming_weight_1
+
+
+
+# def is_bit_maximum(x: int):
+#     '''
+#     Checks if the number is at any of the RISC-V bit maximums (largest 8-bit, 16-bit, 32-bit, 64-bit, or 128-bit). These
+#     are all the variable sizes defined in RISC-V
+#     :param x: the integer value checked to see if it is at the bit maximum
+#     :return: True if it is at a bit maximum else False
+#     '''
+#     for no_bits in [8, 16, 32, 64]:
+#         if x == pow(2, no_bits) - 1:
+#             return True
+#
+#     return False

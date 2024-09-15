@@ -15,12 +15,12 @@ class Bypass(Pattern):
         self.no_vulnerable = 0                                          # No. of vulnerabilities
         self.no_vulnerable_lines = 0                                    # No. of lines of code covered by the vulnerabilities found
         self.optimization_set = optimization_level                      # the optimization level of the risc-v program
-        self.vulnerable_instruction_set = (
-            vulnerable_instruction_list)['Bypass'][optimization_level][0]  # The vulnerable pattern set to look for
+        self.vulnerable_instruction_set = vulnerable_instruction_list['Bypass'][optimization_level][0]  # The vulnerable pattern set to look for
 
-        self.caches: List[Bypass.LocalCache] = []  # List holding all the different caches
+        self.caches: List[Bypass.LocalCache] = []   # List holding all the different caches
+        self.label_block = -1    # If there is a label between two call instructions, this is added when checking if current line is very next line
 
-    def checkInstruction(self, line: Instruction):
+    def checkInstruction(self, line: Instruction | Location):
         '''
         Due to the nature of the pattern at O-1 and O-2, the Bypass detector can concurrently check a line for multiple
         detection streams by storing multiple caches, hence for each cache (detection stream), it does the following:
@@ -59,110 +59,107 @@ class Bypass(Pattern):
 
         :param line: the current instruction being analyzed for the pattern
         '''
-        line_type = line.type
-        line_pattern_match = False
-        if line_type == 'call':
-            self.caches.append(self.LocalCache([], [], [False, False, False], None))
+        if isinstance(line, Instruction):
+            ''' If label was previous line (=0), label block activated and set to 1. If instruction previous line and label block
+            activated, label block deactivated and set to -1'''
+            if self.label_block == 0:
+                self.label_block = 1
+            elif self.label_block == 1:
+                self.label_block = -1
 
-        for cache in self.caches:
+            line_type = line.type
+            line_pattern_match = False
+            if line_type == 'call':
+                if len(self.caches) == 0 or (len(self.caches) > 0 and not len(self.caches[-1].detection_cache) == 0):   # There is no template cache available for current call line
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
 
-            line_no = len(cache.detection_cache)
-    
-            if line_no == len(cache.active_pattern) and line_no >= 1: # Marking the vulnerability
-                if not (cache.is_secure == [True, True, True] or cache.is_secure == [True, True, False]): # Only if the two main secure lines are present is it secure, or else we mark it as vulnerable
-                    self.vulnerable_lines.append(cache.detection_cache.copy())
-                    self.no_vulnerable += 1
-                    self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' and line != '__SECURE__' for line in cache.detection_cache])
-                    self.caches.remove(cache)
-    
-                else:
-                    self.cleanup(cache, line)
-    
-            elif self.optimization_set == OptimizationLevel.O0:   # O-0 Detection
-                if line_no == 0:    # Checking for call to initiate pattern (1st requirement)
-                    first_line = self.vulnerable_instruction_set[0]
-                    if line_type in first_line[0]:
-                        for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
-                            if not any(isinstance(arg, first_line_arg) for first_line_arg in first_line[arg_no]):
-                                line_pattern_match = False
-                                break
-    
-                            line_pattern_match = True
-    
-                        if line_pattern_match:  # The line matches the pattern, so we initiate the pattern and add current line to detection cache
-                            cache.active_pattern = self.vulnerable_instruction_set.copy()
-                            cache.detection_cache.append(line)
-                            line_no += 1
-    
-                    else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                elif len(self.caches) > 0 and len(self.caches[-1].detection_cache) == 0:    # There is an existing cache template to use
+                    pass
+
+                elif ((self.label_block < 0 and line.line_no > self.caches[-1].detection_cache[0].line_no + 1) or
+                    (self.label_block > 0 and line.line_no > self.caches[-1].detection_cache[0].line_no + 1 + self.label_block)):
+                    # There is an existing cache run for another call statement, so add this simultaneously
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+                else:   # Current call line right after last, delete last cache and add new
+                    self.caches.pop()
+                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+            removal_list = []
+            for cache in self.caches:
+
+                line_no = len(cache.detection_cache)
+
+                if line_no == len(cache.active_pattern) and line_no >= 1: # Marking the vulnerability
+                    if not (cache.is_secure == [True, True, True] or cache.is_secure == [True, True, False]): # Only if the two main secure lines are present is it secure, or else we mark it as vulnerable
+                        self.vulnerable_lines.append(cache.detection_cache.copy())
+                        self.no_vulnerable += 1
+                        self.no_vulnerable_lines += sum([line != '__IGNORE_LINE__' and line != '__SECURE__' for line in cache.detection_cache])
+                        removal_list.append(cache)
+
+                    else:
                         self.cleanup(cache, line)
-    
-                elif line_no == 1:  # Checking for mv to initiate pattern (2nd requirement)
-                    second_line = cache.active_pattern[1]
-                    if line_type in second_line[0]:
-                        has_a0 = False  # Boolean to check if one of the args is the a0 or fa0 register
-                        for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
-                            if not any(isinstance(arg, first_line_arg) for first_line_arg in second_line[arg_no]):
-                                line_pattern_match = False
-                                break
-    
-                            if isinstance(arg, Register) and arg.arg_text in ['a0', 'fa0']: # checking if one of the args is the a0 or fa0 register
-                                has_a0 = True
-    
-                            line_pattern_match = True
-    
-                        if line_pattern_match and has_a0:  # line matches so we add the current line to detection cache
-                            cache.detection_cache.append(line)
-                            line_no += 1
-    
+
+                elif self.optimization_set == OptimizationLevel.O0:   # O-0 Detection
+                    if line_no == 0:    # Checking for call to initiate pattern (1st requirement)
+                        first_line = self.vulnerable_instruction_set[0]
+                        if line_type in first_line[0]:
+                            for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
+                                if not any(isinstance(arg, first_line_arg) for first_line_arg in first_line[arg_no]):
+                                    line_pattern_match = False
+                                    break
+
+                                line_pattern_match = True
+
+                            if line_pattern_match:  # The line matches the pattern, so we initiate the pattern and add current line to detection cache
+                                cache.active_pattern = self.vulnerable_instruction_set.copy()
+                                cache.detection_cache.append(line)
+                                line_no += 1
+
                         else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
 
-                    elif line_type == 'call':   # If call, we want to start a new detection stream
-                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
-                        continue
+                    elif line_no == 1:  # Checking for mv to initiate pattern (2nd requirement)
+                        second_line = cache.active_pattern[1]
+                        if line_type in second_line[0]:
+                            has_a0 = False  # Boolean to check if one of the args is the a0 or fa0 register
+                            for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
+                                if not any(isinstance(arg, first_line_arg) for first_line_arg in second_line[arg_no]):
+                                    line_pattern_match = False
+                                    break
 
-                    else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                        self.cleanup(cache, line)
-    
-                elif '__IGNORE_LINE__' in cache.active_pattern[line_no][0]:
-                    if line_type in cache.active_pattern[line_no][1]:    # Check if current line is an IGNORE line
-                        for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                            if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
-                                line_pattern_match = False
-                                break
-    
-                            line_pattern_match = True
-    
-                        if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
-                            cache.detection_cache.append('__IGNORE_LINE__')
-                            line_no += 1
+                                if isinstance(arg, Register) and arg.arg_text in ['a0', 'fa0']: # checking if one of the args is the a0 or fa0 register
+                                    has_a0 = True
 
-                        elif line_type == 'call':
+                                line_pattern_match = True
+
+                            if line_pattern_match and has_a0:  # line matches so we add the current line to detection cache
+                                cache.detection_cache.append(line)
+                                line_no += 1
+
+                            else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                                self.cleanup(cache, line)
+
+                        elif line_type == 'call' and ((self.label_block > 0 and line.line_no > cache.detection_cache[-1].line_no + 1 + self.label_block) or
+                                                      (self.label_block < 0 and line.line_no > cache.detection_cache[-1].line_no + 1 )):   # If call, we want to start a new detection stream
                             self.caches.append(self.LocalCache([], [], [False, False, False], None))
                             continue
 
-                        else:
-                            # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                        else:   # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
-    
-                    else:   # IGNORE line not present in this case
-                        cache.active_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
-                        self.checkInstruction(line)
-    
-                elif '__SECURE__' in cache.active_pattern[line_no][0]:   # Checking if line matches SECURE pattern
-                    if '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
-                        if line_type in cache.active_pattern[line_no][1]:
+                            return
+
+                    elif '__IGNORE_LINE__' in cache.active_pattern[line_no][0]:
+                        if line_type in cache.active_pattern[line_no][1]:    # Check if current line is an IGNORE line
                             for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                if not any(pattern_arg_type is None or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                     line_pattern_match = False
                                     break
-    
+
                                 line_pattern_match = True
 
-                            if line_pattern_match:
-                                cache.is_secure[2] = True    # 3rd secure line (the optional one) is true
-                                cache.detection_cache.append('__SECURE__')
+                            if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
+                                cache.detection_cache.append('__IGNORE_LINE__')
                                 line_no += 1
 
                             elif line_type == 'call':
@@ -172,163 +169,247 @@ class Bypass(Pattern):
                             else:
                                 # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                                 self.cleanup(cache, line)
-    
-                        else:   # Optional line not present; remove from pattern
-                            cache.active_pattern.pop(line_no)
+
+                        else:   # IGNORE line not present in this case
+                            cache.active_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
                             self.checkInstruction(line)
-    
-                    else:   # Not optional
+
+                    elif '__SECURE__' in cache.active_pattern[line_no][0]:   # Checking if line matches SECURE pattern
+                        if '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
+                            if line_type in cache.active_pattern[line_no][1]:
+                                for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                                    if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                        line_pattern_match = False
+                                        break
+
+                                    line_pattern_match = True
+
+                                if line_pattern_match:
+                                    cache.is_secure[2] = True    # 3rd secure line (the optional one) is true
+                                    cache.detection_cache.append('__SECURE__')
+                                    line_no += 1
+
+                                elif line_type == 'call':
+                                    self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                                    continue
+
+                                else:
+                                    # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                                    self.cleanup(cache, line)
+
+                            else:   # Optional line not present; remove from pattern
+                                cache.active_pattern.pop(line_no)
+                                self.checkInstruction(line)
+
+                        else:   # Not optional
+                            if line_type in cache.active_pattern[line_no][1]:
+                                for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                                    if not any(isinstance(arg, pattern_arg_type)
+                                               for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                        line_pattern_match = False
+                                        break
+
+                                    if isinstance(arg, Register) and line_type.startswith('s'): # To make sure the register whose value is being stored in stack is same as one in mv
+                                        if not any(arg.arg_text == cache_arg.arg_text for cache_instruction in cache.detection_cache for cache_arg in cache_instruction.args):
+                                            line_pattern_match = False
+                                            break
+                                        else:
+                                            cache.is_secure[0] = True
+
+                                    if isinstance(arg, MemoryAddress) and line_type.startswith('s') and cache.is_secure[0]: # Keep track of memory address return value is stored at.
+                                        cache.secure_mem_address = arg
+
+                                    if isinstance(arg, MemoryAddress) and line_type.startswith('l'):    # To make sure the address in stack being loaded from is the same as one in above store
+                                        if cache.secure_mem_address is not None and not (arg.arg_text == cache.secure_mem_address.arg_text):
+                                            line_pattern_match = False
+                                            break
+                                        else:
+                                            cache.is_secure[1] = True
+
+                                    line_pattern_match = True
+
+                                if line_pattern_match:  # Secure line present
+                                    cache.detection_cache.append('__SECURE__')
+                                    line_no += 1
+
+                                else:   # depending on if there is the mv instruction, we continue the vulnerability if there isn't or else we assume insecure
+                                    if cache.detection_cache[1].type == 'mv' and cache.is_secure[1] is False:
+                                        self.cleanup(cache, line)
+
+                            else:   # Secure line not present; remove from pattern and try again
+                                cache.active_pattern.pop(line_no)
+                                self.checkInstruction(line)
+
+                    elif '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
                         if line_type in cache.active_pattern[line_no][1]:
+                            has_matching_register = False
                             for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                                if not any(isinstance(arg, pattern_arg_type)
-                                           for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                     line_pattern_match = False
                                     break
-    
-                                if isinstance(arg, Register) and line_type.startswith('s'): # To make sure the register whose value is being stored in stack is same as one in mv
-                                    if not any(arg.arg_text == cache_arg.arg_text for cache_instruction in cache.detection_cache for cache_arg in cache_instruction.args):
-                                        line_pattern_match = False
-                                        break
-                                    else:
-                                        cache.is_secure[0] = True
-    
-                                if isinstance(arg, MemoryAddress) and line_type.startswith('s') and cache.is_secure[0]: # Keep track of memory address return value is stored at.
-                                    cache.secure_mem_address = arg
-    
-                                if isinstance(arg, MemoryAddress) and line_type.startswith('l'):    # To make sure the address in stack being loaded from is the same as one in above store
-                                    if cache.secure_mem_address is not None and not (arg.arg_text == cache.secure_mem_address.arg_text):
-                                        line_pattern_match = False
-                                        break
-                                    else:
-                                        cache.is_secure[1] = True
-    
+
                                 line_pattern_match = True
-    
-                            if line_pattern_match:  # Secure line present
-                                cache.detection_cache.append('__SECURE__')
+
+                                if isinstance(arg, Register):
+                                    for cache_instruction in cache.detection_cache:
+                                        if isinstance(cache_instruction, Instruction):
+                                            if any(arg.arg_text == cache_arg.arg_text for cache_arg in cache_instruction.args):
+                                                has_matching_register = True
+
+                            if line_pattern_match and has_matching_register:  # Optional line present
+                                cache.detection_cache.append(line)
                                 line_no += 1
-    
-                            else:   # depending on if there is the mv instruction, we continue the vulnerability if there isn't or else we assume insecure
-                                if cache.detection_cache[1].type == 'mv' and cache.is_secure[1] is False:
-                                    self.cleanup(cache, line)
-    
-                        else:   # Secure line not present; remove from pattern and try again
-                            cache.active_pattern.pop(line_no)
-                            self.checkInstruction(line)
 
-                elif '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
-                    if line_type in cache.active_pattern[line_no][1]:
-                        has_matching_register = False
-                        for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                            if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
-                                line_pattern_match = False
-                                break
-
-                            line_pattern_match = True
-
-                            if isinstance(arg, Register):
-                                for cache_instruction in cache.detection_cache:
-                                    if isinstance(cache_instruction, Instruction):
-                                        if any(arg.arg_text == cache_arg.arg_text for cache_arg in cache_instruction.args):
-                                            has_matching_register = True
-
-                        if line_pattern_match and has_matching_register:  # Optional line present
-                            cache.detection_cache.append('__OPTIONAL__')
-                            line_no += 1
+                            else:   # Remove optional line from pattern
+                                cache.active_pattern.pop(line_no)
+                                self.checkInstruction(line)
 
                         else:   # Remove optional line from pattern
                             cache.active_pattern.pop(line_no)
                             self.checkInstruction(line)
 
-                    else:   # Remove optional line from pattern
-                        cache.active_pattern.pop(line_no)
-                        self.checkInstruction(line)
-
-                elif line_type in cache.active_pattern[line_no][0]:  # Standard line
-                    for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
-                        if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
-                            line_pattern_match = False
-                            break
-
-                        if isinstance(arg, Register):   # The register MUST be the same the one in the mv instruction else pattern is not Bypass
-                            for cache_instruction in cache.detection_cache:
-                                if isinstance(cache_instruction, Instruction):
-                                    if any(arg.arg_text == cache_arg.arg_text for cache_arg in cache_instruction.args):
-                                        line_pattern_match = False
-                                        break
-
-                        line_pattern_match = True
-    
-                    if line_pattern_match:  # if the line matches, adding to cache
-                        cache.detection_cache.append(line)
-                        line_no += 1
-    
-                else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
-                    self.cleanup(cache, line)
-    
-            elif self.optimization_set in [OptimizationLevel.O1, OptimizationLevel.O2]: # O-1 and O-2 have a similar pattern
-                if line_no == 0:    # Checking for call to initiate pattern (1st requirement)
-                    first_line = self.vulnerable_instruction_set[0]
-                    if line_type in first_line[0]:
-                        for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
-                            if not any(isinstance(arg, first_line_arg) for first_line_arg in first_line[arg_no]):
+                    elif line_type in cache.active_pattern[line_no][0]:  # Standard line
+                        for arg_no, arg in enumerate(line.args, start=1):   # making sure all line parameters align with pattern
+                            if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                 line_pattern_match = False
                                 break
-    
+
+                            if isinstance(arg, Register):   # The register MUST be the same the one in the mv instruction else pattern is not Bypass
+                                for cache_instruction in cache.detection_cache:
+                                    if isinstance(cache_instruction, Instruction):
+                                        if any(arg.arg_text == cache_arg.arg_text for cache_arg in cache_instruction.args):
+                                            line_pattern_match = False
+                                            break
+
                             line_pattern_match = True
-    
-                        if line_pattern_match:  # The line matches the pattern, so we initiate the pattern and add current line to detection cache
-                            cache.active_pattern = self.vulnerable_instruction_set.copy()
-                            cache.detection_cache.append(line)
-                            line_no += 1
-    
-                elif '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
-                    if line_type in cache.active_pattern[line_no][1]:
-                        for arg_no, arg in enumerate(line.args, start=2):   # Making sure all the other parameters align
-                            if not any(isinstance(arg, first_line_arg) for first_line_arg in cache.active_pattern[line_no][arg_no]):
-                                line_pattern_match = False
-                                break
-    
-                            if arg_no == 3 and isinstance(arg, Register) and arg.arg_text != 'a0':
-                                line_pattern_match = False
-                                break
-    
-                            line_pattern_match = True
-    
+
                         if line_pattern_match:  # if the line matches, adding to cache
                             cache.detection_cache.append(line)
                             line_no += 1
 
+                    else:   # Pattern broken; no vulnerability, and try pattern detection again from current line if last line in detection cache was previous line
+                        self.cleanup(cache, line)
+
+                elif self.optimization_set in [OptimizationLevel.O1, OptimizationLevel.O2]: # O-1 and O-2 have a similar pattern
+                    if line_no == 0:    # Checking for call to initiate pattern (1st requirement)
+                        first_line = self.vulnerable_instruction_set[0]
+                        if line_type in first_line[0]:
+                            for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
+                                if not any(isinstance(arg, first_line_arg) for first_line_arg in first_line[arg_no]):
+                                    line_pattern_match = False
+                                    break
+
+                                line_pattern_match = True
+
+                            if line_pattern_match:  # The line matches the pattern, so we initiate the pattern and add current line to detection cache
+                                cache.active_pattern = self.vulnerable_instruction_set.copy()
+                                cache.detection_cache.append(line)
+                                line_no += 1
+
+                    elif '__OPTIONAL__' in cache.active_pattern[line_no][0]: # Check if line is optional
+                        if line_type in cache.active_pattern[line_no][1]:
+                            a0_notfound = True
+                            for arg_no, arg in enumerate(line.args, start=2):   # Making sure all the other parameters align
+                                if not any(pattern_arg_type is None or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                    line_pattern_match = False
+                                    break
+
+                                if arg_no == 3 and isinstance(arg, Register) and arg.arg_text == 'a0':
+                                    a0_notfound = False
+                                    # line_pattern_match = False
+                                    # break
+                                elif arg_no == 4 and a0_notfound and isinstance(arg, Register) and arg.arg_text == 'a0':
+                                    a0_notfound = False
+
+                                line_pattern_match = True
+
+                            if not a0_notfound and line_pattern_match:  # if the line matches, adding to cache
+                                cache.detection_cache.append(line)
+                                line_no += 1
+
+                            elif line_type == 'call':
+                                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                                continue
+
+                            else:
+                                # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                                self.cleanup(cache, line)
+
+                        elif line_type == 'call':
+                            if (self.label_block > 0 and line.line_no > cache.detection_cache[-1].line_no + 1 + self.label_block) or \
+                                                      (self.label_block < 0 and line.line_no > cache.detection_cache[-1].line_no + 1 ):   # If call, we want to start a new detection stream
+                                # New call statement to track
+                                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+
+                            else:   # Immediate call statement, remove current cache and continue
+                                removal_list.append(cache)
+
+                            continue
+
+                        else:   # if the instruction type does not match and any of the args is register a0, remove the optional line
+                            cache.active_pattern.pop(line_no)
+                            self.checkInstruction(line)
+
+                    elif '__IGNORE_LINE__' in cache.active_pattern[line_no][0]:  # Check if line is an IGNORE line
+                        if line_type in cache.active_pattern[line_no][1]:
+                            for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
+                                if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                                    line_pattern_match = False
+                                    break
+
+                                line_pattern_match = True
+
+                            if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
+                                cache.detection_cache.append('__IGNORE_LINE__')
+                                line_no += 1
+
+                            elif line_type == 'call':
+                                self.caches.append(self.LocalCache([], [], [False, False, False], None))
+                                continue
+
+                            else:
+                                # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                                self.cleanup(cache, line)
+
                         elif line_type == 'call':
                             self.caches.append(self.LocalCache([], [], [False, False, False], None))
                             continue
 
-                        else:
-                            # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                            self.cleanup(cache, line)
+                        else:   # IGNORE line not present, remove from pattern and try again
+                            cache.active_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
+                            self.checkInstruction(line)
 
-                    elif line_type == 'call':
-                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
-                        continue
-
-                    else:   # if the instruction type does not match and any of the args is register a0, remove the optional line
-                        cache.active_pattern.pop(line_no)
-                        self.checkInstruction(line)
-
-                elif '__IGNORE_LINE__' in cache.active_pattern[line_no][0]:  # Check if line is an IGNORE line
-                    if line_type in cache.active_pattern[line_no][1]:
-                        for arg_no, arg in enumerate(line.args, start=2):   # making sure all line parameters align with pattern
-                            if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
+                    elif line_type in cache.active_pattern[line_no][0]:  # If line is integral to pattern (only applies to branch statement)
+                        register_match = False  # For checking if the register with the return value is in the branch statement
+                        for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
+                            if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
                                 line_pattern_match = False
                                 break
-    
+
                             line_pattern_match = True
-    
-                        if line_pattern_match:  # if the line matches, adding to cache as IGNORE LINE
-                            cache.detection_cache.append('__IGNORE_LINE__')
+
+                            if (isinstance(arg, Register) and line_no >= 2 and
+                                    (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type in ['mv','sext.w','subw', 'addw']) and
+                                    ((arg.arg_text == cache.detection_cache[1].args[0].arg_text) or
+                                     (arg.arg_text == 'a0' and cache.detection_cache[1].args[1].arg_text == 'a0'))):
+                                # if mv instruction passed, we check if the register moved to exists or if it's a0, we check that it wasn't overwritten in the mv instruction
+                                register_match = True
+
+                            elif isinstance(arg, Register) and arg.arg_text == 'a0': # if mv instruction is not passed, we check if it contains a0
+                                register_match = True
+
+                        if line_pattern_match and register_match:
+                            cache.detection_cache.append(line)
                             line_no += 1
 
-                        elif line_type == 'call':
+                    elif line_no >= 2 and (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type == 'mv'): # if mv instruction passed, we make sure the current line doesn't have register moved to.
+                        if any(isinstance(arg, Register) and arg.arg_text == cache.detection_cache[1].args[0].arg_text for arg in line.args):
+                                # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                                self.cleanup(cache, line)
+
+
+                    else: # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
+                        if line_type == 'call' and not len(self.caches[-1].detection_cache) == 0:
                             self.caches.append(self.LocalCache([], [], [False, False, False], None))
                             continue
 
@@ -336,51 +417,10 @@ class Bypass(Pattern):
                             # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
                             self.cleanup(cache, line)
 
-                    elif line_type == 'call':
-                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
-                        continue
+            self.caches = [cache for cache in self.caches if cache not in removal_list]
 
-                    else:   # IGNORE line not present, remove from pattern and try again
-                        cache.active_pattern.pop(line_no)    # First, remove the IGNORE line from the pattern
-                        self.checkInstruction(line)
-    
-                elif line_type in cache.active_pattern[line_no][0]:  # If line is integral to pattern (only applies to branch statement)
-                    register_match = False  # For checking if the register with the return value is in the branch statement
-                    for arg_no, arg in enumerate(line.args, start=1):   # Making sure all the other parameters align
-                        if not any(arg is pattern_arg_type or (pattern_arg_type is not None and isinstance(arg, pattern_arg_type)) for pattern_arg_type in cache.active_pattern[line_no][arg_no]):
-                            line_pattern_match = False
-                            break
-    
-                        line_pattern_match = True
-    
-                        if (isinstance(arg, Register) and line_no >= 2 and
-                                (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type in ['mv','sext.w']) and
-                                ((arg.arg_text == cache.detection_cache[1].args[0].arg_text) or
-                                 (arg.arg_text == 'a0' and cache.detection_cache[1].args[1].arg_text == 'a0'))):
-                            # if mv instruction passed, we check if the register moved to exists or if it's a0, we check that it wasn't overwritten in the mv instruction
-                            register_match = True
-    
-                        elif isinstance(arg, Register) and arg.arg_text == 'a0': # if mv instruction is not passed, we check if it contains a0
-                            register_match = True
-    
-                    if line_pattern_match and register_match:
-                        cache.detection_cache.append(line)
-                        line_no += 1
-    
-                elif line_no >= 2 and (isinstance(cache.detection_cache[1], Instruction) and cache.detection_cache[1].type == 'mv'): # if mv instruction passed, we make sure the current line doesn't have register moved to.
-                    if any(isinstance(arg, Register) and arg.arg_text == cache.detection_cache[1].args[0].arg_text for arg in line.args):
-                            # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                            self.cleanup(cache, line)
-
-    
-                else: # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                    if line_type == 'call':
-                        self.caches.append(self.LocalCache([], [], [False, False, False], None))
-                        continue
-
-                    else:
-                        # The line does not match the pattern, so this is not an example of Bypass (secure or Insecure)
-                        self.cleanup(cache, line)
+        elif isinstance(line, Location):   # Setting label block gap of 1 when a label line is encountered
+            self.label_block = 0
 
     def cleanup(self, cache: LocalCache, line: Instruction):
         '''
