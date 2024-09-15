@@ -26,6 +26,9 @@ program = {
     'ConstantCoding': {
         'Vulnerabilities': []
     },
+    'DefaultFail': {
+        'Vulnerabilities': []
+    },
     'LoopCheck': {
         'Vulnerabilities': []
     },
@@ -77,6 +80,9 @@ for index, row in excel_df.iterrows():
                 'ConstantCoding': {
                     'Vulnerabilities': []
                 },
+                'DefaultFail': {
+                    'Vulnerabilities': []
+                },
                 'LoopCheck': {
                     'Vulnerabilities': []
                 },
@@ -100,6 +106,9 @@ for index, row in excel_df.iterrows():
 
         elif row.iloc[6] == 1:
             program['Bypass']['Vulnerabilities'].append(vulnerability.copy())
+
+        elif row.iloc[7] == 1:
+            program['DefaultFail']['Vulnerabilities'].append(vulnerability.copy())
 
 dataset.append(program) # Append last program
 

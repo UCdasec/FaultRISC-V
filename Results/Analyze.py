@@ -61,6 +61,20 @@ analysis = {
         'Recall': 0.0,
         'F-1_score': 0.0
     },
+    'DefaultFail': {
+        'Ground_truth': {
+            'Total_no_lines': 0,
+            'Total_no_vulnerabilities': 0
+        },
+        'Total_no_lines': 0,
+        'Total_no_vulnerabilities': 0,
+        'Total_no_TP': 0,
+        'Total_no_FP': 0,
+        'Total_no_FN': 0,
+        'Precision': 0.0,
+        'Recall': 0.0,
+        'F-1_score': 0.0
+    },
     'LoopCheck': {
         'Ground_truth': {
             'Total_no_lines': 0,
@@ -130,6 +144,23 @@ file_analysis = {
         'False_negatives': []
     },
     'ConstantCoding': {
+        'No_lines': 0,
+        'No_vulnerabilities': 0,
+        'Ground_truth': {
+            'No_vulnerable_lines': 0,
+            'No_vulnerabilities': 0
+        },
+        'No_TP': 0,
+        'No_FP': 0,
+        'No_FN': 0,
+        'Precision': 0.0,
+        'Recall': 0.0,
+        'F-1_score': 0.0,
+        'True_positives': [],
+        'False_positives': [],
+        'False_negatives': []
+    },
+    'DefaultFail': {
         'No_lines': 0,
         'No_vulnerabilities': 0,
         'Ground_truth': {
@@ -238,9 +269,9 @@ def update_analyses(asm_file):
     cur_file_analysis['No_lines'] = asm_file['No_lines']
 
     No_vulnerabilities = (len(dataset_file['Branch']['Vulnerabilities']) + len(dataset_file['Bypass']['Vulnerabilities'])
-                          + len(dataset_file['ConstantCoding']['Vulnerabilities'])) + len(dataset_file['LoopCheck']['Vulnerabilities'])
+                          + len(dataset_file['ConstantCoding']['Vulnerabilities'])) + len(dataset_file['DefaultFail']['Vulnerabilities']) + len(dataset_file['LoopCheck']['Vulnerabilities'])
 
-    No_vulnerable_lines = len(set([line_no for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['LoopCheck']]
+    No_vulnerable_lines = len(set([line_no for pattern in [dataset_file['Branch'], dataset_file['Bypass'], dataset_file['ConstantCoding'], dataset_file['DefaultFail'], dataset_file['LoopCheck']]
                                    for vulnerability in pattern['Vulnerabilities'] for line_no in vulnerability['Line_nos']]))
 
     cur_file_analysis['Ground_truth']['No_vulnerable_lines'] = No_vulnerable_lines
@@ -263,6 +294,11 @@ def update_analyses(asm_file):
     cur_file_analysis['ConstantCoding']['No_vulnerabilities'] = asm_file['ConstantCoding']['No_vulnerabilities']
     cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['ConstantCoding']['Vulnerabilities']])
     cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['ConstantCoding']['Vulnerabilities'])
+
+    cur_file_analysis['DefaultFail']['No_lines'] = asm_file['DefaultFail']['No_lines']
+    cur_file_analysis['DefaultFail']['No_vulnerabilities'] = asm_file['DefaultFail']['No_vulnerabilities']
+    cur_file_analysis['DefaultFail']['Ground_truth']['No_vulnerable_lines'] = sum([len(vulnerability['Line_nos']) for vulnerability in dataset_file['DefaultFail']['Vulnerabilities']])
+    cur_file_analysis['DefaultFail']['Ground_truth']['No_vulnerabilities'] = len(dataset_file['DefaultFail']['Vulnerabilities'])
 
     cur_file_analysis['LoopCheck']['No_lines'] = asm_file['LoopCheck']['No_lines']
     cur_file_analysis['LoopCheck']['No_vulnerabilities'] = asm_file['LoopCheck']['No_vulnerabilities']
@@ -292,6 +328,11 @@ def update_analyses(asm_file):
     analysis['ConstantCoding']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['No_vulnerabilities']
     analysis['ConstantCoding']['Ground_truth']['Total_no_lines'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerable_lines']
     analysis['ConstantCoding']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerabilities']
+
+    analysis['DefaultFail']['Total_no_lines'] += cur_file_analysis['DefaultFail']['No_lines']
+    analysis['DefaultFail']['Total_no_vulnerabilities'] += cur_file_analysis['DefaultFail']['No_vulnerabilities']
+    analysis['DefaultFail']['Ground_truth']['Total_no_lines'] += cur_file_analysis['DefaultFail']['Ground_truth']['No_vulnerable_lines']
+    analysis['DefaultFail']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['DefaultFail']['Ground_truth']['No_vulnerabilities']
 
     analysis['LoopCheck']['Total_no_lines'] += cur_file_analysis['LoopCheck']['No_lines']
     analysis['LoopCheck']['Total_no_vulnerabilities'] += cur_file_analysis['LoopCheck']['No_vulnerabilities']
@@ -333,6 +374,11 @@ def calc_file_precision_recall(choice: str):
         cur_file_analysis['ConstantCoding']['Recall'] = safe_divide(cur_file_analysis['ConstantCoding']['No_TP'], (cur_file_analysis['ConstantCoding']['No_TP'] + cur_file_analysis['ConstantCoding']['No_FN']))
         cur_file_analysis['ConstantCoding']['F-1_score'] = safe_divide(2,(safe_divide(1, cur_file_analysis['ConstantCoding']['Precision']) + safe_divide(1,cur_file_analysis['ConstantCoding']['Recall'])))
 
+        # DefaultFail
+        cur_file_analysis['DefaultFail']['Precision'] = safe_divide(cur_file_analysis['DefaultFail']['No_TP'], (cur_file_analysis['DefaultFail']['No_TP'] + cur_file_analysis['DefaultFail']['No_FP']))
+        cur_file_analysis['DefaultFail']['Recall'] = safe_divide(cur_file_analysis['DefaultFail']['No_TP'], (cur_file_analysis['DefaultFail']['No_TP'] + cur_file_analysis['DefaultFail']['No_FN']))
+        cur_file_analysis['DefaultFail']['F-1_score'] = safe_divide(2,(safe_divide(1, cur_file_analysis['DefaultFail']['Precision']) + safe_divide(1,cur_file_analysis['DefaultFail']['Recall'])))
+
         # LoopCheck
         cur_file_analysis['LoopCheck']['Precision'] = safe_divide(cur_file_analysis['LoopCheck']['No_TP'], (cur_file_analysis['LoopCheck']['No_TP'] + cur_file_analysis['LoopCheck']['No_FP']))
         cur_file_analysis['LoopCheck']['Recall'] = safe_divide(cur_file_analysis['LoopCheck']['No_TP'], (cur_file_analysis['LoopCheck']['No_TP'] + cur_file_analysis['LoopCheck']['No_FN']))
@@ -359,6 +405,11 @@ def calc_file_precision_recall(choice: str):
         analysis['ConstantCoding']['Precision'] = safe_divide(analysis['ConstantCoding']['Total_no_TP'], (analysis['ConstantCoding']['Total_no_TP'] + analysis['ConstantCoding']['Total_no_FP']))
         analysis['ConstantCoding']['Recall'] = safe_divide(analysis['ConstantCoding']['Total_no_TP'], (analysis['ConstantCoding']['Total_no_TP'] + analysis['ConstantCoding']['Total_no_FN']))
         analysis['ConstantCoding']['F-1_score'] = safe_divide(2,(safe_divide(1, analysis['ConstantCoding']['Precision']) + safe_divide(1,analysis['ConstantCoding']['Recall'])))
+
+        # ConstantCoding
+        analysis['DefaultFail']['Precision'] = safe_divide(analysis['DefaultFail']['Total_no_TP'], (analysis['DefaultFail']['Total_no_TP'] + analysis['DefaultFail']['Total_no_FP']))
+        analysis['DefaultFail']['Recall'] = safe_divide(analysis['DefaultFail']['Total_no_TP'], (analysis['DefaultFail']['Total_no_TP'] + analysis['DefaultFail']['Total_no_FN']))
+        analysis['DefaultFail']['F-1_score'] = safe_divide(2,(safe_divide(1, analysis['DefaultFail']['Precision']) + safe_divide(1,analysis['DefaultFail']['Recall'])))
 
         # LoopCheck
         analysis['LoopCheck']['Precision'] = safe_divide(analysis['LoopCheck']['Total_no_TP'], (analysis['LoopCheck']['Total_no_TP'] + analysis['LoopCheck']['Total_no_FP']))
@@ -396,6 +447,7 @@ for asm_file in report_data:
     analyze_pattern('Branch')
     analyze_pattern('Bypass')
     analyze_pattern('ConstantCoding')
+    analyze_pattern('DefaultFail')
     analyze_pattern('LoopCheck')
     calc_file_precision_recall('file')
     
