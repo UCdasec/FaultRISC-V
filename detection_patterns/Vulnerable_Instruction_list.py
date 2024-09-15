@@ -44,7 +44,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'seqz'}, {Register}, {Register}
+                    {'seqz', 'snez'}, {Register}, {Register}
                 ],
             ],
         ],
@@ -116,7 +116,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
+                    {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -144,7 +144,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
+                    {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ],
@@ -172,7 +172,7 @@ vulnerable_instruction_list = {
             ],
             [
                 [
-                    {'word', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
+                    {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
                 ]
             ]
         ]

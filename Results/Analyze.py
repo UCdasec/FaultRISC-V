@@ -293,7 +293,7 @@ def update_analyses(asm_file):
     analysis['ConstantCoding']['Ground_truth']['Total_no_lines'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerable_lines']
     analysis['ConstantCoding']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['ConstantCoding']['Ground_truth']['No_vulnerabilities']
 
-    analysis['LoopCheck']['Total_no_lines'] += cur_file_analysis['Bypass']['No_lines']
+    analysis['LoopCheck']['Total_no_lines'] += cur_file_analysis['LoopCheck']['No_lines']
     analysis['LoopCheck']['Total_no_vulnerabilities'] += cur_file_analysis['LoopCheck']['No_vulnerabilities']
     analysis['LoopCheck']['Ground_truth']['Total_no_lines'] += cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerable_lines']
     analysis['LoopCheck']['Ground_truth']['Total_no_vulnerabilities'] += cur_file_analysis['LoopCheck']['Ground_truth']['No_vulnerabilities']

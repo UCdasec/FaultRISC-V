@@ -8568,7 +8568,7 @@
     }
   },
   {
-    "Program_name": "samd_bootloader_secure_spritz_O0",
+    "Program_name": "samd_bootloader_secure_spritz_O0.s",
     "Optimization_level": "O0",
     "Branch": {
       "Vulnerabilities": [
@@ -13859,6 +13859,16 @@
         },
         {
           "Line_nos": [
+            266,
+            267
+          ],
+          "Lines": [
+            "li\ta3,-114",
+            "sb\ta3,0(a4)"
+          ]
+        },
+        {
+          "Line_nos": [
             373
           ],
           "Lines": [
@@ -14361,7 +14371,16 @@
       "Vulnerabilities": []
     },
     "LoopCheck": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            62
+          ],
+          "Lines": [
+            "bne\ts0,s2,.L2"
+          ]
+        }
+      ]
     }
   },
   {
@@ -14521,6 +14540,22 @@
     },
     "LoopCheck": {
       "Vulnerabilities": [
+        {
+          "Line_nos": [
+            337
+          ],
+          "Lines": [
+            "bne\ts0,s2,.L13"
+          ]
+        },
+        {
+          "Line_nos": [
+            628
+          ],
+          "Lines": [
+            "bne\ts0,s2,.L23"
+          ]
+        },
         {
           "Line_nos": [
             607,
@@ -14732,28 +14767,7 @@
       ]
     },
     "LoopCheck": {
-      "Vulnerabilities": [
-        {
-          "Line_nos": [
-            181,
-            182
-          ],
-          "Lines": [
-            "li\ta5,75",
-            "beq\ta0,a5,.L18"
-          ]
-        },
-        {
-          "Line_nos": [
-            183,
-            184
-          ],
-          "Lines": [
-            "li\ta5,88",
-            "bne\ta0,a5,.L12"
-          ]
-        }
-      ]
+      "Vulnerabilities": []
     }
   },
   {
@@ -15189,18 +15203,6 @@
           "Lines": [
             "li\ts0,1",
             "sw\ts0,24(sp)"
-          ]
-        },
-        {
-          "Line_nos": [
-            119,
-            120,
-            121
-          ],
-          "Lines": [
-            "li\ta5,4096",
-            "addi\ta5,a5,-240",
-            "sw\ta5,16(sp)"
           ]
         },
         {
@@ -15943,6 +15945,16 @@
             "li\ta4,1",
             "sb\ta4,%lo(CHECK)(a5)"
           ]
+        },
+        {
+          "Line_nos": [
+            542,
+            543
+          ],
+          "Lines": [
+            "CHECK:",
+            ".byte\t1"
+          ]
         }
       ]
     },
@@ -16332,6 +16344,14 @@
           "Lines": [
             "bne\ta5,a0,.L58"
           ]
+        },
+        {
+          "Line_nos": [
+            353
+          ],
+          "Lines": [
+            "bne\ts0,zero,.L67"
+          ]
         }
       ]
     }
@@ -16434,14 +16454,6 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": [
-        {
-          "Line_nos": [
-            465
-          ],
-          "Lines": [
-            ".byte\t117"
-          ]
-        },
         {
           "Line_nos": [
             468
@@ -20705,6 +20717,46 @@
         },
         {
           "Line_nos": [
+            133,
+            134
+          ],
+          "Lines": [
+            "li\ta4,160",
+            "beq\ta5,a4,.L42"
+          ]
+        },
+        {
+          "Line_nos": [
+            135,
+            136
+          ],
+          "Lines": [
+            "li\ta4,161",
+            "beq\ta5,a4,.L43"
+          ]
+        },
+        {
+          "Line_nos": [
+            137,
+            138
+          ],
+          "Lines": [
+            "li\ta4,162",
+            "beq\ta5,a4,.L44"
+          ]
+        },
+        {
+          "Line_nos": [
+            139,
+            140
+          ],
+          "Lines": [
+            "li\ta4,163",
+            "beq\ta5,a4,.L45"
+          ]
+        },
+        {
+          "Line_nos": [
             165,
             166
           ],
@@ -20745,14 +20797,6 @@
           "Lines": [
             "li\ta4,-1",
             "beq\ta5,a4,.L67"
-          ]
-        },
-        {
-          "Line_nos": [
-            521
-          ],
-          "Lines": [
-            "bne\ta5,s1,.L60"
           ]
         },
         {
@@ -20886,46 +20930,6 @@
         },
         {
           "Line_nos": [
-            133,
-            134
-          ],
-          "Lines": [
-            "li\ta4,160",
-            "beq\ta5,a4,.L42"
-          ]
-        },
-        {
-          "Line_nos": [
-            135,
-            136
-          ],
-          "Lines": [
-            "li\ta4,161",
-            "beq\ta5,a4,.L43"
-          ]
-        },
-        {
-          "Line_nos": [
-            137,
-            138
-          ],
-          "Lines": [
-            "li\ta4,162",
-            "beq\ta5,a4,.L44"
-          ]
-        },
-        {
-          "Line_nos": [
-            139,
-            140
-          ],
-          "Lines": [
-            "li\ta4,163",
-            "beq\ta5,a4,.L45"
-          ]
-        },
-        {
-          "Line_nos": [
             149
           ],
           "Lines": [
@@ -20946,6 +20950,16 @@
           ],
           "Lines": [
             "sb\tzero,%lo(flash_verify_ok)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            201,
+            202
+          ],
+          "Lines": [
+            "li\ta4,1",
+            "sb\ta4,%lo(flash_verify_ok)(a5)"
           ]
         },
         {
@@ -20980,7 +20994,18 @@
         },
         {
           "Line_nos": [
-            358360
+            358,
+            359
+          ],
+          "Lines": [
+            "li\ta4,32768",
+            "sw\ta4,1028(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            358,
+            360
           ],
           "Lines": [
             "li\ta4,32768",
@@ -20995,6 +21020,26 @@
           "Lines": [
             "li\ta4,6",
             "sb\ta4,1103(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            414,
+            415
+          ],
+          "Lines": [
+            "li\ta4,262144",
+            "sw\ta4,4(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            465,
+            466
+          ],
+          "Lines": [
+            "li\ta4,196608",
+            "sw\ta4,1028(a5)"
           ]
         },
         {
@@ -21049,6 +21094,22 @@
           ],
           "Lines": [
             "bne\ta5,a2,.L52"
+          ]
+        },
+        {
+          "Line_nos": [
+            521
+          ],
+          "Lines": [
+            "bne\ta5,s1,.L60"
+          ]
+        },
+        {
+          "Line_nos": [
+            534
+          ],
+          "Lines": [
+            "bne\ta4,a5,.L69"
           ]
         }
       ]
@@ -21247,7 +21308,24 @@
       ]
     },
     "LoopCheck": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+        "Line_nos": [
+          36
+        ],
+        "Lines": [
+          "bne\ta5,a3,.L3"
+        ]
+      },
+        {
+          "Line_nos": [
+            55
+          ],
+          "Lines": [
+            "bne\ta5,a4,.L5"
+          ]
+        }
+      ]
     }
   },
   {
@@ -21257,32 +21335,12 @@
       "Vulnerabilities": [
         {
           "Line_nos": [
-            140,
-            141
-          ],
-          "Lines": [
-            "li\ta0,3",
-            "bne\ta5,a4,.L18"
-          ]
-        },
-        {
-          "Line_nos": [
             168,
             169
           ],
           "Lines": [
             "li\ta5,90",
             "bne\ta4,a5,.L23"
-          ]
-        },
-        {
-          "Line_nos": [
-            172,
-            173
-          ],
-          "Lines": [
-            "li\ta5,241",
-            "beq\ta4,a5,.L27"
           ]
         },
         {
@@ -21484,6 +21542,16 @@
           ],
           "Lines": [
             "sb\tzero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            108,
+            109
+          ],
+          "Lines": [
+            "li\ta4,1",
+            "sw\ta4,32(a5)"
           ]
         },
         {
@@ -21926,9 +21994,11 @@
         },
         {
           "Line_nos": [
-            583
+            588,
+            589
           ],
           "Lines": [
+            "bootable:",
             ".word\t-1"
           ]
         }
@@ -21936,44 +22006,6 @@
     },
     "LoopCheck": {
       "Vulnerabilities": [
-        {
-          "Line_nos": [
-            159
-          ],
-          "Lines": [
-            "bne\ta5,s2,.L26"
-          ]
-        },
-        {
-          "Line_nos": [
-            374,
-            375
-          ],
-          "Lines": [
-            "li\ta4,101",
-            "beq\ta5,a4,.L63"
-          ]
-        },
-        {
-          "Line_nos": [
-            376,
-            377
-          ],
-          "Lines": [
-            "li\ta4,112",
-            "beq\ta5,a4,.L64"
-          ]
-        },
-        {
-          "Line_nos": [
-            378,
-            379
-          ],
-          "Lines": [
-            "li\ta4,118",
-            "bne\ta5,a4,.L35"
-          ]
-        },
         {
           "Line_nos": [
             413
@@ -24307,22 +24339,70 @@
         {
           "Line_nos": [
             4641,
-            4642,
-            4643,
-            4644,
-            4646,
-            4647,
-            4648,
+            4643
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".byte\t20"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
+            4644
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".half\t161"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
+            4645
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".word\t2147483647"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
+            4646
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
+            4647
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
+            4648
+          ],
+          "Lines": [
+            "curve_secp160r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4641,
             4649
           ],
           "Lines": [
             "curve_secp160r1:",
-            ".byte\t5",
-            ".byte\t20",
-            ".half\t161",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
             ".word\t-1"
           ]
         },
@@ -24353,26 +24433,80 @@
         {
           "Line_nos": [
             4682,
-            4683,
-            4684,
-            4685,
-            4686,
-            4687,
-            4688,
-            4689,
-            4690,
+            4684
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".byte\t24"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4685
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".half\t192"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4686
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4687
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4688
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".word\t-2"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4689
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
+            4690
+          ],
+          "Lines": [
+            "curve_secp192r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4682,
             4691
           ],
           "Lines": [
             "curve_secp192r1:",
-            ".byte\t6",
-            ".byte\t24",
-            ".half\t192",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-2",
-            ".word\t-1",
-            ".word\t-1",
             ".word\t-1"
           ]
         },
@@ -24403,28 +24537,90 @@
         {
           "Line_nos": [
             4727,
-            4728,
-            4729,
-            4730,
-            4731,
-            4732,
-            4733,
-            4734,
-            4735,
-            4736,
+            4729
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".byte\t28"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4730
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".half\t224"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4731
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4732
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4733
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4734
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4735
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
+            4736
+          ],
+          "Lines": [
+            "curve_secp224r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4727,
             4737
           ],
           "Lines": [
             "curve_secp224r1:",
-            ".byte\t7",
-            ".byte\t28",
-            ".half\t224",
-            ".word\t1",
-            ".word\t0",
-            ".word\t0",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
             ".word\t-1"
           ]
         },
@@ -24455,90 +24651,350 @@
         {
           "Line_nos": [
             4777,
-            4778,
-            4779,
-            4780,
-            4781,
-            4782,
-            4783,
-            4784,
-            4785,
-            4786,
-            4787,
-            4788,
-            4793,
-            4794,
-            4795,
+            4779
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".byte\t32"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4780
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".half\t256"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4781
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4782
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4783
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4784
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4785
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4786
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4787
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4788
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4793
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4794
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
+            4795
+          ],
+          "Lines": [
+            "curve_secp256r1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4777,
             4796
           ],
           "Lines": [
             "curve_secp256r1:",
-            ".byte\t8",
-            ".byte\t32",
-            ".half\t256",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t0",
-            ".word\t0",
-            ".word\t0",
-            ".word\t1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t0",
             ".word\t-1"
           ]
         },
         {
           "Line_nos": [
             4828,
-            4829,
-            4830,
-            4831,
-            4833,
-            4834,
-            4835,
-            4836,
-            4837,
-            4838,
-            4839,
-            4844,
-            4845,
-            4846,
-            4847,
-            4864,
-            4865,
-            4866,
-            4867,
-            4868,
-            4869,
-            4870,
+            4830
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".byte\t32"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4831
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".half\t256"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4833
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-2"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4834
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4835
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4836
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4837
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4838
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4839
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4844
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-2"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4845
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4846
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4847
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4864
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t7"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4865
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4866
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4867
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4868
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4869
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
+            4870
+          ],
+          "Lines": [
+            "curve_secp256k1:",
+            ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            4828,
             4871
           ],
           "Lines": [
             "curve_secp256k1:",
-            ".byte\t8",
-            ".byte\t32",
-            ".half\t256",
-            ".word\t-2",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-2",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t-1",
-            ".word\t7",
-            ".word\t0",
-            ".word\t0",
-            ".word\t0",
-            ".word\t0",
-            ".word\t0",
-            ".word\t0",
             ".word\t0"
           ]
         }
@@ -24564,10 +25020,26 @@
         },
         {
           "Line_nos": [
+            70
+          ],
+          "Lines": [
+            "bge\ta5,zero,.L13"
+          ]
+        },
+        {
+          "Line_nos": [
             114
           ],
           "Lines": [
             "bne\ta5,a1,.L29"
+          ]
+        },
+        {
+          "Line_nos": [
+            138
+          ],
+          "Lines": [
+            "bge\ta2,zero,.L33"
           ]
         },
         {
@@ -24580,22 +25052,10 @@
         },
         {
           "Line_nos": [
-            811,
-            812
+            615
           ],
           "Lines": [
-            "addw\ts0,s0,a0",
-            "blt\ts0,zero,.L108"
-          ]
-        },
-        {
-          "Line_nos": [
-            1027,
-            1028
-          ],
-          "Lines": [
-            "addw\ts0,s0,a0",
-            "blt\ts0,zero,.L117"
+            "bne\ts0,zero,.L97"
           ]
         },
         {
@@ -24604,6 +25064,14 @@
           ],
           "Lines": [
             "bne\ta4,t1,.L125"
+          ]
+        },
+        {
+          "Line_nos": [
+            1133
+          ],
+          "Lines": [
+            "bne\ts0,zero,.L130"
           ]
         },
         {
@@ -24674,6 +25142,14 @@
         },
         {
           "Line_nos": [
+            1670
+          ],
+          "Lines": [
+            "ble\ta4,t5,.L193"
+          ]
+        },
+        {
+          "Line_nos": [
             1672,
             1674
           ],
@@ -24694,6 +25170,14 @@
         },
         {
           "Line_nos": [
+            1730
+          ],
+          "Lines": [
+            "bgt\tt2,t6,.L198"
+          ]
+        },
+        {
+          "Line_nos": [
             1806,
             1807
           ],
@@ -24704,12 +25188,44 @@
         },
         {
           "Line_nos": [
+            2388
+          ],
+          "Lines": [
+            "bne\ts0,s1,.L250"
+          ]
+        },
+        {
+          "Line_nos": [
+            3069
+          ],
+          "Lines": [
+            "bne\ts2,zero,.L277"
+          ]
+        },
+        {
+          "Line_nos": [
             3582,
             3583
           ],
           "Lines": [
             "addiw\ts0,s0,-1",
             "bne\ts0,zero,.L317"
+          ]
+        },
+        {
+          "Line_nos": [
+            3734
+          ],
+          "Lines": [
+            "bgt\ta4,a5,.L328"
+          ]
+        },
+        {
+          "Line_nos": [
+            3887
+          ],
+          "Lines": [
+            "bge\ta5,zero,.L337"
           ]
         },
         {
@@ -24730,6 +25246,22 @@
           "Lines": [
             "addi\ta5,a5,1",
             "bgtu\ta3,a4,.L363"
+          ]
+        },
+        {
+          "Line_nos": [
+            4260
+          ],
+          "Lines": [
+            "beq\ta3,a1,.L364"
+          ]
+        },
+        {
+          "Line_nos": [
+            4545
+          ],
+          "Lines": [
+            "bge\ts2,zero,.L390"
           ]
         }
       ]
@@ -37181,13 +37713,9 @@
         },
         {
           "Line_nos": [
-            268,
-            269,
             270
           ],
           "Lines": [
-            "addi\ta4,a4,1",
-            "\taddw\ta3,a5,a4",
             "\tbgtu\ta2,a3,.L47"
           ]
         },
@@ -37201,13 +37729,9 @@
         },
         {
           "Line_nos": [
-            324,
-            325,
             326
           ],
           "Lines": [
-            "addi\ta4,a4,1",
-            "\taddw\ta3,a5,a4",
             "\tbgtu\ta2,a3,.L47"
           ]
         },
@@ -38101,13 +38625,9 @@
         },
         {
           "Line_nos": [
-            5610,
-            5611,
             5612
           ],
           "Lines": [
-            "addi\ta5,a5,1",
-            "\tsext.w\ta4,a5",
             "\tbgtu\ta3,a4,.L865"
           ]
         },
