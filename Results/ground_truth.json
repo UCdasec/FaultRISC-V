@@ -14956,6 +14956,34 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            1206
+          ],
+          "Lines": [
+            "beq\ta0,a5,.L148"
+          ]
+        },
+        {
+          "Line_nos": [
+            1300
+          ],
+          "Lines": [
+            "bleu\ta0,a5,.L140"
+          ]
+        },
+        {
+          "Line_nos": [
+            1325
+          ],
+          "Lines": [
+            "bleu\ta0,a5,.L146"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -15074,6 +15102,28 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            109
+          ],
+          "Lines": [
+            "bgtu\ta0,s4,.L4"
+          ]
+        },
+        {
+          "Line_nos": [
+            129,
+            131
+          ],
+          "Lines": [
+            "bne\ts3,a5,.L7",
+            "beq\ts5,a5,.L14"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -15239,6 +15289,50 @@
           ],
           "Lines": [
             "sb\tzero,%lo(a)(s6)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            125
+          ],
+          "Lines": [
+            "beq\ta4,a5,.L36"
+          ]
+        },
+        {
+          "Line_nos": [
+            126
+          ],
+          "Lines": [
+            "beq\ts3,s10,.L37"
+          ]
+        },
+        {
+          "Line_nos": [
+            318
+          ],
+          "Lines": [
+            "bgt\ts0,s1,.L38"
+          ]
+        },
+        {
+          "Line_nos": [
+            413
+          ],
+          "Lines": [
+            "beq\ta1,a5,.L41"
+          ]
+        },
+        {
+          "Line_nos": [
+            415
+          ],
+          "Lines": [
+            "beq\ts0,a5,.L42"
           ]
         }
       ]
@@ -15470,6 +15564,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": []
@@ -16222,6 +16319,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -16663,6 +16763,58 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            26
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L3"
+          ]
+        },
+        {
+          "Line_nos": [
+            71
+          ],
+          "Lines": [
+            "beq\ta2,a3,.L11"
+          ]
+        },
+        {
+          "Line_nos": [
+            146
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L28"
+          ]
+        },
+        {
+          "Line_nos": [
+            231
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L47"
+          ]
+        },
+        {
+          "Line_nos": [
+            347
+          ],
+          "Lines": [
+            "beq\ta0,a5,.L66"
+          ]
+        },
+        {
+          "Line_nos": [
+            416
+          ],
+          "Lines": [
+            "bne\ta0,a5,.L69"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -16765,6 +16917,22 @@
           ],
           "Lines": [
             "sb\tzero,%lo(recieved_data)(s0)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            55,
+            56,
+            57
+          ],
+          "Lines": [
+            "beq\ta5,s1,.L4",
+            "beq\ta5,s2,.L5",
+            "bne\ta5,s3,.L7"
           ]
         }
       ]
@@ -17040,6 +17208,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -17083,6 +17254,18 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            30
+          ],
+          "Lines": [
+            "bgtu\ta3,a4,.L15"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": []
@@ -17205,6 +17388,18 @@
           ],
           "Lines": [
             ".byte\t1"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            151
+          ],
+          "Lines": [
+            "bleu\ts0,a5,.L12"
           ]
         }
       ]
@@ -21001,6 +21196,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -21318,6 +21516,36 @@
           "Lines": [
             "li\ta5,-1",
             "sw\ta5,12(sp)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            18,
+            19,
+            21,
+            23,
+            26
+          ],
+          "Lines": [
+            "beq\ta0,a5,.L2",
+            "bgtu\ta0,a5,.L3",
+            "beq\ta0,a5,.L4",
+            "bne\ta0,a5,.L16",
+            "beq\ta2,a5,.L17"
+          ]
+        },
+        {
+          "Line_nos": [
+            148,
+            149
+          ],
+          "Lines": [
+            "beq\ta5,s3,.L37",
+            "beq\ta5,s5,.L38"
           ]
         }
       ]
@@ -21765,6 +21993,82 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            83,
+            85,
+            87,
+            89
+          ],
+          "Lines": [
+            "beq\ta5,a4,.L12",
+            "beq\ta5,a4,.L13",
+            "beq\ta5,a4,.L14",
+            "beq\ta5,a4,.L15"
+          ]
+        },
+        {
+          "Line_nos": [
+            130,
+            134,
+            136,
+            138,
+            140
+          ],
+          "Lines": [
+            "bne\ta4,a5,.L41",
+            "beq\ta5,a4,.L42",
+            "beq\ta5,a4,.L43",
+            "beq\ta5,a4,.L44",
+            "beq\ta5,a4,.L45"
+          ]
+        },
+        {
+          "Line_nos": [
+            164,
+            166
+          ],
+          "Lines": [
+            "bgeu\ts1,a5,.L22",
+            "bleu\ta5,a4,.L46"
+          ]
+        },
+        {
+          "Line_nos": [
+            217,
+            220
+          ],
+          "Lines": [
+            "bgtu\ta4,a5,.L24",
+            "bgtu\ta4,a5,.L47"
+          ]
+        },
+        {
+          "Line_nos": [
+            253,
+            256
+          ],
+          "Lines": [
+            "bne\ta2,a3,.L25",
+            "bne\ta5,a1,.L26"
+          ]
+        },
+        {
+          "Line_nos": [
+            487,
+            492,
+            497
+          ],
+          "Lines": [
+            "bne\ta4,a5,.L51",
+            "bne\ta4,a5,.L51",
+            "bne\ta4,a5,.L51"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -21952,6 +22256,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -22011,6 +22318,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -22200,6 +22510,38 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            103
+          ],
+          "Lines": [
+            "bne\ta3,a4,.L11"
+          ]
+        },
+        {
+          "Line_nos": [
+            139,
+            141
+          ],
+          "Lines": [
+            "bgtu\ta5,a4,.L21",
+            "bne\ta5,a4,.L18"
+          ]
+        },
+        {
+          "Line_nos": [
+            169,
+            173
+          ],
+          "Lines": [
+            "bne\ta4,a5,.L23",
+            "beq\ta4,a5,.L27"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -22278,6 +22620,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -22708,6 +23053,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -25705,6 +26053,22 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            426,
+            429,
+            430
+          ],
+          "Lines": [
+            "beq\ta5,zero,.L86",
+            "beq\ta5,zero,.L87",
+            "ble\ta0,zero,.L79"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -27767,6 +28131,42 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            1725
+          ],
+          "Lines": [
+            "beq\ta0,a4,.L374"
+          ]
+        },
+        {
+          "Line_nos": [
+            1787
+          ],
+          "Lines": [
+            "bleu\ta5,s10,.L337"
+          ]
+        },
+        {
+          "Line_nos": [
+            1846
+          ],
+          "Lines": [
+            "bleu\ta5,s10,.L377"
+          ]
+        },
+        {
+          "Line_nos": [
+            1955
+          ],
+          "Lines": [
+            "a5,s10,.L347"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -28194,6 +28594,52 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            76
+          ],
+          "Lines": [
+            "bleu\ta0,a5,.L13"
+          ]
+        },
+        {
+          "Line_nos": [
+            95
+          ],
+          "Lines": [
+            "bgtu\ta0,s1,.L11"
+          ]
+        },
+        {
+          "Line_nos": [
+            137,
+            139
+          ],
+          "Lines": [
+            "bne\ts2,a5,.L10",
+            "beq\ts4,a5,.L22"
+          ]
+        },
+        {
+          "Line_nos": [
+            164
+          ],
+          "Lines": [
+            "bgtu\ta0,a5,.L4"
+          ]
+        },
+        {
+          "Line_nos": [
+            183
+          ],
+          "Lines": [
+            "bleu\ta0,a5,.L12"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -28663,6 +29109,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -29061,6 +29510,66 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            23
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L3"
+          ]
+        },
+        {
+          "Line_nos": [
+            63
+          ],
+          "Lines": [
+            "beq\ta2,a3,.L13"
+          ]
+        },
+        {
+          "Line_nos": [
+            128
+          ],
+          "Lines": [
+            "beq\ta6,a2,.L28"
+          ]
+        },
+        {
+          "Line_nos": [
+            146
+          ],
+          "Lines": [
+            "beq\ta0,a2,.L32"
+          ]
+        },
+        {
+          "Line_nos": [
+            206
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L46"
+          ]
+        },
+        {
+          "Line_nos": [
+            325
+          ],
+          "Lines": [
+            "beq\ta0,s0,.L75"
+          ]
+        },
+        {
+          "Line_nos": [
+            498
+          ],
+          "Lines": [
+            "bne\ta5,a4,.L84"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -29247,6 +29756,42 @@
           ],
           "Lines": [
             "sb\tzero,%lo(a)(s7)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            216
+          ],
+          "Lines": [
+            "beq\ta1,s3,.L41"
+          ]
+        },
+        {
+          "Line_nos": [
+            217
+          ],
+          "Lines": [
+            "beq\ts0,s10,.L42"
+          ]
+        },
+        {
+          "Line_nos": [
+            306
+          ],
+          "Lines": [
+            "beq\ta4,a5,.L45"
+          ]
+        },
+        {
+          "Line_nos": [
+            307
+          ],
+          "Lines": [
+            "beq\ts3,s10,.L46"
           ]
         }
       ]
@@ -29530,6 +30075,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -29615,6 +30163,22 @@
           ],
           "Lines": [
             "sb zero,%lo(recieved_data)(s0)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            42,
+            44,
+            45
+          ],
+          "Lines": [
+            "\tbeq\ta5,s1,.L4",
+            "\tbeq\ta4,s2,.L5",
+            "\tbne\ta4,s3,.L7"
           ]
         }
       ]
@@ -29985,6 +30549,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -30018,13 +30585,36 @@
     "Program_name": "smartlock_HMI_main_O2.s",
     "Optimization_level": "O2",
     "Branch": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            27,
+            30
+          ],
+          "Lines": [
+            "li\ta4,43",
+            "bgtu\ta5,a4,.L15"
+          ]
+        }
+      ]
     },
     "Bypass": {
       "Vulnerabilities": []
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            30
+          ],
+          "Lines": [
+            "bgtu\ta5,a4,.L15"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": []
@@ -30101,6 +30691,18 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            150
+          ],
+          "Lines": [
+            "bleu\ts0,a5,.L14"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -33892,6 +34494,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -34149,6 +34754,36 @@
     },
     "ConstantCoding": {
       "Vulnerabilities": []
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            16,
+            17,
+            19,
+            21,
+            32
+          ],
+          "Lines": [
+            "beq\ta0,a5,.L2",
+            "bgtu\ta0,a5,.L3",
+            "beq\ta0,a5,.L4",
+            "bne\ta0,a5,.L18",
+            "bne\ta0,a5,.L18"
+          ]
+        },
+        {
+          "Line_nos": [
+            143,
+            176
+          ],
+          "Lines": [
+            "beq\ta5,s5,.L44",
+            "bne\ta5,s3,.L31"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -34841,6 +35476,68 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            20,
+            42,
+            44,
+            46,
+            50
+          ],
+          "Lines": [
+            "beq\ta4,a5,.L2",
+            "beq\ta5,a4,.L54",
+            "beq\ta5,a4,.L55",
+            "beq\ta5,a4,.L56",
+            "beq\ta5,a3,.L57"
+          ]
+        },
+        {
+          "Line_nos": [
+            64,
+            67
+          ],
+          "Lines": [
+            "bgtu\ta4,a5,.L10",
+            "bleu\ta4,a5,.L10"
+          ]
+        },
+        {
+          "Line_nos": [
+            93
+          ],
+          "Lines": [
+            "beq\ts5,a5,.L58"
+          ]
+        },
+        {
+          "Line_nos": [
+            130,
+            132
+          ],
+          "Lines": [
+            "bgeu\ts4,a5,.L6",
+            "bleu\ta5,a4,.L59"
+          ]
+        },
+        {
+          "Line_nos": [
+            305,
+            307,
+            309,
+            311
+          ],
+          "Lines": [
+            "beq\ta5,a3,.L73",
+            "beq\ta5,a3,.L74",
+            "beq\ta5,a3,.L75",
+            "beq\ta5,a3,.L76"
+          ]
+        }
+      ]
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -34982,6 +35679,9 @@
         }
       ]
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": [
         {
@@ -35047,6 +35747,9 @@
     "ConstantCoding": {
       "Vulnerabilities": []
     },
+    "DefaultFail": {
+      "Vulnerabilities": []
+    },
     "LoopCheck": {
       "Vulnerabilities": []
     }
@@ -35106,6 +35809,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -35321,6 +36027,39 @@
           "Lines": [
             "li\ta2,-16",
             "\tsb\ta2,-2(a3)"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            105
+          ],
+          "Lines": [
+            "beq\ta3,a4,.L18"
+          ]
+        },
+        {
+          "Line_nos": [
+            138,
+            140
+          ],
+          "Lines": [
+            "bgtu\ta4,a3,.L25",
+            "li\ta0,3",
+            "beq\ta4,a3,.L21"
+          ]
+        },
+        {
+          "Line_nos": [
+            169,
+            172
+          ],
+          "Lines": [
+            "bne\ta3,a4,.L27",
+            "beq\ta3,a4,.L31"
           ]
         }
       ]
@@ -35785,6 +36524,9 @@
           ]
         }
       ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": []
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -38370,6 +39112,22 @@
           ],
           "Lines": [
             ".half\t256"
+          ]
+        }
+      ]
+    },
+    "DefaultFail": {
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            3408,
+            3410,
+            3411
+          ],
+          "Lines": [
+            "beq\ta5,zero,.L590",
+            "bne\ta4,a5,.L591",
+            "ble\ts0,zero,.L515"
           ]
         }
       ]
