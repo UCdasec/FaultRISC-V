@@ -1,0 +1,58 @@
+	.file	"brayden_default_fail_simple_insecure.c"
+	.option nopic
+	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0"
+	.attribute unaligned_access, 0
+	.attribute stack_align, 16
+	.text
+	.section	.rodata
+	.align	3
+.LC0:
+	.string	"One"
+	.align	3
+.LC1:
+	.string	"Two"
+	.align	3
+.LC2:
+	.string	"Else"
+	.text
+	.align	1
+	.globl	main
+	.type	main, @function
+main:
+	addi	sp,sp,-32
+	sd	ra,24(sp)
+	sd	s0,16(sp)
+	addi	s0,sp,32
+	mv	a5,a0
+	sd	a1,-32(s0)
+	sw	a5,-20(s0)
+	lw	a5,-20(s0)
+	sext.w	a4,a5
+	li	a5,1
+	bne	a4,a5,.L2
+	lui	a5,%hi(.LC0)
+	addi	a0,a5,%lo(.LC0)
+	call	printf
+	j	.L3
+.L2:
+	lw	a5,-20(s0)
+	sext.w	a4,a5
+	li	a5,2
+	bne	a4,a5,.L4
+	lui	a5,%hi(.LC1)
+	addi	a0,a5,%lo(.LC1)
+	call	printf
+	j	.L3
+.L4:
+	lui	a5,%hi(.LC2)
+	addi	a0,a5,%lo(.LC2)
+	call	printf
+.L3:
+	li	a5,0
+	mv	a0,a5
+	ld	ra,24(sp)
+	ld	s0,16(sp)
+	addi	sp,sp,32
+	jr	ra
+	.size	main, .-main
+	.ident	"GCC: () 13.2.0"

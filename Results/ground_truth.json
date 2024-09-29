@@ -4831,6 +4831,14 @@
       "Vulnerabilities": [
         {
           "Line_nos": [
+            36
+          ],
+          "Lines": [
+            "bgtu\ta4,a5,.L15"
+          ]
+        },
+        {
+          "Line_nos": [
             64
           ],
           "Lines": [
@@ -4851,14 +4859,6 @@
           ],
           "Lines": [
             "bleu\ta4,a5,.L68"
-          ]
-        },
-        {
-          "Line_nos": [
-            36
-          ],
-          "Lines": [
-            "bgtu\ta4,a5,.L15"
           ]
         }
       ]

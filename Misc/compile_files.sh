@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define source and target directories
-SOURCE_DIRS=("c_source/ai" "c_source/manual")
-TARGET_DIR_O0="compiled_riscv/O0"
-TARGET_DIR_O1="compiled_riscv/O1"
-TARGET_DIR_O2="compiled_riscv/O2"
+SOURCE_DIRS=("dev_examples/c_source/ai" "dev_examples/c_source/manual")
+TARGET_DIR_O0="dev_examples/compiled_riscv/O0"
+TARGET_DIR_O1="dev_examples/compiled_riscv/O1"
+TARGET_DIR_O2="dev_examples/compiled_riscv/O2"
 
 # Create target directories if they don't exist
 mkdir -p $TARGET_DIR_O0

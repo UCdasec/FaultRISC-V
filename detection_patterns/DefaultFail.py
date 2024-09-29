@@ -115,7 +115,8 @@ class DefaultFail(Pattern):
 
                 elif line_type in instruction_set[1][0]:    #'j' instruction
                     location = line.args[-1].arg_text
-                    self.last_was_jump = True
+                    if not location in self.encountered_labels: #Ensure that it isn't a loop
+                        self.last_was_jump = True
                     if not self.branch_present:
                         self.branch_locations.append(location)
         
@@ -194,7 +195,8 @@ class DefaultFail(Pattern):
             return
 
         if self.optimization_set == OptimizationLevel.O0:
-            if self.last_was_branch: #The last statement was a branch, so this is part of an 'or' in an if statement
+            if self.last_was_branch and len(self.detection_cache) > 1: #The last statement was a branch, so this is part of an 'or' in an if statement.
+                # Also, there must be 2 branch statements in the detection cache for this to be trye
                 self.branches_needing_conv.pop()
                 self.detection_cache[-2].extend(self.detection_cache.pop())
 
@@ -246,7 +248,7 @@ class DefaultFail(Pattern):
                     
     def checkConvergencePoint(self, location):
         """
-        When you reach a convergence point, if there are one more branches leading to that convergence point that its depth,
+        When you reach a convergence point, if there is one or more branches leading to that convergence point than its depth,
         it is secure. If there are the same number of branches leading to it as the depth, then it is vulnerable.
         """
         #First remove every branch that needs a convergence point that is guaranteed to be covered

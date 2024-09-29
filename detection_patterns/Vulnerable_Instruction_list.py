@@ -357,7 +357,7 @@ vulnerable_instruction_list = {
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
-                    'j', {Label}
+                    {'j'}, {Label}
                 ]
             ]
         ],
@@ -370,10 +370,10 @@ vulnerable_instruction_list = {
                     {'j', 'jr'}, {Label, Register}
                 ],
                 [
-                    'ret'
+                    {'ret'}
                 ],
                 [
-                    'call'
+                    {'call'}
                 ],
             ]
         ],
@@ -383,13 +383,13 @@ vulnerable_instruction_list = {
                     {'beq', 'bne', 'blt', 'bgt', 'ble', 'bge', 'bgeu', 'bleu', 'bltu', 'bgtu'}, {Register}, {Register, IntegerLiteral}, {Label, None}
                 ],
                 [
-                    'j', {Label}
+                    {'j'}, {Label}
                 ],
                 [
-                    'ret'
+                    {'ret'}
                 ],
                 [
-                    'call'
+                    {'call'}
                 ],
             ]
         ]
