@@ -53,7 +53,6 @@ def analyze_program(program: Program):
     for line in program.lines:
         if isinstance(line, Instruction):
             Branch_detector.checkInstruction(line)
-            ConstantCoding_detector.checkInstruction(line)
             LoopCheck_detector.checkInstruction(line)
             Bypass_detector.checkInstruction(line)
 

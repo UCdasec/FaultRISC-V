@@ -164,7 +164,9 @@ class Attribute(Line):
                 raw_arg = raw_args_text.split(',',1)[0].strip()
                 if not raw_arg.startswith('@'):
                     if is_integer(raw_arg): # Integer
-                        self.args.append(IntegerLiteral(raw_arg))
+                        if self.type == 'zero': # if the attribute type is zero, then the argument is simply how many 0-valued bytes
+                            self.args.append(IntegerLiteral('0'))
+                        self.args.append(IntegerLiteral(raw_arg))                                                                                                                                 
 
                     elif re.match(hexadecimal_pattern, raw_arg):    # Hexadecimal integer (conversion to decimal before appending to args)
                         hex_string = re.match(hexadecimal_pattern, raw_arg).group(2)

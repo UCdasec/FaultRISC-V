@@ -77,15 +77,16 @@ class ConstantCoding(Pattern):
                     '''
                 elif line_type in instruction_set[0][0] and isinstance(line, GlobalVariable):   # Global Variable
                     for var in line.variable_values:
-                        hamming_weight_0, hamming_weight_1 = calculate_hamming(var.args[0].arg_value)
-                        if hamming_weight_0 <= self.tolerance or hamming_weight_1 <= self.tolerance:
-                            self.detection_cache.append(line)
-                            self.detection_cache.append(var)
+                        if var.type != 'zero' or (var.type == 'zero' and var.args[1].arg_value == 1):
+                            hamming_weight_0, hamming_weight_1 = calculate_hamming(var.args[0].arg_value)
+                            if hamming_weight_0 <= self.tolerance or hamming_weight_1 <= self.tolerance:
+                                self.detection_cache.append(line)
+                                self.detection_cache.append(var)
 
-                            self.vulnerable_lines.append(self.detection_cache.copy())
-                            self.no_vulnerable += 1
-                            self.no_vulnerable_lines += 1
-                            self.detection_cache.clear()
+                                self.vulnerable_lines.append(self.detection_cache.copy())
+                                self.no_vulnerable += 1
+                                self.no_vulnerable_lines += 1
+                                self.detection_cache.clear()
 
                     break
 
