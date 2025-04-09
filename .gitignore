@@ -52,6 +52,7 @@ docs/_build/
 # Visual Studio and Intellij cache/options directory
 .vs/
 .idea/
+.history/
 
 # Other extensions (misc)
 *.xlsx
