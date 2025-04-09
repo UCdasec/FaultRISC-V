@@ -6488,7 +6488,16 @@
       "Vulnerabilities": []
     },
     "ConstantCoding": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            53
+          ],
+          "Lines": [
+            "sw zero,0(a5)"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -6639,7 +6648,150 @@
       ]
     },
     "ConstantCoding": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            66
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            69
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            71,
+            72
+          ],
+          "Lines": [
+            "li\ta4,-16",
+            "sb\ta4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            103,
+            104
+          ],
+          "Lines": [
+            "li a4,90",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            107,
+            108
+          ],
+          "Lines": [
+            "li a4,90",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            110,
+            111
+          ],
+          "Lines": [
+            "li\ta4,-15",
+            "sb\ta4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            134,
+            135
+          ],
+          "Lines": [
+            "li\ta5,16",
+            "sb\ta5,-25(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            136
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            137
+          ],
+          "Lines": [
+            "sd zero,-72(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            138
+          ],
+          "Lines": [
+            "sd zero,-64(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            139
+          ],
+          "Lines": [
+            "sd zero,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            140
+          ],
+          "Lines": [
+            "sd zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            154
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            167,
+            168
+          ],
+          "Lines": [
+            "li a5,1",
+            "sb a5,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            171
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            318,
+            319
+          ],
+          "Lines": [
+            "li a4,-1",
+            "sb a4,0(a5)"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": []
@@ -6700,7 +6852,52 @@
       "Vulnerabilities": []
     },
     "ConstantCoding": {
-      "Vulnerabilities": []
+      "Vulnerabilities": [
+        {
+          "Line_nos": [
+            172
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            178
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            245
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            282,
+            283
+          ],
+          "Lines": [
+            "li a4,1",
+            "sw a4,32(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            307,
+            308
+          ],
+          "Lines": [
+            "li a4,1",
+            "sw a4,132(a5)"
+          ]
+        }
+      ]
     },
     "LoopCheck": {
       "Vulnerabilities": [
@@ -7139,15 +7336,89 @@
             26
           ],
           "Lines": [
-            ".word\t-1"
+            ".word -1"
           ]
         },
         {
           "Line_nos": [
-            45
+            171,
+            172
           ],
           "Lines": [
-            ".zero\t1"
+            "li\ta4,5",
+            "sw\ta4,%lo(bootTimeout)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            174,
+            175
+          ],
+          "Lines": [
+            "li a5,120",
+            "sh a5,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            206,
+            207
+          ],
+          "Lines": [
+            "li a4,-1",
+            "sw a4,%lo(bootTimeout)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            313
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            426
+          ],
+          "Lines": [
+            "sw zero,-40(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            688,
+            689
+          ],
+          "Lines": [
+            "li a4,-1",
+            "sw a4,%lo(cmdArgCnt)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            691
+          ],
+          "Lines": [
+            "sd zero,%lo(cmdArgStr)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            700
+          ],
+          "Lines": [
+            "sw zero,%lo(cmdArgCnt)(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            715,
+            716
+          ],
+          "Lines": [
+            "li a4,1",
+            "sw a4,%lo(cmdArgCnt)(a5)"
           ]
         }
       ]
@@ -8600,6 +8871,344 @@
       "Vulnerabilities": [
         {
           "Line_nos": [
+            87
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            94
+          ],
+          "Lines": [
+            "sw zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            123
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            124
+          ],
+          "Lines": [
+            "sb zero,-21(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            260
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            307
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            411
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            513
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            558
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            559
+          ],
+          "Lines": [
+            "sb zero,-21(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            632
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            633
+          ],
+          "Lines": [
+            "sb zero,-21(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            764
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            765
+          ],
+          "Lines": [
+            "sw zero,-28(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            766
+          ],
+          "Lines": [
+            "sw zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            767
+          ],
+          "Lines": [
+            "sb zero,-18(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            770
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            816
+          ],
+          "Lines": [
+            "sw zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            886
+          ],
+          "Lines": [
+            "sw zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1052
+          ],
+          "Lines": [
+            "sw zero,-44(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1062
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1121,
+            1122
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1125
+          ],
+          "Lines": [
+            "sw zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1126
+          ],
+          "Lines": [
+            "sb zero,-49(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1373
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1459,
+            1460
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-120(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1832
+          ],
+          "Lines": [
+            "sd zero,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1833
+          ],
+          "Lines": [
+            "sd zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1834
+          ],
+          "Lines": [
+            "sd zero,-40(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1835
+          ],
+          "Lines": [
+            "sd zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1836,
+            1837
+          ],
+          "Lines": [
+            "li a5,3",
+            "sw a5,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1882
+          ],
+          "Lines": [
+            "sd zero,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1883
+          ],
+          "Lines": [
+            "sd zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1884
+          ],
+          "Lines": [
+            "sd zero,-40(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1885
+          ],
+          "Lines": [
+            "sd zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1886,
+            1887
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1888
+          ],
+          "Lines": [
+            "sd zero,-88(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1889
+          ],
+          "Lines": [
+            "sd zero,-80(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1890
+          ],
+          "Lines": [
+            "sd zero,-72(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1891
+          ],
+          "Lines": [
+            "sd zero,-64(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            1892,
+            1893
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-88(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
             1967,
             1969
           ],
@@ -8690,6 +9299,16 @@
           ],
           "Lines": [
             ".word 1"
+          ]
+        },
+        {
+          "Line_nos": [
+            2139,
+            2140
+          ],
+          "Lines": [
+            "li a5,5",
+            "sw a5,-24(s0)"
           ]
         },
         {
@@ -8794,6 +9413,22 @@
           ],
           "Lines": [
             ".word -1"
+          ]
+        },
+        {
+          "Line_nos": [
+            2268
+          ],
+          "Lines": [
+            "sw zero,-44(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2305
+          ],
+          "Lines": [
+            "sw zero,-28(s0)"
           ]
         },
         {
@@ -8908,6 +9543,110 @@
           ],
           "Lines": [
             ".word -1"
+          ]
+        },
+        {
+          "Line_nos": [
+            2514,
+            2515
+          ],
+          "Lines": [
+            "li a5,1",
+            "sh a5,-18(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2658,
+            2659
+          ],
+          "Lines": [
+            "li a5,1",
+            "sb a5,-18(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2660
+          ],
+          "Lines": [
+            "sd zero,-80(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2661
+          ],
+          "Lines": [
+            "sd zero,-72(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2662
+          ],
+          "Lines": [
+            "sd zero,-64(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2663
+          ],
+          "Lines": [
+            "sw zero,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2664,
+            2665
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-80(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2679
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2764,
+            2765
+          ],
+          "Lines": [
+            "li a5,1",
+            "sh a5,-18(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2849
+          ],
+          "Lines": [
+            "sw zero,-40(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2884
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            2939
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
           ]
         },
         {
@@ -9048,6 +9787,70 @@
           "Lines": [
             "curve_secp256r1:",
             ".word\t-1"
+          ]
+        },
+        {
+          "Line_nos": [
+            3092
+          ],
+          "Lines": [
+            "sw zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3146
+          ],
+          "Lines": [
+            "sw zero,-28(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3181
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3249
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3284
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3323
+          ],
+          "Lines": [
+            "sw zero,-32(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3345
+          ],
+          "Lines": [
+            "sw zero,-48(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3355
+          ],
+          "Lines": [
+            "sw zero,-32(s0)"
           ]
         },
         {
@@ -9258,6 +10061,332 @@
           "Lines": [
             "curve_secp256k1:",
             ".word\t0"
+          ]
+        },
+        {
+          "Line_nos": [
+            3767
+          ],
+          "Lines": [
+            "sw zero,-36(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3768
+          ],
+          "Lines": [
+            "sb zero,-37(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            3899,
+            3900
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-56(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4552,
+            4557
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4555,
+            4557
+          ],
+          "Lines": [
+            "li a5,0",
+            "sw a5,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4584,
+            4585
+          ],
+          "Lines": [
+            "li a5,-1",
+            "sw a5,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4598
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4695
+          ],
+          "Lines": [
+            "sd zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4791
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4863
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            4932
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5040
+          ],
+          "Lines": [
+            "sd zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5180
+          ],
+          "Lines": [
+            "sb zero,-17(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5623
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5706
+          ],
+          "Lines": [
+            "sd zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5821,
+            5822
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-64(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            5891
+          ],
+          "Lines": [
+            "sw zero,-80(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6025
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6098
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6125,
+            6126
+          ],
+          "Lines": [
+            "li a4,54",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6198
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6225,
+            6226
+          ],
+          "Lines": [
+            "li a4,92",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6342
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6348,
+            6349
+          ],
+          "Lines": [
+            "li a4,1",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6353
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6372
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6409,
+            6410
+          ],
+          "Lines": [
+            "li a4,1",
+            "sb a4,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6438
+          ],
+          "Lines": [
+            "sw zero,-20(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6443
+          ],
+          "Lines": [
+            "sb zero,-25(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6449
+          ],
+          "Lines": [
+            "sw zero,-24(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6491,
+            6492
+          ],
+          "Lines": [
+            "li a5,-1",
+            "sw a5,-68(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6548
+          ],
+          "Lines": [
+            "sb zero,0(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6647
+          ],
+          "Lines": [
+            "sw zero,-216(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6655
+          ],
+          "Lines": [
+            "sw zero,-472(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6663
+          ],
+          "Lines": [
+            "sw zero,-504(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6771
+          ],
+          "Lines": [
+            "sw zero,-56(a5)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6870
+          ],
+          "Lines": [
+            "sd zero,-408(s0)"
+          ]
+        },
+        {
+          "Line_nos": [
+            6957,
+            6958
+          ],
+          "Lines": [
+            "li a5,1",
+            "sw a5,-152(s0)"
           ]
         }
       ]

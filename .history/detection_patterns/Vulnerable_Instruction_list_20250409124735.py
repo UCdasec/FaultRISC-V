@@ -101,19 +101,19 @@ vulnerable_instruction_list = {
                     {VariableType.INTEGER}
                 ]
             ],
-            # [
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
-            #     ]
-            # ],
-            # [
-            #     [
-            #         {'li'}, {Register}, {IntegerLiteral}
-            #     ],
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
-            #     ]
-            # ],
+            [
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
+                ]
+            ],
+            [
+                [
+                    {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
+                ]
+            ],
             [
                 [
                     {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
@@ -126,22 +126,22 @@ vulnerable_instruction_list = {
                     {VariableType.INTEGER}
                 ]
             ],
-            # [
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
-            #     ]
-            # ],
-            # [
-            #     [
-            #         {'li'}, {Register}, {IntegerLiteral}
-            #     ],
-            #     [
-            #         '__IGNORE_LINE__', {'lui'}, {Register}, {MemoryAddress}
-            #     ],
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
-            #     ]
-            # ],
+            [
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
+                ]
+            ],
+            [
+                [
+                    {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    '__IGNORE_LINE__', {'lui'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
+                ]
+            ],
             [
                 [
                     {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}
@@ -154,22 +154,22 @@ vulnerable_instruction_list = {
                     {VariableType.INTEGER}
                 ]
             ],
-            # [
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
-            #     ]
-            # ],
-            # [
-            #     [
-            #         {'li'}, {Register}, {IntegerLiteral}
-            #     ],
-            #     [
-            #         '__IGNORE_LINE__', {'lui'}, {Register}, {MemoryAddress}
-            #     ],
-            #     [
-            #         {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
-            #     ]
-            # ],
+            [
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {IntegerLiteral}, {MemoryAddress}
+                ]
+            ],
+            [
+                [
+                    {'li'}, {Register}, {IntegerLiteral}
+                ],
+                [
+                    '__IGNORE_LINE__', {'lui'}, {Register}, {MemoryAddress}
+                ],
+                [
+                    {'sb', 'sd', 'sh', 'sw'}, {Register}, {MemoryAddress}
+                ]
+            ],
             [
                 [
                     {'word', 'dword', 'byte', 'short', '2byte', '4byte', '8byte', 'long', 'sleb128', 'uleb128', 'half'}, {IntegerLiteral}

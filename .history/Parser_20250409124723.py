@@ -269,7 +269,7 @@ class Program:
             elif not line.startswith('.') and line.endswith(':'):       # Function or GlobalVariable
                 for word_count, next_line in enumerate(self.raw_lines[line_no:]):
                     if next_line.strip().startswith(('.word', '.byte', '.short', '.2byte', '.4byte', '.8byte',
-                                                     '.long', '.sleb128', '.uleb128', '.half', '.zero')):
+                                                     '.long', '.sleb128', '.uleb128', '.half')):
                         if word_count == 0:                             # GlobalVariable of type INTEGER
                             self.lines.append(GlobalVariable(line_no, line, VariableType.INTEGER))
                             self.lines[-1].resolve_var_name()

@@ -13,28 +13,30 @@ class ConstantCoding(Pattern):
         self.detection_cache = []                                               # Stores the set of instructions that are currently being inspected for ConstantCoding vulnerability.
         self.vulnerable_pattern = []                                            # The specific vulnerable pattern that is being checked
 
-    def checkInstruction(self, line: GlobalVariable | Attribute):
+    def checkInstruction(self, line: Instruction | GlobalVariable | Attribute):
         '''
-        This function inspects the given line to see if it matches the right position in any of the vulnerable
+        This function inspects the given instruction to see if it matches the right position in any of the vulnerable
         instruction sets for ConstantCoding at the specific optimization level.
-        The detection is handled differently in case it's an attribute or a Global Variable.
+        The detection is handled differently in case it's an instruction or attribute, or a Global Variable.
 
-        In case it's an attribute, We match to see if the lines being streamed in match any one of the
-        vulnerable instruction sets for ConstantCoding line-by-line. We also check to see that the attribute doesn't 
-        already fall under the range of a global variable that has already been marked vulnerable.
+        In case it's an instruction or attribute, We match to see if the lines being streamed in match any one of the
+        vulnerable instruction sets for ConstantCoding line-by-line. The only difference between attribute and instruction
+        is that for attribute, we also check to see that the attribute doesn't already fall under the range of a global
+        variable that has already been marked vulnerable.
 
         A global variable is handled in a single run of the ConstantCoding detector even if there are multiple vulnerable
         constants in that global variable. The global variable object already contains information of all its values,
         so we simply shave off those that are not constant coding vulnerable and add the whole vulnerability in one run.
         :param line: The instruction to be inspected for branch vulnerability
         '''
-        line_type = line.type if isinstance(line, Attribute) else line.variable_type
+        line_type = line.type if any([isinstance(line, Instruction), isinstance(line, Attribute)]) else line.variable_type
         line_pattern_match = False
         line_no = len(self.detection_cache)
 
         if line_no == 0:    # Initiating the vulnerable instruction pattern
             for instruction_set in self.vulnerable_instruction_set:
-                if (line_type in instruction_set[0][0] and isinstance(line, Attribute)): # making sure all line parameters align with pattern
+                if (line_type in instruction_set[0][0] and  # Instruction or Attribute
+                        any([isinstance(line, Instruction), isinstance(line, Attribute)])): # making sure all line parameters align with pattern
 
                     for arg_no, arg in enumerate(line.args, start=1):
                         if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in instruction_set[0][arg_no]):
@@ -42,13 +44,19 @@ class ConstantCoding(Pattern):
                             break
 
                         if isinstance(arg, IntegerLiteral):
-                            '''
-                            In case of an attribute, we want to make sure that the attribute hasn't already been marked
-                            vulnerable by a previous global variable, as there is room for overlap as a result of a 
-                            (questionable) design choice of the code author. We check this by comparing the line numbers
-                            and verifying whether the attribute is within the range of lines covered by the global variable.
-                            '''
-                            if isinstance(line, Attribute):   # In case of attribute, we must check that it doesn't overlap with a previous global variable
+                            if isinstance(line, Instruction):
+                                hamming_weight_0, hamming_weight_1 = calculate_hamming(arg.arg_value)
+                                if hamming_weight_0 > self.tolerance and hamming_weight_1 > self.tolerance:
+                                    line_pattern_match = False
+                                    break
+
+                                '''
+                                In case of an attribute, we want to make sure that the attribute hasn't already been marked
+                                vulnerable by a previous global variable, as there is room for overlap as a result of a 
+                                (questionable) design choice of the code author. We check this by comparing the line numbers
+                                and verifying whether the attribute is within the range of lines covered by the global variable.
+                                '''
+                            elif isinstance(line, Attribute):   # In case of attribute, we must check that it doesn't overlap with a previous global variable
                                 if len(self.vulnerable_lines) >=1 and isinstance(self.vulnerable_lines[-1][0], GlobalVariable):
                                     attribute_line_no = line.line_no
                                     global_var_reach = self.vulnerable_lines[-1][0].variable_values[-1].line_no

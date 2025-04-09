@@ -34,7 +34,8 @@ class ConstantCoding(Pattern):
 
         if line_no == 0:    # Initiating the vulnerable instruction pattern
             for instruction_set in self.vulnerable_instruction_set:
-                if (line_type in instruction_set[0][0] and isinstance(line, Attribute)): # making sure all line parameters align with pattern
+                if (line_type in instruction_set[0][0] and  # Instruction or Attribute
+                        any([isinstance(line, Instruction), isinstance(line, Attribute)])): # making sure all line parameters align with pattern
 
                     for arg_no, arg in enumerate(line.args, start=1):
                         if not any(isinstance(arg, pattern_arg_type) for pattern_arg_type in instruction_set[0][arg_no]):
@@ -42,6 +43,12 @@ class ConstantCoding(Pattern):
                             break
 
                         if isinstance(arg, IntegerLiteral):
+                            # if isinstance(line, Instruction):
+                            #     hamming_weight_0, hamming_weight_1 = calculate_hamming(arg.arg_value)
+                            #     if hamming_weight_0 > self.tolerance and hamming_weight_1 > self.tolerance:
+                            #         line_pattern_match = False
+                            #         break
+
                             '''
                             In case of an attribute, we want to make sure that the attribute hasn't already been marked
                             vulnerable by a previous global variable, as there is room for overlap as a result of a 
